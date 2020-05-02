@@ -1,83 +1,30 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                       CARREGA DE LA CLASSE DE DOCUMENT                      %
-%                                                                             %
-% Les opcions admissibles son:                                                %
-%      12pt / 11pt            (cos dels tipus de lletra; no feu servir 10pt)  %
-%                                                                             %
-% catalan/spanish/english     (llengua principal del treball)                 %
-%                                                                             % 
-% french/italian/german...    (si necessiteu fer servir alguna altra llengua) %
-%                                                                             %
-% listoffigures               (El document inclou un Index de figures)        %
-% listoftables                (El document inclou un Index de taules)         %
-% listofquadres               (El document inclou un Index de quadres)        %
-% listofalgorithms            (El document inclou un Index d'algorismes)      %
-%                                                                             %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\documentclass[11pt,catalan,listoffigures,listoftables]{tfgetsinf}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                     CODIFICACIO DEL FITXER FONT                             %
-%                                                                             %
-%    windows fa servir normalment 'ansinew'                                   %
-%    amb linux es possible que siga 'latin1' o 'latin9'                       %
-%    Pero el mes recomanable es fer servir utf8 (unicode 8)                   %
-%                                          (si el vostre editor ho permet)    % 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[11pt,spanish,listoffigures,listoftables]{tfgetsinf}
 
 \usepackage[utf8]{inputenc} 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                        ALTRES PAQUETS I DEFINICIONS                         %
-%                                                                             %
-% Carregueu aci els paquets que necessiteu i declareu les comandes i entorns  %
-%                                          (aquesta seccio pot ser buida)     %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                        DADES DEL TREBALL                                    %
-%                                                                             %
-% titol, alumne, tutor i curs academic                                        %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \title{???? ????????? \\
          ?????????????? ? ?????}
 \author{???????? ???? ????????????}
 \tutor{?????? ???? ????????????}
-\curs{????-????}
+\curs{2019-2020}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                     PARAULES CLAU/PALABRAS CLAVE/KEY WORDS                  %
-%                                                                             %
-% Independentment de la llengua del treball, s'hi han d'incloure              %
-% les paraules clau i el resum en els tres idiomes                            %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \keywords{????, ?????????, ????, ?????????????????} % Paraules clau 
          {?????, ???, ???????????????}              % Palabras clave
          {?????, ????? ?????, ?????????????}        % Key words
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                              INICI DEL DOCUMENT                             %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \begin{document}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%              RESUMS DEL TFG EN VALENCIA, CASTELLA I ANGLES                  %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \begin{abstract}
-????
+?
 \end{abstract}
 \begin{abstract}[spanish]
-????
+?
 \end{abstract}
 \begin{abstract}[english]
-????
+?
 \end{abstract}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -104,23 +51,40 @@
 
 \section{Estructura de la mem\`oria}
 
-????? ????????????? ????????????? ????????????? ????????????? ????????????? 
 
-%\section{Notes bibliografiques} %%%%% Opcional
+\chapter{Análisis del problema}
 
-%????? ????????????? ????????????? ????????????? ????????????? ?????????????
+\section{Casos de uso}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                         CAPITOLS (tants com calga)                          %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Actores: Estudiantes y Admin
 
-\chapter{??? ???? ??????}
+\section{Historias de usuario}
 
-????? ????????????? ????????????? ????????????? ????????????? ?????????????
+\begin{itemize}
+  \item Como Usuario, quiero poder entrar al sistema utilizando mis credenciales personales.
+  \item Como Estudiante, quiero poder registrarme en el sistema para poder hacer uso del mismo.
+\end{itemize}
 
-\section{?? ???? ???? ? ?? ??}
+\section{Requisitos funcionales}
 
-????? ????????????? ????????????? ????????????? ????????????? ?????????????
+En el siguiente apartado se describen todos los requisitos funcionales de Pizarra.
+
+\begin{tabular}{ |p{3cm}||p{3cm}|p{3cm}|p{3cm}|  }
+ \hline
+ \multicolumn{4}{|c|}{Country List} \\
+ \hline
+ Country Name     or Area Name& ISO ALPHA 2 Code &ISO ALPHA 3 Code&ISO numeric Code\\
+ \hline
+ Afghanistan   & AF    &AFG&   004\\
+ Aland Islands&   AX  & ALA   &248\\
+ Albania &AL & ALB&  008\\
+ Algeria    &DZ & DZA&  012\\
+ American Samoa&   AS  & ASM&016\\
+ Andorra& AD  & AND   &020\\
+ Angola& AO  & AGO&024\\
+ \hline
+\end{tabular}
+
 
 \chapter{??? ???? ??????}
 
