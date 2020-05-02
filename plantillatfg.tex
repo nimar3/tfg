@@ -1,19 +1,21 @@
-
 \documentclass[11pt,spanish,listoffigures,listoftables]{tfgetsinf}
+
+\usepackage{enumitem}
+\newlist{tabitem}{itemize}{1}
+\setlist[tabitem]{wide=0pt, nosep, leftmargin= * ,label=\textbullet,after=\vspace{-\baselineskip},before=\vspace{-0.6\baselineskip}}
 
 \usepackage[utf8]{inputenc} 
 
 
-\title{???? ????????? \\
-         ?????????????? ? ?????}
-\author{???????? ???? ????????????}
-\tutor{?????? ???? ????????????}
+\title{Implementación de un sitio web para un concurso de programación paralela}
+\author{Nicolás Fernando Martini}
+\tutor{Pedro Alonso Jordá}
 \curs{2019-2020}
 
 
 \keywords{????, ?????????, ????, ?????????????????} % Paraules clau 
-         {?????, ???, ???????????????}              % Palabras clave
-         {?????, ????? ?????, ?????????????}        % Key words
+         {programación paralela, concurso de programación, gamificación}              % Palabras clave
+         {parallel programming, programming competition, gamification}        % Key words
 
 \begin{document}
 
@@ -27,63 +29,101 @@
 ?
 \end{abstract}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                              CONTINGUT DEL TREBALL                          %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \mainmatter
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                  INTRODUCCIO                                %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\chapter{Introducci\'o}
+\chapter{Introducción}
 
 ????? ????????????? ????????????? ????????????? ????????????? ?????????????
 
-\section{Motivaci\'o}
+\section{Motivación}
 
 ????? ????????????? ????????????? ????????????? ????????????? ????????????? 
 
-\section{Objectius}
+\section{Objectivo}
 
 ????? ????????????? ????????????? ????????????? ????????????? ?????????????
 
-\section{Estructura de la mem\`oria}
+\section{Estructura de la memoria}
 
+\chapter{Estado del arte}
+
+\section{Alternativas}
+
+\section{Crítica a alternativas}
 
 \chapter{Análisis del problema}
 
 \section{Casos de uso}
 
-Actores: Estudiantes y Admin
+\subsection{Actores}
+
+El sistema contará con dos perfiles de usuarios que llamaremos actores, estos son el Estudiante y el Administrador. También, veremos que en la memoria se hace mención al \textit{usuario}, esto se hace para referirnos a funcionalidades que se aplican tanto a los \textit{Estudiantes} como \textit{Administradores}
+
+\begin{itemize}
+	\item Estudiante: 
+	\item Administrador:
+\end{itemize}
+
 
 \section{Historias de usuario}
 
 \begin{itemize}
-  \item Como Usuario, quiero poder entrar al sistema utilizando mis credenciales personales.
-  \item Como Estudiante, quiero poder registrarme en el sistema para poder hacer uso del mismo.
+  \item Como \textit{Usuario}, quiero poder entrar al sistema utilizando mis credenciales personales.
+  \item Como \textit{Estudiante}, quiero poder registrarme en el sistema para poder hacer uso del mismo.
+  \item Como \textit{Estudiante}, quiero poder enviar las resoluciones a los tareas planteadas.
+  \item Como \textit{Estudiante}, quiero poder formar parte de un equipo.
+  \item Como \textit{Estudiante}, quiero poder visualizar un resumen de mi perfil. 
+  \item Como \textit{Estudiante}, 
 \end{itemize}
 
 \section{Requisitos funcionales}
 
 En el siguiente apartado se describen todos los requisitos funcionales de Pizarra.
 
-\begin{tabular}{ |p{3cm}||p{3cm}|p{3cm}|p{3cm}|  }
- \hline
- \multicolumn{4}{|c|}{Country List} \\
- \hline
- Country Name     or Area Name& ISO ALPHA 2 Code &ISO ALPHA 3 Code&ISO numeric Code\\
- \hline
- Afghanistan   & AF    &AFG&   004\\
- Aland Islands&   AX  & ALA   &248\\
- Albania &AL & ALB&  008\\
- Algeria    &DZ & DZA&  012\\
- American Samoa&   AS  & ASM&016\\
- Andorra& AD  & AND   &020\\
- Angola& AO  & AGO&024\\
- \hline
-\end{tabular}
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{ |p{4cm}||p{10cm}|  }
+		\multicolumn{2}{l}{\textbf{RF-1}} \\
+		\hline
+		Nombre   & Registro de usuarios\\
+		\hline
+		Descripción  & El sistema permitirá el registro de usuarios mediante dirección de correo electrónico   \\
+		\hline
+		Prioridad &  Media\\
+		\hline
+		Criterio de aceptación & 
+		\begin{tabitem}
+			\item no puede existir más de un usuario con el mismo correo electrónico
+			\item se generará un usuario único con el alias del correo electrónico
+			\item se podrá deshabilitar el registro de usuarios mediante configuración del sistema
+			\item se podrá limitar el registro de usuarios a correos electrónicos que pertenezcan a dominios específicos (eg: @upv.es, @inf.upv.es)
+		\end{tabitem} \\
+		\hline
+	\end{tabular}
+	\caption{Table to test captions and labels}
+	\label{table:1}
+\end{table}
+
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{ |p{4cm}||p{10cm}|  }
+		\multicolumn{2}{l}{\textbf{RF-2}} \\
+		\hline
+		Nombre   & Login de usuarios\\
+		\hline
+		Descripción  & El sistema permitirá el login de usuarios mediante dirección de correo electrónico o usuario  \\
+		\hline
+		Prioridad &  Más Alta\\
+		\hline
+		Criterio de aceptación & 
+		\begin{tabitem}
+			\item solo se podrá ingresar al sistema si la cuenta está activa
+		\end{tabitem} \\
+		\hline
+	\end{tabular}
+	\caption{Table to test captions and labels}
+	\label{table:2}
+\end{table}
 
 
 \chapter{??? ???? ??????}
