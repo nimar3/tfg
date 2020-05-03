@@ -1,11 +1,30 @@
 \documentclass[11pt,spanish,listoffigures,listoftables]{tfgetsinf}
 
+\usepackage[utf8]{inputenc} 
+
+% custom bulletpoint for tables
 \usepackage{enumitem}
 \newlist{tabitem}{itemize}{1}
 \setlist[tabitem]{wide=0pt, nosep, leftmargin= * ,label=\textbullet,after=\vspace{-\baselineskip},before=\vspace{-0.6\baselineskip}}
+%
 
-\usepackage[utf8]{inputenc} 
+% custom dedication
+\newenvironment{dedication}
+{%\clearpage           % we want a new page          %% I commented this
+	\thispagestyle{empty}% no header and footer
+	\itshape             % the text is in italics
+	\raggedleft          % flush to the right margin
+}
+{\par % end the paragraph
+	\vspace{\stretch{3}} % space at bottom is three times that at the top
+	\clearpage           % finish off the page
+}
 
+% link colors in table black
+\hypersetup{%
+	colorlinks = true,
+	linkcolor  = black
+}
 
 \title{Implementación de un sitio web para un concurso de programación paralela}
 \author{Nicolás Fernando Martini}
@@ -13,11 +32,17 @@
 \curs{2019-2020}
 
 
-\keywords{????, ?????????, ????, ?????????????????} % Paraules clau 
-         {programación paralela, concurso de programación, gamificación}              % Palabras clave
-         {parallel programming, programming competition, gamification}        % Key words
+\keywords{????, ?????????, ????, ?????????????????} 
+         {programación paralela, concurso de programación, gamificación, ludificación}  
+         {parallel programming, programming competition, gamification}        
 
 \begin{document}
+
+\begin{dedication}
+
+	... 
+	
+\end{dedication}
 
 \begin{abstract}
 ?
@@ -33,23 +58,39 @@
 
 \chapter{Introducción}
 
-????? ????????????? ????????????? ????????????? ????????????? ?????????????
+?
 
 \section{Motivación}
 
-????? ????????????? ????????????? ????????????? ????????????? ????????????? 
+Desde el inicio de mis estudios en el Grado de Ingeniería Informática me han interesado los concursos de programación como los promovidos desde la propia \textit{ETSINF} así como también los disponibles en plataformas online como UVa, HackerRank, CheckIO y Project Euler. Estas competiciones ayudan a promover el interés en diferentes ramas de los estudios cursados con el añadido de un marco competitivo. 
 
-\section{Objectivo}
+Normalmente, los concursos de programación abarcan problemas relacionados con algoritmia, y al ver la publicación de la propuesta del \textit{TFG} donde se añade la programación paralela me ha despertado el interés ya que no solo se busca que se encuentre la solución al problema planteado, sino que también su eficiencia.
 
-????? ????????????? ????????????? ????????????? ????????????? ?????????????
+Además, es importante remarcar que hoy en día muchas empresas en sus entrevistas de trabajo recurren a este tipo de resolución de problemas para contratar a candidatos.
+
+\section{Objetivo}
+
+El principal objetivo es ...
 
 \section{Estructura de la memoria}
 
+La memoria está dividida en los siguientes capítulos:
+
+\begin{itemize}
+	\item \textbf{Estado del arte}: se analizan las alternativas que existen al trabajo planteado para así llegar a una propuesta que abarque las necesidades actuales de la asignatura Computación Paralela.
+	\item \textbf{Análisis del problema}: se recopilan los tipos de usuarios que harán uso del sistema, los requerimientos que se deben implementar para que el sistema cumpla con los objetivos planteados.
+	\item \textbf{Diseño de la solución}: se describen los elementos
+	\item \textbf{Desarrollo de la solución}:
+	\item \textbf{Implantación}:
+	\item \textbf{Pruebas}:
+	\item \textbf{Conclusiones}: 
+\end{itemize}
+
 \chapter{Estado del arte}
 
-\section{Alternativas}
+\section{Crítica al estado del arte}
 
-\section{Crítica a alternativas}
+\section{Propuesta}
 
 \chapter{Análisis del problema}
 
@@ -57,7 +98,7 @@
 
 \subsection{Actores}
 
-El sistema contará con dos perfiles de usuarios que llamaremos actores, estos son el Estudiante y el Administrador. También, veremos que en la memoria se hace mención al \textit{usuario}, esto se hace para referirnos a funcionalidades que se aplican tanto a los \textit{Estudiantes} como \textit{Administradores}
+El sistema contará con dos perfiles de usuarios que llamaremos actores, estos son el \textit{Estudiante} y \textit{Administrador}. También, veremos que en la memoria se hace mención al \textit{usuario}, esto se hace para referirnos a funcionalidades que se aplican tanto a los \textit{Estudiantes} como \textit{Administradores}
 
 \begin{itemize}
 	\item Estudiante: 
@@ -68,12 +109,12 @@ El sistema contará con dos perfiles de usuarios que llamaremos actores, estos s
 \section{Historias de usuario}
 
 \begin{itemize}
-  \item Como \textit{Usuario}, quiero poder entrar al sistema utilizando mis credenciales personales.
-  \item Como \textit{Estudiante}, quiero poder registrarme en el sistema para poder hacer uso del mismo.
-  \item Como \textit{Estudiante}, quiero poder enviar las resoluciones a los tareas planteadas.
-  \item Como \textit{Estudiante}, quiero poder formar parte de un equipo.
-  \item Como \textit{Estudiante}, quiero poder visualizar un resumen de mi perfil. 
-  \item Como \textit{Estudiante}, 
+  \item Como \textit{Usuario}, quiero ingresar al sistema utilizando mis credenciales personales.
+  \item Como \textit{Estudiante}, quiero registrarme en el sistema para poder hacer uso del mismo.
+  \item Como \textit{Estudiante}, quiero enviar las resoluciones a mis tareas asignadas.
+  \item Como \textit{Estudiante}, quiero formar parte de un equipo.
+  \item Como \textit{Estudiante}, quiero visualizar un resumen de mi perfil. 
+  \item ...
 \end{itemize}
 
 \section{Requisitos funcionales}
@@ -100,7 +141,7 @@ En el siguiente apartado se describen todos los requisitos funcionales de Pizarr
 		\end{tabitem} \\
 		\hline
 	\end{tabular}
-	\caption{Table to test captions and labels}
+	\caption{RF-1 Registro de usuarios}
 	\label{table:1}
 \end{table}
 
@@ -121,30 +162,51 @@ En el siguiente apartado se describen todos los requisitos funcionales de Pizarr
 		\end{tabitem} \\
 		\hline
 	\end{tabular}
-	\caption{Table to test captions and labels}
+	\caption{RF-2 Login de usuarios}
 	\label{table:2}
 \end{table}
 
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{ |p{4cm}||p{10cm}|  }
+		\multicolumn{2}{l}{\textbf{RF-2}} \\
+		\hline
+		Nombre   & Equipos\\
+		\hline
+		Descripción  & Los \textit{Estudiantes} podrán formar parte de un equipo   \\
+		\hline
+		Prioridad &  Baja\\
+		\hline
+		Criterio de aceptación & 
+		\begin{tabitem}
+			\item solo se podrá formar parte de un solo equipo
+			\item si un equipo no tiene integrantes se eliminará del sistema
+			\item los equipos tendrán un máximo de integrantes que podrá ser configurado por el \textit{Administrador}
+		\end{tabitem} \\
+		\hline
+	\end{tabular}
+	\caption{RF-3 Equipos}
+	\label{table:3}
+\end{table}
 
-\chapter{??? ???? ??????}
 
-????? ????????????? ????????????? ????????????? ????????????? ????????????? 
+\chapter{Diseño de la solución}
 
-\section{?? ???? ???? ? ?? ??}
+?
 
-????? ????????????? ????????????? ????????????? ????????????? ?????????????
+\section{Arquitectura del sistema}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                 CONCLUSIONS                                 %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+?
 
-\chapter{Conclusions}
+\chapter{Implantación}
 
-????? ????????????? ????????????? ????????????? ????????????? ????????????? 
+?
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                BIBLIOGRAFIA                                 %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Pruebas}
+
+?
+
+\chapter{Conclusiones}
 
 \begin{thebibliography}{10}
 
@@ -176,41 +238,27 @@ En el siguiente apartado se describen todos los requisitos funcionales de Pizarr
 \end{thebibliography}
 \cleardoublepage
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                           APÈNDIXS  (Si n'hi ha!)                           %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \APPENDIX
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                         LA CONFIGURACIO DEL SISTEMA                         %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Acrónimos}
 
-\chapter{Configuració del sistema}
+\begin{itemize}
+	\item \textbf{ETSINF}: Escuela Técnica Superior de Ingeniería Informática.
+	\item \textbf{TFG}: Trabajo Final de Grado.
+	\item \textbf{RF}: Requisito funcional.
+	\item \textbf{RNF}: Requisito no funcional.
+\end{itemize}
 
-????? ????????????? ????????????? ????????????? ????????????? ?????????????
+\chapter{Configuración del sistema}
 
-\section{Fase d'inicialització}
+?
 
-????? ????????????? ????????????? ????????????? ????????????? ?????????????
+\section{Inicialización}
 
-\section{Identificació de dispositius}
+?
 
-????? ????????????? ????????????? ????????????? ????????????? ?????????????
+\chapter{?}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                               ALTRES  APÈNDIXS                              %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-\chapter{??? ???????????? ????}
-
-????? ????????????? ????????????? ????????????? ????????????? ????????????? 
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                              FI DEL DOCUMENT                                %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+?
 
 \end{document}
