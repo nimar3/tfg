@@ -106,7 +106,7 @@ El principal objetivo es crear una herramienta
 La memoria está dividida en los siguientes capítulos:
 
 \begin{itemize}
-	\item \textbf{Estado del arte}: se analiza las alternativas que existen al trabajo planteado.  
+	\item \textbf{Estado del arte}: se analizan las alternativas que existen al trabajo planteado.  
 	\item \textbf{Análisis del problema}: se recopila los requerimientos del proyecto para así llegar a una propuesta que abarque las necesidades actuales de la asignatura \textit{CPA}.
 	\item \textbf{Diseño de la solución}: se describe todos los elementos a nivel de arquitectura que forman parte de la solución.
 	\item \textbf{Desarrollo de la solución}: ?
@@ -153,9 +153,9 @@ Como primer paso se describe el resultado esperado de este proyecto en un lengua
   \item Como \textit{Administrador}, quiero crear grupos para que los estudiantes puedan formar parte de ellos.
   \item Como \textit{Administrador}, quiero crear estudiantes subiendo un fichero csv.
   \item Como \textit{Administrador}, quiero crear y asignar tareas a diferentes grupos.
-  \item Como \textit{Administrador}, quiero crear insignias para asignar diferentes tareas.
+  \item Como \textit{Administrador}, quiero crear insignias para asignar a diferentes tareas.
   \item Como \textit{Administrador}, quiero poder editar y eliminar grupos, estudiantes, tareas e insignias.
-  \item Como \textit{Administrador}, quiero desplegar el aplicativo de forma sencilla.
+  \item Como \textit{Administrador}, quiero desplegar el aplicativo en una solución \foreignlanguage{english}{cloud}.
 \end{itemize}
 
 \section{Requisitos funcionales}
@@ -258,6 +258,33 @@ En el siguiente apartado se describen todos los requisitos funcionales del aplic
 	\caption{RF-4 \foreignlanguage{english}{Dashboard}}
 	\label{table:4}
 \end{table}
+
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{ |p{4cm}||p{10cm}|  }
+		\multicolumn{2}{l}{\textbf{RF-5}} \\
+		\hline
+		Nombre   & Mis Envíos \\
+		\hline
+		Descripción  & Los \textit{Usuarios} podrán ver un resumen de sus envíos enviados al sistema   \\
+		\hline
+		Prioridad &  Muy Alta\\
+		\hline
+		Criterio de aceptación & El resumen de envíos se visualizará en forma de tabla, se podrá filtrar por la información filtrada y deberá mostrar las siguientes columnas: \newline
+		\begin{tabitem}
+			\item ID único en el sistema
+			\item Fecha y Hora de envío
+			\item Tarea a la que corresponde
+			\item Estado del envío
+			\item Puntaje obtenido
+			\item Tiempo de ejecución
+		\end{tabitem} \\
+		\hline
+	\end{tabular}
+	\caption{RF-5 Mis Envíos}
+	\label{table:5}
+\end{table}
+
 
 
 
@@ -375,6 +402,14 @@ explicación licencia MIT
 
 ... \par
 
+\section{Relación del trabajo desarrollado con los estudios cursados}
+
+?
+
+\chapter{Trabajos futuros}
+
+?
+
 \begin{thebibliography}{10}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -419,7 +454,7 @@ explicación licencia MIT
 
 \chapter{Configuración del sistema}
 
-?
+Parámetros disponibles para la configuración del sistema.
 
 \section{Inicialización}
 
