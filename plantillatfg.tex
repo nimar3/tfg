@@ -87,32 +87,33 @@ En este proyecto se trabajarán dos conceptos importantes, la programación para
 
 Por un lado, la programación paralela es una rama importante de la computación donde se buscar partir problemas de gran magnitud en pedazos más pequeños donde se aplica la técnica de \foreign{english}{divide-and-conquer} y cada partición es ejecutada de forma simultanea por ...
 
-Y por el otro, la gamificación como herramienta para motivar 
+Y por el otro, la gamificación como herramienta para motivar ....
 
 \section{Motivación}
 
-Desde el inicio de mis estudios en el Grado de Ingeniería Informática me han interesado los concursos de programación como los promovidos desde la propia \textit{ETSINF} así como también los disponibles en plataformas online como UVa\footnote{UVa Online Judge website: \url{https://onlinejudge.org/}}, HackerRank\footnote{HackerRank website: \url{https://www.hackerrank.com/}}, CheckIO\footnote{CheckIO website: \url{https://checkio.org/}} y Project Euler\footnote{Project Euler website: \url{https://projecteuler.net/}}. Estas competiciones ayudan a promover el interés en diferentes ramas de los estudios cursados con el añadido de un marco competitivo. 
+Desde el inicio de mis estudios en el Grado de Ingeniería Informática me han interesado los concursos de programación como los promovidos desde la propia \textit{ETSINF} así como también los disponibles en plataformas online como UVa\footnote{UVa Online Judge website: \url{https://onlinejudge.org/}}, HackerRank\footnote{HackerRank website: \url{https://www.hackerrank.com/}}, CheckIO\footnote{CheckIO website: \url{https://checkio.org/}} y Project Euler\footnote{Project Euler website: \url{https://projecteuler.net/}}. Estas competiciones ayudan a promover el interés en diferentes ramas de los estudios cursados con el añadido de un marco competitivo. \par
 
-Normalmente, los concursos de programación abarcan problemas relacionados con algoritmia, y al ver la publicación de la propuesta del \textit{TFG} donde se añade la programación paralela me ha despertado el interés ya que no solo se busca que se encuentre la solución al problema planteado, sino que también el punto más importante es la eficiencia.
+Normalmente, los concursos de programación abarcan problemas relacionados con algoritmia, y al ver la publicación de la propuesta del \textit{TFG} donde se añade la programación paralela me ha despertado el interés ya que no solo se busca que se encuentre la solución al problema planteado, sino que también el punto más importante es la eficiencia. \par
 
 Todo esto, además de poder contribuir en crear una herramienta que utilizarán los alumnos de la universidad me ha motivado a realizar esta aplicación que expongo en la memoria. 
 
 \section{Objetivo}
 
-El principal objetivo es crear una herramienta ...
+El principal objetivo es crear una herramienta 
 
 \section{Estructura de la memoria}
 
 La memoria está dividida en los siguientes capítulos:
 
 \begin{itemize}
-	\item \textbf{Estado del arte}: se analizan las alternativas que existen al trabajo planteado para así llegar a una propuesta que abarque las necesidades actuales de la asignatura Computación Paralela.
-	\item \textbf{Análisis del problema}: se recopilan los tipos de usuarios que harán uso del sistema, los requerimientos que se deben implementar para que el sistema cumpla con los objetivos planteados.
-	\item \textbf{Diseño de la solución}: se describen los elementos ...
-	\item \textbf{Desarrollo de la solución}:
-	\item \textbf{Implantación}:
-	\item \textbf{Pruebas}:
-	\item \textbf{Conclusiones}: 
+	\item \textbf{Estado del arte}: se analiza las alternativas que existen al trabajo planteado.  
+	\item \textbf{Análisis del problema}: se recopila los requerimientos del proyecto para así llegar a una propuesta que abarque las necesidades actuales de la asignatura \textit{CPA}.
+	\item \textbf{Diseño de la solución}: se describe todos los elementos a nivel de arquitectura que forman parte de la solución.
+	\item \textbf{Desarrollo de la solución}: ?
+	\item \textbf{Implantación}: se explica los pasos a seguir para desplegar el software.
+	\item \textbf{Pruebas}: se describe las pruebas que se han realizado para verificar el correcto funcionamiento.
+	\item \textbf{Mantenimiento}: ? 
+	\item \textbf{Conclusiones}: ?
 \end{itemize}
 
 \chapter{Estado del arte}
@@ -121,13 +122,14 @@ La memoria está dividida en los siguientes capítulos:
 
 \section{Propuesta}
 
+
 \chapter{Análisis del problema}
 
 Antes de comenzar a escribir una linea de código, como todo proyecto ingenieril se debe hacer un estudio que involucre los usuarios que utilizarán el sistema donde se recogerán requisitos para poder hacer una propuesta acorde a sus necesidades.
 
 \section{Actores}
 
-El sistema contará con dos perfiles de usuarios que llamaremos actores, estos son el \textit{Estudiante} y \textit{Administrador}. También, veremos que en la memoria se hace mención al \textit{Usuario}, esto se hace para referirnos a funcionalidades que se aplican tanto a los \textit{Estudiantes} como \textit{Administradores}
+El sistema contará con dos perfiles de usuarios que llamaremos actores, estos son el \textit{Estudiante} y \textit{Administrador}. También, veremos que en la memoria se hace mención al \textit{usuario}, esto se hace para referirnos a funcionalidades que se aplican tanto a los \textit{Estudiantes} como \textit{Administradores}
 
 \begin{itemize}
 	\item Estudiante: el rol principal del sistema. Enviará soluciones a los problemas propuestos y tratará de mejorar sus resultados para subir su ranking en la tabla de posiciones de las tareas y la grupal. Su trabajo será recompensado en forma de puntos e insignias.
@@ -140,12 +142,12 @@ El sistema contará con dos perfiles de usuarios que llamaremos actores, estos s
 Como primer paso se describe el resultado esperado de este proyecto en un lenguaje sencillo que más adelante darán partida a los requisitos funcionales y no funcionales de la aplicación. A esto se lo llaman \textbf{Historias de usuario}.
 
 \begin{itemize}
-  \item Como \textit{Usuario}, quiero ingresar al sistema utilizando mis credenciales personales.
-  \item Como \textit{Usuario}, quiero poder cambiar mi contraseña.
+  \item Como \textit{Estudiante}, quiero ingresar al sistema utilizando mis credenciales personales.
+  \item Como \textit{Estudiante}, quiero poder cambiar mi contraseña.
   \item Como \textit{Estudiante}, quiero registrarme en el sistema para poder hacer uso del mismo.
   \item Como \textit{Estudiante}, quiero enviar las resoluciones a mis tareas asignadas.
-  \item Como \textit{Estudiante}, quiero formar parte de un equipo.
-  \item Como \textit{Estudiante}, quiero acceder a mi perfil.
+  \item Como \textit{Estudiante}, quiero formar parte de un equipo con otros estudiantes.
+  \item Como \textit{Estudiante}, quiero acceder a mi perfil para ver toda mi información.
   \item Como \textit{Estudiante}, quiero visualizar los resultados de las ejecuciones para ver como han quedado posicionadas en la tabla de clasificación.
   \item Como \textit{Estudiante}, quiero ver un resumen de mi actividad.
   \item Como \textit{Administrador}, quiero crear grupos para que los estudiantes puedan formar parte de ellos.
@@ -158,7 +160,9 @@ Como primer paso se describe el resultado esperado de este proyecto en un lengua
 
 \section{Requisitos funcionales}
 
-En el siguiente apartado se describen todos los requisitos funcionales de Pizarra.
+En el siguiente apartado se describen todos los requisitos funcionales del aplicativo. \par
+
+... explicación de la tabla ...
 
 \begin{table}[h!]
 	\centering
@@ -218,8 +222,10 @@ En el siguiente apartado se describen todos los requisitos funcionales de Pizarr
 		\hline
 		Criterio de aceptación & 
 		\begin{tabitem}
-			\item solo se podrá formar parte de un solo equipo
+			\item solo se podrá formar parte de un único equipo en un momento determinado de tiempo
 			\item si un equipo no tiene integrantes se eliminará del sistema
+			\item los equipos contarán con una URL única que permitirá a otros estudiantes unirse a los mismos
+			\item un \textit{Estudiante} no puede unirse un equipo que no forme parte de su grupo o que haya llegado al máximo de integrantes
 			\item los equipos tendrán un máximo de integrantes que podrá ser configurado por el \textit{Administrador}
 		\end{tabitem} \\
 		\hline
@@ -229,13 +235,125 @@ En el siguiente apartado se describen todos los requisitos funcionales de Pizarr
 \end{table}
 
 
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{ |p{4cm}||p{10cm}|  }
+		\multicolumn{2}{l}{\textbf{RF-4}} \\
+		\hline
+		Nombre   & \foreignlanguage{english}{Dashboard}\\
+		\hline
+		Descripción  & Los \textit{Estudiantes} al ingresar verán un resumen agregado de su estado general en el sistema   \\
+		\hline
+		Prioridad &  Alta\\
+		\hline
+		Criterio de aceptación & El \foreignlanguage{english}{Dashboard} o \textit{Página de Inicio} del \textit{Estudiante} deberá mostrar la siguiente información: \newline
+		\begin{tabitem}
+			\item resumen de los últimos envíos
+			\item extracto calculado de cantidad de envíos, tareas, quota disponible y puntaje
+			\item la última insignia obtenida, en caso que no tuviere, alentarlo a completar una tarea para conseguir su primera
+			\item los integrantes del equipo, en caso que no tuviere, alentarlo a crear uno nuevo o unirse a uno existente
+		\end{tabitem} \\
+		\hline
+	\end{tabular}
+	\caption{RF-4 \foreignlanguage{english}{Dashboard}}
+	\label{table:4}
+\end{table}
+
+
+
+\section{Requisitos no funcionales}
+
+Los requisitos no funcionales son criterios que se deben cumplir para juzgar la correcta operación del sistema. En contraste con los requisitos funcionales, no definen comportamientos específicos. \par
+
+... explicación de la tabla ... \par
+
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{ |p{4cm}||p{10cm}|  }
+		\multicolumn{2}{l}{\textbf{RNF-1}} \\
+		\hline
+		Nombre   & Usabilidad \\
+		\hline
+		Descripción  & El sitio web deberá tener una interfaz sencilla y fácil de utilizar. \\
+		\hline
+		Prioridad &  Muy Alta \\
+		\hline
+	\end{tabular}
+	\caption{RNF-1 Usabilidad}
+	\label{table:24}
+\end{table}
+
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{ |p{4cm}||p{10cm}|  }
+		\multicolumn{2}{l}{\textbf{RNF-2}} \\
+		\hline
+		Nombre   & Implantación \\
+		\hline
+		Descripción  & El aplicativo debe poder implantarse de forma automatizada \\
+		\hline
+		Prioridad &  Media \\
+		\hline
+	\end{tabular}
+	\caption{RNF-2 Implantación}
+	\label{table:25}
+\end{table}
+
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{ |p{4cm}||p{10cm}|  }
+		\multicolumn{2}{l}{\textbf{RNF-3}} \\
+		\hline
+		Nombre   & Configuración \\
+		\hline
+		Descripción  & El aplicativo debe permitir configurar los parámetros de despliegue y uso \\
+		\hline
+		Prioridad &  Alta \\
+		\hline
+	\end{tabular}
+	\caption{RNF-3 Configuración}
+	\label{table:26}
+\end{table}
+
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{ |p{4cm}||p{10cm}|  }
+		\multicolumn{2}{l}{\textbf{RNF-4}} \\
+		\hline
+		Nombre   & Localización \\
+		\hline
+		Descripción  & El aplicativo debe soportar la localización en diferentes idiomas \\
+		\hline
+		Prioridad &  Media \\
+		\hline
+	\end{tabular}
+	\caption{RNF-4 Localización}
+	\label{table:27}
+\end{table}
+
+
+
 \chapter{Diseño de la solución}
+
+?
+
+\section{Software}
 
 ?
 
 \section{Arquitectura del sistema}
 
+Resumen de como es el sistema a nivel de arquitectura. Redis, PostgreSQL, etc..
+
+
+
+\chapter{Desarrollo de la solución}
+
 ?
+
+\section{Entregables}
+
+Sprints ¿?
 
 \chapter{Implantación}
 
@@ -245,7 +363,17 @@ En el siguiente apartado se describen todos los requisitos funcionales de Pizarr
 
 ?
 
+\chapter{Mantenimiento}
+
+Resumen de como montar un entorno local de desarrollo, o hacer debug en el sistema.. etc 
+
+\section{Licencia}
+
+explicación licencia MIT 
+
 \chapter{Conclusiones}
+
+... \par
 
 \begin{thebibliography}{10}
 
