@@ -13,7 +13,6 @@
 {%\clearpage           % we want a new page          %% I commented this
 	\thispagestyle{empty}% no header and footer
 	\itshape             % the text is in italics
-	\raggedleft          % flush to the right margin
 }
 {\par % end the paragraph
 	\vspace{\stretch{3}} % space at bottom is three times that at the top
@@ -32,45 +31,75 @@
 \curs{2019-2020}
 
 
-\keywords{????, ?????????, ????, ?????????????????} 
+\keywords{?, ?, ?, ?} 
          {programación paralela, concurso de programación, gamificación, ludificación}  
          {parallel programming, programming competition, gamification}        
 
 \begin{document}
-
-\begin{dedication}
-
-	... 
 	
+
+\begin{dedication}	
+	
+	\chapter*{Dedicatoria}
+	
+	...
+
+	\chapter*{Agradecimientos}
+		A mi tutor Pedro Alonso Jordá por su apoyo y la oportunidad de hacer este proyecto con la esperanza que produzca un impacto positivo en la enseñanza en los cursos venideros. \par
+		A la ETSINF y todos sus profesores, gracias a ellos he podido crecer personal y profesionalmente. \par
+		Al Ministerio de Educación y Gobierno de España, gracias a sus ayudas he podido acceder los estudios de grado.
+		
 \end{dedication}
 
 \begin{abstract}
 ?
 \end{abstract}
+
 \begin{abstract}[spanish]
-?
+El presente trabajo aborda la implementación de un sitio web para concursos de programación paralela, con el añadido de la gamificación, una técnica de aprendizaje que busca recompensar al usuario y hacer del aprendizaje una experiencia enriquecedora y positiva. \par 
+
+... \par
+
+... \par
+
+Ha sido realizado con el apoyo del departamento de Sistemas Informáticos y Computación de la UPV con la finalidad de complementar otras herramientas utilizadas hoy en día para la enseñanza. \par
+
+
 \end{abstract}
+
 \begin{abstract}[english]
-?
+The present paper shows the implementation of a website for parallel programming competitions, with the addition of gamification, a learning technique that seeks to reward the user and make learning an enriching and positive experience. \par
+
+... \par
+
+... \par
+
+It has been carried out with the support of the Department of Computer Systems and Computing of the UPV in order to complement other tools used today for teaching. \par
+
+
 \end{abstract}
 
 \mainmatter
 
 \chapter{Introducción}
 
-?
+En este proyecto se trabajarán dos conceptos importantes, la programación paralela y la gamificación para llevarlos a un terreno en conjunto y así crear una herramienta que motive a los estudiantes en el aprendizaje de la asignatura de \textit{CPA}.
+
+Por un lado, la programación paralela es una rama importante de la computación donde se buscar partir problemas de gran magnitud en pedazos más pequeños donde se aplica la técnica de \foreign{english}{divide-and-conquer} y cada partición es ejecutada de forma simultanea por ...
+
+Y por el otro, la gamificación como herramienta para motivar 
 
 \section{Motivación}
 
-Desde el inicio de mis estudios en el Grado de Ingeniería Informática me han interesado los concursos de programación como los promovidos desde la propia \textit{ETSINF} así como también los disponibles en plataformas online como UVa, HackerRank, CheckIO y Project Euler. Estas competiciones ayudan a promover el interés en diferentes ramas de los estudios cursados con el añadido de un marco competitivo. 
+Desde el inicio de mis estudios en el Grado de Ingeniería Informática me han interesado los concursos de programación como los promovidos desde la propia \textit{ETSINF} así como también los disponibles en plataformas online como UVa\footnote{UVa Online Judge website: \url{https://onlinejudge.org/}}, HackerRank\footnote{HackerRank website: \url{https://www.hackerrank.com/}}, CheckIO\footnote{CheckIO website: \url{https://checkio.org/}} y Project Euler\footnote{Project Euler website: \url{https://projecteuler.net/}}. Estas competiciones ayudan a promover el interés en diferentes ramas de los estudios cursados con el añadido de un marco competitivo. 
 
-Normalmente, los concursos de programación abarcan problemas relacionados con algoritmia, y al ver la publicación de la propuesta del \textit{TFG} donde se añade la programación paralela me ha despertado el interés ya que no solo se busca que se encuentre la solución al problema planteado, sino que también su eficiencia.
+Normalmente, los concursos de programación abarcan problemas relacionados con algoritmia, y al ver la publicación de la propuesta del \textit{TFG} donde se añade la programación paralela me ha despertado el interés ya que no solo se busca que se encuentre la solución al problema planteado, sino que también el punto más importante es la eficiencia.
 
-Además, es importante remarcar que hoy en día muchas empresas en sus entrevistas de trabajo recurren a este tipo de resolución de problemas para contratar a candidatos.
+Todo esto, además de poder contribuir en crear una herramienta que utilizarán los alumnos de la universidad me ha motivado a realizar esta aplicación que expongo en la memoria. 
 
 \section{Objetivo}
 
-El principal objetivo es ...
+El principal objetivo es crear una herramienta ...
 
 \section{Estructura de la memoria}
 
@@ -79,7 +108,7 @@ La memoria está dividida en los siguientes capítulos:
 \begin{itemize}
 	\item \textbf{Estado del arte}: se analizan las alternativas que existen al trabajo planteado para así llegar a una propuesta que abarque las necesidades actuales de la asignatura Computación Paralela.
 	\item \textbf{Análisis del problema}: se recopilan los tipos de usuarios que harán uso del sistema, los requerimientos que se deben implementar para que el sistema cumpla con los objetivos planteados.
-	\item \textbf{Diseño de la solución}: se describen los elementos
+	\item \textbf{Diseño de la solución}: se describen los elementos ...
 	\item \textbf{Desarrollo de la solución}:
 	\item \textbf{Implantación}:
 	\item \textbf{Pruebas}:
@@ -94,27 +123,37 @@ La memoria está dividida en los siguientes capítulos:
 
 \chapter{Análisis del problema}
 
-\section{Casos de uso}
+Antes de comenzar a escribir una linea de código, como todo proyecto ingenieril se debe hacer un estudio que involucre los usuarios que utilizarán el sistema donde se recogerán requisitos para poder hacer una propuesta acorde a sus necesidades.
 
-\subsection{Actores}
+\section{Actores}
 
-El sistema contará con dos perfiles de usuarios que llamaremos actores, estos son el \textit{Estudiante} y \textit{Administrador}. También, veremos que en la memoria se hace mención al \textit{usuario}, esto se hace para referirnos a funcionalidades que se aplican tanto a los \textit{Estudiantes} como \textit{Administradores}
+El sistema contará con dos perfiles de usuarios que llamaremos actores, estos son el \textit{Estudiante} y \textit{Administrador}. También, veremos que en la memoria se hace mención al \textit{Usuario}, esto se hace para referirnos a funcionalidades que se aplican tanto a los \textit{Estudiantes} como \textit{Administradores}
 
 \begin{itemize}
-	\item Estudiante: 
-	\item Administrador:
+	\item Estudiante: el rol principal del sistema. Enviará soluciones a los problemas propuestos y tratará de mejorar sus resultados para subir su ranking en la tabla de posiciones de las tareas y la grupal. Su trabajo será recompensado en forma de puntos e insignias.
+	\item Administrador: el rol que se encarga de poner el sistema en marcha. Tendrá que tener conocimientos sólidos en la asignatura de \textit{CPA} para poder crear tareas que varíen en dificultad y motive al alumnado a mejorar sus resultados.
 \end{itemize}
 
 
 \section{Historias de usuario}
 
+Como primer paso se describe el resultado esperado de este proyecto en un lenguaje sencillo que más adelante darán partida a los requisitos funcionales y no funcionales de la aplicación. A esto se lo llaman \textbf{Historias de usuario}.
+
 \begin{itemize}
   \item Como \textit{Usuario}, quiero ingresar al sistema utilizando mis credenciales personales.
+  \item Como \textit{Usuario}, quiero poder cambiar mi contraseña.
   \item Como \textit{Estudiante}, quiero registrarme en el sistema para poder hacer uso del mismo.
   \item Como \textit{Estudiante}, quiero enviar las resoluciones a mis tareas asignadas.
   \item Como \textit{Estudiante}, quiero formar parte de un equipo.
-  \item Como \textit{Estudiante}, quiero visualizar un resumen de mi perfil. 
-  \item ...
+  \item Como \textit{Estudiante}, quiero acceder a mi perfil.
+  \item Como \textit{Estudiante}, quiero visualizar los resultados de las ejecuciones para ver como han quedado posicionadas en la tabla de clasificación.
+  \item Como \textit{Estudiante}, quiero ver un resumen de mi actividad.
+  \item Como \textit{Administrador}, quiero crear grupos para que los estudiantes puedan formar parte de ellos.
+  \item Como \textit{Administrador}, quiero crear estudiantes subiendo un fichero csv.
+  \item Como \textit{Administrador}, quiero crear y asignar tareas a diferentes grupos.
+  \item Como \textit{Administrador}, quiero crear insignias para asignar diferentes tareas.
+  \item Como \textit{Administrador}, quiero poder editar y eliminar grupos, estudiantes, tareas e insignias.
+  \item Como \textit{Administrador}, quiero desplegar el aplicativo de forma sencilla.
 \end{itemize}
 
 \section{Requisitos funcionales}
@@ -169,7 +208,7 @@ En el siguiente apartado se describen todos los requisitos funcionales de Pizarr
 \begin{table}[h!]
 	\centering
 	\begin{tabular}{ |p{4cm}||p{10cm}|  }
-		\multicolumn{2}{l}{\textbf{RF-2}} \\
+		\multicolumn{2}{l}{\textbf{RF-3}} \\
 		\hline
 		Nombre   & Equipos\\
 		\hline
@@ -244,6 +283,7 @@ En el siguiente apartado se describen todos los requisitos funcionales de Pizarr
 
 \begin{itemize}
 	\item \textbf{ETSINF}: Escuela Técnica Superior de Ingeniería Informática.
+	\item \textbf{CPA}: Computación Paralela.
 	\item \textbf{TFG}: Trabajo Final de Grado.
 	\item \textbf{RF}: Requisito funcional.
 	\item \textbf{RNF}: Requisito no funcional.
