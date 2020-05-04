@@ -162,9 +162,9 @@ Como primer paso se describe el resultado esperado de este proyecto en un lengua
 
 En el siguiente apartado se describen todos los requisitos funcionales del aplicativo. \par
 
-... explicación de la tabla ...
+... explicación de la tabla ... \par
 
-\begin{table}[h!]
+\begin{table}[h]
 	\centering
 	\begin{tabular}{ |p{4cm}||p{10cm}|  }
 		\multicolumn{2}{l}{\textbf{RF-1}} \\
@@ -188,7 +188,7 @@ En el siguiente apartado se describen todos los requisitos funcionales del aplic
 	\label{table:1}
 \end{table}
 
-\begin{table}[h!]
+\begin{table}[h]
 	\centering
 	\begin{tabular}{ |p{4cm}||p{10cm}|  }
 		\multicolumn{2}{l}{\textbf{RF-2}} \\
@@ -209,7 +209,7 @@ En el siguiente apartado se describen todos los requisitos funcionales del aplic
 	\label{table:2}
 \end{table}
 
-\begin{table}[h!]
+\begin{table}
 	\centering
 	\begin{tabular}{ |p{4cm}||p{10cm}|  }
 		\multicolumn{2}{l}{\textbf{RF-3}} \\
@@ -235,7 +235,7 @@ En el siguiente apartado se describen todos los requisitos funcionales del aplic
 \end{table}
 
 
-\begin{table}[h!]
+\begin{table}
 	\centering
 	\begin{tabular}{ |p{4cm}||p{10cm}|  }
 		\multicolumn{2}{l}{\textbf{RF-4}} \\
@@ -259,7 +259,7 @@ En el siguiente apartado se describen todos los requisitos funcionales del aplic
 	\label{table:4}
 \end{table}
 
-\begin{table}[h!]
+\begin{table}
 	\centering
 	\begin{tabular}{ |p{4cm}||p{10cm}|  }
 		\multicolumn{2}{l}{\textbf{RF-5}} \\
@@ -270,7 +270,7 @@ En el siguiente apartado se describen todos los requisitos funcionales del aplic
 		\hline
 		Prioridad &  Muy Alta\\
 		\hline
-		Criterio de aceptación & El resumen de envíos se visualizará en forma de tabla, se podrá filtrar por la información filtrada y deberá mostrar las siguientes columnas: \newline
+		Criterio de aceptación & El resumen de envíos se visualizará en forma de tabla, se podrá filtrar por la información disponible y deberá mostrar las siguientes columnas: \newline
 		\begin{tabitem}
 			\item ID único en el sistema
 			\item Fecha y Hora de envío
@@ -285,7 +285,143 @@ En el siguiente apartado se describen todos los requisitos funcionales del aplic
 	\label{table:5}
 \end{table}
 
+\begin{table}
+	\centering
+	\begin{tabular}{ |p{4cm}||p{10cm}|  }
+		\multicolumn{2}{l}{\textbf{RF-6}} \\
+		\hline
+		Nombre   & Envío \\
+		\hline
+		Descripción  & Visualización del envío a ejecutar  \\
+		\hline
+		Prioridad &  Alta\\
+		\hline
+		Criterio de aceptación & Se deben mostrar los siguientes apartados e información: \newline  
+		\begin{tabitem}
+			\item código fuente enviado
+			\item análisis estático del código fuente enviado
+			\item output del código ejecutado
+			\item tiempo de ejecución y status
+		\end{tabitem} \\
+		\hline
+	\end{tabular}
+	\caption{RF-6 Envío}
+	\label{table:6}
+\end{table}
 
+\begin{table}
+	\centering
+	\begin{tabular}{ |p{4cm}||p{10cm}|  }
+		\multicolumn{2}{l}{\textbf{RF-7}} \\
+		\hline
+		Nombre   & Tareas \\
+		\hline
+		Descripción  & Visualización de listado de Tareas \\
+		\hline
+		Prioridad &  Alta\\
+		\hline
+		Criterio de aceptación & Se deben mostrar los siguientes apartados e información: \newline  
+		\begin{tabitem}
+			\item si el usuario es un \textit{Estudiante} se deben mostrar las tareas asignadas a su grupo
+			\item si el usuario es un \textit{Administrador} se deben mostrar todas las tareas en el sistema
+			\item por cada Tarea debe haber un resumen, insignias y últimos envíos
+			\item no se deben mostrar las insignias secretas
+		\end{tabitem} \\
+		\hline
+	\end{tabular}
+	\caption{RF-7 Visualización de Tareas}
+	\label{table:7}
+\end{table}
+
+\begin{table}
+	\centering
+	\begin{tabular}{ |p{4cm}||p{10cm}|  }
+		\multicolumn{2}{l}{\textbf{RF-8}} \\
+		\hline
+		Nombre   & Tarea \\
+		\hline
+		Descripción  & Visualización de Tarea \\
+		\hline
+		Prioridad &  Alta\\
+		\hline
+		Criterio de aceptación & Se deben mostrar los siguientes apartados e información: \newline  
+		\begin{tabitem}
+			\item descripción completa
+			\item insignias a obtener
+			\item insignias secretas que el usuario ha obtenido
+			\item status de la tarea: abre pronto, abierto, cierra pronto, cerrada
+			\item si el usuario ha enviado una ejecución satisfactoria se le debe informar en un mensaje
+			\item enlace para hacer un envío con sus credenciales
+			\item enlace a la tabla de posiciones
+		\end{tabitem} \\
+		\hline
+	\end{tabular}
+	\caption{RF-8 Visualización de Tarea}
+	\label{table:8}
+\end{table}
+
+\begin{table}
+	\centering
+	\begin{tabular}{ |p{4cm}||p{10cm}|  }
+		\multicolumn{2}{l}{\textbf{RF-9}} \\
+		\hline
+		Nombre   & FAQ \\
+		\hline
+		Descripción  & Preguntas Frecuentes \\
+		\hline
+		Prioridad &  Baja\\
+		\hline
+		Criterio de aceptación & 
+		\begin{tabitem}
+			\item debe mostrarse un compendio de preguntas frecuentes y sus respuestas sobre el funcionamiento del sistema
+		\end{tabitem} \\
+		\hline
+	\end{tabular}
+	\caption{RF-9 FAQ}
+	\label{table:9}
+\end{table}
+
+\begin{table}
+	\centering
+	\begin{tabular}{ |p{4cm}||p{10cm}|  }
+		\multicolumn{2}{l}{\textbf{RF-10}} \\
+		\hline
+		Nombre & Tabla de Posiciones \\
+		\hline
+		Descripción &  \\
+		\hline
+		Prioridad & Alta\\
+		\hline
+		Criterio de aceptación & 
+		\begin{tabitem}
+			\item ?
+		\end{tabitem} \\
+		\hline
+	\end{tabular}
+	\caption{RF-10 Tabla de Posiciones}
+	\label{table:10}
+\end{table}
+
+\begin{table}
+	\centering
+	\begin{tabular}{ |p{4cm}||p{10cm}|  }
+		\multicolumn{2}{l}{\textbf{RF-11}} \\
+		\hline
+		Nombre & Perfil \\
+		\hline
+		Descripción &  \\
+		\hline
+		Prioridad & Media\\
+		\hline
+		Criterio de aceptación & 
+		\begin{tabitem}
+			\item ?
+		\end{tabitem} \\
+		\hline
+	\end{tabular}
+	\caption{RF-11 Perfil}
+	\label{table:11}
+\end{table}
 
 
 \section{Requisitos no funcionales}
@@ -294,7 +430,7 @@ Los requisitos no funcionales son criterios que se deben cumplir para juzgar la 
 
 ... explicación de la tabla ... \par
 
-\begin{table}[h!]
+\begin{table}[h]
 	\centering
 	\begin{tabular}{ |p{4cm}||p{10cm}|  }
 		\multicolumn{2}{l}{\textbf{RNF-1}} \\
@@ -310,7 +446,7 @@ Los requisitos no funcionales son criterios que se deben cumplir para juzgar la 
 	\label{table:24}
 \end{table}
 
-\begin{table}[h!]
+\begin{table}
 	\centering
 	\begin{tabular}{ |p{4cm}||p{10cm}|  }
 		\multicolumn{2}{l}{\textbf{RNF-2}} \\
@@ -326,7 +462,7 @@ Los requisitos no funcionales son criterios que se deben cumplir para juzgar la 
 	\label{table:25}
 \end{table}
 
-\begin{table}[h!]
+\begin{table}
 	\centering
 	\begin{tabular}{ |p{4cm}||p{10cm}|  }
 		\multicolumn{2}{l}{\textbf{RNF-3}} \\
@@ -342,7 +478,7 @@ Los requisitos no funcionales son criterios que se deben cumplir para juzgar la 
 	\label{table:26}
 \end{table}
 
-\begin{table}[h!]
+\begin{table}
 	\centering
 	\begin{tabular}{ |p{4cm}||p{10cm}|  }
 		\multicolumn{2}{l}{\textbf{RNF-4}} \\
