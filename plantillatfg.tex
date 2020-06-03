@@ -108,7 +108,7 @@
 	
 El presente trabajo aborda la implementación de un sitio web para concursos de programación paralela, con el añadido de la gamificación o ludificación, una técnica de aprendizaje que busca recompensar al usuario y aumentar su motivación al sumar elementos y dinámicas propias de los juegos para así ofrecer una experiencia enriquecedora y positiva. \par 
 
-Esta es una tarea compleja, por un lado llevar el proceso de envío de código a un entorno web y la interacción que tendrá con el cluster Kahan del \textit{DSIC}. Y por el otro, transformar las actividades de laboratorio de las asignaturas Coputación Paralela y Lenguajes y Entornos de la Programación Paralela con nuevas mecánicas que produzcan al estudiante buscar mejorar sus resultados inclusive después de llegar a una resolución correcta a los ejercicios planteados. \par
+Esta es una tarea compleja, por un lado llevar el proceso de envío de código a un entorno web y la interacción que tendrá con el cluster \kahan del \textit{DSIC}. Y por el otro, transformar las actividades de laboratorio de las asignaturas Coputación Paralela y Lenguajes y Entornos de la Programación Paralela con nuevas mecánicas que produzcan al estudiante buscar mejorar sus resultados inclusive después de llegar a una resolución correcta a los ejercicios planteados. \par
 
 Este proyecto ha sido realizado con el apoyo del \textit{DSIC} de la \textit{UPV} con la finalidad de complementar otras herramientas utilizadas hoy en día en la enseñanza. \par
 
@@ -623,6 +623,35 @@ Antes de poder comenzar con el despliegue, debemos crearnos una cuenta en Google
 
 \subsection{Costos asociados}
 
+\textit{GCE} cuenta con una herramienta\footnote{Calculadora de precios de Google: \url{https://cloud.google.com/products/calculator/}} para estimar el gasto mensual en el que podemos incurrir con la utilización de los recursos contratados. Se ha realiado una estimación con los siguientes parámetros:
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.85\textwidth]{img/google-cloud-engine-cluster-cost}
+	\caption[Calculadora de precios en GCE]{Configuración de la calculadora de precios para el despliegue en Kubernetes de Pizarra.}
+	\label{figura:gce-estimated-cost}
+\end{figure}
+
+\begin{itemize}
+	\item  Kubernetes
+	\begin{itemize}
+		\item Número de nodos: 2
+		\item Tipo de Instancia: n1-standard-n1 (vCPUs: 1, RAM: 3.75 GB)
+		\item Centro de Datos: Países Bajos 
+	    \item Uso estipulado: 24 horas al día los 7 días a la semana.
+	 \end{itemize}
+    \item Persistencia
+	\begin{itemize}
+		\item Tamaño disco: 10 GiB
+		\item Centro de Datos: Países Bajos
+    \end{itemize}
+\end{itemize}
+
+En resumen, el número de nodos es 2 para tener servicio en caso de que haya una caída de uno de los nodos del cluster, el centro de datos se ha escogido Países Bajos por cercanía geográfica y una instancia con los recursos mínimos necesarios para los contenedores. El disco es compartido entre la \textit{BD} y Pizarra con suficiente margen para evitar problemas de espacio.
+
+En total llegamos a un costo estimado de \texteuro 49.00 mensuales. Como dato adicional, se puede variar de Centro de Datos y otros parámetros como el uso estipulado para reducir los costos aún más. Podemos guardar la estimación o enviárnosla por correo electrónico.
+
+
 \begin{figure}[ht]
 	\centering
 	\includegraphics[width=0.55\textwidth]{img/google-cloud-engine-estimated-cost}
@@ -711,6 +740,9 @@ explicación licencia MIT
 	\item \textbf{DB}: Base de datos.
 	\item \textbf{SO} Sistema operativo.
 	\item \textbf{K8s}: Kubernetes.
+	\item \textbf{RAM}: Memoria de acceso aleatorio.
+	\item \textbf{vCPUs}: Unidades centrales de procesamiento virtuales.
+	
 \end{itemize}
 
 \chapter{Configuración del sistema}
