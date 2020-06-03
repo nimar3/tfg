@@ -25,6 +25,8 @@
 	linkcolor  = black
 }
 
+% YAML definition  - START
+
 \newcommand\YAMLcolonstyle{\color{red}\mdseries}
 \newcommand\YAMLkeystyle{\color{black}\bfseries}
 \newcommand\YAMLvaluestyle{\color{blue}\mdseries}
@@ -62,6 +64,9 @@
 \makeatother
 
 \newcommand\ProcessThreeDashes{\llap{\color{cyan}\mdseries-{-}-}}
+
+% YAML definition - END
+
 
 \title{Implementación de un sitio web para un concurso de programación paralela}
 \author{Nicolás Fernando Martini}
@@ -105,7 +110,7 @@ El presente trabajo aborda la implementación de un sitio web para concursos de 
 
 Esta es una tarea compleja, por un lado llevar el proceso de envío de código a un entorno web y la interacción que tendrá con el cluster Kahan del \textit{DSIC}. Y por el otro, transformar las actividades de laboratorio de las asignaturas Coputación Paralela y Lenguajes y Entornos de la Programación Paralela con nuevas mecánicas que produzcan al estudiante buscar mejorar sus resultados inclusive después de llegar a una resolución correcta a los ejercicios planteados. \par
 
-Este proyecto ha sido realizado con el apoyo del \textit{DSIC} de la \textit{UPV} con la finalidad de complementar otras herramientas utilizadas hoy en día para la enseñanza. \par
+Este proyecto ha sido realizado con el apoyo del \textit{DSIC} de la \textit{UPV} con la finalidad de complementar otras herramientas utilizadas hoy en día en la enseñanza. \par
 
 
 \end{abstract}
@@ -603,11 +608,11 @@ services:
 
 Con los parámetros previos y siguiendo la documentación de variables de entorno disponibles, al iniciarse el contenedor se crearán los \foreignlanguage{english}{schemas} y directorios necesarios en caso de que no existan y un usuario con privilegios con el nombre y contraseña proporcionados.
 
+Para un entorno de desarrollo local y/o de pruebas Docker puede ser una herramienta que cumpla con nuestras necesidades, pero para un entorno de producción es necesario contar con un servicio que realice la implantación de forma automatizada,que sea eficiente en el manejo de recursos y resilente en caso de problemas. Para ésta tarea utilizaremos Kubernetes, un \textit{orquestador} de contenedores que permite auto escalado de aplicaciones, automatización de despliegues y configuración de forma declarativa.
 
+\section{Despliegue en la Nube con Kubernetes}
 
-\section{Despliegue en la Nube}
-
-Existen varios proveedores de Kubernetes en Internet pudiendo consultar el listado de todos los partners en el sitio oficial\footnote{Kubernetes - Partners: \url{https://kubernetes.io/es/partners}}. Siendo los más importantes Google Cloud Engine, Amazon AWS y Microsoft Azure se ha escogido por desplegar la aplicación en \textit{GCE} ya que  dispone de buena documentación y además \$300 de crédito promocional que són más que suficientes para tener el aplicativo corriendo durante meses.
+Existen varios proveedores de \textit{K8s} en Internet pudiendo consultar el listado de todos los partners en el sitio oficial\footnote{Kubernetes - Partners: \url{https://kubernetes.io/es/partners}}. Siendo los más importantes Google Cloud Engine, Amazon AWS y Microsoft Azure se ha escogido por desplegar la aplicación en \textit{GCE} ya que dispone de buena documentación y además \textdollar 300 de crédito promocional que són más que suficientes para tener el aplicativo corriendo durante meses.
 
 \subsection{Pasos de un despliegue en GCE}
 
@@ -618,7 +623,12 @@ Antes de poder comenzar con el despliegue, debemos crearnos una cuenta en Google
 
 \subsection{Costos asociados}
 
-
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.55\textwidth]{img/google-cloud-engine-estimated-cost}
+	\caption[Estimación de costos en GCE]{Ejemplo de correo de GCE con una estimación de los costos asociados por mes para la implantación.}
+	\label{figura:gce-estimated-cost}
+\end{figure}
 
 \chapter{Pruebas}
 
@@ -683,6 +693,7 @@ explicación licencia MIT
 	\item \textbf{Insignia}:
 	\item \textbf{Equipo de Estudiantes}:
 	\item \textbf{Grupo de Estudiantes}:
+	\item \textbf{Entorno de producción}: 
 \end{itemize}
 
 \chapter{Acrónimos}
@@ -699,6 +710,7 @@ explicación licencia MIT
 	\item \textbf{GCE}: Google Cloud Engine.
 	\item \textbf{DB}: Base de datos.
 	\item \textbf{SO} Sistema operativo.
+	\item \textbf{K8s}: Kubernetes.
 \end{itemize}
 
 \chapter{Configuración del sistema}
