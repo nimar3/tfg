@@ -25,6 +25,7 @@
 	linkcolor  = black
 }
 
+
 \title{Implementación de un sitio web para un concurso de programación paralela}
 \author{Nicolás Fernando Martini}
 \tutor{Pedro Alonso Jordá}
@@ -52,30 +53,33 @@
 \end{dedication}
 
 \begin{abstract}
-?
+
+... \par
+
+... \par
+
+... \par
+
 \end{abstract}
 
 \begin{abstract}[spanish]
-El presente trabajo aborda la implementación de un sitio web para concursos de programación paralela, con el añadido de la gamificación, una técnica de aprendizaje que busca recompensar al usuario y hacer del aprendizaje una experiencia enriquecedora y positiva. \par 
+	
+El presente trabajo aborda la implementación de un sitio web para concursos de programación paralela, con el añadido de la gamificación o ludificación, una técnica de aprendizaje que busca recompensar al usuario y aumentar su motivación al sumar elementos y dinámicas propias de los juegos para así ofrecer una experiencia enriquecedora y positiva. \par 
 
-... \par
+Esta es una tarea compleja, por un lado llevar el proceso de envío de código a un entorno web y la interacción que tendrá con el cluster Kahan del \textit{DSIC}. Y por el otro, transformar las actividades de laboratorio de las asignaturas Coputación Paralela y Lenguajes y Entornos de la Programación Paralela con nuevas mecánicas que produzcan al estudiante buscar mejorar sus resultados inclusive después de llegar a una resolución correcta a los ejercicios planteados. \par
 
-... \par
-
-Ha sido realizado con el apoyo del departamento de Sistemas Informáticos y Computación de la UPV con la finalidad de complementar otras herramientas utilizadas hoy en día para la enseñanza. \par
+Este proyecto ha sido realizado con el apoyo del \textit{DSIC} de la \textit{UPV} con la finalidad de complementar otras herramientas utilizadas hoy en día para la enseñanza. \par
 
 
 \end{abstract}
 
 \begin{abstract}[english]
-The present paper shows the implementation of a website for parallel programming competitions, with the addition of gamification, a learning technique that seeks to reward the user and make learning an enriching and positive experience. \par
 
 ... \par
 
 ... \par
 
-It has been carried out with the support of the Department of Computer Systems and Computing of the UPV in order to complement other tools used today for teaching. \par
-
+... \par
 
 \end{abstract}
 
@@ -83,11 +87,11 @@ It has been carried out with the support of the Department of Computer Systems a
 
 \chapter{Introducción}
 
-En este proyecto se trabajarán dos conceptos importantes, la programación paralela y la gamificación para llevarlos a un terreno en conjunto y así crear una herramienta que motive a los estudiantes en el aprendizaje de la asignatura de \textit{CPA}.
+En este proyecto se trabajarán dos conceptos importantes, la programación paralela y la gamificación para llevarlos a un terreno en conjunto y así crear una herramienta que motive a los estudiantes en el aprendizaje de la asignatura de \textit{LPP}.
 
-Por un lado, la programación paralela es una rama importante de la computación donde se buscar partir problemas de gran magnitud en pedazos más pequeños donde se aplica la técnica de \foreign{english}{divide-and-conquer} y cada partición es ejecutada de forma simultanea por ...
+La programación paralela es una rama importante de la computación donde se buscar partir problemas de gran magnitud en pedazos más pequeños donde cada partición es ejecutada de forma simultanea por ...
 
-Y por el otro, la gamificación como herramienta para motivar ....
+La gamificación como herramienta para motivar ....
 
 \section{Motivación}
 
@@ -99,7 +103,7 @@ Todo esto, además de poder contribuir en crear una herramienta que utilizarán 
 
 \section{Objetivo}
 
-El principal objetivo es crear una herramienta 
+El principal objetivo es crear una herramienta ....
 
 \section{Estructura de la memoria}
 
@@ -107,7 +111,7 @@ La memoria está dividida en los siguientes capítulos:
 
 \begin{itemize}
 	\item \textbf{Estado del arte}: se analizan las alternativas que existen al trabajo planteado.  
-	\item \textbf{Análisis del problema}: se recopila los requerimientos del proyecto para así llegar a una propuesta que abarque las necesidades actuales de la asignatura \textit{CPA}.
+	\item \textbf{Análisis del problema}: se recopila los requerimientos del proyecto para así llegar a una propuesta que abarque las necesidades actuales de la asignatura \textit{LPP}.
 	\item \textbf{Diseño de la solución}: se describe todos los elementos a nivel de arquitectura que forman parte de la solución.
 	\item \textbf{Desarrollo de la solución}: ?
 	\item \textbf{Implantación}: se explica los pasos a seguir para desplegar el software.
@@ -151,10 +155,10 @@ Como primer paso se describe el resultado esperado de este proyecto en un lengua
   \item Como \textit{Estudiante}, quiero visualizar los resultados de las ejecuciones para ver como han quedado posicionadas en la tabla de clasificación.
   \item Como \textit{Estudiante}, quiero ver un resumen de mi actividad.
   \item Como \textit{Administrador}, quiero crear grupos para que los estudiantes puedan formar parte de ellos.
-  \item Como \textit{Administrador}, quiero crear estudiantes subiendo un fichero csv.
+  \item Como \textit{Administrador}, quiero crear estudiantes subiendo un fichero csv o txt.
   \item Como \textit{Administrador}, quiero crear y asignar tareas a diferentes grupos.
   \item Como \textit{Administrador}, quiero crear insignias para asignar a diferentes tareas.
-  \item Como \textit{Administrador}, quiero poder editar y eliminar grupos, estudiantes, tareas e insignias.
+  \item Como \textit{Administrador}, quiero editar y eliminar grupos, estudiantes, tareas e insignias.
   \item Como \textit{Administrador}, quiero desplegar el aplicativo en una solución \foreignlanguage{english}{cloud}.
 \end{itemize}
 
@@ -216,7 +220,7 @@ En el siguiente apartado se describen todos los requisitos funcionales del aplic
 		\hline
 		Nombre   & Equipos\\
 		\hline
-		Descripción  & Los \textit{Estudiantes} podrán formar parte de un equipo   \\
+		Descripción  & Los \textit{Estudiantes} podrán formar parte de un equipo con otros compañeros de grupo  \\
 		\hline
 		Prioridad &  Baja\\
 		\hline
@@ -367,13 +371,14 @@ En el siguiente apartado se describen todos los requisitos funcionales del aplic
 		\hline
 		Nombre   & FAQ \\
 		\hline
-		Descripción  & Preguntas Frecuentes \\
+		Descripción  & Página con preguntas frecuentes que se pueden hacer los usuarios del sistema y sus respuestas  \\
 		\hline
 		Prioridad &  Baja\\
 		\hline
 		Criterio de aceptación & 
 		\begin{tabitem}
-			\item debe mostrarse un compendio de preguntas frecuentes y sus respuestas sobre el funcionamiento del sistema
+			\item debe estar localizado en al menos 2 idiomas
+			\item no debe contener más de 10 preguntas
 		\end{tabitem} \\
 		\hline
 	\end{tabular}
@@ -520,7 +525,35 @@ Sprints ¿?
 
 \chapter{Implantación}
 
-?
+Pizarra es una herramienta que necesita de otros aplicativos para su funcionamiento. Por un lado una \textit{BD} para la persistencia de datos, Redis para el sistema de colas interno de envío de tareas, Nginx para actuar como servidor web y redirigir las peticiones. En el pasado la implantación hubiera requerido la intervención del equipo de Administración de Sistemas que se encargue de instalar el \textit{SO} de cada máquina, crear usuarios, asignar permisos, abrir puertos y otro sinfín de tareas.
+
+Para evitar todos estos pasos y acelerar la implantación el proyecto incluye la posibilidad de que todos los elementos de la arquitectura se desplieguen en contenedores. Estos contenedores están creados con la tecnología Docker y son paquetes que incluyen todo lo necesario, sean librerías y herramientas del sistema para que el software se ejecute.
+
+\section{Docker y Kubernetes}
+
+... explicación simple Docker ...
+
+Por ejemplo, para nuestro entorno de desarrollo local, utilizamos los contenedores públicos de Redis y Postgres que con un fichero de configuración nos permite tener los servicios ejecutándose en cuestión de minutos.
+
+A continuación, un extracto del fichero \textbf{docker-compose.yaml} con una breve explicación de los parámetros.
+
+
+
+
+\section{Despliegue en la Nube}
+
+Existen varios proveedores de Kubernetes en Internet pudiendo consultar el listado de todos los partners en el sitio oficial\footnote{Kubernetes - Partners: \url{https://kubernetes.io/es/partners}}. Siendo los más importantes Google Cloud Engine, Amazon AWS y Microsoft Azure se ha escogido por desplegar la aplicación en \textit{GCE} ya que  dispone de buena documentación y además \$300 de crédito promocional que són más que suficientes para tener el aplicativo corriendo durante meses.
+
+\subsection{Pasos de un despliegue en GCE}
+
+Antes de poder comenzar con el despliegue, debemos crearnos una cuenta en Google o utilizar una existente que nunca ha activado \textit{GCE} de forma previa ya que el crédito promocional de bienvenida tiene una caducidad de 12 meses desde la activación.
+
+
+
+
+\subsection{Costos asociados}
+
+
 
 \chapter{Pruebas}
 
@@ -581,11 +614,17 @@ explicación licencia MIT
 \chapter{Acrónimos}
 
 \begin{itemize}
+	\item \textbf{DSIC}: Departamento de Sistemas Informáticos y Computación.
+	\item \textbf{UPV}: Universitat Politècnica de València.
 	\item \textbf{ETSINF}: Escuela Técnica Superior de Ingeniería Informática.
 	\item \textbf{CPA}: Computación Paralela.
+	\item \textbf{LPP}: Lenguajes y Entornos de la Programación Paralela.
 	\item \textbf{TFG}: Trabajo Final de Grado.
 	\item \textbf{RF}: Requisito funcional.
 	\item \textbf{RNF}: Requisito no funcional.
+	\item \textbf{GCE}: Google Cloud Engine.
+	\item \textbf{DB}: Base de datos.
+	\item \textbf{SO} Sistema operativo.
 \end{itemize}
 
 \chapter{Configuración del sistema}

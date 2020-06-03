@@ -86,6 +86,10 @@
 % Capcalera del document
 %%%%%%%
 
+\usepackage{xspace}
+
+\newcommand{\kahan}{\texttt{kahan}\xspace}
+
 \newcommand{\tutor}[1]{\newcommand{\t@tor}{#1}}
 \newcommand{\curs}[1]{\newcommand{\c@rs}{#1}}
 
