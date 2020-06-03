@@ -25,6 +25,43 @@
 	linkcolor  = black
 }
 
+\newcommand\YAMLcolonstyle{\color{red}\mdseries}
+\newcommand\YAMLkeystyle{\color{black}\bfseries}
+\newcommand\YAMLvaluestyle{\color{blue}\mdseries}
+
+\makeatletter
+
+% here is a macro expanding to the name of the language
+% (handy if you decide to change it further down the road)
+\newcommand\language@yaml{yaml}
+
+\expandafter\expandafter\expandafter\lstdefinelanguage
+\expandafter{\language@yaml}
+{
+	keywords={true,false,null,y,n},
+	keywordstyle=\color{darkgray}\bfseries,
+	basicstyle=\YAMLkeystyle,                                 % assuming a key comes first
+	sensitive=false,
+	comment=[l]{\#},
+	morecomment=[s]{/*}{*/},
+	commentstyle=\color{purple}\ttfamily,
+	stringstyle=\YAMLvaluestyle\ttfamily,
+	moredelim=[l][\color{orange}]{\&},
+	moredelim=[l][\color{magenta}]{*},
+	moredelim=**[il][\YAMLcolonstyle{:}\YAMLvaluestyle]{:},   % switch to value style at :
+	morestring=[b]',
+	morestring=[b]",
+	literate =    {---}{{\ProcessThreeDashes}}3
+	{>}{{\textcolor{red}\textgreater}}1     
+	{|}{{\textcolor{red}\textbar}}1 
+	{\ -\ }{{\mdseries\ -\ }}3,
+}
+
+% switch to key style at EOL
+\lst@AddToHook{EveryLine}{\ifx\lst@language\language@yaml\YAMLkeystyle\fi}
+\makeatother
+
+\newcommand\ProcessThreeDashes{\llap{\color{cyan}\mdseries-{-}-}}
 
 \title{Implementación de un sitio web para un concurso de programación paralela}
 \author{Nicolás Fernando Martini}
@@ -533,10 +570,38 @@ Para evitar todos estos pasos y acelerar la implantación el proyecto incluye la
 
 ... explicación simple Docker ...
 
-Por ejemplo, para nuestro entorno de desarrollo local, utilizamos los contenedores públicos de Redis y Postgres que con un fichero de configuración nos permite tener los servicios ejecutándose en cuestión de minutos.
+Por ejemplo, para nuestro entorno de desarrollo local, utilizamos contenedores públicos como el de Postgres que con un fichero de configuración nos permite tener servicios ejecutándose en cuestión de minutos.
 
-A continuación, un extracto del fichero \textbf{docker-compose.yaml} con una breve explicación de los parámetros.
+A continuación, un extracto del fichero \textbf{docker-compose.yaml} del repositorio\footnote{Docker yaml: \url{https://github.com/nimar3/pizarra/blob/master/docker-compose.yml}} con una breve explicación de los parámetros.
 
+\begin{lstlisting}[language=yaml]
+version: "3.1"
+services:
+  postgres:
+    image: postgres: 9.6-alpine
+    container_name: postgres
+    volumes:
+      - /data/pizarra/postgres:/var/lib/postgresql/data
+    ports:
+      - 5432: 5432
+    environment:
+      - POSTGRES_USER=pizarra
+      - POSTGRES_PASSWORD=pizarra
+    restart: unless-stopped
+\end{lstlisting}
+
+\begin{itemize}
+	\item \textbf{version}: versión de la API de Docker que utilizaremos.
+	\item \textbf{services}: listado de servicios que desplegaremos.
+	\item \textbf{image}: contenedor que utilizaremos, en este caso el oficial de postgres\footnote{Postgres Official Docker Image: \url{https://hub.docker.com/_/postgres}} sobre Linux Alpine.
+	\item \textbf{container\_name}: nombre con el que comenzará el contenedor que se ejecute.
+	\item \textbf{volumes}: mapeo de directorios de nuesto entorno de desarrollo local al contenedor, esto se hace para evitar perder la información de la \textit{BD} al ser los contenedores \foreignlanguage{english}{stateless}.
+    \item \textbf{ports}: mapeo de puertos del \textit{SO} a los contenedores, esto permite acceder al servicio de Postgres por un puerto local.
+	\item \textbf{environment}: variables de entorno del \textit{SO}, en nuestro caso definimos un usuario y contraseña para acceder a la \textit{BD}
+	\item \textbf{restart}: con el parámetro \foreignlanguage{english}{unless-stopped} nuestro contenedor se reiniciará de forma automática en caso de errores a menos que se envíe un mensaje de finalización de ejecución.
+\end{itemize}
+
+Con los parámetros previos y siguiendo la documentación de variables de entorno disponibles, al iniciarse el contenedor se crearán los \foreignlanguage{english}{schemas} y directorios necesarios en caso de que no existan y un usuario con privilegios con el nombre y contraseña proporcionados.
 
 
 
@@ -610,6 +675,15 @@ explicación licencia MIT
 \cleardoublepage
 
 \APPENDIX
+
+\chapter{Glosario}
+
+\begin{itemize}
+	\item \textbf{Tarea}:
+	\item \textbf{Insignia}:
+	\item \textbf{Equipo de Estudiantes}:
+	\item \textbf{Grupo de Estudiantes}:
+\end{itemize}
 
 \chapter{Acrónimos}
 
