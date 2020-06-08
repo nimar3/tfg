@@ -669,6 +669,13 @@ Debemos crearnos una cuenta en Google o utilizar una existente que nunca ha acti
 
 Con nuestra cuenta accedemos a la Consola Web de \acrshort{gce} y creamos nuestro proyecto, en este caso lo llamaremos Pizarra. Nuestro aplicativo utiliza Kubernetes Engine y el Container Registry que son visibles desde el menú lateral, entraremos a cada uno de ellos para habilitar su \acrshort{api}.
 
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.55\textwidth]{img/gce-new-project}
+	\caption[nuevo proyecto en GCE]{Creación de un nuevo proyecto en Google Cloud Engine.}
+	\label{figura:gce-new-project}
+\end{figure}
+
 Una vez creado el proyecto y habilitadas las \acrshort{api}'s hay que descargar\footnote{Cómo instalar el SDK de Google Cloud: \url{https://cloud.google.com/sdk/install?hl=es-419}} e inicializar\footnote{Cómo inicializar el SDK de Cloud:  \url{https://cloud.google.com/sdk/docs/initializing?hl=es-419}} Google Cloud SDK para hacer uso de la consola de forma local. 
 
 Todos los pasos descritos a continuación se ejecutan de forma automática con un script\footnote{Script Despliegue \acrshort{gce}: \url{https://github.com/nimar3/pizarra/blob/master/gce/commands.sh}} incluido en el repositorio de código. Lo único que se necesita de forma previa es la configuración de algunos parámetros de despliegue como variables de entorno del \acrshort{so} donde se ejecuta.
@@ -799,7 +806,7 @@ En total llegamos a un costo estimado de \texteuro 49.00 mensuales. Como dato ad
 	\centering
 	\includegraphics[width=0.55\textwidth]{img/google-cloud-engine-estimated-cost}
 	\caption[Estimación de costos en GCE]{Ejemplo de correo de GCE con una estimación de los costos asociados por mes para la implantación.}
-	\label{figura:gce-estimated-cost}
+	\label{figura:gce-estimated-cost-email}
 \end{figure}
 
 \chapter{Pruebas}
