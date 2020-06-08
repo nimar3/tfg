@@ -67,6 +67,53 @@
 
 % YAML definition - END
 
+\usepackage[acronym]{glossaries}
+
+\makeglossaries
+
+\newglossaryentry{tarea}
+{
+	name=Tarea,description={Trabajo a resolver asignado a un estudiante o equipo}
+}
+\newglossaryentry{insignia}
+{
+	name=Insignia,description={Trofeo o Marcador que se obtiene al realizar cierta acción en la aplicación}
+}
+\newglossaryentry{ede}
+{
+	name=Equipo de Estudiantes,description={Grupo de uno o más estudiantes formado para resolver Tareas de forma conjunta}
+}
+\newglossaryentry{gde}
+{
+	name=Grupo de Estudiantes,description={Clase a la que pertenece el estudiante para el año lectivo}
+}
+\newglossaryentry{edp}
+{
+	name=Entorno de producción,description={lugar donde se ejecuta el aplicativo para los usuarios finales}
+}
+\newglossaryentry{contenedor}{name={contenedor},description={imagen ejecutable ligera y portátil que contiene el software y todas sus dependencias}}
+
+\newacronym{dsic}{DSIC}{Departamento de Sistemas Informáticos y Computación}
+\newacronym{upv}{UPV}{Universitat Politècnica de València}
+\newacronym{etsinf}{ETSINF}{Escuela Técnica Superior de Ingeniería Informática}
+\newacronym{cpa}{CPA}{Computación Paralela}
+\newacronym{lpp}{LPP}{Lenguajes y Entornos de la Programación Paralela}
+\newacronym{tfg}{TFG}{Trabajo Final de Grado}
+\newacronym{rf}{RF}{Requisito funcional}
+\newacronym{rnf}{RNF}{Requisito no funcional}
+\newacronym{gce}{GCE}{Google Cloud Engine}
+\newacronym{bd}{DB}{Base de datos}
+\newacronym{so}{SO}{Sistema operativo}
+\newacronym{k8s}{K8s}{Kubernetes}
+\newacronym{ram}{RAM}{Memoria de acceso aleatorio}
+\newacronym{vcpus}{vCPUs}{Unidades centrales de procesamiento virtuales}
+\newacronym{api}{API}{Interfaz de programación de aplicaciones}
+\newacronym{gib}{GiB}{Gibibyte}
+\newacronym{nfs}{NFS}{Sistema de archivos de red}
+
+
+\usepackage{listings}
+
 
 \title{Implementación de un sitio web para un concurso de programación paralela}
 \author{Nicolás Fernando Martini}
@@ -76,7 +123,7 @@
 
 \keywords{?, ?, ?, ?} 
          {programación paralela, concurso de programación, gamificación, ludificación}  
-         {parallel programming, programming competition, gamification}        
+         {parallel programming, programming competition, gamification}       
 
 \begin{document}
 	
@@ -108,7 +155,7 @@
 	
 El presente trabajo aborda la implementación de un sitio web para concursos de programación paralela, con el añadido de la gamificación o ludificación, una técnica de aprendizaje que busca recompensar al usuario y aumentar su motivación al sumar elementos y dinámicas propias de los juegos para así ofrecer una experiencia enriquecedora y positiva. \par 
 
-Esta es una tarea compleja, por un lado llevar el proceso de envío de código a un entorno web y la interacción que tendrá con el cluster \kahan del \textit{DSIC}. Y por el otro, transformar las actividades de laboratorio de las asignaturas Coputación Paralela y Lenguajes y Entornos de la Programación Paralela con nuevas mecánicas que produzcan al estudiante buscar mejorar sus resultados inclusive después de llegar a una resolución correcta a los ejercicios planteados. \par
+Esta es una tarea compleja, por un lado llevar el proceso de envío de código a un entorno web y la interacción que tendrá con el cluster \kahan del DSIC. Y por el otro, transformar las actividades de laboratorio de las asignaturas CPA y LPP con nuevas mecánicas que produzcan al estudiante buscar mejorar sus resultados inclusive después de llegar a una resolución correcta a los ejercicios planteados. \par
 
 Este proyecto ha sido realizado con el apoyo del \textit{DSIC} de la \textit{UPV} con la finalidad de complementar otras herramientas utilizadas hoy en día en la enseñanza. \par
 
@@ -569,7 +616,7 @@ Sprints ¿?
 
 Pizarra es una herramienta que necesita de otros aplicativos para su funcionamiento. Por un lado una \textit{BD} para la persistencia de datos, Redis para el sistema de colas interno de envío de tareas, Nginx para actuar como servidor web y redirigir las peticiones. En el pasado la implantación hubiera requerido la intervención del equipo de Administración de Sistemas que se encargue de instalar el \textit{SO} de cada máquina, crear usuarios, asignar permisos, abrir puertos y otro sinfín de tareas.
 
-Para evitar todos estos pasos y acelerar la implantación el proyecto incluye la posibilidad de que todos los elementos de la arquitectura se desplieguen en contenedores. Estos contenedores están creados con la tecnología Docker y son paquetes que incluyen todo lo necesario, sean librerías y herramientas del sistema para que el software se ejecute.
+Para evitar todos estos pasos y acelerar la implantación el proyecto incluye la posibilidad de que todos los elementos de la arquitectura se desplieguen en \Gls{contenedor}es. Estos \Gls{contenedor}es están creados con la tecnología Docker y son paquetes que incluyen todo lo necesario, sean librerías y herramientas del sistema para que el software se ejecute.
 
 \section{Docker y Kubernetes}
 
@@ -610,20 +657,116 @@ Con los parámetros previos y siguiendo la documentación de variables de entorn
 
 Para un entorno de desarrollo local y/o de pruebas Docker puede ser una herramienta que cumpla con nuestras necesidades, pero para un entorno de producción es necesario contar con un servicio que realice la implantación de forma automatizada,que sea eficiente en el manejo de recursos y resilente en caso de problemas. Para ésta tarea utilizaremos Kubernetes, un \textit{orquestador} de contenedores que permite auto escalado de aplicaciones, automatización de despliegues y configuración de forma declarativa.
 
+Debido a una limitación de las máquinas donde está alojado \kahan no es posible la instalación del servicio de Kubernetes y se ha optado por un despliegue de Pizarra en la nube.
+
 \section{Despliegue en la Nube con Kubernetes}
 
 Existen varios proveedores de \textit{K8s} en Internet pudiendo consultar el listado de todos los partners en el sitio oficial\footnote{Kubernetes - Partners: \url{https://kubernetes.io/es/partners}}. Siendo los más importantes Google Cloud Engine, Amazon AWS y Microsoft Azure se ha escogido por desplegar la aplicación en \textit{GCE} ya que dispone de buena documentación y además \textdollar 300 de crédito promocional que són más que suficientes para tener el aplicativo corriendo durante meses.
 
 \subsection{Pasos de un despliegue en GCE}
 
-Antes de poder comenzar con el despliegue, debemos crearnos una cuenta en Google o utilizar una existente que nunca ha activado \textit{GCE} de forma previa ya que el crédito promocional de bienvenida tiene una caducidad de 12 meses desde la activación.
+Debemos crearnos una cuenta en Google o utilizar una existente que nunca ha activado \textit{GCE} de forma previa ya que el crédito promocional de bienvenida tiene una caducidad de 12 meses desde la activación.
 
+Con nuestra cuenta accedemos a la Consola Web de \acrshort{gce} y creamos nuestro proyecto, en este caso lo llamaremos Pizarra. Nuestro aplicativo utiliza Kubernetes Engine y el Container Registry que son visibles desde el menú lateral, entraremos a cada uno de ellos para habilitar su \acrshort{api}.
 
+Una vez creado el proyecto y habilitadas las \acrshort{api}'s hay que descargar\footnote{Cómo instalar el SDK de Google Cloud: \url{https://cloud.google.com/sdk/install?hl=es-419}} e inicializar\footnote{Cómo inicializar el SDK de Cloud:  \url{https://cloud.google.com/sdk/docs/initializing?hl=es-419}} Google Cloud SDK para hacer uso de la consola de forma local. 
+
+Todos los pasos descritos a continuación se ejecutan de forma automática con un script\footnote{Script Despliegue \acrshort{gce}: \url{https://github.com/nimar3/pizarra/blob/master/gce/commands.sh}} incluido en el repositorio de código. Lo único que se necesita de forma previa es la configuración de algunos parámetros de despliegue como variables de entorno del \acrshort{so} donde se ejecuta.
+
+Las variables de entorno necesarias son el ID del proyecto en \acrshort{gce} y las credenciales de la \acrshort{bd} que serán guardados como un secreto en Kubernetes. Podemos exportarlas antes de lanzar nuestro script ejecutando los siguientes comandos en nuestra consola.
+
+\begin{lstlisting}[language=bash]
+$ export PROJECT_ID=pizarra-id
+$ export DB_USERNAME=pizarra
+$ export DB_PASSWORD=pizarra
+\end{lstlisting}
+
+Comandos que ejecuta el script, donde todos los ficheros que forman parte de cada comando se encuentran en el repositorio\footnote{Ficheros de despliegue en \acrshort{gce}: \url{https://github.com/nimar3/pizarra/tree/master/gce}}. Al ser la sintaxis similar a la previamente explicada y evitando que éste documento se extienda de sobremanera al mencionar cada ítem, invitamos al lector a revisar la documentación oficial de Kubernetes\footnote{Documentación Kubernetes: \url{https://kubernetes.io/docs}}.
+
+\begin{enumerate}
+	
+	\item Seteo de proyecto y zona geográfica donde desplegaremos el aplicativo. Por cercanía geográfica se ha escogido el centro de datos de Países Bajos.
+	
+	\begin{lstlisting}[language=bash]
+	$ gcloud config set project ${PROJECT_ID}
+	$ gcloud config set compute/zone europe-west4
+	\end{lstlisting}
+	
+	\item Credenciales para la \acrshort{bd} para ser obtenidas a posterior por los contenedores de Kubernetes
+	
+	\begin{lstlisting}[language=bash]
+	$ kubectl create secret generic pizarra-credentials \
+	--from-literal db_username=${DB_USERNAME} \
+	--from-literal db_password=${DB_PASSWORD}
+	\end{lstlisting}
+	
+	\item Subida de \Gls{contenedor}es de Nginx y Pizarra al Registro de \acrshort{gce}
+	
+	\begin{lstlisting}[language=bash]	
+	$ docker push eu.gcr.io/${PROJECT_ID}/pizarra
+	$ docker push eu.gcr.io/${PROJECT_ID}/nginx
+	\end{lstlisting}
+	
+	
+	\item Creación de cluster en Kubernetes con 2 nodos. Una vez creado se descargan las credenciales para trabajar con él.
+
+	\begin{lstlisting}[language=bash]	
+	$ gcloud container clusters create pizarra --num-nodes=2
+	$ gcloud container clusters get-credentials pizarra
+	\end{lstlisting}
+
+	\item Creación de Almacenamiento de 10 \acrshort{gib} para la persistencia de datos que será utilizado por el Sistema de archivos de red. Replicado en varias zonas ya que el almacenamiento no es parte de Kubernetes.
+	
+	\begin{lstlisting}[language=bash]	
+	$ kubectl apply -f storage.yaml
+	\end{lstlisting}
+	
+	\item Creación del \acrshort{nfs}
+	
+	\begin{lstlisting}[language=bash]	
+	$ kubectl apply -f nfs.yaml
+	\end{lstlisting}
+	
+	\item Creación del servicio de Redis para el sistema de colas local
+	
+	\begin{lstlisting}[language=bash]	
+	$ kubectl apply -f redis.yaml
+	\end{lstlisting}
+	
+	\item Creación del servicio de \acrlong{bd}
+	
+	\begin{lstlisting}[language=bash]	
+	$ kubectl apply -f postgress.yaml
+	\end{lstlisting}
+	
+	\item Despliegue de Pizarra y 1 Worker que se encargará de encolar las las \Gls{tarea}s en \kahan
+	
+	\begin{lstlisting}[language=bash]	
+	$ kubectl apply -f pizarra.yaml
+	\end{lstlisting}
+	
+	\item Despliegue del servicio de NGinx con una IP pública para el acceso externo de usuarios
+	
+	\begin{lstlisting}[language=bash]	
+	$ kubectl apply -f nginx.yaml
+	\end{lstlisting}
+	
+\end{enumerate}
+
+Una vez completado todos los pasos, se puede obtener la IP pública de Pizarra ejecutando el siguiente comando.
+
+\begin{lstlisting}[language=bash]	
+$ kubectl get services
+\end{lstlisting}
+
+También se puede obtener en la web de \acrshort{gce} sobre la pestaña Services e Ingress.
+
+Hemos completado el despliegue y ya podemos navegar a Pizarra para comenzar a interactuar con el aplicativo.
 
 
 \subsection{Costos asociados}
 
-\textit{GCE} cuenta con una herramienta\footnote{Calculadora de precios de Google: \url{https://cloud.google.com/products/calculator/}} para estimar el gasto mensual en el que podemos incurrir con la utilización de los recursos contratados. Se ha realiado una estimación con los siguientes parámetros:
+\acrshort{gce} cuenta con una herramienta\footnote{Calculadora de precios de Google: \url{https://cloud.google.com/products/calculator/}} para estimar el gasto mensual en el que podemos incurrir con la utilización de los recursos contratados. Se ha realiado una estimación con los siguientes parámetros:
 
 \begin{figure}[ht]
 	\centering
@@ -725,26 +868,6 @@ explicación licencia MIT
 	\item \textbf{Entorno de producción}: 
 \end{itemize}
 
-\chapter{Acrónimos}
-
-\begin{itemize}
-	\item \textbf{DSIC}: Departamento de Sistemas Informáticos y Computación.
-	\item \textbf{UPV}: Universitat Politècnica de València.
-	\item \textbf{ETSINF}: Escuela Técnica Superior de Ingeniería Informática.
-	\item \textbf{CPA}: Computación Paralela.
-	\item \textbf{LPP}: Lenguajes y Entornos de la Programación Paralela.
-	\item \textbf{TFG}: Trabajo Final de Grado.
-	\item \textbf{RF}: Requisito funcional.
-	\item \textbf{RNF}: Requisito no funcional.
-	\item \textbf{GCE}: Google Cloud Engine.
-	\item \textbf{DB}: Base de datos.
-	\item \textbf{SO} Sistema operativo.
-	\item \textbf{K8s}: Kubernetes.
-	\item \textbf{RAM}: Memoria de acceso aleatorio.
-	\item \textbf{vCPUs}: Unidades centrales de procesamiento virtuales.
-	
-\end{itemize}
-
 \chapter{Configuración del sistema}
 
 Parámetros disponibles para la configuración del sistema.
@@ -755,6 +878,10 @@ Parámetros disponibles para la configuración del sistema.
 
 \chapter{?}
 
-?
+\glsaddall
+\printglossary[title=Acrónimos,type=\acronymtype]
+
+\glsaddall
+\printglossary[title=Términos,toctitle=Terms and abbreviations]
 
 \end{document}
