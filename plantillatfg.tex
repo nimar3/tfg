@@ -73,7 +73,7 @@
 
 \newglossaryentry{tarea}
 {
-	name=Tarea,description={Trabajo a resolver asignado a un estudiante o equipo}
+	name=Tarea,description={Problema a resolver asignado a un estudiante o equipo}
 }
 \newglossaryentry{insignia}
 {
@@ -92,6 +92,8 @@
 	name=Entorno de producción,description={lugar donde se ejecuta el aplicativo para los usuarios finales}
 }
 \newglossaryentry{contenedor}{name={contenedor},description={imagen ejecutable ligera y portátil que contiene el software y todas sus dependencias}}
+\newglossaryentry{alumno}{name={alumno},description={description}}
+\newglossaryentry{equipo}{name={equipo},description={description}}
 
 \newacronym{dsic}{DSIC}{Departamento de Sistemas Informáticos y Computación}
 \newacronym{upv}{UPV}{Universitat Politècnica de València}
@@ -110,6 +112,8 @@
 \newacronym{api}{API}{Interfaz de programación de aplicaciones}
 \newacronym{gib}{GiB}{Gibibyte}
 \newacronym{nfs}{NFS}{Sistema de archivos de red}
+\newacronym{ssh}{SSH}{Secure Shell}
+\newacronym{scp}{SCP}{Secure Copy}
 
 
 \usepackage{listings}
@@ -614,15 +618,23 @@ Sprints ¿?
 
 \chapter{Implantación}
 
-Pizarra es una herramienta que necesita de otros aplicativos para su funcionamiento. Por un lado una \textit{BD} para la persistencia de datos, Redis para el sistema de colas interno de envío de tareas, Nginx para actuar como servidor web y redirigir las peticiones. En el pasado la implantación hubiera requerido la intervención del equipo de Administración de Sistemas que se encargue de instalar el \textit{SO} de cada máquina, crear usuarios, asignar permisos, abrir puertos y otro sinfín de tareas.
+Pizarra es una herramienta que necesita de otros aplicativos para su funcionamiento. Por un lado una \textit{BD} para la persistencia de datos, Redis para el sistema de colas interno de envío de tareas, un \acrshort{nfs} para compartir recursos y Nginx para actuar como servidor web y redirigir las peticiones. En el pasado la implantación hubiera requerido la intervención del equipo de Administración de Sistemas que se encargue de instalar el \textit{SO} de cada máquina, crear usuarios, asignar permisos, abrir puertos y otro sinfín de tareas.
 
 Para evitar todos estos pasos y acelerar la implantación el proyecto incluye la posibilidad de que todos los elementos de la arquitectura se desplieguen en \Gls{contenedor}es. Estos \Gls{contenedor}es están creados con la tecnología Docker y son paquetes que incluyen todo lo necesario, sean librerías y herramientas del sistema para que el software se ejecute.
 
+Docker funciona de forma similar a una maquina virtual, con algunas ventajas como la asignación de recursos de forma dinámica, espacio en disco reducido ya que podemos evitar la instalación de un \acrshort{so} en los contenedores y la portabilidad.
+
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.65\textwidth]{img/container-vs-vm}
+	\caption[Diferencias entre contenedor Docker y máquina virtual]{Diferencias entre contenedor y máquina virtual}
+	\label{figura:container-vs-vm}
+\end{figure}
+
 \section{Docker y Kubernetes}
 
-... explicación simple Docker ...
-
-Por ejemplo, para nuestro entorno de desarrollo local, utilizamos contenedores públicos como el de Postgres que con un fichero de configuración nos permite tener servicios ejecutándose en cuestión de minutos.
+Para nuestro entorno de desarrollo local utilizamos contenedores públicos como el de Postgres que con un fichero de configuración nos permite tener el servicio ejecutándose en cuestión de minutos.
 
 A continuación, un extracto del fichero \textbf{docker-compose.yaml} del repositorio\footnote{Docker yaml: \url{https://github.com/nimar3/pizarra/blob/master/docker-compose.yml}} con una breve explicación de los parámetros.
 
@@ -688,7 +700,7 @@ $ export DB_USERNAME=pizarra
 $ export DB_PASSWORD=pizarra
 \end{lstlisting}
 
-Comandos que ejecuta el script, donde todos los ficheros que forman parte de cada comando se encuentran en el repositorio\footnote{Ficheros de despliegue en \acrshort{gce}: \url{https://github.com/nimar3/pizarra/tree/master/gce}}. Al ser la sintaxis similar a la previamente explicada y evitando que éste documento se extienda de sobremanera al mencionar cada ítem, invitamos al lector a revisar la documentación oficial de Kubernetes\footnote{Documentación Kubernetes: \url{https://kubernetes.io/docs}}.
+Éstas son las lineas que ejecuta el script, donde todos los ficheros que forman parte de cada comando se encuentran en el repositorio\footnote{Ficheros de despliegue en \acrshort{gce}: \url{https://github.com/nimar3/pizarra/tree/master/gce}}. Al ser la sintaxis similar a la previamente explicada y evitando que éste documento se extienda de sobremanera al mencionar cada ítem, invitamos al lector a revisar la documentación oficial de Kubernetes\footnote{Documentación Kubernetes: \url{https://kubernetes.io/docs}}.
 
 \begin{enumerate}
 	
@@ -707,7 +719,7 @@ Comandos que ejecuta el script, donde todos los ficheros que forman parte de cad
 	--from-literal db_password=${DB_PASSWORD}
 	\end{lstlisting}
 	
-	\item Subida de \Gls{contenedor}es de Nginx y Pizarra al Registro de \acrshort{gce}
+	\item Subida de \Gls{contenedor}es de Nginx y Pizarra al Registro de \acrshort{gce}. Los otros \Gls{contenedor}es utilizarán imágenes públicas.
 	
 	\begin{lstlisting}[language=bash]	
 	$ docker push eu.gcr.io/${PROJECT_ID}/pizarra
@@ -728,7 +740,7 @@ Comandos que ejecuta el script, donde todos los ficheros que forman parte de cad
 	$ kubectl apply -f storage.yaml
 	\end{lstlisting}
 	
-	\item Creación del \acrshort{nfs}
+	\item Creación del servicio de \acrshort{nfs}
 	
 	\begin{lstlisting}[language=bash]	
 	$ kubectl apply -f nfs.yaml
@@ -760,7 +772,7 @@ Comandos que ejecuta el script, donde todos los ficheros que forman parte de cad
 	
 \end{enumerate}
 
-Una vez completado todos los pasos, se puede obtener la IP pública de Pizarra ejecutando el siguiente comando.
+Una vez completados todos los pasos se puede obtener la IP pública de Pizarra ejecutando el siguiente comando.
 
 \begin{lstlisting}[language=bash]	
 $ kubectl get services
@@ -768,8 +780,11 @@ $ kubectl get services
 
 También se puede obtener en la web de \acrshort{gce} sobre la pestaña Services e Ingress.
 
+IMAGEN
+
 Hemos completado el despliegue y ya podemos navegar a Pizarra para comenzar a interactuar con el aplicativo.
 
+IMAGEN
 
 \subsection{Costos asociados}
 
@@ -816,6 +831,9 @@ En total llegamos a un costo estimado de \texteuro 49.00 mensuales. Como dato ad
 \chapter{Mantenimiento}
 
 Resumen de como montar un entorno local de desarrollo, o hacer debug en el sistema.. etc 
+
+\chapter{Extensibilidad}
+
 
 \section{Licencia}
 
@@ -865,23 +883,144 @@ explicación licencia MIT
 
 \APPENDIX
 
-\chapter{Glosario}
-
-\begin{itemize}
-	\item \textbf{Tarea}:
-	\item \textbf{Insignia}:
-	\item \textbf{Equipo de Estudiantes}:
-	\item \textbf{Grupo de Estudiantes}:
-	\item \textbf{Entorno de producción}: 
-\end{itemize}
-
 \chapter{Configuración del sistema}
 
-Parámetros disponibles para la configuración del sistema.
+Para una correcto funcionamiento de Pizarra el sistema debe inicializarse siguiendo los pasos descritos a continuación. Aunque se dispone de un script que realiza el despliegue de forma automatizada hay algunos pasos que requieren de intervención manual.
 
 \section{Inicialización}
 
-?
+
+
+\section{Parámetros}
+
+Al iniciar un \Gls{contenedor} utilizamos variables de entorno del \acrshort{so} para configurar su funcionamiento. El \Gls{contenedor} de Pizarra soporta estas variables para dar diferentes posibilidades en cómo queremos que se comporte el aplicativo. Los mencionados a continuación son relevantes en un despliegue pero existen adicionales que pueden ser consultados en el fichero de configuración\footnote{Fichero de Configuración: \url{https://github.com/nimar3/pizarra/blob/master/config.py}}
+
+\begin{itemize}
+	\item \textbf{APP\_MODE}
+	\begin{itemize}
+		\item Descripción: modo en el cual queremos que se ejecute Pizarra
+		\item Opciones
+		\begin{itemize}
+			\item Pizarra: aplicativo web
+			\item Worker: worker
+		\end{itemize}
+		\item Valor por defecto: \textit{Pizarra}
+	\end{itemize}
+\end{itemize}
+
+\begin{itemize}
+	\item \textbf{REMOTE\_HOST}
+	\begin{itemize}
+		\item Descripción: hostname o IP del sistema externo a conectarnos para las colas de \kahan
+		\item Valor por defecto: \textit{kahan.dsic.upv.es}
+	\end{itemize}
+\end{itemize}
+
+\begin{itemize}
+	\item \textbf{REMOTE\_USER}
+	\begin{itemize}
+		\item Descripción: usuario con el que nos conectaremos por \acrshort{ssh} y \acrshort{scp} a \kahan
+		\item Valor por defecto: \textit{pizarra}
+	\end{itemize}
+\end{itemize}
+
+\begin{itemize}
+	\item \textbf{REMOTE\_PATH}
+	\begin{itemize}
+		\item Descripción: directorio remoto donde se copiarán los ficheros de cada ejecución en \kahan
+		\item Valor por defecto: \textit{/pizarra}
+	\end{itemize}
+\end{itemize}
+
+\begin{itemize}
+	\item \textbf{SSH\_FILE\_PATH}
+	\begin{itemize}
+		\item Descripción: ubicación de la clave privada para conectarnos por \acrshort{ssh} y \acrshort{scp} a \kahan
+		\item Valor por defecto: \textit{app/data/keys/id\_rsa}
+	\end{itemize}
+\end{itemize}
+
+
+\begin{itemize}
+	\item \textbf{LOG\_LEVEL}
+	\begin{itemize}
+		\item Descripción: establece el nivel de mensajes que deben mostrarse al ejecutarse el aplicativo
+		\item Opciones
+		\begin{itemize}
+			\item CRITICAL
+			\item ERROR
+			\item WARNING
+			\item INFO
+			\item DEBUG
+		\end{itemize}
+		\item Valor por defecto: \textit{INFO}
+	\end{itemize}
+\end{itemize}
+
+\begin{itemize}
+	\item \textbf{SECRET\_KEY}
+	\begin{itemize}
+		\item Descripción: clave secreta con la que se encriptarán las contraseñas, no se puede cambiar una vez desplegada la aplicación y por seguridad nunca debe utilizarse el valor por defecto
+		\item Valor por defecto: \textit{pUdos1KbNyLYUvb4P7MvHWmuWSGH0Au}
+	\end{itemize}
+\end{itemize}
+
+\begin{itemize}
+	\item \textbf{IMPORT\_SAMPLE\_DATA}
+	\begin{itemize}
+		\item Descripción: borrado de información de la \acrlong{bd} e importación de data de ejemplo.
+		\item Valor por defecto: \textit{False}
+	\end{itemize}
+\end{itemize}
+
+\begin{itemize}
+	\item \textbf{TIME\_BETWEEN\_REQUESTS}
+	\begin{itemize}
+		\item Descripción: tiempo mínimo en segundos que debe esperar un \Gls{alumno} entre cada envío de \Gls{tarea}s
+		\item Valor por defecto: \textit{60}
+	\end{itemize}
+\end{itemize}
+
+\begin{itemize}
+	\item \textbf{TEAM\_MAX\_SIZE}
+	\begin{itemize}
+		\item Descripción: tamaño máximo de \Gls{alumno}s que puede tener un \Gls{equipo}
+		\item Valor por defecto: \textit{3}
+	\end{itemize}
+\end{itemize}
+
+\begin{itemize}
+	\item \textbf{REGISTRATION\_ENABLED}
+	\begin{itemize}
+		\item Descripción: habilita el registro de usuarios en el aplicativo
+		\item Valor por defecto: \textit{False}
+	\end{itemize}
+\end{itemize}
+
+\begin{itemize}
+	\item \textbf{TIMEWALL\_PENALTY}
+	\begin{itemize}
+		\item Descripción: puntos de penalización al obtener un resultado de \textit{TIMEWALL} en un envío de \Gls{tarea}
+		\item Valor por defecto: \textit{-10}
+	\end{itemize}
+\end{itemize}
+
+\begin{itemize}
+	\item \textbf{KO\_PENALTY}
+	\begin{itemize}
+		\item Descripción: puntos de penalización al obtener un resultado de \textit{KO} en un envío de \Gls{tarea}
+		\item Valor por defecto: \textit{-15}
+	\end{itemize}
+\end{itemize}
+
+\begin{itemize}
+	\item \textbf{DEBUG}
+	\begin{itemize}
+		\item Descripción: inicia el aplicativo en modo Debug, útil para identificar errores.
+		\item Valor por defecto: \textit{False}
+	\end{itemize}
+\end{itemize}
+
 
 \chapter{?}
 
