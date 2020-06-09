@@ -839,20 +839,20 @@ Para configurar un entorno de desarrollo local debemos cumplir con los siguiente
 
 \begin{itemize}
 	\item  Tener instalado Python3\footnote{Descarga oficial de Python: \url{https://www.python.org/downloads/}} y Docker\footnote{Descarga oficial de Docker: \url{https://docs.docker.com/get-docker/}} en nuestra máquina
-	\item Clonar el repositorio de Pizarra
+	\item Clonado el repositorio de Pizarra
 	\begin{enumerate}
-		\item Creamos un directorio
+		\item Creación de directorio
 		\begin{lstlisting}[language=bash]
 		$ mkdir pizarra
 		$ cd pizarra/
 		\end{lstlisting}
-		\item Inicializamos un repositorio nuevo y añadimos el remoto
+		\item Inicialización de un repositorio nuevo y la dirección remota
 		\begin{lstlisting}[language=bash]
 		$ git init .
 		Initialized empty Git repository in /Users/nmartini/pizarra/.git/
 		$ git remote add upstream git@github.com:nimar3/pizarra.git
 		\end{lstlisting}
-		\item Descargamos el código fuente
+		\item Descarga el código fuente
 		\begin{lstlisting}[language=bash]
 		$ git fetch upstream
 		remote: Enumerating objects: 589, done.
@@ -862,7 +862,7 @@ Para configurar un entorno de desarrollo local debemos cumplir con los siguiente
 		Receiving objects: 100% (6891/6891), 19.14 MiB | 675.00 KiB/s, done.
 		Resolving deltas: 100% (1748/1748), done.
 		\end{lstlisting}
-		\item Hacemos \foreignlanguage{english}{checkout} a la rama de desarrollo
+		\item \foreignlanguage{english}{checkout} a la rama de desarrollo
 		\begin{lstlisting}[language=bash]
 		$ git checkout master
 		Checking out files: 100% (4858/4858), done.
@@ -870,7 +870,7 @@ Para configurar un entorno de desarrollo local debemos cumplir con los siguiente
 		Already on 'master'
 		\end{lstlisting}
 	\end{enumerate}
-	\item Crear un entorno virtual e instalar todos los \Gls{paquete}s de Python necesarios
+	\item Creación de un entorno virtual e instalación de todos los \Gls{paquete}s de Python necesarios
 	\begin{lstlisting}[language=bash]
 	$ python3 -m venv env
 	$ source env/bin/activate   
