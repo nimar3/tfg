@@ -831,7 +831,7 @@ En total llegamos a un costo estimado de \texteuro 49.00 mensuales. Como dato ad
 
 \chapter{Mantenimiento}
 
-Resumen de como montar un entorno local de desarrollo, o hacer debug en el sistema.. etc 
+El desarrollo de software es un proceso evolutivo y requiere de un mantenimiento continuo para asegurar el correcto funcionamiento, como así también la posibilidad de añadir mejoras y nuevas funcionalidades. Para esto se han creado los siguientes apartados y así ayudar con éste proceso.
 
 \section{Entorno local de desarrollo}
 
@@ -896,7 +896,11 @@ Creating worker   ... done
 Creating nginx    ... done
 \end{lstlisting}
 
-\section{Pruebas}
+\section{Depuración de errores}
+
+Como todo software, Pizarra no estará exento de errores o \foreignlanguage{english}{bugs} que no se han identificado en la etapa de desarrollo y como muchos otros lenguajes Python ofrece la ejecución de código en modo Debug, lo que nos permite poner puntos de ruptura y hacer una ejecución \textit{paso a paso} del código para identificar el problema.
+
+En el entorno de desarrollo local, el modo Debug siempre está habilitado. Si queremos habilitarlo cuando ejecutamos el aplicativo en modo \textit{Production} debemos especificarlo explícitamente en las variables de entorno del \acrshort{so}, en este caso revisar el Apéndice A: Configuración del Sistema para más información.
 
 \section{Calidad de código}
 
