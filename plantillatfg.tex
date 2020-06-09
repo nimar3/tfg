@@ -96,6 +96,8 @@
 \newglossaryentry{equipo}{name={equipo},description={description}}
 \newglossaryentry{cola}{name={cola},description={Estructura de datos que sigue una filosofía FIFO}}
 \newglossaryentry{clase}{name={clase},description={Plantilla para la creación de objetos de datos según un modelo predeterminado}}
+\newglossaryentry{paquete}{name={paquete},description={Carpeta que contiene varios módulos de Python}}
+
 
 \newacronym{dsic}{DSIC}{Departamento de Sistemas Informáticos y Computación}
 \newacronym{upv}{UPV}{Universitat Politècnica de València}
@@ -831,9 +833,97 @@ En total llegamos a un costo estimado de \texteuro 49.00 mensuales. Como dato ad
 
 Resumen de como montar un entorno local de desarrollo, o hacer debug en el sistema.. etc 
 
+\section{Entorno local de desarrollo}
+
+Para configurar un entorno de desarrollo local debemos cumplir con los siguientes requisitos.
+
+\begin{itemize}
+	\item  Tener instalado Python3\footnote{Descarga oficial de Python: \url{https://www.python.org/downloads/}} y Docker\footnote{Descarga oficial de Docker: \url{https://docs.docker.com/get-docker/}} en nuestra máquina
+	\item Clonar el repositorio de Pizarra
+	\begin{enumerate}
+		\item Creamos un directorio
+		\begin{lstlisting}[language=bash]
+		$ mkdir pizarra
+		$ cd pizarra/
+		\end{lstlisting}
+		\item Inicializamos un repositorio nuevo y añadimos el remoto
+		\begin{lstlisting}[language=bash]
+		$ git init .
+		Initialized empty Git repository in /Users/nmartini/pizarra/.git/
+		$ git remote add upstream git@github.com:nimar3/pizarra.git
+		\end{lstlisting}
+		\item Descargamos el código fuente
+		\begin{lstlisting}[language=bash]
+		$ git fetch upstream
+		remote: Enumerating objects: 589, done.
+		remote: Counting objects: 100% (589/589), done.
+		remote: Compressing objects: 100% (364/364), done.
+		remote: Total 6891 (delta 396), reused 393 (delta 221), pack-reused 6302
+		Receiving objects: 100% (6891/6891), 19.14 MiB | 675.00 KiB/s, done.
+		Resolving deltas: 100% (1748/1748), done.
+		\end{lstlisting}
+		\item Hacemos \foreignlanguage{english}{checkout} a la rama de desarrollo
+		\begin{lstlisting}[language=bash]
+		$ git checkout master
+		Checking out files: 100% (4858/4858), done.
+		Branch 'master' set up to track remote branch 'master' from 'upstream'.
+		Already on 'master'
+		\end{lstlisting}
+	\end{enumerate}
+	\item Crear un entorno virtual e instalar todos los \Gls{paquete}s de Python necesarios
+	\begin{lstlisting}[language=bash]
+	$ python3 -m venv env
+	$ source env/bin/activate   
+	(env) $ pip3 install -r requirements_dev.txt
+	\end{lstlisting}
+\end{itemize}
+
+Si hemos realizado cambios en el código fuente se debe ejecutar el siguiente comando para generar una nueva versión de nuestro \Gls{contenedor} de Docker de Pizarra
+
+\begin{lstlisting}[language=bash]
+$ docker build -t pizarra .
+\end{lstlisting}
+
+Por último, para ejecutar Pizarra con todos los componentes introducimos el siguiente comando en la raíz del repositorio. Todos los componentes deben mostrar que se han creado correctamente con el mensaje \textit{done}
+
+\begin{lstlisting}[language=bash]
+(env) $ docker-compose up
+Creating network "pizarra_default" with the default driver
+Creating redis    ... done
+Creating postgres ... done
+Creating pizarra  ... done
+Creating worker   ... done
+Creating nginx    ... done
+\end{lstlisting}
+
 \section{Pruebas}
 
 \section{Calidad de código}
+
+Para una mejor lectura del código fuente se ha utilizado el \Gls{paquete} \textit{flake8}\footnote{Sitio Web de Flake8: \url{https://flake8.pycqa.org/en/latest/}} que nos obliga a seguir las guías de estilo oficiales de Python.
+
+En el directorio raíz del repositorio de código ejecutamos el siguiente comando y podemos ver un listado de errores a corregir.
+
+\begin{lstlisting}[language=bash]
+$ flake8 app/
+app/__init__.py:8:1: F401 'logging.DEBUG' imported but unused
+app/__init__.py:71:5: E722 do not use bare 'except'
+app/home/routes.py:59:101: E501 line too long (106 > 100 characters)
+app/home/routes.py:210:5: E722 do not use bare 'except'
+app/home/routes.py:216:101: E501 line too long (108 > 100 characters)
+app/admin/forms.py:32:28: N805 first argument of a method should be named 'self'
+\end{lstlisting}
+
+La configuración de \textit{flake8} se encuentra en el fichero \textbf{setup.tfg} en la raíz del repositorio.
+
+\begin{lstlisting}[language=bash]
+[flake8]
+max-line-length=100
+ignore=E402,E266
+exclude=./migrations
+\end{lstlisting}
+
+Otro punto importante es la cobertura del código fuente, aunque el repositorio incluye las librerias de \textit{coveralls} y \textit{pytest} por cuestiones de tiempo no se han escrito tests unitarios y se ha dejado como una mejora futura.
 
 \chapter{Extensibilidad}
 
@@ -901,7 +991,7 @@ class KahanTask(LocalTask):
 ...
 \end{lstlisting}
 
-En la definición del \textit{task\_process} tenemos un diccionario con los diferentes estados que puede encontrarse el autómata, la función a ejecutar \textit{it} y para cada ejecución el diccionario \textit{steps} con las transiciones.
+En la definición del \textit{task\_process} tenemos un diccionario con los diferentes estados que puede encontrarse el autómata, la función a ejecutar \textit{f} y para cada ejecución el diccionario \textit{steps} con las transiciones.
 
 \section{Localización}
 
