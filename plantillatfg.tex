@@ -94,6 +94,8 @@
 \newglossaryentry{contenedor}{name={contenedor},description={imagen ejecutable ligera y portátil que contiene el software y todas sus dependencias}}
 \newglossaryentry{alumno}{name={alumno},description={description}}
 \newglossaryentry{equipo}{name={equipo},description={description}}
+\newglossaryentry{cola}{name={cola},description={Estructura de datos que sigue una filosofía FIFO}}
+\newglossaryentry{clase}{name={clase},description={Plantilla para la creación de objetos de datos según un modelo predeterminado}}
 
 \newacronym{dsic}{DSIC}{Departamento de Sistemas Informáticos y Computación}
 \newacronym{upv}{UPV}{Universitat Politècnica de València}
@@ -114,6 +116,7 @@
 \newacronym{nfs}{NFS}{Sistema de archivos de red}
 \newacronym{ssh}{SSH}{Secure Shell}
 \newacronym{scp}{SCP}{Secure Copy}
+\newacronym{fifo}{FIFO}{Primero en entrar, primero en salir}
 
 
 \usepackage{listings}
@@ -824,20 +827,83 @@ En total llegamos a un costo estimado de \texteuro 49.00 mensuales. Como dato ad
 	\label{figura:gce-estimated-cost-email}
 \end{figure}
 
-\chapter{Pruebas}
-
-?
-
 \chapter{Mantenimiento}
 
 Resumen de como montar un entorno local de desarrollo, o hacer debug en el sistema.. etc 
 
+\section{Pruebas}
+
+\section{Calidad de código}
+
 \chapter{Extensibilidad}
 
+Uno de los puntos más importantes es permitir la colaboración y que Pizarra funcione con otros sistemas de tareas que no sean una \Gls{cola} local o la de \kahan así como también que pueda ser localizado en diferentes idiomas.
 
-\section{Licencia}
+\section{Otros sistemas de Gestión de Tareas}
 
-explicación licencia MIT 
+La ejecución de una tarea es diferente en cada \Gls{cola} y para esto se ha implementado un autómata que va cambiando de estados en cada ejecución hasta finalizarla. Esto permite que cada nuevo tipo de \Gls{cola} tenga su propia definición, sea flexible y compatible con el funcionamiento del aplicativo.
+
+La definición de estas colas se encuentra en \textbf{models\_tasks.py}\footnote{Definición de Colas: \url{https://github.com/nimar3/pizarra/blob/master/app/base/models_tasks.py}} siendo el objeto a extender para las diferentes colas que queramos implementar \textit{Task}
+
+\begin{lstlisting}[language=python]
+class Task:
+
+	def __init__(self, user_request):
+	self.user_request = user_request
+	self.output = ""
+	self.binary_file_location = ""
+	self.return_code = 0
+	self.run_time = 0.0
+	self.points_earned = 0
+	# automata
+	self.task_process = {}
+\end{lstlisting}
+
+El autómata cuenta con las siguientes transiciones
+
+\begin{lstlisting}[language=python]
+class StepResult(enum.Enum):
+	START = 0
+	OK = 1
+	NOK = 2
+	WAIT = 3
+	END = 4
+\end{lstlisting}
+
+Para el sistema de \Gls{cola}s de \kahan tenemos el siguiente extracto. Donde creamos la nueva clase \textit{KahanTask} que extiende de \textit{LocalTask} y hereda todos sus atributos y métodos.
+
+\begin{lstlisting}[language=python]
+class KahanTask(LocalTask):
+
+	def __init__(self, user_request):
+	super().__init__(user_request)
+	self.task_process = {
+		RequestStatus.CREATED: {
+		'f': self.start,
+		'steps': {
+			StepResult.OK: RequestStatus.VERIFYING,
+		}
+	},
+	RequestStatus.VERIFYING: {
+		'f': self.verify,
+		'steps': {
+			StepResult.OK: RequestStatus.COMPILING,
+			StepResult.NOK: RequestStatus.ERROR
+		}
+	},
+	RequestStatus.COMPILING: {
+		'f': self.compile,
+		'steps': {
+			StepResult.OK: RequestStatus.DEPLOYING,
+			StepResult.NOK: RequestStatus.ERROR
+		}
+	},
+...
+\end{lstlisting}
+
+En la definición del \textit{task\_process} tenemos un diccionario con los diferentes estados que puede encontrarse el autómata, la función a ejecutar \textit{it} y para cada ejecución el diccionario \textit{steps} con las transiciones.
+
+\section{Localización}
 
 \chapter{Conclusiones}
 
@@ -889,7 +955,44 @@ Para una correcto funcionamiento de Pizarra el sistema debe inicializarse siguie
 
 \section{Inicialización}
 
+Antes de comenzar con la inicialización del sistema, debemos exportar las variables de entorno del \acrshort{so} que utiliza el script. Abrimos una consola y ejecutamos los siguientes comandos, donde \textit{pizarra-id} es el ID de proyecto en \acrfull{gce}.
 
+\begin{lstlisting}[language=bash]
+$ export PROJECT_ID=pizarra-id
+$ export DB_USERNAME=pizarra
+$ export DB_PASSWORD=pizarra
+\end{lstlisting}
+
+Si quisiéramos cambiar algún parámetro por defecto de Pizarra, debemos modificar el fichero \textbf{pizarra.yaml}\footnote{Fichero YAML de Pizarra: \url{https://github.com/nimar3/pizarra/blob/master/gce/pizarra.yaml}} añadiendo los nuevos parámetros. En el siguiente extracto se ha cambiado los puntos de penalización al obtener un \textit{KO} y \textit{TIMEWALL} en el envío de una \Gls{tarea} y la carga de data de ejemplo.
+
+\begin{lstlisting}[language=yaml]
+...
+spec:
+  containers:
+    - image: eu.gcr.io/pizarra-279100/pizarra
+      name: pizarra
+      env:
+        - name: TIMEWALL_PENALTY
+          value: "-20"
+        - name: "KO_PENALTY
+          value: "-30"
+        - name: "IMPORT_SAMPLE_DATA"
+          value: "True"
+...          
+\end{lstlisting}
+
+A continuación se ejecuta el script.
+
+\begin{lstlisting}[language=bash]
+$ sh commands.sh
+\end{lstlisting}
+
+Al terminar la ejecución deberíamos tener Pizarra con todos los componentes desplegados. Podemos obtener el estado de los contenedores y servicios con los siguientes comandos.
+
+\begin{lstlisting}[language=bash]
+$ kubectl get pods
+$ kubectl get services
+\end{lstlisting}
 
 \section{Parámetros}
 
@@ -898,13 +1001,26 @@ Al iniciar un \Gls{contenedor} utilizamos variables de entorno del \acrshort{so}
 \begin{itemize}
 	\item \textbf{APP\_MODE}
 	\begin{itemize}
-		\item Descripción: modo en el cual queremos que se ejecute Pizarra
+		\item Descripción: ejecución del aplicativo web o un worker
 		\item Opciones
 		\begin{itemize}
 			\item Pizarra: aplicativo web
 			\item Worker: worker
 		\end{itemize}
 		\item Valor por defecto: \textit{Pizarra}
+	\end{itemize}
+\end{itemize}
+
+\begin{itemize}
+	\item \textbf{CONFIG\_MODE}
+	\begin{itemize}
+		\item Descripción: modo en el cual queremos que se ejecute Pizarra
+		\item Opciones
+		\begin{itemize}
+			\item Debug: modo Debug habilitado y \acrfull{bd} SQLite
+			\item Production: modo Debug deshabilitado y \acrfull{bd} Postgres
+		\end{itemize}
+		\item Valor por defecto: \textit{Debug}
 	\end{itemize}
 \end{itemize}
 
@@ -1022,7 +1138,10 @@ Al iniciar un \Gls{contenedor} utilizamos variables de entorno del \acrshort{so}
 \end{itemize}
 
 
-\chapter{?}
+\chapter{Licencia}
+
+Como este es un proyecto de código abierto, se ha escogido la Licencia MIT\footnote{Licencia MIT: \url{https://opensource.org/licenses/MIT}} ya que es una de las más permisivas para fomentar el rehúso y colaboración. Este tipo de licencia permite la libre utilización de forma privada o comercial, la modificación y distribución del código sin ningún tipo de garantía donde solo se pide que se mantengan las menciones a la licencia y derechos de autor.
+
 
 \glsaddall
 \printglossary[title=Acrónimos,type=\acronymtype]
