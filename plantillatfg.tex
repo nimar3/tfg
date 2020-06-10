@@ -67,6 +67,19 @@
 
 % YAML definition - END
 
+
+\lstnewenvironment{code}[2][]{%
+	\lstset{%
+		backgroundcolor=\color{gray!10},  
+		basicstyle=\ttfamily,
+		numbers=none, 
+		breakatwhitespace=false,      
+		breaklines=true,
+		title   = #2,
+		#1,
+	}%
+}{}
+
 \usepackage[acronym]{glossaries}
 
 \makeglossaries
@@ -937,7 +950,7 @@ Uno de los puntos más importantes es permitir la colaboración y que Pizarra fu
 
 La ejecución de una tarea es diferente en cada \Gls{cola} y para esto se ha implementado un autómata que va cambiando de estados en cada ejecución hasta finalizarla. Esto permite que cada nuevo tipo de \Gls{cola} tenga su propia definición, sea flexible y compatible con el funcionamiento del aplicativo.
 
-La definición de estas colas se encuentra en \textbf{models\_tasks.py}\footnote{Definición de Colas: \url{https://github.com/nimar3/pizarra/blob/master/app/base/models_tasks.py}} siendo el objeto a extender para las diferentes colas que queramos implementar \textit{Task}
+La definición de estas \Gls{cola}s se encuentra en \textbf{models\_tasks.py}\footnote{Definición de Colas: \url{https://github.com/nimar3/pizarra/blob/master/app/base/models_tasks.py}} siendo \textit{Task} el objeto a extender para las nuevas implementaciones.
 
 \begin{lstlisting}[language=python]
 class Task:
@@ -998,6 +1011,79 @@ class KahanTask(LocalTask):
 En la definición del \textit{task\_process} tenemos un diccionario con los diferentes estados que puede encontrarse el autómata, la función a ejecutar \textit{f} y para cada ejecución el diccionario \textit{steps} con las transiciones.
 
 \section{Localización}
+
+Pizarra utiliza el \Gls{paquete} \textit{Babel}\footnote{Paquete \textit{Babel}: \url{http://babel.pocoo.org/en/latest/}} para ofrecer los diferentes idiomas disponibles a los usuarios. A continuación se muestra el \textit{paso a paso} para añadir un nuevo Idioma.
+
+La configuración de \textit{Babel} se encuentra en el fichero \textbf{babel.cfg}\footnote{Configuración de \textit{Babel}: \url{https://github.com/nimar3/pizarra/blob/master/babel.cfg}} en la que se define los ficheros a escanear y extraer texto a traducir.
+
+\begin{lstlisting}[language=python]
+[python: app/**.py]
+[jinja2: app/**/templates/**.html]
+extensions=jinja2.ext.autoescape,jinja2.ext.with_
+\end{lstlisting}
+
+Con el siguiente comando se extrae el texto. En la consola se visualiza como se van escaneando todos los ficheros y el resultado lo tendremos disponible en el fichero \mbox{\textbf{messages.pot}} 
+
+\begin{lstlisting}[language=bash]
+(venv) $ pybabel extract -F babel.cfg -k _l -o messages.pot .
+...
+extracting messages from app/home/templates/macros/summaries.html (extensions="jinja2.ext.autoescape,jinja2.ext.with_")
+extracting messages from app/home/templates/macros/teams.html (extensions="jinja2.ext.autoescape,jinja2.ext.with_")
+writing PO template file to messages.pot
+\end{lstlisting}
+
+Una vez extraído el texto hay que generar el fichero de localización para el idioma que vayamos a traducir. Las localizaciones se encuentran en el directorio \textit{/app/translations}. 
+
+\begin{lstlisting}[language=bash]
+(env) $ pybabel init -i messages.pot -d app/translations -l es
+creating catalog app/translations/es/LC_MESSAGES/messages.po based on messages.pot
+\end{lstlisting}
+
+El siguiente paso es comenzar a añadir las traducciones en las líneas identificadas con \textit{msgstr}
+
+\begin{lstlisting}[language=bash]
+$  cat app/translations/es/LC_MESSAGES/messages.po
+...
+#: app/account/routes.py:34
+msgid "New Access Token has been generated!"
+msgstr "Nuevo Token de acceso ha sido generado!"
+
+#: app/account/routes.py:54
+msgid "You joined Team {}"
+msgstr "Te has unido al equipo {}"
+
+#: app/account/routes.py:56
+msgid "You are unable to join team {} because is full"
+msgstr ""
+...
+\end{lstlisting}
+
+Se deben compilar las traducciones.
+
+\begin{lstlisting}[language=bash]
+(env) $ pybabel compile -d app/translations
+compiling catalog app/translations/es/LC_MESSAGES/messages.po to app/translations/es/LC_MESSAGES/messages.mo
+\end{lstlisting}
+
+Y se añade a la configuración de Pizarra el nuevo idioma disponible.
+
+\begin{code}{config.py}
+	...
+	SUPPORTED_LANGUAGES = {'es': 'Spanish', 'en': 'English'}
+	...
+\end{code}
+
+En el menú se visualizará el nuevo idioma disponible.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.50\textwidth]{img/pizarra-new-language}
+	\caption[Selector de Idiomas en Pizarra]{Selector de Idiomas en Pizarra.}
+	\label{figura:pizarra-new-language}
+\end{figure}
+
+
+
 
 \chapter{Conclusiones}
 
@@ -1090,7 +1176,9 @@ $ kubectl get services
 
 \section{Parámetros}
 
-Al iniciar un \Gls{contenedor} utilizamos variables de entorno del \acrshort{so} para configurar su funcionamiento. El \Gls{contenedor} de Pizarra soporta estas variables para dar diferentes posibilidades en cómo queremos que se comporte el aplicativo. Los mencionados a continuación son relevantes en un despliegue pero existen adicionales que pueden ser consultados en el fichero de configuración\footnote{Fichero de Configuración: \url{https://github.com/nimar3/pizarra/blob/master/config.py}}
+Al iniciar un \Gls{contenedor} utilizamos variables de entorno del \acrshort{so} para configurar su funcionamiento. El \Gls{contenedor} de Pizarra soporta estas variables para dar diferentes posibilidades en cómo queremos que se comporte el aplicativo. 
+
+Los mencionados a continuación son los más relevantes en un despliegue pero existen parámetros adicionales que pueden ser consultados en el fichero de configuración\footnote{Fichero de Configuración: \url{https://github.com/nimar3/pizarra/blob/master/config.py}}.
 
 \begin{itemize}
 	\item \textbf{APP\_MODE}
