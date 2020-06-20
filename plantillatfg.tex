@@ -84,33 +84,17 @@
 
 \makeglossaries
 
-\newglossaryentry{tarea}
-{
-	name=Tarea,description={Problema a resolver asignado a un estudiante o equipo}
-}
-\newglossaryentry{insignia}
-{
-	name=Insignia,description={Trofeo o Marcador que se obtiene al realizar cierta acción en la aplicación}
-}
-\newglossaryentry{ede}
-{
-	name=Equipo de Estudiantes,description={Grupo de uno o más estudiantes formado para resolver Tareas de forma conjunta}
-}
-\newglossaryentry{gde}
-{
-	name=Grupo de Estudiantes,description={Clase a la que pertenece el estudiante para el año lectivo}
-}
-\newglossaryentry{edp}
-{
-	name=Entorno de producción,description={lugar donde se ejecuta el aplicativo para los usuarios finales}
-}
+\newglossaryentry{tarea}{name=Tarea,description={Problema a resolver asignado a un estudiante o equipo}}
+\newglossaryentry{insignia}{name=Insignia,description={Trofeo o Marcador que se obtiene al realizar cierta acción en la aplicación}}
+\newglossaryentry{ede}{name=Equipo de Estudiantes,description={Grupo de uno o más estudiantes formado para resolver Tareas de forma conjunta}}
+\newglossaryentry{gde}{name=Grupo de Estudiantes,description={Clase a la que pertenece el estudiante para el año lectivo}}
+\newglossaryentry{edp}{name=Entorno de producción,description={lugar donde se ejecuta el aplicativo para los usuarios finales}}
 \newglossaryentry{contenedor}{name={contenedor},description={imagen ejecutable ligera y portátil que contiene el software y todas sus dependencias}}
 \newglossaryentry{alumno}{name={alumno},description={description}}
 \newglossaryentry{equipo}{name={equipo},description={description}}
 \newglossaryentry{cola}{name={cola},description={Estructura de datos que sigue una filosofía FIFO}}
 \newglossaryentry{clase}{name={clase},description={Plantilla para la creación de objetos de datos según un modelo predeterminado}}
 \newglossaryentry{paquete}{name={paquete},description={Carpeta que contiene varios módulos de Python}}
-
 
 \newacronym{dsic}{DSIC}{Departamento de Sistemas Informáticos y Computación}
 \newacronym{upv}{UPV}{Universitat Politècnica de València}
@@ -614,11 +598,81 @@ Los requisitos no funcionales son criterios que se deben cumplir para juzgar la 
 
 \chapter{Diseño de la solución}
 
-?
+Una vez analizados los requisitos funcionales y no funcionales el próximo paso es hacer el diseño del software a implementar. Aunque la finalidad de este trabajo es la creación de un sitio web, existen elementos adicionales que deben considerarse para cumplir con el objetivo. Esto es, desde el lenguaje de programación a utilizar, elección de servicios externos como la  \Gls{bd}, soporte a futuro y ..
+
+En este apartado se encuentra el proceso de análisis para la elección del software y el diseño de la arquitectura del sistema.
 
 \section{Software}
 
-?
+Muchos de los requisitos para la aplicación web ya se encuentran implementados de forma similar en \textit{Tablón}, y por esto son un excelente punto de partida para nuestro trabajo. Como \textit{Tablón} está desarrollado en Python, siendo un lenguaje de programación fácil de aprender, con una extensa cantidad de \Gls{paquete}s y guías en Internet, se ha decido hacer el desarrollo en éste lenguaje.
+
+Además, dadas ciertas limitaciones que tiene \textit{Tablón} una de las aspiraciones en la creación de ésta aplicación web para concursos de programación paralela es que sea su sucesor (o reemplazo) a futuro. Por esto mismo he decidido llamar a la aplicación web \textit{Pizarra} en honor a \textit{Tablón}. De aquí en adelante, cuando se nombre \textit{Pizarra} se hace referencia a la aplicación web y otros elementos adicionales necesarios para su funcionamiento. 
+
+Ya escogido el lenguaje de programación, el próximo paso es analizar las posibilidades para la aplicación web en sí que será el punto de acceso a los usuarios. Debido a experiencia previa en otra asignatura de la carrera universitaria he decido optar por \textit{Flask}\footnote{Sitio web Flask: \url{https://flask.palletsprojects.com/en/1.1.x/}}, un micro-framework de Python con gran acogida por la comunidad que incluye un sistema de plantillas para la generación de páginas web llamado \text{Jinja}. 
+
+La usabilidad es uno de los aspectos más importantes de una aplicación web y en este caso no se puede dejar de lado. Un usuario de \textit{Pizarra} esperará una interfaz intuitiva y fácil de utilizar que le facilite el proceso de envío de soluciones a los problemas propuestos; No queremos que la aplicación se interponga entre el proceso de aprendizaje y la satisfacción de participar y obtener logros. Una gran cantidad de aplicaciones utilizan las mismas librerías para maquetar los sitios web, entre estas librerías la más importante es \textit{Bootstrap}\footnote{Sitio web Bootstrap: \url{https://getbootstrap.com/}}, y además, a partir de estas librerías existen Dashboards o Paneles de Control de código abierto para utilizar como punto de partida en nuevas aplicaciones.
+
+Después de varias búsquedas y pruebas se ha optado por \textit{AdminLTE}\footnote{Sitio web AdminLTE: \url{https://adminlte.io/}} dada su variedad de plantillas disponibles, uso de otras librerías con amplia documentación y un aspecto visual amigable y moderno.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.9\textwidth]{img/admin-lte}
+	\caption[AdminLTE: plantilla de Panel de Control ]{AdminLTE: plantilla de Panel de Control }
+	\label{figura:admin-lte}
+\end{figure}
+
+
+\subsection{Paquetes de Python}
+
+Python será el lenguaje a utilizar, pero para dar funcionalidades adicionales normalmente se utilizan librerías o \Gls{paquete}s externos que simplifican y acelerar el desarrollo de la solución. A continuación se hace un repaso de las que son necesarias para \textit{Pizarra}, este listado se encuentra disponible en el fichero \textbf{requirements.txt}, un estandar utilizado para su fácil instalación a posteriori por administradores de paquetes como \textit{pip}.
+	
+\subsubsection{Flask}
+
+El framework base de la aplicación, con otros \Gls{paquete}s para dar soporte a ciertas funcionalidades no incluidas en la librería base.
+
+\begin{itemize}
+	\item flask: librería base
+	\item flask\_login: funcionalidades extras para el manejo de sesiones de usuario
+	\item flask\_security: uso de roles en el sistema  
+	\item flask\_wtf: validación de formularios web
+	\item flask\_sqlalchemy: soporte a SQLAlchemy, una base de datos objeto-relacional 
+	\item flask\_migrate: migración de base de datos basadas en SQLAlchemy
+	\item flask-babel: localización de la aplicación en diferentes idiomas
+\end{itemize}
+
+\subsubsection{Colas}
+
+Existen varios sistemas de \Gls{cola}s en Python, en este caso se ha optado por uno que utiliza pocos recursos y permite encolar tareas a ejecutar en cierto determinado de tiempo en el futuro, funcionalidad que será útil para revisar los resultados de ejecuciones en \kahan. \textit{RQ}\footnote{Sitio web RQ: \url{https://python-rq.org/}} (Redis Queue) permitirá desacoplar las colas del aplicativo web al utilizar \textit{Redis} además de disponer de un \foreignlanguage{english}{dashboard} que puede ser embebido en cualquier aplicación web.
+
+\begin{itemize}
+	\item rq: librería de Redis Queue
+	\item rq-dashboard: visualización web del estado de \Gls{cola}s y \Gls{tarea}s
+	\item redis: soporte y conectividad a Redis 
+\end{itemize}
+
+\subsubsection{Datos de ejemplo}
+
+Para facilitar el desarrollo y su posterior mantenimiento se debe poder disponer de una forma sencilla de cargar datos de ejemplo. Para esta funcionalidad se ha optado por ficheros \textit{yaml}.
+
+\begin{itemize}
+	\item pyyaml: python parser de ficheros \textit{yaml} 
+	\item sqla-yaml-fixtures: definición de datos via \textit{yaml} para su posterior importación a SQLAlchemy.
+\end{itemize}
+
+\subsubsection{Conexión con sistemas externos}
+
+Para poder utilizar las \Gls{cola}s de \kahan es necesario poder conectarnos vía protocolos seguros ya sea para ejecutar comandos o copiar ficheros.
+
+\begin{itemize}
+	\item paramiko: soporte de protocolo \textit{ssh}
+	\item scp: soporte de protocolo \textit{scp}
+\end{itemize}
+
+\subsubsection{Otros}
+
+\begin{itemize}
+	\item gunicorn:
+\end{itemize}
 
 \section{Arquitectura del sistema}
 
@@ -844,11 +898,13 @@ En total llegamos a un costo estimado de \texteuro 49.00 mensuales. Como dato ad
 
 \chapter{Mantenimiento}
 
-El desarrollo de software es un proceso evolutivo y requiere de un mantenimiento continuo para asegurar el correcto funcionamiento, como así también la posibilidad de añadir mejoras y nuevas funcionalidades. Para esto se han creado los siguientes apartados y así ayudar con éste proceso.
+El desarrollo de software es un proceso evolutivo y requiere de un mantenimiento continuo para asegurar el correcto funcionamiento, como así también la posibilidad de añadir mejoras y nuevas funcionalidades. Para poder asegurar este proceso tienen que cumplirse ciertas pautas.
+
+Acceso al código fuente, en este caso disponible en un repositorio de código abierto en Internet, una guía de como configurar un entorno de desarrollo local y el proceso a seguir para mantener un estándar de código fuente de calidad. Los siguientes apartados abordan todas estas pautas y así ayudar con este proceso.
 
 \section{Entorno local de desarrollo}
 
-Para configurar un entorno de desarrollo local debemos cumplir con los siguientes requisitos.
+Para configurar un entorno de desarrollo local se debe cumplir  los siguientes requisitos.
 
 \begin{itemize}
 	\item  Tener instalado Python3\footnote{Descarga oficial de Python: \url{https://www.python.org/downloads/}} y Docker\footnote{Descarga oficial de Docker: \url{https://docs.docker.com/get-docker/}} en nuestra máquina
@@ -865,7 +921,7 @@ Para configurar un entorno de desarrollo local debemos cumplir con los siguiente
 		Initialized empty Git repository in /Users/nmartini/pizarra/.git/
 		$ git remote add upstream git@github.com:nimar3/pizarra.git
 		\end{lstlisting}
-		\item Descarga el código fuente
+		\item Descarga del código fuente
 		\begin{lstlisting}[language=bash]
 		$ git fetch upstream
 		remote: Enumerating objects: 589, done.
@@ -909,11 +965,30 @@ Creating worker   ... done
 Creating nginx    ... done
 \end{lstlisting}
 
+Se puede acceder a la aplicación web con mediante la URL https://127.0.0.1/ y se redirigirá automáticamente al inicio de sesión.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.40\textwidth]{img/docker-compose-pizarra}
+	\caption[Inicio de sesión en Pizarra]{Inicio de sesión en Pizarra.}
+	\label{figura:docker-compose-pizarra}
+\end{figure}
+
+En algunos casos sólo es necesario la ejecución del aplicativo web con una base de datos local en SQLite. Para estos casos se puede utilizar el siguiente comando y acceder mediante la  URL http://127.0.0.1:5000/ (el puerto por defecto de \textit{Flask} es el 5000).
+
+\begin{lstlisting}[language=bash]
+(env) $ python3 run.py 
+* Serving Flask app "app" (lazy loading)
+* Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+\end{lstlisting}
+
+
+
 \section{Depuración de errores}
 
 Como todo software, Pizarra no estará exento de errores o \foreignlanguage{english}{bugs} que no se han identificado en la etapa de desarrollo y como muchos otros lenguajes Python ofrece la ejecución de código en modo Debug, lo que nos permite poner puntos de ruptura y hacer una ejecución \textit{paso a paso} del código para identificar el problema.
 
-En el entorno de desarrollo local, el modo Debug siempre está habilitado. Si queremos habilitarlo cuando ejecutamos el aplicativo en modo \textit{Production} debemos especificarlo explícitamente en las variables de entorno del \acrshort{so}, en este caso revisar el Apéndice A: Configuración del Sistema para más información.
+En el entorno de desarrollo local, el modo Debug siempre está habilitado. Si queremos habilitarlo cuando ejecutamos el aplicativo en modo \textit{Production} debemos especificarlo explícitamente en las variables de entorno del \acrshort{so}, en este caso y para más información revisar el Apéndice A: Configuración del Sistema.
 
 \section{Calidad de código}
 
@@ -940,11 +1015,11 @@ ignore=E402,E266
 exclude=./migrations
 \end{lstlisting}
 
-Otro punto importante es la cobertura del código fuente, aunque el repositorio incluye las librerias de \textit{coveralls} y \textit{pytest} por cuestiones de tiempo no se han escrito tests unitarios y se ha dejado como una mejora futura.
+Otro punto importante es la cobertura del código fuente. Aunque el repositorio incluye las librerías de \textit{coveralls} y \textit{pytest} por cuestiones de tiempo no se han escrito tests unitarios y se ha dejado como una mejora futura.
 
 \chapter{Extensibilidad}
 
-Uno de los puntos más importantes es permitir la colaboración y que Pizarra funcione con otros sistemas de tareas que no sean una \Gls{cola} local o la de \kahan así como también que pueda ser localizado en diferentes idiomas.
+Uno de los puntos más importantes es permitir la colaboración y que Pizarra pueda utilizar otros sistemas de tareas que no sean una \Gls{cola} local o la de un cluster como \kahan(TORQUE\footnote{Sitio web de TORQUE: \url{https://adaptivecomputing.com/cherry-services/torque-resource-manager/}}) así como también que pueda ser localizado en diferentes idiomas.
 
 \section{Otros sistemas de Gestión de Tareas}
 
@@ -1131,7 +1206,7 @@ En el menú se visualizará el nuevo idioma disponible.
 
 \chapter{Configuración del sistema}
 
-Para una correcto funcionamiento de Pizarra el sistema debe inicializarse siguiendo los pasos descritos a continuación. Aunque se dispone de un script que realiza el despliegue de forma automatizada hay algunos pasos que requieren de intervención manual.
+Para un correcto funcionamiento de Pizarra el sistema debe inicializarse siguiendo los pasos descritos a continuación. Aunque se dispone de un script que realiza el despliegue de forma automatizada hay algunos pasos que requieren de intervención manual.
 
 \section{Inicialización}
 
@@ -1143,7 +1218,7 @@ $ export DB_USERNAME=pizarra
 $ export DB_PASSWORD=pizarra
 \end{lstlisting}
 
-Si quisiéramos cambiar algún parámetro por defecto de Pizarra, debemos modificar el fichero \textbf{pizarra.yaml}\footnote{Fichero YAML de Pizarra: \url{https://github.com/nimar3/pizarra/blob/master/gce/pizarra.yaml}} añadiendo los nuevos parámetros. En el siguiente extracto se ha cambiado los puntos de penalización al obtener un \textit{KO} y \textit{TIMEWALL} en el envío de una \Gls{tarea} y la carga de data de ejemplo.
+Si quisiéramos cambiar algún parámetro por defecto de Pizarra, debemos modificar el fichero \textbf{pizarra.yaml}\footnote{Fichero YAML de Pizarra: \url{https://github.com/nimar3/pizarra/blob/master/gce/pizarra.yaml}} añadiendo los nuevos parámetros. En el siguiente extracto se han cambiado los puntos de penalización al obtener un \textit{KO} y \textit{TIMEWALL} en el envío de una \Gls{tarea} y la carga de datos de ejemplo.
 
 \begin{lstlisting}[language=yaml]
 ...
@@ -1178,7 +1253,7 @@ $ kubectl get services
 
 Al iniciar un \Gls{contenedor} utilizamos variables de entorno del \acrshort{so} para configurar su funcionamiento. El \Gls{contenedor} de Pizarra soporta estas variables para dar diferentes posibilidades en cómo queremos que se comporte el aplicativo. 
 
-Los mencionados a continuación son los más relevantes en un despliegue pero existen parámetros adicionales que pueden ser consultados en el fichero de configuración\footnote{Fichero de Configuración: \url{https://github.com/nimar3/pizarra/blob/master/config.py}}.
+Los mencionados a continuación con su descripción y opciones son los más relevantes en un despliegue. También se listan otros parámetros adicionales como referencia. Todos estos pueden ser consultados en el fichero de configuración\footnote{Fichero de Configuración: \url{https://github.com/nimar3/pizarra/blob/master/config.py}}.
 
 \begin{itemize}
 	\item \textbf{APP\_MODE}
@@ -1259,7 +1334,7 @@ Los mencionados a continuación son los más relevantes en un despliegue pero ex
 	\item \textbf{SECRET\_KEY}
 	\begin{itemize}
 		\item Descripción: clave secreta con la que se encriptarán las contraseñas, no se puede cambiar una vez desplegada la aplicación y por seguridad nunca debe utilizarse el valor por defecto
-		\item Valor por defecto: \textit{pUdos1KbNyLYUvb4P7MvHWmuWSGH0Au}
+		\item Valor por defecto: \textit{pizarra-app}
 	\end{itemize}
 \end{itemize}
 
@@ -1319,10 +1394,29 @@ Los mencionados a continuación son los más relevantes en un despliegue pero ex
 	\end{itemize}
 \end{itemize}
 
+\subsection*{Parámetros adicionales}
+
+\begin{itemize}
+	\item SQLALCHEM\_DATABASE\_URI
+	\item SQLALCHEMY\_TRACK\_MODIFICATIONS
+	\item JSONIFY\_PRETTYPRINT\_REGULAR
+	\item SUPPORTED\_LANGUAGES
+	\item BABEL\_DEFAULT\_LOCALE
+	\item BABEL\_DEFAULT\_TIMEZONE
+	\item UPLOAD\_FOLDER
+	\item FILE\_ALLOWED\_EXTENSIONS
+	\item MAX\_CONTENT\_LENGTH
+	\item TIMEWALL
+	\item FORBIDDEN\_CODE
+	\item RQ\_DASHBOARD\_REDIS\_URL
+	\item QUEUES
+	\item COMPILER
+\end{itemize}
+
 
 \chapter{Licencia}
 
-Como este es un proyecto de código abierto, se ha escogido la Licencia MIT\footnote{Licencia MIT: \url{https://opensource.org/licenses/MIT}} ya que es una de las más permisivas para fomentar el rehúso y colaboración. Este tipo de licencia permite la libre utilización de forma privada o comercial, la modificación y distribución del código sin ningún tipo de garantía donde solo se pide que se mantengan las menciones a la licencia y derechos de autor.
+Como este es un proyecto de código abierto, se ha escogido la Licencia MIT\footnote{Licencia MIT: \url{https://opensource.org/licenses/MIT}} ya que es una de las más permisivas para fomentar la reutilización y colaboración. Este tipo de licencia permite el libre uso de forma privada o comercial, la modificación y distribución del código sin ningún tipo de garantía donde solo se pide que se mantengan las menciones a la licencia y derechos de autor.
 
 
 \glsaddall
