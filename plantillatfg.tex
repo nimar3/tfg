@@ -629,7 +629,7 @@ Después de varias búsquedas y pruebas se ha optado por \textit{AdminLTE}\footn
 
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width=0.9\textwidth]{img/admin-lte}
+	\includegraphics[width=0.95\textwidth]{img/admin-lte}
 	\caption[AdminLTE: plantilla de Panel de Control ]{AdminLTE: plantilla de Panel de Control }
 	\label{figura:admin-lte}
 \end{figure}
@@ -795,7 +795,7 @@ Una vez definidos todos los objetos con sus relaciones podemos generar un diagra
 	\centering
 	\includegraphics[width=0.95\textwidth]{img/database-uml-diagram}
 	\caption[Diagrama UML de la Base de Datos]{Diagrama UML de la Base de Datos}
-	\label{database-uml-diagram}
+	\label{figura:database-uml-diagram}
 \end{figure}
 
 \section{Envío de soluciones de Tareas}
@@ -817,7 +817,7 @@ Si alguno de los pasos anteriores no pasa uno de los puntos de verificación se 
 
 El \Gls{envio} de una \Gls{tarea} se realiza desde un terminal de comandos u otro cliente que permita enviar peticiones web como \textit{Postman} y está construida para devolver respuestas en formato JSON ya que es un estándar utilizado en muchas aplicaciones web. Un \Gls{envio} contiene como parámetros el usuario, token de acceso, fichero a procesar con el código fuente y la URL de la \Gls{tarea}, al procesarse la petición se recibe la respuesta.
 
-A continuación varios ejemplos. Una autentificación fallida, un envío satisfactorio y un \Gls{envio} no procesado porque el usuario debe esperar hasta realizar el próximo \Gls{envio}.
+A continuación varios ejemplos; Una autentificación fallida, un \gls{envio} satisfactorio y un \Gls{envio} no procesado porque el usuario debe esperar un tiempo.
 
 \begin{lstlisting}[style=ascii-tree]
 $ curl -k -X POST -F 'file=@primos.c' http://foo:bar@127.0.0.1:5000/assignments/primos
@@ -841,7 +841,7 @@ El diagrama de flujo de una petición web es el siguiente:
 
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width=0.90\textwidth]{img/request-flowchart}
+	\includegraphics[width=0.9\textwidth]{img/request-flowchart}
 	\caption[Diagrama de flujo de una petición web para un Envío]{Diagrama de flujo de una petición web para un Envío}
 	\label{figura:request-flowchart}
 \end{figure}
@@ -856,12 +856,30 @@ Además, una ejecución local desde el mismo aplicativo obliga a brindarle de re
 
 \begin{itemize}
 	\item Modo \textit{Pizarra}: aplicación web con la que interactúan los usuarios
-	\item Modo \textit{Worker}: 
+	\item Modo \textit{Worker}: un proceso que se encarga de revisar en las colas disponibles si hay \textit{Tasks} a procesar
 \end{itemize}
+
+Otro beneficio que brinda esta separación de roles es que se pueden ejecutar un número indefinido de \foreignlanguage{english}{Workers}, donde cada uno puede tener diferentes colas configuradas y unos recursos disponibles exclusivos para cada uno de ellos. La definición de  \foreignlanguage{english}{Worker} y \Gls{cola} que utilizamos están definidos en la librería RQ (Redis Queue) que permite procesar ``trabajos`` de forma asíncrona usando como fuente de datos un servicio de \textit{Redis}
+
+Este proceso se puede ver resumido en la siguiente figura.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.90\textwidth]{img/queues}
+	\caption[Proceso que sigue un Envío en la Cola interna]{Proceso que sigue un Envío en la Cola interna}
+	\label{figura:queues}
+\end{figure}
 
 \section{Arquitectura de la solución}
 
-Resumen de como es el sistema a nivel de arquitectura. Redis, PostgreSQL, etc..
+Ya hemos visto que \textit{Pizarra} no es solo un ``sitio web`` y está compuesto por varios elementos necesarios para su funcionamiento. Estos son:
+
+\begin{itemize}
+	\item la aplicación web con la que interactúan los usuarios
+	\item la base de datos donde se guarda la información
+	\item el servicio de \textit{Redis} para las \Gls{cola}s
+	\item 
+\end{itemize} 
 
 
 \chapter{Desarrollo de la solución}
