@@ -82,7 +82,10 @@
 
 \usepackage{listings}
 \lstdefinestyle{ascii-tree}{
-	literate={├}{|}1 {─}{--}1 {└}{+}1 
+	literate={├}{|}1 {─}{--}1 {└}{+}1 ,
+	backgroundcolor=\color{gray!10},  
+	basicstyle=\ttfamily,
+	numbers=none
 }
 
 \usepackage[acronym]{glossaries}
@@ -97,6 +100,7 @@
 \newglossaryentry{contenedor}{name={contenedor},description={imagen ejecutable ligera y portátil que contiene el software y todas sus dependencias}}
 \newglossaryentry{alumno}{name={alumno},description={description}}
 \newglossaryentry{equipo}{name={equipo},description={description}}
+\newglossaryentry{grupo}{name={grupo},description={description}}
 \newglossaryentry{cola}{name={cola},description={Estructura de datos que sigue una filosofía FIFO}}
 \newglossaryentry{clase}{name={clase},description={Plantilla para la creación de objetos de datos según un modelo predeterminado}}
 \newglossaryentry{paquete}{name={paquete},description={Carpeta que contiene varios módulos de Python}}
@@ -110,7 +114,7 @@
 \newacronym{rf}{RF}{Requisito funcional}
 \newacronym{rnf}{RNF}{Requisito no funcional}
 \newacronym{gce}{GCE}{Google Cloud Engine}
-\newacronym{bd}{DB}{Base de datos}
+\newacronym{bd}{BD}{Base de datos}
 \newacronym{so}{SO}{Sistema operativo}
 \newacronym{k8s}{K8s}{Kubernetes}
 \newacronym{ram}{RAM}{Memoria de acceso aleatorio}
@@ -642,7 +646,7 @@ El framework base de la aplicación, con otros \Gls{paquete}s para dar soporte a
 	\item flask\_login: funcionalidades extras para el manejo de sesiones de usuario
 	\item flask\_security: uso de roles en el sistema  
 	\item flask\_wtf: validación de formularios web
-	\item flask\_sqlalchemy: soporte a SQLAlchemy, una base de datos objeto-relacional 
+	\item flask\_sqlalchemy: soporte a SQLAlchemy para el mapeo objeto-relacional a diferentes \acrshort{bd}
 	\item flask\_migrate: migración de base de datos basadas en SQLAlchemy
 	\item flask-babel: localización de la aplicación en diferentes idiomas
 	\item email-validator: validación de correos electrónicos para la librería wtf
@@ -703,14 +707,14 @@ Además, otra buena práctica es separar las aplicaciones en módulos para añad
 De esta forma se ha optado por crear los siguientes módulos o \foreignlanguage{english}{blueprints}, todos estos dentro del directorio \textbf{app}:
 
 \begin{itemize}
-	\item account: apartado de \"mi cuenta\" de un usuario
+	\item account: apartado de ``mi cuenta`` de un usuario
 	\item admin: panel de control del administrador, solo accesible para usuarios con ese rol
-	\item base: contiene la definición de Modelos, Formularios y plantillas base.
+	\item base: contiene la definición de Modelos y plantillas base.
 	\item data: importación de datos de ejemplo
 	\item home: \foreignlanguage{english}{dashboard} de usuario
 \end{itemize}
 
-Si listamos el directorio \textbf{app} se puede ver como cáda módulo contiene una estructura de datos similar, siguiendo el estándar descrito previamente
+Si se lista el directorio \textbf{app} se puede ver como cáda módulo contiene una estructura de datos similar, siguiendo el estándar descrito previamente.
 
 
 \begin{lstlisting}[style=ascii-tree]
@@ -734,10 +738,66 @@ app/
 ...
 \end{lstlisting}
 
+\section {Modelo de datos}
+
+Uno de los \Gls{paquete}s más importantes utilizados en la aplicación es \textit{SQLAlchemy} que permite mapear los objetos de Python a una base de datos de tipo relacional. \textit{SQLAlchemy} soporta varios motores de base de datos, entre otros SQLite, MySQL, PostgreSQL, Oracle o MS SQL. En este caso se optará por SQLite para el entorno de desarrollo local (se crea el fichero \textit{database.db} en el directorio raiz del aplicativo) y PostgreSQL para un entorno productivo dado que son de libre uso.
+
+Dados los requerimientos funcionales, se han identificado y creado las siguientes clases de Python que mediante el uso de \textit{SQLAlchemy} podrán ser persistidos, consultados y actualizados en la \acrfull{bd}.
+
+\begin{itemize}
+	\item User: usuario del sistema
+	\item Role:  roles del sistema, en este caso Alumno y Administrador
+	\item Team: alumnos que forman un equipo
+	\item ClassGroup: grupo de alumnos que representan una clase en particular
+	\item Badge: \Gls{insignia}  obtenida al completarse objetivos
+	\item Request: envío de solución de un usuario a una \Gls{tarea}
+	\item Assignment: \Gls{tarea} a resolver, puede estar asignada a uno o más grupos
+	\item LeaderBoard: marcador de posiciones para una \Gls{tarea} y \Gls{grupo} particular
+	\item Attachment: fichero adjunto añadido a una \Gls{tarea}	
+\end{itemize}
+
+Los modelos expuestos previamente se pueden encontrar en el fichero \textbf{models.py} siguiendo el estándar en \textit{Flask} y se expresan como clases en Python que extienden de la clase \textit{db.Model} del paquete de SQLAlchemy, esto permite la serialización del objeto y su persistencia en la \Gls{bd}. 
+
+A continuación como ejemplo la representación de un equipo:
+
+\begin{code}{models.py}
+...
+	class Team(db.Model):
+		"""
+		Represents a Team of students in the database
+		A Student can be a part of only one team
+		A Team can have many students
+		"""
+		__tablename__ = 'team'
+		id = Column(Integer, primary_key=True)
+		name = Column(String, unique=True)
+		key = Column(String)
+		members = relationship('User', back_populates='team')
+...
+\end{code}
+
+En el código expuesto se puede identificar los siguientes elementos
+
+\begin{itemize}
+	\item la clase \textit{Team} extendiendo la clase \textit{db.Model}
+	\item una descripción de la clase y su propósito
+	\item el nombre de la tabla para persistir el objeto una vez serializado
+	\item las diferentes columnas de la tabla con sus atributos (si es clave primaria, clave única y el tipo de datos)
+	\item la relación entre \textit{Team} y \textit{User}. Un equipo tiene miembros y un usuario es parte de un equipo.
+\end{itemize}
+
+Una vez definidos todos los objetos con sus relaciones podemos generar un diagrama UML de la \Gls{bd}, esto facilita la comprensión y ofrece una mejor visión general.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.95\textwidth]{img/database-uml-diagram}
+	\caption[Diagrama UML de la Base de Datos]{Diagrama UML de la Base de Datos}
+	\label{database-uml-diagram}
+\end{figure}
+
 \section{Arquitectura del sistema}
 
 Resumen de como es el sistema a nivel de arquitectura. Redis, PostgreSQL, etc..
-
 
 
 \chapter{Desarrollo de la solución}
