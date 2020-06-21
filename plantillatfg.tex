@@ -80,6 +80,11 @@
 	}%
 }{}
 
+\usepackage{listings}
+\lstdefinestyle{ascii-tree}{
+	literate={├}{|}1 {─}{--}1 {└}{+}1 
+}
+
 \usepackage[acronym]{glossaries}
 
 \makeglossaries
@@ -116,6 +121,7 @@
 \newacronym{ssh}{SSH}{Secure Shell}
 \newacronym{scp}{SCP}{Secure Copy}
 \newacronym{fifo}{FIFO}{Primero en entrar, primero en salir}
+\newacronym{mvc}{MVC}{Modelo Vista Controlador}
 
 
 \usepackage{listings}
@@ -598,9 +604,10 @@ Los requisitos no funcionales son criterios que se deben cumplir para juzgar la 
 
 \chapter{Diseño de la solución}
 
-Una vez analizados los requisitos funcionales y no funcionales el próximo paso es hacer el diseño del software a implementar. Aunque la finalidad de este trabajo es la creación de un sitio web, existen elementos adicionales que deben considerarse para cumplir con el objetivo. Esto es, desde el lenguaje de programación a utilizar, elección de servicios externos como la  \Gls{bd}, soporte a futuro y ..
+Una vez analizados los requisitos funcionales y no funcionales el próximo paso es hacer el diseño del software a implementar. Aunque la finalidad de este trabajo es la creación de un sitio web, existen elementos adicionales que deben considerarse para cumplir con el objetivo. El punto de entrada de interacción del sistema será la aplicación web que deberá persistir los datos en una \acrshort{bd}, como también los envíos de resolución de \Gls{tarea}s en un sistema de ficheros compartido \acrshort{nfs} y deberá soportar \acrshort{cola}s locales como también poder conectarse al cluster \kahan. 
 
-En este apartado se encuentra el proceso de análisis para la elección del software y el diseño de la arquitectura del sistema.
+
+Todos estos puntos son los pilares en los cuales debe fundarse la aplicación y en este apartado se encuentra el proceso de análisis para la elección del software, sus componentes y el diseño de la arquitectura del sistema.
 
 \section{Software}
 
@@ -624,20 +631,21 @@ Después de varias búsquedas y pruebas se ha optado por \textit{AdminLTE}\footn
 
 \subsection{Paquetes de Python}
 
-Python será el lenguaje a utilizar, pero para dar funcionalidades adicionales normalmente se utilizan librerías o \Gls{paquete}s externos que simplifican y acelerar el desarrollo de la solución. A continuación se hace un repaso de las que son necesarias para \textit{Pizarra}, este listado se encuentra disponible en el fichero \textbf{requirements.txt}, un estandar utilizado para su fácil instalación a posteriori por administradores de paquetes como \textit{pip}.
+Python será el lenguaje a utilizar, pero para dar funcionalidades adicionales normalmente se utilizan librerías o \Gls{paquete}s externos que simplifican y aceleran el desarrollo de la solución. A continuación se hace un repaso de las librerías que son necesarias para \textit{Pizarra}, este listado se encuentra disponible en el fichero \textbf{requirements.txt}, un estandar utilizado para su fácil instalación a posteriori por administradores de paquetes como \textit{pip}.
 	
 \subsubsection{Flask}
 
 El framework base de la aplicación, con otros \Gls{paquete}s para dar soporte a ciertas funcionalidades no incluidas en la librería base.
 
 \begin{itemize}
-	\item flask: librería base
+	\item flask: framework
 	\item flask\_login: funcionalidades extras para el manejo de sesiones de usuario
 	\item flask\_security: uso de roles en el sistema  
 	\item flask\_wtf: validación de formularios web
 	\item flask\_sqlalchemy: soporte a SQLAlchemy, una base de datos objeto-relacional 
 	\item flask\_migrate: migración de base de datos basadas en SQLAlchemy
 	\item flask-babel: localización de la aplicación en diferentes idiomas
+	\item email-validator: validación de correos electrónicos para la librería wtf
 \end{itemize}
 
 \subsubsection{Colas}
@@ -652,11 +660,11 @@ Existen varios sistemas de \Gls{cola}s en Python, en este caso se ha optado por 
 
 \subsubsection{Datos de ejemplo}
 
-Para facilitar el desarrollo y su posterior mantenimiento se debe poder disponer de una forma sencilla de cargar datos de ejemplo. Para esta funcionalidad se ha optado por ficheros \textit{yaml}.
+Para facilitar el desarrollo y su posterior mantenimiento se debe poder disponer de una forma fácil y estandarizada para carga de datos de ejemplo. Para esta funcionalidad se ha optado por ficheros \textit{yaml}.
 
 \begin{itemize}
-	\item pyyaml: python parser de ficheros \textit{yaml} 
-	\item sqla-yaml-fixtures: definición de datos via \textit{yaml} para su posterior importación a SQLAlchemy.
+	\item pyyaml: analizador de ficheros \textit{yaml} 
+	\item sqla-yaml-fixtures: definición de datos via \textit{yaml} para su posterior importación a SQLAlchemy
 \end{itemize}
 
 \subsubsection{Conexión con sistemas externos}
@@ -664,15 +672,67 @@ Para facilitar el desarrollo y su posterior mantenimiento se debe poder disponer
 Para poder utilizar las \Gls{cola}s de \kahan es necesario poder conectarnos vía protocolos seguros ya sea para ejecutar comandos o copiar ficheros.
 
 \begin{itemize}
-	\item paramiko: soporte de protocolo \textit{ssh}
-	\item scp: soporte de protocolo \textit{scp}
+	\item paramiko: soporte de protocolo \acrshort{ssh}
+	\item scp: soporte de protocolo \acrshort{scp}
 \end{itemize}
 
 \subsubsection{Otros}
 
 \begin{itemize}
-	\item gunicorn:
+	\item gunicorn: ejecución y monitoreo de la aplicación
+	\item lizard: analizador de código estático
+	\item rule\_engine: evaluador de reglas con expresiones lógicas, utilizado para asignar \Gls{insignia}s
 \end{itemize}
+
+\section{Diseño de la Aplicación en Flask}
+
+Al crear una nueva aplicación en \textit{Flask} existen ciertos patrones o mejores prácticas a seguir, entre ellas se encuentra uno de los patrones de diseño más comunes en la ingeniería de software, \acrlong{mvc} (\acrshort{mvc}). Con este patrón se crea una separación de capas entre lo que es el Modelo que contiene la representación de datos y persistencia, la Vista que es la interfaz de usuario y el Controlador como intermediario entre el Modelo y la Vista.
+
+Una aplicación estándar en \textit{Flask} inluye los siguientes ficheros:
+
+\begin{itemize}
+	\item models.py: representación del modelo de datos (Modelo)
+	\item templates: carpeta con las plantillas HTML para la generación de páginas web (Vista)
+	\item routes.py: rutas de acceso a la aplicación (Controlador)
+	\item \_\_init\_\_.py: inicialización de la aplicación y librerías
+	\item forms.py: formularios y validación
+\end{itemize}
+
+Además, otra buena práctica es separar las aplicaciones en módulos para añadir extensibilidad mediante reglas, nuevas vistas, separación de roles y otros beneficios añadidos mediante el uso de \foreignlanguage{english}{blueprints}.
+
+De esta forma se ha optado por crear los siguientes módulos o \foreignlanguage{english}{blueprints}, todos estos dentro del directorio \textbf{app}:
+
+\begin{itemize}
+	\item account: apartado de \"mi cuenta\" de un usuario
+	\item admin: panel de control del administrador, solo accesible para usuarios con ese rol
+	\item base: contiene la definición de Modelos, Formularios y plantillas base.
+	\item data: importación de datos de ejemplo
+	\item home: \foreignlanguage{english}{dashboard} de usuario
+\end{itemize}
+
+Si listamos el directorio \textbf{app} se puede ver como cáda módulo contiene una estructura de datos similar, siguiendo el estándar descrito previamente
+
+
+\begin{lstlisting}[style=ascii-tree]
+$ tree -L 2 app/
+app/
+├── __init__.py
+├── account
+			├── __init__.py
+			├── forms.py
+			├── routes.py
+			└── templates
+├── admin
+			├── __init__.py
+			├── forms.py
+			├── routes.py
+			└── templates
+├── base
+			├── __init__.py
+			├── forms.py
+			├── models.py
+...
+\end{lstlisting}
 
 \section{Arquitectura del sistema}
 
@@ -900,7 +960,7 @@ En total llegamos a un costo estimado de \texteuro 49.00 mensuales. Como dato ad
 
 El desarrollo de software es un proceso evolutivo y requiere de un mantenimiento continuo para asegurar el correcto funcionamiento, como así también la posibilidad de añadir mejoras y nuevas funcionalidades. Para poder asegurar este proceso tienen que cumplirse ciertas pautas.
 
-Acceso al código fuente, en este caso disponible en un repositorio de código abierto en Internet, una guía de como configurar un entorno de desarrollo local y el proceso a seguir para mantener un estándar de código fuente de calidad. Los siguientes apartados abordan todas estas pautas y así ayudar con este proceso.
+Acceso al código fuente, en este caso disponible en un repositorio de código abierto en Internet, una guía de como configurar un entorno de desarrollo local y el proceso a seguir para mantener un estándar de calidad en el código fuente. Los siguientes apartados abordan todas estas pautas y así ayudar con este proceso.
 
 \section{Entorno local de desarrollo}
 
