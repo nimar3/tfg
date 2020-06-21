@@ -87,6 +87,7 @@
 	basicstyle=\ttfamily,
 	numbers=none
 }
+\usepackage{dirtytalk}
 
 \usepackage[acronym]{glossaries}
 
@@ -97,13 +98,14 @@
 \newglossaryentry{ede}{name=Equipo de Estudiantes,description={Grupo de uno o más estudiantes formado para resolver Tareas de forma conjunta}}
 \newglossaryentry{gde}{name=Grupo de Estudiantes,description={Clase a la que pertenece el estudiante para el año lectivo}}
 \newglossaryentry{edp}{name=Entorno de producción,description={lugar donde se ejecuta el aplicativo para los usuarios finales}}
-\newglossaryentry{contenedor}{name={contenedor},description={imagen ejecutable ligera y portátil que contiene el software y todas sus dependencias}}
-\newglossaryentry{alumno}{name={alumno},description={description}}
-\newglossaryentry{equipo}{name={equipo},description={description}}
-\newglossaryentry{grupo}{name={grupo},description={description}}
-\newglossaryentry{cola}{name={cola},description={Estructura de datos que sigue una filosofía FIFO}}
-\newglossaryentry{clase}{name={clase},description={Plantilla para la creación de objetos de datos según un modelo predeterminado}}
-\newglossaryentry{paquete}{name={paquete},description={Carpeta que contiene varios módulos de Python}}
+\newglossaryentry{contenedor}{name={Contenedor},description={imagen ejecutable ligera y portátil que contiene el software y todas sus dependencias}}
+\newglossaryentry{alumno}{name={Alumno},description={Estudiante que forma parte de un curso académico}}
+\newglossaryentry{equipo}{name={Equipo},description={Grupo de estudiantes que pertenecen a una misma clase en un grupo académico}}
+\newglossaryentry{grupo}{name={Grupo},description={Agrupación de alumnos que pertenecen a un grupo académico}}
+\newglossaryentry{cola}{name={Cola},description={Estructura de datos que sigue una filosofía FIFO}}
+\newglossaryentry{clase}{name={Clase},description={Plantilla para la creación de objetos de datos según un modelo predeterminado}}
+\newglossaryentry{paquete}{name={Paquete},description={Carpeta que contiene varios módulos de Python}}
+\newglossaryentry{envio}{name={Envio},description={Petición web que incluye el código fuente a compilar y ejecutar como propuesta de solución a una Tarea}}
 
 \newacronym{dsic}{DSIC}{Departamento de Sistemas Informáticos y Computación}
 \newacronym{upv}{UPV}{Universitat Politècnica de València}
@@ -754,6 +756,7 @@ Dados los requerimientos funcionales, se han identificado y creado las siguiente
 	\item Assignment: \Gls{tarea} a resolver, puede estar asignada a uno o más grupos
 	\item LeaderBoard: marcador de posiciones para una \Gls{tarea} y \Gls{grupo} particular
 	\item Attachment: fichero adjunto añadido a una \Gls{tarea}	
+	\item Task: tarea a procesar, utilizada por la \Gls{cola} interna de \textit{Pizarra}
 \end{itemize}
 
 Los modelos expuestos previamente se pueden encontrar en el fichero \textbf{models.py} siguiendo el estándar en \textit{Flask} y se expresan como clases en Python que extienden de la clase \textit{db.Model} del paquete de SQLAlchemy, esto permite la serialización del objeto y su persistencia en la \Gls{bd}. 
@@ -795,7 +798,68 @@ Una vez definidos todos los objetos con sus relaciones podemos generar un diagra
 	\label{database-uml-diagram}
 \end{figure}
 
-\section{Arquitectura del sistema}
+\section{Envío de soluciones de Tareas}
+
+Cuando un \Gls{alumno} realiza un \Gls{envio}, esto es, una petición web que incluye el código fuente a compilar y ejecutar como propuesta de solución a una \Gls{tarea}, la aplicación debe procesar la petición y el \Gls{envio} pasa por una serie de verificaciones que se describen a continuación, algunas de estas no se realizan para un usuario con rol de administrador del sistema.
+
+\begin{enumerate}
+	\item se autentifica al usuario
+	\item se busca la \Gls{tarea} en la \Gls{bd}
+	\item la \Gls{tarea} debe estar abierta a recibir \Gls{envio}s
+	\item el \Gls{alumno} pertenece a un \Gls{grupo} que la tenga asignada
+	\item el \Gls{alumno} no ha enviado peticiones muy rápido
+	\item el \Gls{alumno} tiene Quota (tiempo disponible de ejecución) para procesar el \Gls{envio}
+	\item el \Gls{envio} contiene un fichero a procesar
+	\item el fichero a procesar con el código fuente no contiene código malicioso
+\end{enumerate}
+
+Si alguno de los pasos anteriores no pasa uno de los puntos de verificación se devuelve un mensaje de error con el código HTTP correspondiente. En el caso de que todas las checkeos sean satisfactorios se crea un objeto de tipo \textit{Request} en la \acrshort{bd} y otro de tipo \textit{Task} para la \Gls{cola} interna en Redis.
+
+El \Gls{envio} de una \Gls{tarea} se realiza desde un terminal de comandos u otro cliente que permita enviar peticiones web como \textit{Postman} y está construida para devolver respuestas en formato JSON ya que es un estándar utilizado en muchas aplicaciones web. Un \Gls{envio} contiene como parámetros el usuario, token de acceso, fichero a procesar con el código fuente y la URL de la \Gls{tarea}, al procesarse la petición se recibe la respuesta.
+
+A continuación varios ejemplos. Una autentificación fallida, un envío satisfactorio y un \Gls{envio} no procesado porque el usuario debe esperar hasta realizar el próximo \Gls{envio}.
+
+\begin{lstlisting}[style=ascii-tree]
+$ curl -k -X POST -F 'file=@primos.c' http://foo:bar@127.0.0.1:5000/assignments/primos
+{
+	"code": 401,
+	"message": "Authentication failed"
+}
+$ curl -k -X POST -F 'file=@primos.c' http://foo:gB8HSgWANT7x7OipnFIkFQkC1sVLpO@127.0.0.1:5000/assignments/primos
+{
+	"code": 201,
+	"message": "Request created, please navigate to http://127.0.0.1:5000/requests/13 to check the results"
+}
+$ curl -k -X POST -F 'file=@primos.c' http://foo:gB8HSgWANT7x7OipnFIkFQkC1sVLpO@127.0.0.1:5000/assignments/primos
+{
+	"code": 403,
+	"message": "You are sending Requests too fast. Time between Requests is 60 seconds"
+}
+\end{lstlisting}
+
+El diagrama de flujo de una petición web es el siguiente:
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.90\textwidth]{img/request-flowchart}
+	\caption[Diagrama de flujo de una petición web para un Envío]{Diagrama de flujo de una petición web para un Envío}
+	\label{figura:request-flowchart}
+\end{figure}
+
+\section{Sistema de colas}
+
+Como se vio previamente, \textit{Pizarra} tiene un sistema de \Gls{cola}s interno. Esto se debe a varios motivos de peso, en primer lugar se quiere hacer una separación de roles entre la aplicación web con la que los usuarios interactúan y la ejecución de código fuente. \textit{Pizarra} debe estar preparado para encolar tareas en el cluster \kahan del \acrshort{dsic}, pero otra de las posibilidades es la disponibilidad de poder hacerlo de forma local para cualquier otra persona que quiera hacer uso del aplicativo. \textit{Tablón}, el software del cual nos hemos inspirado también ofrece ejecución local, pero con ciertas limitaciones, siendo una de ellas la obligación de reiniciar la aplicación cada 60 minutos, como podemos ver en su apartado de preguntas frecuentes (FAQ)\footnote{Tablón FAQ: \url{http://frontendv.infor.uva.es/faq}}
+
+\say{El servidor tablón está configurado para reiniciarse cada cierto tiempo. De está forma se eliminan trabajos erróneos y se eliminan las peticiones http no completadas. El tiempo que resta hasta el próximo reinicio se muestra en la página principal.}
+
+Además, una ejecución local desde el mismo aplicativo obliga a brindarle de recursos necesarios ya sean procesadores y memoria; Esto no es muy eficiente ya que las aplicaciones en Python, y especialmente en \textit{Flask} consumen muy pocos recursos. Por eso mismo, nuestra aplicación se puede ejecutar en dos modos diferentes:
+
+\begin{itemize}
+	\item Modo \textit{Pizarra}: aplicación web con la que interactúan los usuarios
+	\item Modo \textit{Worker}: 
+\end{itemize}
+
+\section{Arquitectura de la solución}
 
 Resumen de como es el sistema a nivel de arquitectura. Redis, PostgreSQL, etc..
 
