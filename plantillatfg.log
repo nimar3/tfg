@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.5.2)  22 JUN 2020 13:19
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.5.2)  23 JUN 2020 12:16
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1041,22 +1041,24 @@ LaTeX Info: Redefining \% on input line 837.
 File: img/request-flowchart.png Graphic file (type png)
 <use img/request-flowchart.png>
 Package pdftex.def Info: img/request-flowchart.png  used on input line 844.
-(pdftex.def)             Requested size: 384.1096pt x 602.18074pt.
-<img/queues.png, id=572, 804.00375pt x 413.545pt>
+(pdftex.def)             Requested size: 341.43437pt x 535.26784pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 852.
+LaTeX Info: Redefining \% on input line 852.
+ [18 <./img/request-flowchart.png>]
+<img/queues.png, id=580, 804.00375pt x 413.545pt>
 File: img/queues.png Graphic file (type png)
 <use img/queues.png>
 Package pdftex.def Info: img/queues.png  used on input line 868.
 (pdftex.def)             Requested size: 384.1096pt x 197.56543pt.
+LaTeX Info: Redefining \. on input line 878.
+LaTeX Info: Redefining \% on input line 878.
+ [19 <./img/queues.png>]
 LaTeX Info: Redefining \. on input line 885.
 LaTeX Info: Redefining \% on input line 885.
- [18]
-LaTeX Info: Redefining \. on input line 885.
-LaTeX Info: Redefining \% on input line 885.
- [19 <./img/request-flowchart.png>]
-LaTeX Info: Redefining \. on input line 885.
-LaTeX Info: Redefining \% on input line 885.
-
-[20 <./img/queues.png>]
+ [20]
 Cap\'{\i }tulo 5.
 [21
 
@@ -1218,7 +1220,7 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1630.
 Here is how much of TeX's memory you used:
  21438 strings out of 480608
  340640 string characters out of 5903631
- 961903 words of memory out of 5000000
+ 961911 words of memory out of 5000000
  36415 multiletter control sequences out of 15000+600000
  584819 words of font info for 112 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1236,7 +1238,7 @@ dist/fonts/type1/public/cm-super/sftt1095.pfb></usr/local/texlive/2020/texmf-di
 st/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2020/texmf-dist/font
 s/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1
 /urw/palatino/uplri8a.pfb>
-Output written on plantillatfg.pdf (61 pages, 1727317 bytes).
+Output written on plantillatfg.pdf (61 pages, 1727583 bytes).
 PDF statistics:
  1381 PDF objects out of 1440 (max. 8388607)
  1271 compressed objects within 13 object streams

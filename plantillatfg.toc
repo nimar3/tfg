@@ -32,8 +32,8 @@
 \contentsline {section}{\numberline {4.2}Diseño de la Aplicación en Flask}{14}{section.4.2}%
 \contentsline {section}{\numberline {4.3}Modelo de datos}{15}{section.4.3}%
 \contentsline {section}{\numberline {4.4}Envío de soluciones de Tareas}{17}{section.4.4}%
-\contentsline {section}{\numberline {4.5}Sistema de colas}{18}{section.4.5}%
-\contentsline {section}{\numberline {4.6}Arquitectura de la solución}{18}{section.4.6}%
+\contentsline {section}{\numberline {4.5}Sistema de colas}{19}{section.4.5}%
+\contentsline {section}{\numberline {4.6}Arquitectura de la solución}{20}{section.4.6}%
 \contentsline {chapter}{\numberline {5}Desarrollo de la solución}{21}{chapter.5}%
 \contentsline {section}{\numberline {5.1}Entregables}{21}{section.5.1}%
 \contentsline {chapter}{\numberline {6}Implantación}{23}{chapter.6}%
