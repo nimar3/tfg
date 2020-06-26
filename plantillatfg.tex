@@ -753,7 +753,7 @@ Además, para dar un seguimiento durante la etapa de desarrollo, pruebas y entre
 
 Los requisitos no funcionales son criterios que se deben cumplir para juzgar la correcta operación del sistema. En contraste con los requisitos funcionales no definen comportamientos específicos. \par
 
-Para las siguientes tablas también se ha creado una plantilla estandar similar a la de requisitos funcionales pero con menos atributos. La definición de los mismos es la misma que las tablas vistas anteriormente.
+Para las siguientes tablas también se ha creado una plantilla estándar similar a la de requisitos funcionales pero con menos atributos. La definición de los mismos es la misma de las tablas vistas anteriormente.
 
 \begin{table}[ht!]
 	\centering
@@ -822,7 +822,7 @@ Para las siguientes tablas también se ha creado una plantilla estandar similar 
 \begin{table}[ht!]
 	\centering
 	\begin{tabular}{ |p{4cm}||p{10cm}|  }
-		\multicolumn{2}{l}{\textbf{RNF-4}} \\
+		\multicolumn{2}{l}{\textbf{RNF-5}} \\
 		\hline
 		Nombre & Almacenamiento \\
 		\hline
@@ -831,7 +831,7 @@ Para las siguientes tablas también se ha creado una plantilla estandar similar 
 		Prioridad &  Muy alta \\
 		\hline
 	\end{tabular}
-	\caption{RNF-4 Almacenamiento}
+	\caption{RNF-5 Almacenamiento}
 	\label{table:23}
 \end{table}
 
@@ -854,34 +854,106 @@ En las practicas de las asignaturas de \acrshort{lpp} y \acrshort{cpa} la ejecuc
 
 Un análisis de riesgo también forma parte del estudio del problema ya que se debe evaluar si el resultado esperado es realizable en tiempo y forma. Para el listado anterior se pueden identificar tres puntos críticos ya que tienen una complejidad alta.
 
-Por un lado la interacción con el \foreign{english}{cluster} \kahan puede ser dificultosa porque lo haremos desde un sistema externo, además hay que sumarle la posibilidad de que la aplicación se despliegue en una solución \foreign{english}{cloud} siendo el autor de la memoria un usuario novel de esos sistemas y por último la verificación de resultados y creación de tablas de posiciones (\foreign{english}{Leaderboards}) que pueden ir cambiando en el tiempo.
+Por un lado la interacción con el \foreign{english}{cluster} \kahan puede ser dificultosa porque lo haremos desde un sistema externo, además hay que sumarle la posibilidad de que la aplicación se despliegue en una solución \foreign{english}{cloud} siendo el autor de la memoria un usuario novel de esos sistemas. Y por último la verificación de resultados, asignación de \gls{insignia}s y tablas de posiciones (\foreign{english}{Leaderboards}) que pueden ir cambiando en el tiempo.
 
 \chapter{Diseño de la solución}
 
-Una vez analizados los requisitos funcionales y no funcionales el próximo paso es hacer el diseño del software a implementar. Aunque la finalidad de este trabajo es la creación de un sitio web, existen elementos adicionales que deben considerarse para cumplir con el objetivo. El punto de entrada de interacción del sistema será la aplicación web que deberá persistir los datos en una \acrshort{bd}, como también los envíos de resolución de \Gls{tarea}s en un sistema de ficheros compartido \acrshort{nfs} y deberá soportar \acrshort{cola}s locales como también poder conectarse al cluster \kahan. 
+Una vez analizados los requisitos funcionales y no funcionales el próximo paso es hacer el diseño de la aplicación. Aunque la finalidad de este trabajo es la creación de una aplicación web existen elementos adicionales que deben considerarse para cumplir con el objetivo, ya que aunque el punto de entrada de interacción del sistema será una página web toda la información se tendrá que alojar en una \acrfull{bd}, los \gls{envio}s que contienen ficheros con código fuente para la resolución de \Gls{tarea}s deberán guardarse en un \acrfull{nfs}. Todos estos elementos y más forman parte de lo que será la \textbf{Arquitectura de la solución} pero antes de llegar a esto hay que comprender como será la \textbf{Interacción del Sistema} y decidirse en el \textbf{Software} a utilizar que lo haga posible. \par
 
+Además para alojar y recuperar información de una \acrshort{bd} debemos crear unos modelos que representen a todos los objetos que interactúan en el sistema, esto se llama el \textbf{Modelo de Datos}. Y por último la interacción con \kahan es tan importante que tendremos incluir un \textit{Administrador de Tareas} para el procesamiento de \foreign{english}{tasks} de forma asíncrona como un \textbf{Sistema de Colas interno}.
 
-Todos estos puntos son los pilares en los cuales debe fundarse la aplicación y en este apartado se encuentra el proceso de análisis para la elección del software, sus componentes y el diseño de la arquitectura del sistema.
+\section{Interacción del Sistema}
+
+En la introducción del capítulo se han visto algunos elementos de la aplicación y es importante realizar un bosquejo de cómo será la interacción entre ellos para modelar la solución de forma correcta. Haciendo un repaso podemos encontrar los siguientes:
+
+\begin{itemize}
+	\item la aplicación web con la que interactúan los usuarios.
+	\item la \acrfull{bd} donde se guarda la información.
+	\item un \acrlong{nfs} para alojar los ficheros con código fuente de los \gls{envio}s.
+	\item un \textit{Administrador de Tareas} basado en un sistema de colas interno.
+	\item el \foreign{english}{cluster} kahan.
+\end{itemize} 
+
+Una interacción habitual sería la que se modela a continuación donde el \textit{Administrador de Tareas} es el encargado de todas las interacciones con el sistema de colas de \kahan para actualizar el \foreign{english}{status} del \gls{envio}. A partir de aquí ya queda claro la importancia de una separación de roles entre lo que será el \foreign{english}{frontend} o punto de interacción de los usuarios con la aplicación y el procesamiento de \gls{envio}s. Esto tendrá vital importancia en la elección del software a utilizar.
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=0.95\textwidth]{img/modelado-interaccion}
+	\caption[Modelado Interacción entre elementos del sistema]{Interacción entre elementos del sistema}
+	\label{figura:modelado-interaccion}
+\end{figure}
 
 \section{Software}
 
-Muchos de los requisitos para la aplicación web ya se encuentran implementados de forma similar en \textit{Tablón}, y por esto son un excelente punto de partida para nuestro trabajo. Como \textit{Tablón} está desarrollado en Python, siendo un lenguaje de programación fácil de aprender, con una extensa cantidad de \Gls{paquete}s y guías en Internet, se ha decido hacer el desarrollo en éste lenguaje.
+Como hemos visto en el apartado \textbf{Estado del Arte} la única herramienta similar a la aplicación web a desarrollar es \textit{Tablón}, no sin sus muchas limitaciones y problemas que ya hemos expuesto previamente. Sin embargo \textit{Tablón} es un buen punto de partida porque ya ha sido utilizado previamente por el Tutor en la asignatura de \acrshort{lpp} y algunos de los requisitos funcionales como la Tabla de Posiciones (RF-10) ya existen y pueden servir como inspiración.
 
-Además, dadas ciertas limitaciones que tiene \textit{Tablón} una de las aspiraciones en la creación de ésta aplicación web para concursos de programación paralela es que sea su sucesor (o reemplazo) a futuro. Por esto mismo he decidido llamar a la aplicación web \textit{Pizarra} en honor a \textit{Tablón}. De aquí en adelante, cuando se nombre \textit{Pizarra} se hace referencia a la aplicación web y otros elementos adicionales necesarios para su funcionamiento. 
+Dadas las limitaciones que tiene \textit{Tablón} una de las aspiraciones en la creación de ésta aplicación web para concursos de programación paralela es que sea su sucesor (o reemplazo) a futuro. Por esto mismo he decidido llamar a la aplicación web \textit{Pizarra} en honor a \textit{Tablón} y de aquí en adelante cuando se nombre \textit{Pizarra} se hace referencia a la aplicación web y otros elementos adicionales necesarios para su funcionamiento. 
 
-Ya escogido el lenguaje de programación, el próximo paso es analizar las posibilidades para la aplicación web en sí que será el punto de acceso a los usuarios. Debido a experiencia previa en otra asignatura de la carrera universitaria he decido optar por \textit{Flask}\footnote{Sitio web Flask: \url{https://flask.palletsprojects.com/en/1.1.x/}}, un micro-framework de Python con gran acogida por la comunidad que incluye un sistema de plantillas para la generación de páginas web llamado \text{Jinja}. 
+El lenguaje de programación a utlizar será \textit{python}, ya conocido por el Autor y con una extensa cantidad de \gls{paquete}s, que son librerías que añaden funcionalidades extra y que serán de gran utilidad para acelerar los tiempos de desarrollo. Dado que ya hemos abordado la \textbf{Interacción del Sistema} a alto nivel solo resta escoger el \textbf{Software} que dará vida a la aplicación web y al \textit{Administrador de Tareas}.
 
-La usabilidad es uno de los aspectos más importantes de una aplicación web y en este caso no se puede dejar de lado. Un usuario de \textit{Pizarra} esperará una interfaz intuitiva y fácil de utilizar que le facilite el proceso de envío de soluciones a los problemas propuestos; No queremos que la aplicación se interponga entre el proceso de aprendizaje y la satisfacción de participar y obtener logros. Una gran cantidad de aplicaciones utilizan las mismas librerías para maquetar los sitios web, entre estas librerías la más importante es \textit{Bootstrap}\footnote{Sitio web Bootstrap: \url{https://getbootstrap.com/}}, y además, a partir de estas librerías existen Dashboards o Paneles de Control de código abierto para utilizar como punto de partida en nuevas aplicaciones.
 
-Después de varias búsquedas y pruebas se ha optado por \textit{AdminLTE}\footnote{Sitio web AdminLTE: \url{https://adminlte.io/}} dada su variedad de plantillas disponibles, uso de otras librerías con amplia documentación y un aspecto visual amigable y moderno.
 
-\begin{figure}[ht]
+\section{Arquitectura del Sistema}
+
+
+
+\section {Modelo de datos}
+
+Uno de los \Gls{paquete}s más importantes utilizados en la aplicación es \textit{SQLAlchemy} que permite mapear los objetos de Python a una base de datos de tipo relacional. \textit{SQLAlchemy} soporta varios motores de base de datos, entre otros SQLite, MySQL, PostgreSQL, Oracle o MS SQL. En este caso se optará por SQLite para el entorno de desarrollo local (se crea el fichero \textit{database.db} en el directorio raiz del aplicativo) y PostgreSQL para un entorno productivo dado que son de libre uso.
+
+Dados los requerimientos funcionales, se han identificado y creado las siguientes clases de Python que mediante el uso de \textit{SQLAlchemy} podrán ser persistidos, consultados y actualizados en la \acrfull{bd}.
+
+\begin{itemize}
+	\item User: usuario del sistema
+	\item Role: roles del sistema, en este caso Alumno y Administrador
+	\item Team: alumnos que forman un equipo
+	\item ClassGroup: grupo de alumnos que representan una clase en particular
+	\item Badge: \Gls{insignia}  obtenida al completarse objetivos
+	\item Request: envío de solución de un usuario a una \Gls{tarea}
+	\item Assignment: \Gls{tarea} a resolver, puede estar asignada a uno o más grupos
+	\item LeaderBoard: marcador de posiciones para una \Gls{tarea} y \Gls{grupo} particular
+	\item Attachment: fichero adjunto añadido a una \Gls{tarea}	
+	\item Task: tarea a procesar, utilizada por la \Gls{cola} interna de \textit{Pizarra}
+\end{itemize}
+
+Los modelos expuestos previamente se pueden encontrar en el fichero \textbf{models.py} siguiendo el estándar en \textit{Flask} y se expresan como clases en Python que extienden de la clase \textit{db.Model} del paquete de SQLAlchemy, esto permite la serialización del objeto y su persistencia en la \Gls{bd}. 
+
+A continuación como ejemplo la representación de un equipo:
+
+\begin{code}{models.py}
+	...
+	class Team(db.Model):
+	"""
+	Represents a Team of students in the database
+	A Student can be a part of only one team
+	A Team can have many students
+	"""
+	__tablename__ = 'team'
+	id = Column(Integer, primary_key=True)
+	name = Column(String, unique=True)
+	key = Column(String)
+	members = relationship('User', back_populates='team')
+	...
+\end{code}
+
+En el código expuesto se puede identificar los siguientes elementos
+
+\begin{itemize}
+	\item la clase \textit{Team} extendiendo la clase \textit{db.Model}
+	\item una descripción de la clase y su propósito
+	\item el nombre de la tabla para persistir el objeto una vez serializado
+	\item las diferentes columnas de la tabla con sus atributos (si es clave primaria, clave única y el tipo de datos)
+	\item la relación entre \textit{Team} y \textit{User}. Un equipo tiene miembros y un usuario es parte de un equipo.
+\end{itemize}
+
+Una vez definidos todos los objetos con sus relaciones podemos generar un diagrama UML de la \Gls{bd}, esto facilita la comprensión y ofrece una mejor visión general.
+
+\begin{figure}[!ht]
 	\centering
-	\includegraphics[width=0.95\textwidth]{img/admin-lte}
-	\caption[AdminLTE: plantilla de Panel de Control ]{AdminLTE: plantilla de Panel de Control }
-	\label{figura:admin-lte}
+	\includegraphics[width=0.95\textwidth]{img/database-uml-diagram}
+	\caption[Diagrama UML de la Base de Datos]{Diagrama UML de la Base de Datos}
+	\label{figura:database-uml-diagram}
 \end{figure}
-
 
 \subsection{Paquetes de Python}
 
@@ -988,63 +1060,7 @@ app/
 ...
 \end{lstlisting}
 
-\section {Modelo de datos}
 
-Uno de los \Gls{paquete}s más importantes utilizados en la aplicación es \textit{SQLAlchemy} que permite mapear los objetos de Python a una base de datos de tipo relacional. \textit{SQLAlchemy} soporta varios motores de base de datos, entre otros SQLite, MySQL, PostgreSQL, Oracle o MS SQL. En este caso se optará por SQLite para el entorno de desarrollo local (se crea el fichero \textit{database.db} en el directorio raiz del aplicativo) y PostgreSQL para un entorno productivo dado que son de libre uso.
-
-Dados los requerimientos funcionales, se han identificado y creado las siguientes clases de Python que mediante el uso de \textit{SQLAlchemy} podrán ser persistidos, consultados y actualizados en la \acrfull{bd}.
-
-\begin{itemize}
-	\item User: usuario del sistema
-	\item Role:  roles del sistema, en este caso Alumno y Administrador
-	\item Team: alumnos que forman un equipo
-	\item ClassGroup: grupo de alumnos que representan una clase en particular
-	\item Badge: \Gls{insignia}  obtenida al completarse objetivos
-	\item Request: envío de solución de un usuario a una \Gls{tarea}
-	\item Assignment: \Gls{tarea} a resolver, puede estar asignada a uno o más grupos
-	\item LeaderBoard: marcador de posiciones para una \Gls{tarea} y \Gls{grupo} particular
-	\item Attachment: fichero adjunto añadido a una \Gls{tarea}	
-	\item Task: tarea a procesar, utilizada por la \Gls{cola} interna de \textit{Pizarra}
-\end{itemize}
-
-Los modelos expuestos previamente se pueden encontrar en el fichero \textbf{models.py} siguiendo el estándar en \textit{Flask} y se expresan como clases en Python que extienden de la clase \textit{db.Model} del paquete de SQLAlchemy, esto permite la serialización del objeto y su persistencia en la \Gls{bd}. 
-
-A continuación como ejemplo la representación de un equipo:
-
-\begin{code}{models.py}
-...
-	class Team(db.Model):
-		"""
-		Represents a Team of students in the database
-		A Student can be a part of only one team
-		A Team can have many students
-		"""
-		__tablename__ = 'team'
-		id = Column(Integer, primary_key=True)
-		name = Column(String, unique=True)
-		key = Column(String)
-		members = relationship('User', back_populates='team')
-...
-\end{code}
-
-En el código expuesto se puede identificar los siguientes elementos
-
-\begin{itemize}
-	\item la clase \textit{Team} extendiendo la clase \textit{db.Model}
-	\item una descripción de la clase y su propósito
-	\item el nombre de la tabla para persistir el objeto una vez serializado
-	\item las diferentes columnas de la tabla con sus atributos (si es clave primaria, clave única y el tipo de datos)
-	\item la relación entre \textit{Team} y \textit{User}. Un equipo tiene miembros y un usuario es parte de un equipo.
-\end{itemize}
-
-Una vez definidos todos los objetos con sus relaciones podemos generar un diagrama UML de la \Gls{bd}, esto facilita la comprensión y ofrece una mejor visión general.
-
-\begin{figure}[ht]
-	\centering
-	\includegraphics[width=0.95\textwidth]{img/database-uml-diagram}
-	\caption[Diagrama UML de la Base de Datos]{Diagrama UML de la Base de Datos}
-	\label{figura:database-uml-diagram}
-\end{figure}
 
 \section{Envío de soluciones de Tareas}
 
@@ -1118,21 +1134,23 @@ Este proceso se puede ver resumido en la siguiente figura.
 	\label{figura:queues}
 \end{figure}
 
-\section{Arquitectura de la solución}
-
-Ya hemos visto que \textit{Pizarra} no es solo un ``sitio web`` y está compuesto por varios elementos necesarios para su funcionamiento. Estos son:
-
-\begin{itemize}
-	\item la aplicación web con la que interactúan los usuarios
-	\item la base de datos donde se guarda la información
-	\item el servicio de \textit{Redis} para las \Gls{cola}s
-	\item 
-\end{itemize} 
-
 
 \chapter{Desarrollo de la solución}
 
-?
+
+Ya escogido el lenguaje de programación, el próximo paso es analizar las posibilidades para la aplicación web en sí que será el punto de acceso a los usuarios. Debido a experiencia previa en otra asignatura de la carrera universitaria he decido optar por \textit{Flask}\footnote{Sitio web Flask: \url{https://flask.palletsprojects.com/en/1.1.x/}}, un micro-framework de Python con gran acogida por la comunidad que incluye un sistema de plantillas para la generación de páginas web llamado \text{Jinja}. 
+
+La usabilidad es uno de los aspectos más importantes de una aplicación web y en este caso no se puede dejar de lado. Un usuario de \textit{Pizarra} esperará una interfaz intuitiva y fácil de utilizar que le facilite el proceso de envío de soluciones a los problemas propuestos; No queremos que la aplicación se interponga entre el proceso de aprendizaje y la satisfacción de participar y obtener logros. Una gran cantidad de aplicaciones utilizan las mismas librerías para maquetar los sitios web, entre estas librerías la más importante es \textit{Bootstrap}\footnote{Sitio web Bootstrap: \url{https://getbootstrap.com/}}, y además, a partir de estas librerías existen Dashboards o Paneles de Control de código abierto para utilizar como punto de partida en nuevas aplicaciones.
+
+Después de varias búsquedas y pruebas se ha optado por \textit{AdminLTE}\footnote{Sitio web AdminLTE: \url{https://adminlte.io/}} dada su variedad de plantillas disponibles, uso de otras librerías con amplia documentación y un aspecto visual amigable y moderno.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.95\textwidth]{img/admin-lte}
+	\caption[AdminLTE: plantilla de Panel de Control ]{AdminLTE: plantilla de Panel de Control }
+	\label{figura:admin-lte}
+\end{figure}
+
 
 \section{Entregables}
 
