@@ -19,9 +19,9 @@
 \contentsline {section}{\numberline {3.1}Actores}{7}{section.3.1}%
 \contentsline {section}{\numberline {3.2}Historias de usuario}{8}{section.3.2}%
 \contentsline {section}{\numberline {3.3}Requisitos funcionales}{8}{section.3.3}%
-\contentsline {section}{\numberline {3.4}Requisitos no funcionales}{16}{section.3.4}%
-\contentsline {section}{\numberline {3.5}Cluster \texttt {kahan}\xspace }{17}{section.3.5}%
-\contentsline {section}{\numberline {3.6}Riesgos}{17}{section.3.6}%
+\contentsline {section}{\numberline {3.4}Requisitos no funcionales}{17}{section.3.4}%
+\contentsline {section}{\numberline {3.5}Cluster \texttt {kahan}\xspace }{18}{section.3.5}%
+\contentsline {section}{\numberline {3.6}Riesgos}{18}{section.3.6}%
 \contentsline {chapter}{\numberline {4}Diseño de la solución}{19}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Interacción del Sistema}{19}{section.4.1}%
 \contentsline {section}{\numberline {4.2}Software}{20}{section.4.2}%

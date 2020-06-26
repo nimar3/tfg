@@ -258,7 +258,9 @@ El sistema contará con dos perfiles de usuarios que llamaremos actores, estos s
 	\item \textbf{\gls{administrador}}: el actor que se encarga de poner el sistema en marcha. Tendrá que tener conocimientos sólidos en programación paralela para poder crear tareas que varíen en dificultad y motive al alumnado a mejorar sus resultados. Normalmente será el profesor de la asignatura \acrshort{lpp} o \acrshort{cpa}.
 \end{itemize}
 
-Antes de comenzar a listar las \textbf{Historias de usuario} hay un concepto importante a definir que es el de \gls{tarea} (\foreign{english}{Assignment}), este es un problema a resolver en la aplicación con una serie de entradas y resultado a obtener que el \gls{alumno} desconoce. Cuando en la memoria se haga mención a la palabra \foreign{english}{task} no nos referimos a una \gls{tarea} sino a un ``trabajo`` a procesarse en una cola (\foreign{english}{queue}) interna o de \kahan.
+Antes de comenzar a listar las \textbf{Historias de usuario} hay dos conceptos importante a definir que son los de \gls{tarea} (\foreign{english}{Assignment}) y \gls{envio} (\foreign{english}{Request}). La \gls{tarea} este es un problema o ejercicio a resolver en la aplicación con una serie de entradas y una salida (resultado) que el \gls{alumno} desconoce; la \gls{tarea} es creada por el \gls{administrador}. El \gls{envio} es una petición web de un \textit{usuario} hacia la aplicación web con el código fuente a compilar y ejecutar que tratará de dar solución a una \gls{tarea} específica. 
+
+Adicionalmente cuando en la memoria se haga mención a la palabra \foreign{english}{job} no nos referimos a una \gls{tarea} sino a un ``trabajo'' a procesarse en una cola (\foreign{english}{queue}) interna o de \kahan.
 
 \section{Historias de usuario}
 
@@ -289,7 +291,14 @@ Una vez identificadas las \textbf{Historias de Usuario} más importantes el pró
 \begin{itemize}
 	\item \textbf{Nombre}: título del requerimiento funcional.
 	\item \textbf{Descripción}: objetivo que debe cumplir el requisito.
-	\item \textbf{Prioridad}: nivel de importancia. Mientras más alto sea se le dará preferencia sobre otros requisitos.
+	\item \textbf{Prioridad}: nivel de importancia. \\
+	\begin{itemize}
+		\item Muy Alta.
+		\item Alta.
+		\item Media.
+		\item Baja.
+	\end{itemize}
+	
 	\item \textbf{Criterio de aceptación}: condiciones que se deben cumplir o satisfacer para que el requisito se considere cumplido.
 \end{itemize}
 
@@ -328,7 +337,7 @@ Además, para dar un seguimiento durante la etapa de desarrollo, pruebas y entre
 		\hline
 		Descripción & El sistema permitirá el ingreso de usuarios mediante dirección de correo electrónico o nombre de usuario  \\
 		\hline
-		Prioridad & Más Alta\\
+		Prioridad & Muy Alta\\
 		\hline
 		Criterio de aceptación & 
 		\begin{tabitem}
@@ -358,6 +367,7 @@ Además, para dar un seguimiento durante la etapa de desarrollo, pruebas y entre
 			\item los \gls{equipo}s contarán con una URL única que permitirá a otros \gls{alumno}s unirse a los mismos
 			\item un \gls{alumno} no puede unirse un \gls{equipo} que no forme parte de su \gls{grupo} o que haya llegado al máximo de integrantes
 			\item los \gls{equipo}s tendrán un máximo de integrantes que podrá ser configurado por el \gls{administrador}
+			\item un \gls{equipo} se creará desde el perfil de un \gls{alumno}
 		\end{tabitem} \\
 		\hline
 	\end{tabular}
@@ -397,7 +407,7 @@ Además, para dar un seguimiento durante la etapa de desarrollo, pruebas y entre
 		\hline
 		Nombre & Mis Envíos \\
 		\hline
-		Descripción & Los \textit{usuarios}, \gls{administrador}es como \gls{alumno}s, podrán ver un resumen de sus \gls{envio}s (peticiones web que incluyen el código fuente a ejecutar) \\
+		Descripción & Los \textit{usuarios}, tanto \gls{administrador}es como \gls{alumno}s, podrán ver un resumen de sus \gls{envio}s (peticiones web que incluyen el código fuente a ejecutar) \\
 		\hline
 		Prioridad & Muy Alta\\
 		\hline
@@ -431,7 +441,7 @@ Además, para dar un seguimiento durante la etapa de desarrollo, pruebas y entre
 		\begin{tabitem}
 			\item código fuente
 			\item análisis estático del código fuente enviado
-			\item resultado del código ejecutado (\foreign{english}{outout} de la consola o terminal)
+			\item resultado del código ejecutado (\foreign{english}{output} de la consola o terminal)
 			\item tiempo de ejecución y status
 			\item cada \gls{envio} tiene un ID único que no puede ser repetido en el sistema
 			\item un \gls{envio} solo puede ser visualizado por el autor o un \textit{usuario} con Rol de \gls{administrador} 
