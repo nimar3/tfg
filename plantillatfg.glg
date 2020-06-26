@@ -1,7 +1,10 @@
 This is makeindex, version 2.15 [TeX Live 2020] (kpathsea + Thai support).
 Scanning style file ./plantillatfg.ist.............................done (29 attributes redefined, 0 ignored).
-Scanning input file plantillatfg.glo....done (100 entries accepted, 0 rejected).
-Sorting entries....done (706 comparisons).
-Generating output file plantillatfg.gls....done (95 lines written, 0 warnings).
+Scanning input file plantillatfg.glo...
+!! Input index error (file = plantillatfg.glo, line = 1):
+   -- Illegal space within numerals in second argument.
+.done (151 entries accepted, 1 rejected).
+Sorting entries....done (1196 comparisons).
+Generating output file plantillatfg.gls....done (105 lines written, 0 warnings).
 Output written in plantillatfg.gls.
 Transcript written in plantillatfg.glg.

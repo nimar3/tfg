@@ -90,6 +90,7 @@
 \usepackage{dirtytalk}
 
 \usepackage[acronym]{glossaries}
+\usepackage{placeins}
 
 \makeglossaries
 
@@ -99,6 +100,7 @@
 \newglossaryentry{gde}{name=Grupo de Estudiantes,description={Clase a la que pertenece el estudiante para el año lectivo}}
 \newglossaryentry{edp}{name=Entorno de producción,description={lugar donde se ejecuta el aplicativo para los usuarios finales}}
 \newglossaryentry{contenedor}{name={Contenedor},description={imagen ejecutable ligera y portátil que contiene el software y todas sus dependencias}}
+\newglossaryentry{administrador}{name={Administrador},description={Usuario con un rol que le permite administrar el sistema, normálmente será el profesor de un curso académico}}
 \newglossaryentry{alumno}{name={Alumno},description={Estudiante que forma parte de un curso académico}}
 \newglossaryentry{equipo}{name={Equipo},description={Grupo de estudiantes que pertenecen a una misma clase en un grupo académico}}
 \newglossaryentry{grupo}{name={Grupo},description={Agrupación de alumnos que pertenecen a un grupo académico}}
@@ -208,7 +210,7 @@ El objetivo final es crear una herramienta de software (aplicación web) que ace
 
 Desde el inicio de mis estudios en el \acrshort{gii} me han interesado los concursos de programación ya sean los promovidos desde la propia \acrshort{etsinf} así como también los disponibles en plataformas online como UVa\footnote{UVa Online Judge website: \url{https://onlinejudge.org/}}, HackerRank\footnote{HackerRank website: \url{https://www.hackerrank.com/}}, CheckIO\footnote{CheckIO website: \url{https://checkio.org/}} y Project Euler\footnote{Project Euler website: \url{https://projecteuler.net/}}. Estas competiciones ayudan a promover el interés en diferentes conceptos fundamentales que debe conocer cualquier profesional de las Ciencias de la Computación como son las estructuras de datos y la algoritmia con el añadido de un marco lúdico con elementos de lo que llamamos previamente gamificación. \par
 
-Normalmente los concursos o competiciones de programación sólo buscan la resolución de una serie de problemas para un conjunto finito de entradas sin importar los tiempos de ejecución o su eficiencia. Por eso al ver la publicación de la propuesta del \acrfull{tfg} donde se añade la programación paralela me ha despertado el interés ya que también se premiará la eficacia del código en obtener una solución en el menor tiempo posible y el añadido de tener que trabajar con un elemento externo como lo es el \foreignlanguage{english}{cluster} \kahan del \acrfull{dsic}.  \par
+Normalmente los concursos o competiciones de programación sólo buscan la resolución de una serie de problemas para un conjunto finito de entradas sin importar los tiempos de ejecución o su eficiencia. Por eso al ver la publicación de la propuesta del \acrfull{tfg} donde se añade la programación paralela me ha despertado el interés ya que también se premiará la eficacia del código en obtener una solución en el menor tiempo posible y el añadido de tener que trabajar con un elemento externo como lo es el \foreign{english}{cluster} \kahan del \acrfull{dsic}.  \par
 
 Crear esta aplicación que podrán utilizar los alumnos en cursos venideros es mi principal motivación y forma de devolver a la Universidad todas las herramientas que me ha dado, haberme formado y ayudarme a convertirme en un profesional de la Informática. 
 
@@ -216,21 +218,7 @@ Crear esta aplicación que podrán utilizar los alumnos en cursos venideros es m
 
 Desde mi punto de vista no existe un único objetivo al realizar un \acrfull{tfg}, mas allá de que el principal sea la implementación de un sitio web para concursos de programación paralela, hay otros puntos importantes a considerar como la documentación del proceso realizado, lo que se ha aprendido y que aportes puede brindar a la comunidad científica. \par 
 
-Otros objetivos adicionales o secundarios pueden ser; el seguimiento de un proceso formal para el análisis, diseño, implantación y mantenimiento del software, siendo conceptos previamente vistos en la rama de Ingeniería de Software y esenciales en cualquier proyecto ingenieril. Ofrecer una herramienta \foreignlanguage{english}{open source} abierta a la colaboración, de uso libre y a disposición de otros centros de estudio. Y explorar nuevas herramientas utilizadas actualmente en el mercado ampliando así mis capacidades como profesional de la Informática.
-
-\section{Cluster Kahan}
-
-\kahan es un \foreignlanguage{english}{cluster} de computación perteneciente a la \acrshort{upv} y será el encargado de procesar el código envíen los alumnos a la aplicación web. Consta de un nodo cabecera (\textit{Frontend}) a la que un usuario se puede conectar mediante escritorio remoto o consola y así enviar el trabajo a procesar en alguna de sus colas. El nodo \textit{Frontend} es el encargado de comunicarse con el \foreignlanguage{english}{cluster} de 6 nodos y procesar los envíos.
-
-
-\begin{figure}[!ht]
-	\centering
-	\includegraphics[width=0.8\textwidth]{img/kahan-cluster}
-	\caption[Diagrama del cluster \kahan]{Diagrama del cluster \kahan}
-	\label{figura:kahan-cluster}
-\end{figure}
-
-En las practicas de las asignaturas de \acrshort{lpp} y \acrshort{cpa} la ejecución de los pasos de conexión al \textit{Frontend}, envío de código a una cola, revisión de estado de la ejecución y descarga de resultados es un proceso completamente manual que inclusive llega a ser tedioso. Y Por esto uno de los puntos más importantes y complejos que vale la pena remarcar será lograr que la aplicación web se encargue de la comunicación con el \foreignlanguage{english}{cluster} realizando el proceso completo de forma automatizada, añadiendo también la verificación de resultados y así ofrecer una mejor experiencia de usuario.
+Otros objetivos adicionales o secundarios pueden ser; el seguimiento de un proceso formal para el análisis, diseño, implantación y mantenimiento del software, siendo conceptos previamente vistos en la rama de Ingeniería de Software y esenciales en cualquier proyecto ingenieril. Ofrecer una herramienta \foreign{english}{open source} abierta a la colaboración, de uso libre y a disposición de otros centros de estudio. Y explorar nuevas herramientas utilizadas actualmente en el mercado ampliando así mis capacidades como profesional de la Informática.
 
 \section{Estructura de la memoria}
 
@@ -244,7 +232,7 @@ La memoria recoge el proceso de ``desarrollo del software`` o ``ciclo de vida de
 	\item \textbf{Implantación}: pasos a seguir para el despliegue de la solución en una plataforma \foreignlanguage{english}{cloud}.
 	\item \textbf{Mantenimiento}: explicación de como configurar un entorno de desarrollo local, depurar errores y mantener una calidad de código aceptable. 
 	\item \textbf{Extensibilidad}: formas en las cuales se puede añadir funcionalidades nuevas.
-	\item \textbf{Conclusiones}: resultado final del \acrshort{tfg}.
+	\item \textbf{Conclusiones}: resultado final del \acrshort{tfg} y los objetivos alcanzados.
 	\item \textbf{Trabajos futuros}: puntos interesantes a tratar en próximas iteraciones o nuevas versiones del software.
 \end{itemize}
 
@@ -252,60 +240,67 @@ La memoria recoge el proceso de ``desarrollo del software`` o ``ciclo de vida de
 
 \section{Crítica al estado del arte}
 
-\section{Propuesta}
-
 
 \chapter{Análisis del problema}
 
-Antes de comenzar a escribir una linea de código, como todo proyecto ingenieril se debe hacer un estudio que involucre los usuarios que utilizarán el sistema donde se recogerán requisitos para poder hacer una propuesta acorde a sus necesidades.
+Como todo proyecto de desarrollo de software se debe seguir un modelo o proceso que garantice el éxito y la calidad del producto final. Siguiendo un proceso tradicional el primer paso es la ``toma de requisitos`` en el cual se realiza un análisis que involucra a los usuarios (Actores) que utilizarán el sistema, cada uno con sus necesidades (Requisitos). De este estudio se llegará una especificación funcional del software antes de comenzar a escribir siquiera una linea de código. Una vez terminada esta etapa se irán sucediendo las siguientes en próximos capítulos en el orden habitual de un modelo en cascada: toma de requisitos, diseño, implementación, implantación y mantenimiento.
 
 \section{Actores}
 
-El sistema contará con dos perfiles de usuarios que llamaremos actores, estos son el \textit{Estudiante} y \textit{Administrador}. También, veremos que en la memoria se hace mención al \textit{usuario}, esto se hace para referirnos a funcionalidades que se aplican tanto a los \textit{Estudiantes} como \textit{Administradores}
+El sistema contará con dos perfiles de usuarios que llamaremos actores, estos son el \Gls{alumno} y \Gls{administrador}. También veremos que en la memoria se hace mención al ``usuario`` (\foreign{english}{User}), esto se hace para referirnos a funcionalidades que se aplican tanto a los \gls{alumno}s como \gls{administrador}es
 
 \begin{itemize}
-	\item Estudiante: el rol principal del sistema. Enviará soluciones a los problemas propuestos y tratará de mejorar sus resultados para subir su ranking en la tabla de posiciones de las tareas y la grupal. Su trabajo será recompensado en forma de puntos e insignias.
-	\item Administrador: el rol que se encarga de poner el sistema en marcha. Tendrá que tener conocimientos sólidos en la asignatura de \textit{CPA} para poder crear tareas que varíen en dificultad y motive al alumnado a mejorar sus resultados.
+	\item \textbf{\gls{alumno}}: el actor principal del sistema. Enviará soluciones a los problemas propuestos y tratará de mejorar sus resultados para subir su ranking en las tablas de posiciones. Su trabajo será recompensado en forma de puntos e insignias, que son trofeos o marcas obtenidas después de lograr cierto objetivo. Un alumno pertenecerá a un \gls{grupo} (\foreign{english}{Group}) que será el curso en el cual está matriculado y también podrá formar un \gls{equipo} (\foreign{english}{Team}) con sus compañeros de clase para resolver problemas en conjunto.
+	\item \textbf{\gls{administrador}}: el actor que se encarga de poner el sistema en marcha. Tendrá que tener conocimientos sólidos en programación paralela para poder crear tareas que varíen en dificultad y motive al alumnado a mejorar sus resultados. Normalmente será el profesor de la asignatura \acrshort{lpp} o \acrshort{cpa}.
 \end{itemize}
 
+Antes de comenzar a listar las \textbf{Historias de usuario} hay un concepto importante a definir que es el de \gls{tarea} (\foreign{english}{Assignment}), este es un problema a resolver en la aplicación con una serie de entradas y resultado a obtener que el \gls{alumno} desconoce. Cuando en la memoria se haga mención a la palabra \foreign{english}{task} no nos referimos a una \gls{tarea} sino a un ``trabajo`` a procesarse en una cola (\foreign{english}{queue}) interna o de \kahan.
 
 \section{Historias de usuario}
 
-Como primer paso se describe el resultado esperado de este proyecto en un lenguaje sencillo que más adelante darán partida a los requisitos funcionales y no funcionales de la aplicación. A esto se lo llaman \textbf{Historias de usuario}.
+El primer paso es realizar una entrevista con los actores involucrados para describir el resultado esperado de este proyecto en un lenguaje sencillo que más adelante darán partida a los requisitos funcionales y no funcionales de la aplicación. A esto se le llama \textbf{Historias de usuario}. Para este caso en particular ambos actores fueron interpretados por el tutor y el autor del \acrshort{tfg} intercambiando roles al comienzo de la elaboración de la memoria.
 
 \begin{itemize}
-  \item Como \textit{Estudiante}, quiero ingresar al sistema utilizando mis credenciales personales.
-  \item Como \textit{Estudiante}, quiero poder cambiar mi contraseña.
-  \item Como \textit{Estudiante}, quiero registrarme en el sistema para poder hacer uso del mismo.
-  \item Como \textit{Estudiante}, quiero enviar las resoluciones a mis tareas asignadas.
-  \item Como \textit{Estudiante}, quiero formar parte de un equipo con otros estudiantes.
-  \item Como \textit{Estudiante}, quiero acceder a mi perfil para ver toda mi información.
-  \item Como \textit{Estudiante}, quiero visualizar los resultados de las ejecuciones para ver como han quedado posicionadas en la tabla de clasificación.
-  \item Como \textit{Estudiante}, quiero ver un resumen de mi actividad.
-  \item Como \textit{Administrador}, quiero crear grupos para que los estudiantes puedan formar parte de ellos.
-  \item Como \textit{Administrador}, quiero crear estudiantes subiendo un fichero csv o txt.
-  \item Como \textit{Administrador}, quiero crear y asignar tareas a diferentes grupos.
-  \item Como \textit{Administrador}, quiero crear insignias para asignar a diferentes tareas.
-  \item Como \textit{Administrador}, quiero editar y eliminar grupos, estudiantes, tareas e insignias.
-  \item Como \textit{Administrador}, quiero desplegar el aplicativo en una solución \foreignlanguage{english}{cloud}.
+	\item Como \gls{alumno}, quiero ingresar al sistema utilizando mis credenciales personales.
+	\item Como \gls{alumno}, quiero cambiar mi contraseña.
+	\item Como \gls{alumno}, quiero registrarme en el sistema para poder hacer uso del mismo.
+	\item Como \gls{alumno}, quiero enviar las resoluciones a mis \gls{tarea}s asignadas.
+	\item Como \gls{alumno}, quiero formar parte de un equipo con otros \gls{alumno}s de mi \gls{grupo}.
+	\item Como \gls{alumno}, quiero acceder a mi perfil para ver toda mi información.
+	\item Como \gls{alumno}, quiero visualizar los resultados de las ejecuciones para ver como han quedado posicionadas en la tabla de clasificación.
+	\item Como \gls{alumno}, quiero ver un resumen de mi actividad.
+	\item Como \gls{administrador}, quiero crear \gls{grupo}s para que los \gls{alumno}s puedan formar parte de ellos.
+	\item Como \gls{administrador}, quiero crear \gls{alumno}s subiendo un fichero csv o txt.
+	\item Como \gls{administrador}, quiero crear y asignar \gls{tarea}s a diferentes \gls{grupo}s.
+	\item Como \gls{administrador}, quiero crear \gls{insignia}s para asignar a \gls{tarea}s.
+	\item Como \gls{administrador}, quiero editar y eliminar \gls{grupo}s, \gls{alumno}s, \gls{tarea}s e \gls{insignia}s.
+	\item Como \gls{administrador}, quiero poder configurar la aplicación.
+	\item Como \gls{administrador}, quiero desplegar la aplicación en una solución \foreign{english}{cloud}.
 \end{itemize}
 
 \section{Requisitos funcionales}
 
-En el siguiente apartado se describen todos los requisitos funcionales del aplicativo. \par
+Una vez identificadas las \textbf{Historias de Usuario} más importantes el próximo paso es convertirlas en requisitos funcionales formales , específicos y consistentes. Esto evitará ambigüedades y dejará por sentado como se comportará el sistema. Aquí se describen todos los requisitos funcionales del aplicativo siguiendo una plantilla estandarizada con los siguientes campos:
 
-... explicación de la tabla ... \par
+\begin{itemize}
+	\item \textbf{Nombre}: título del requerimiento funcional.
+	\item \textbf{Descripción}: objetivo que debe cumplir el requisito.
+	\item \textbf{Prioridad}: nivel de importancia. Mientras más alto sea se le dará preferencia sobre otros requisitos.
+	\item \textbf{Criterio de aceptación}: condiciones que se deben cumplir o satisfacer para que el requisito se considere cumplido.
+\end{itemize}
 
-\begin{table}[h]
+Además, para dar un seguimiento durante la etapa de desarrollo, pruebas y entrega final se le añade un identificador único.
+
+\begin{table}[!ht]
 	\centering
 	\begin{tabular}{ |p{4cm}||p{10cm}|  }
 		\multicolumn{2}{l}{\textbf{RF-1}} \\
 		\hline
-		Nombre   & Registro de usuarios\\
+		Nombre & Registro de usuarios\\
 		\hline
-		Descripción  & El sistema permitirá el registro de usuarios mediante dirección de correo electrónico   \\
+		Descripción & El sistema permitirá el registro de usuarios mediante dirección de correo electrónico   \\
 		\hline
-		Prioridad &  Media\\
+		Prioridad & Media\\
 		\hline
 		Criterio de aceptación & 
 		\begin{tabitem}
@@ -320,16 +315,16 @@ En el siguiente apartado se describen todos los requisitos funcionales del aplic
 	\label{table:1}
 \end{table}
 
-\begin{table}[h]
+\begin{table}[!ht]
 	\centering
 	\begin{tabular}{ |p{4cm}||p{10cm}|  }
 		\multicolumn{2}{l}{\textbf{RF-2}} \\
 		\hline
-		Nombre   & Login de usuarios\\
+		Nombre & Ingreso de usuarios\\
 		\hline
-		Descripción  & El sistema permitirá el login de usuarios mediante dirección de correo electrónico o usuario  \\
+		Descripción & El sistema permitirá el ingreso de usuarios mediante dirección de correo electrónico o nombre de usuario  \\
 		\hline
-		Prioridad &  Más Alta\\
+		Prioridad & Más Alta\\
 		\hline
 		Criterio de aceptación & 
 		\begin{tabitem}
@@ -337,28 +332,28 @@ En el siguiente apartado se describen todos los requisitos funcionales del aplic
 		\end{tabitem} \\
 		\hline
 	\end{tabular}
-	\caption{RF-2 Login de usuarios}
+	\caption{RF-2 Ingreso de usuarios}
 	\label{table:2}
 \end{table}
 
-\begin{table}
+\begin{table}[!ht]
 	\centering
 	\begin{tabular}{ |p{4cm}||p{10cm}|  }
 		\multicolumn{2}{l}{\textbf{RF-3}} \\
 		\hline
-		Nombre   & Equipos\\
+		Nombre & Equipos\\
 		\hline
-		Descripción  & Los \textit{Estudiantes} podrán formar parte de un equipo con otros compañeros de grupo  \\
+		Descripción & Los \gls{alumno}s podrán formar parte de un \gls{equipo} con otros compañeros de \gls{grupo}  \\
 		\hline
-		Prioridad &  Baja\\
+		Prioridad & Baja\\
 		\hline
 		Criterio de aceptación & 
 		\begin{tabitem}
-			\item solo se podrá formar parte de un único equipo en un momento determinado de tiempo
-			\item si un equipo no tiene integrantes se eliminará del sistema
-			\item los equipos contarán con una URL única que permitirá a otros estudiantes unirse a los mismos
-			\item un \textit{Estudiante} no puede unirse un equipo que no forme parte de su grupo o que haya llegado al máximo de integrantes
-			\item los equipos tendrán un máximo de integrantes que podrá ser configurado por el \textit{Administrador}
+			\item solo se podrá formar parte de un único \gls{equipo} en un momento determinado de tiempo
+			\item si un \gls{equipo} no tiene integrantes se eliminará del sistema
+			\item los \gls{equipo}s contarán con una URL única que permitirá a otros \gls{alumno}s unirse a los mismos
+			\item un \gls{alumno} no puede unirse un \gls{equipo} que no forme parte de su \gls{grupo} o que haya llegado al máximo de integrantes
+			\item los \gls{equipo}s tendrán un máximo de integrantes que podrá ser configurado por el \gls{administrador}
 		\end{tabitem} \\
 		\hline
 	\end{tabular}
@@ -367,42 +362,42 @@ En el siguiente apartado se describen todos los requisitos funcionales del aplic
 \end{table}
 
 
-\begin{table}
+\begin{table}[!ht]
 	\centering
 	\begin{tabular}{ |p{4cm}||p{10cm}|  }
 		\multicolumn{2}{l}{\textbf{RF-4}} \\
 		\hline
-		Nombre   & \foreignlanguage{english}{Dashboard}\\
+		Nombre & Página de Inicio\\
 		\hline
-		Descripción  & Los \textit{Estudiantes} al ingresar verán un resumen agregado de su estado general en el sistema   \\
+		Descripción & Los \gls{alumno}s al ingresar verán un resumen agregado de su estado general en la aplicación   \\
 		\hline
 		Prioridad &  Alta\\
 		\hline
-		Criterio de aceptación & El \foreignlanguage{english}{Dashboard} o \textit{Página de Inicio} del \textit{Estudiante} deberá mostrar la siguiente información: \newline
+		Criterio de aceptación & La Página de Inicio (\foreign{english}{Dashboard}) del \gls{alumno} deberá mostrar la siguiente información: \newline
 		\begin{tabitem}
 			\item resumen de los últimos envíos
-			\item extracto calculado de cantidad de envíos, tareas, quota disponible y puntaje
+			\item extracto calculado de cantidad de envíos, tareas, \foreign{english}{quota} disponible (porcentaje de tiempo restante de ejecución) y puntaje
 			\item la última insignia obtenida, en caso que no tuviere, alentarlo a completar una tarea para conseguir su primera
 			\item los integrantes del equipo, en caso que no tuviere, alentarlo a crear uno nuevo o unirse a uno existente
 		\end{tabitem} \\
 		\hline
 	\end{tabular}
-	\caption{RF-4 \foreignlanguage{english}{Dashboard}}
+	\caption{RF-4 Página de Inicio}
 	\label{table:4}
 \end{table}
 
-\begin{table}
+\begin{table}[ht!]
 	\centering
 	\begin{tabular}{ |p{4cm}||p{10cm}|  }
 		\multicolumn{2}{l}{\textbf{RF-5}} \\
 		\hline
-		Nombre   & Mis Envíos \\
+		Nombre & Mis Envíos \\
 		\hline
-		Descripción  & Los \textit{Usuarios} podrán ver un resumen de sus envíos enviados al sistema   \\
+		Descripción & Los \textit{usuarios}, \gls{administrador}es como \gls{alumno}s, podrán ver un resumen de sus \gls{envio}s (peticiones web que incluyen el código fuente a ejecutar) \\
 		\hline
-		Prioridad &  Muy Alta\\
+		Prioridad & Muy Alta\\
 		\hline
-		Criterio de aceptación & El resumen de envíos se visualizará en forma de tabla, se podrá filtrar por la información disponible y deberá mostrar las siguientes columnas: \newline
+		Criterio de aceptación & El resumen de \gls{envio}s se visualizará en forma de tabla, se podrá filtrar por la información disponible y deberá mostrar las siguientes columnas: \newline
 		\begin{tabitem}
 			\item ID único en el sistema
 			\item Fecha y Hora de envío
@@ -417,47 +412,49 @@ En el siguiente apartado se describen todos los requisitos funcionales del aplic
 	\label{table:5}
 \end{table}
 
-\begin{table}
+\begin{table}[ht!]
 	\centering
 	\begin{tabular}{ |p{4cm}||p{10cm}|  }
 		\multicolumn{2}{l}{\textbf{RF-6}} \\
 		\hline
-		Nombre   & Envío \\
+		Nombre & Visualización de Envío \\
 		\hline
-		Descripción  & Visualización del envío a ejecutar  \\
+		Descripción & Al realizar un \gls{envio}, un \textit{usuario} podrá navegar a una URL única para ver toda la información disponible y hacer el seguimiento de su estado  \\
 		\hline
-		Prioridad &  Alta\\
+		Prioridad & Alta\\
 		\hline
-		Criterio de aceptación & Se deben mostrar los siguientes apartados e información: \newline  
+		Criterio de aceptación & Se deben mostrar los siguientes apartados e información y cumplir con las siguientes restricciones y funcionalidades: \newline  
 		\begin{tabitem}
-			\item código fuente enviado
+			\item código fuente
 			\item análisis estático del código fuente enviado
-			\item output del código ejecutado
+			\item resultado del código ejecutado (\foreign{english}{outout} de la consola o terminal)
 			\item tiempo de ejecución y status
-		\end{tabitem} \\
+			\item cada \gls{envio} tiene un ID único que no puede ser repetido en el sistema
+			\item un \gls{envio} solo puede ser visualizado por el autor o un \textit{usuario} con Rol de \gls{administrador} 
+		\end{tabitem}  \\
 		\hline
 	\end{tabular}
-	\caption{RF-6 Envío}
+	\caption{RF-6 Visualización de Envío}
 	\label{table:6}
 \end{table}
 
-\begin{table}
+\begin{table}[ht!]
 	\centering
 	\begin{tabular}{ |p{4cm}||p{10cm}|  }
 		\multicolumn{2}{l}{\textbf{RF-7}} \\
 		\hline
-		Nombre   & Tareas \\
+		Nombre & Visualización de Tareas \\
 		\hline
-		Descripción  & Visualización de listado de Tareas \\
+		Descripción  & Todos los \textit{usuarios} podrán acceder a un apartado donde se muestre un listado en forma de resumen de las \gls{tarea}s disponibles \\
 		\hline
 		Prioridad &  Alta\\
 		\hline
 		Criterio de aceptación & Se deben mostrar los siguientes apartados e información: \newline  
 		\begin{tabitem}
-			\item si el usuario es un \textit{Estudiante} se deben mostrar las tareas asignadas a su grupo
-			\item si el usuario es un \textit{Administrador} se deben mostrar todas las tareas en el sistema
-			\item por cada Tarea debe haber un resumen, insignias y últimos envíos
-			\item no se deben mostrar las insignias secretas
+			\item si el usuario es un \gls{alumno} se deben mostrar las tareas asignadas a su grupo
+			\item si el usuario es un \gls{alumno} se deben mostrar todas las tareas en el sistema
+			\item por cada \gls{tarea} debe haber un resumen, insignias y últimos envíos
+			\item no se deben mostrar las \gls{insignia}s secretas
 		\end{tabitem} \\
 		\hline
 	\end{tabular}
@@ -465,34 +462,34 @@ En el siguiente apartado se describen todos los requisitos funcionales del aplic
 	\label{table:7}
 \end{table}
 
-\begin{table}
+\begin{table}[ht!]
 	\centering
 	\begin{tabular}{ |p{4cm}||p{10cm}|  }
 		\multicolumn{2}{l}{\textbf{RF-8}} \\
 		\hline
-		Nombre   & Tarea \\
+		Nombre & Tarea \\
 		\hline
-		Descripción  & Visualización de Tarea \\
+		Descripción  & Visualización de Tarea a completar con su descripción completa \\
 		\hline
 		Prioridad &  Alta\\
 		\hline
 		Criterio de aceptación & Se deben mostrar los siguientes apartados e información: \newline  
 		\begin{tabitem}
 			\item descripción completa
-			\item insignias a obtener
-			\item insignias secretas que el usuario ha obtenido
-			\item status de la tarea: abre pronto, abierto, cierra pronto, cerrada
-			\item si el usuario ha enviado una ejecución satisfactoria se le debe informar en un mensaje
+			\item \gls{insignia}s a obtener
+			\item \gls{insignia}s secretas que el usuario ha obtenido
+			\item status de la \gls{tarea}: abre pronto, abierto, cierra pronto, cerrada
+			\item si el \textit{usuario} ha realizado un \gls{envio} que ha finalizado una ejecución satisfactoria se le debe informar en un mensaje
 			\item enlace para hacer un envío con sus credenciales
 			\item enlace a la tabla de posiciones
 		\end{tabitem} \\
 		\hline
 	\end{tabular}
-	\caption{RF-8 Visualización de Tarea}
+	\caption{RF-8 Tarea}
 	\label{table:8}
 \end{table}
 
-\begin{table}
+\begin{table}[ht!]
 	\centering
 	\begin{tabular}{ |p{4cm}||p{10cm}|  }
 		\multicolumn{2}{l}{\textbf{RF-9}} \\
@@ -514,20 +511,23 @@ En el siguiente apartado se describen todos los requisitos funcionales del aplic
 	\label{table:9}
 \end{table}
 
-\begin{table}
+\begin{table}[ht!]
 	\centering
 	\begin{tabular}{ |p{4cm}||p{10cm}|  }
 		\multicolumn{2}{l}{\textbf{RF-10}} \\
 		\hline
 		Nombre & Tabla de Posiciones \\
 		\hline
-		Descripción &  \\
+		Descripción & Página en la cual se muestran las posiciones por \gls{tarea} y \gls{grupo} en formato de tabla\\
 		\hline
 		Prioridad & Alta\\
 		\hline
 		Criterio de aceptación & 
 		\begin{tabitem}
-			\item ?
+			\item los \gls{alumno}s solo pueden visualizar las tablas de posiciones de sus \gls{tarea}s asignadas y el \gls{grupo} al que pertenecen
+			\item los \gls{administrador}es pueden filtrar las tablas de posiciones por \gls{grupo}s
+			\item la posición de un \gls{envio} en una \gls{tarea} está dada por el tiempo de ejecución, a menor tiempo de ejecución, mejor posicionada
+			\item la posición de un \gls{alumno} en una tabla de posición de \gls{grupo} está dada por la cantidad de puntos que lleva acumulado, mientras más puntos, mejor posición
 		\end{tabitem} \\
 		\hline
 	\end{tabular}
@@ -535,20 +535,26 @@ En el siguiente apartado se describen todos los requisitos funcionales del aplic
 	\label{table:10}
 \end{table}
 
-\begin{table}
+\begin{table}[ht!]
 	\centering
 	\begin{tabular}{ |p{4cm}||p{10cm}|  }
 		\multicolumn{2}{l}{\textbf{RF-11}} \\
 		\hline
 		Nombre & Perfil \\
 		\hline
-		Descripción &  \\
+		Descripción & Un \textit{usuario} del sistema tiene su perfil donde puede ver un resumen de su actividad, cambiar su contraseña, ver al \gls{grupo} al que pertenece, cambiar el token de \gls{envio} de \gls{tarea}s y su puntaje acumulado  \\
 		\hline
 		Prioridad & Media\\
 		\hline
-		Criterio de aceptación & 
+		Criterio de aceptación & Se debe mostrar la siguiente información: \newline
 		\begin{tabitem}
-			\item ?
+			\item aparado con un resumen de actividad con los \gls{envio}s realizados y las \gls{insignia}s obtenidas
+			\item apartado para cambiar la contraseña
+			\item apartado para generar un nuevo token
+			\item apartado para ver los integrantes de su \gls{grupo}
+			\item apartado de \gls{insignia}s obtenidas
+			\item un resumen de los puntos acumulados y cantidad de \gls{envio}s realizados
+			\item equipo al que pertenece con sus integrantes
 		\end{tabitem} \\
 		\hline
 	\end{tabular}
@@ -556,14 +562,200 @@ En el siguiente apartado se describen todos los requisitos funcionales del aplic
 	\label{table:11}
 \end{table}
 
+\begin{table}[ht!]
+	\centering
+	\begin{tabular}{ |p{4cm}||p{10cm}|  }
+		\multicolumn{2}{l}{\textbf{RF-12}} \\
+		\hline
+		Nombre & Configuración del Sistema \\
+		\hline
+		Descripción & Apartado con el resumen de todos los parámetros de despliegue de la aplicación \\
+		\hline
+		Prioridad & Baja\\
+		\hline
+		Criterio de aceptación & Se debe mostrar en forma de tabla todos los parámetros de despliegue de la aplicación en formato clave:valor. Esta página solo puede ser accedida por un \gls{administrador} \\
+		\hline
+	\end{tabular}
+	\caption{RF-12 Configuración del Sistema \\}
+	\label{table:12}
+\end{table}
+
+\begin{table}[ht!]
+	\centering
+	\begin{tabular}{ |p{4cm}||p{10cm}|  }
+		\multicolumn{2}{l}{\textbf{RF-13}} \\
+		\hline
+		Nombre & Administración de Envíos \\
+		\hline
+		Descripción & Página con un listado de todos los \gls{envio}s que han sido procesados por el sistema \\
+		\hline
+		Prioridad & Alta\\
+		\hline
+		Criterio de aceptación & Solo los \gls{administrador}es pueden acceder a esta página. \newline 
+		El listado de \gls{envio}s debe contener la siguiente información \newline
+		\begin{tabitem}
+			\item ID único del sistema con su URL única
+			\item fecha y hora de envío
+			\item \textit{usuario} que ha realizado el \gls{envio} con su correo y grupo al que pertenece si es un \gls{alumno}
+			\item \gls{tarea} a la cual pertenece el \gls{envio}
+			\item \foreign{english}{status} del \gls{envio} (en espera, encolado, en ejecución, error, etc..)
+			\item puntos que se han asignado al \gls{envio}
+			\item tiempo de ejecución
+		\end{tabitem} \\
+		\hline
+	\end{tabular}
+	\caption{RF-13 Administración de Envíos}
+	\label{table:13}
+\end{table}
+
+\begin{table}[ht!]
+	\centering
+	\begin{tabular}{ |p{4cm}||p{10cm}|  }
+		\multicolumn{2}{l}{\textbf{RF-14}} \\
+		\hline
+		Nombre & Administración de Grupos \\
+		\hline
+		Descripción & Página con un listado de los \gls{grupo}s de \gls{alumno}s \\
+		\hline
+		Prioridad & Media\\
+		\hline
+		Criterio de aceptación & 
+		Se debe poder crear nuevos \gls{grupo}s con un código único y descripción, además de poder eliminarlos. \newline
+		Solo los \gls{administrador}es pueden acceder a esta página. \newline
+		El listado debe contener la siguiente información \newline
+		\begin{tabitem}
+			\item código único
+			\item descripción
+			\item cantidad de \gls{alumno}s asignados al \gls{grupo}
+			\item listado de \gls{tarea}s asignadas al \gls{grupo}
+		\end{tabitem} \\
+		\hline
+	\end{tabular}
+	\caption{RF-14 Administración de Grupos}
+	\label{table:14}
+\end{table}
+
+\begin{table}[ht!]
+	\centering
+	\begin{tabular}{ |p{4cm}||p{10cm}|  }
+		\multicolumn{2}{l}{\textbf{RF-15}} \\
+		\hline
+		Nombre & Administración de colas internas \\
+		\hline
+		Descripción & Página con información del estado de las colas internas de la aplicación \\
+		\hline
+		Prioridad & Alta\\
+		\hline
+		Criterio de aceptación & Solo los \gls{administrador}es pueden acceder a esta página. \newline
+		Debe mostrarse una resumen con la siguiente información y funcionalidades: \newline
+		\begin{tabitem}
+			\item colas internas disponibles y su estado
+			\item información sobre las \foreign{english}{tasks} encoladas y en espera
+		\end{tabitem} \\
+		\hline
+	\end{tabular}
+	\caption{RF-15 Administración de colas internas \\}
+	\label{table:15}
+\end{table}
+
+\begin{table}[ht!]
+	\centering
+	\begin{tabular}{ |p{4cm}||p{10cm}|  }
+		\multicolumn{2}{l}{\textbf{RF-16}} \\
+		\hline
+		Nombre & Administración de Alumnos \\
+		\hline
+		Descripción & página con un listado de todos los \gls{alumno}s del sistema  \\
+		\hline
+		Prioridad & Alta\\
+		\hline
+		Criterio de aceptación & Solo los \gls{administrador}es pueden acceder a esta página. \newline
+		Se debe poder borrar \gls{alumno}s del sistema y resetear sus contraseñas. \newline
+		El listado de \gls{alumno}s debe contener la siguiente información: \newline
+		\begin{tabitem}
+			\item nombre de usuario, correo y nombre
+			\item grupo al que pertenece
+			\item \foreignlanguage{english}{quota} disponible
+			\item puntos
+		\end{tabitem} \\
+		\hline
+	\end{tabular}
+	\caption{RF-16 Administración de Alumnos}
+	\label{table:16}
+\end{table}
+
+\begin{table}[ht!]
+	\centering
+	\begin{tabular}{ |p{4cm}||p{10cm}|  }
+		\multicolumn{2}{l}{\textbf{RF-17}} \\
+		\hline
+		Nombre & Administración de Tareas \\
+		\hline
+		Descripción & Página con listado de todas las \gls{tarea}s disponibles en el sistema en formato de tabla  \\
+		\hline
+		Prioridad & Alta\\
+		\hline
+		Criterio de aceptación & Solo los \gls{administrador}es pueden acceder a esta página. \newline
+		Posibilidad de crear una nueva \gls{tarea}. \newline
+		La información que debe mostrar la tabla es la siguiente: \newline
+		\begin{tabitem}
+			\item ID único
+			\item status de la \gls{tarea}: abierta o cerrada
+			\item nombre
+			\item título
+			\item cantidad de \gls{envio}s
+			\item fecha de inicio y fin
+			\item \gls{grupo}s a la cual está asignada
+			\item URL para la edición
+		\end{tabitem} \\
+		\hline
+	\end{tabular}
+	\caption{RF-17 Administración de Tareas}
+	\label{table:17}
+\end{table}
+
+\begin{table}[ht!]
+	\centering
+	\begin{tabular}{ |p{4cm}||p{10cm}|  }
+		\multicolumn{2}{l}{\textbf{RF-18}} \\
+		\hline
+		Nombre & Creación y edición de Tarea \\
+		\hline
+		Descripción & Página donde se puede crear una nueva \gls{tarea} o editar una ya existente en el sistema con un editor HTML para la descripción de la misma \\
+		\hline
+		Prioridad & Muy Alta\\
+		\hline
+		Criterio de aceptación & Solo los \gls{administrador}es pueden acceder a esta página. \newline
+		Se puede eliminar una \gls{tarea} desde la edición. \newline
+		Se debe poder insertar código fuente para una mejor visualización en la descripción. \newline
+		Se pueden añadir ficheros adjuntos que serán copiados al cluster \kahan junto al código fuente a ejecutar de un \gls{envio}. \newline
+		Los campos disponibles en la creación o edición de una \gls{tarea} son los siguientes: \newline
+		\begin{tabitem}
+			\item nombre único
+			\item título
+			\item fecha de inicio y fin
+			\item puntos a asignar en caso de un resultado satisfactorio
+			\item editor texto para la descripción de la \gls{tarea} en formato HTML
+			\item resultado esperado de la ejecución
+			\item listado de \gls{grupo}s a asignar la tarea
+			\item listado de \gls{insignia}s que se pueden obtener en la \gls{tarea}
+			\item ficheros adjuntos
+		\end{tabitem} \\
+		\hline
+	\end{tabular}
+	\caption{RF-18 Creación y edición de Tarea}
+	\label{table:18}
+\end{table}
+
+\FloatBarrier
 
 \section{Requisitos no funcionales}
 
-Los requisitos no funcionales son criterios que se deben cumplir para juzgar la correcta operación del sistema. En contraste con los requisitos funcionales, no definen comportamientos específicos. \par
+Los requisitos no funcionales son criterios que se deben cumplir para juzgar la correcta operación del sistema. En contraste con los requisitos funcionales no definen comportamientos específicos. \par
 
-... explicación de la tabla ... \par
+Para las siguientes tablas también se ha creado una plantilla estandar similar a la de requisitos funcionales pero con menos atributos. La definición de los mismos es la misma que las tablas vistas anteriormente.
 
-\begin{table}[h]
+\begin{table}[ht!]
 	\centering
 	\begin{tabular}{ |p{4cm}||p{10cm}|  }
 		\multicolumn{2}{l}{\textbf{RNF-1}} \\
@@ -576,10 +768,10 @@ Los requisitos no funcionales son criterios que se deben cumplir para juzgar la 
 		\hline
 	\end{tabular}
 	\caption{RNF-1 Usabilidad}
-	\label{table:24}
+	\label{table:19}
 \end{table}
 
-\begin{table}
+\begin{table}[ht!]
 	\centering
 	\begin{tabular}{ |p{4cm}||p{10cm}|  }
 		\multicolumn{2}{l}{\textbf{RNF-2}} \\
@@ -592,10 +784,10 @@ Los requisitos no funcionales son criterios que se deben cumplir para juzgar la 
 		\hline
 	\end{tabular}
 	\caption{RNF-2 Implantación}
-	\label{table:25}
+	\label{table:20}
 \end{table}
 
-\begin{table}
+\begin{table}[ht!]
 	\centering
 	\begin{tabular}{ |p{4cm}||p{10cm}|  }
 		\multicolumn{2}{l}{\textbf{RNF-3}} \\
@@ -608,10 +800,10 @@ Los requisitos no funcionales son criterios que se deben cumplir para juzgar la 
 		\hline
 	\end{tabular}
 	\caption{RNF-3 Configuración}
-	\label{table:26}
+	\label{table:21}
 \end{table}
 
-\begin{table}
+\begin{table}[ht!]
 	\centering
 	\begin{tabular}{ |p{4cm}||p{10cm}|  }
 		\multicolumn{2}{l}{\textbf{RNF-4}} \\
@@ -624,10 +816,45 @@ Los requisitos no funcionales son criterios que se deben cumplir para juzgar la 
 		\hline
 	\end{tabular}
 	\caption{RNF-4 Localización}
-	\label{table:27}
+	\label{table:22}
+\end{table}
+
+\begin{table}[ht!]
+	\centering
+	\begin{tabular}{ |p{4cm}||p{10cm}|  }
+		\multicolumn{2}{l}{\textbf{RNF-4}} \\
+		\hline
+		Nombre & Almacenamiento \\
+		\hline
+		Descripción  & Toda la información de la aplicación debe ser persistida en una \acrfull{bd} y el código fuente almacenado en un sistema de ficheros \\
+		\hline
+		Prioridad &  Muy alta \\
+		\hline
+	\end{tabular}
+	\caption{RNF-4 Almacenamiento}
+	\label{table:23}
 \end{table}
 
 
+\section{Cluster Kahan}
+
+\kahan es un \foreign{english}{cluster} de computación perteneciente a la \acrshort{upv} y será el encargado de procesar el código envíen los alumnos a la aplicación web. Consta de un nodo cabecera (\textit{Frontend}) a la que un usuario se puede conectar mediante escritorio remoto o consola y así enviar el trabajo a procesar en alguna de sus colas. El nodo \textit{Frontend} es el encargado de comunicarse con el \foreign{english}{cluster} de 6 nodos y procesar los envíos.
+
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=0.8\textwidth]{img/kahan-cluster}
+	\caption[Diagrama del cluster \kahan]{Diagrama del cluster \kahan}
+	\label{figura:kahan-cluster}
+\end{figure}
+
+En las practicas de las asignaturas de \acrshort{lpp} y \acrshort{cpa} la ejecución de los pasos de conexión al \textit{Frontend}, envío de código a una cola, revisión de estado de la ejecución y descarga de resultados es un proceso completamente manual que inclusive llega a ser tedioso. Y Por esto uno de los puntos más importantes y complejos que vale la pena remarcar será lograr que la aplicación se encargue de la comunicación con el \foreign{english}{cluster} realizando el proceso completo de forma automatizada, añadiendo también la verificación de resultados y así ofrecer una mejor experiencia de usuario. El proceso interacción con el \foreign{english}{cluster} \kahan debe ser asíncrono y no bloquear el funcionamiento de la aplicación, y la mejor forma de lograr esto es hacer que la aplicación tenga un \textit{Administrador de Tareas} que en la práctica es un sistema de colas donde se envían ``trabajos`` (\foreign{english}{tasks}) a procesarse en un determinado momento de tiempo.
+
+\section{Riesgos}
+
+Un análisis de riesgo también forma parte del estudio del problema ya que se debe evaluar si el resultado esperado es realizable en tiempo y forma. Para el listado anterior se pueden identificar tres puntos críticos ya que tienen una complejidad alta.
+
+Por un lado la interacción con el \foreign{english}{cluster} \kahan puede ser dificultosa porque lo haremos desde un sistema externo, además hay que sumarle la posibilidad de que la aplicación se despliegue en una solución \foreign{english}{cloud} siendo el autor de la memoria un usuario novel de esos sistemas y por último la verificación de resultados y creación de tablas de posiciones (\foreign{english}{Leaderboards}) que pueden ir cambiando en el tiempo.
 
 \chapter{Diseño de la solución}
 
