@@ -12,7 +12,7 @@
 \BOOKMARK [1][-]{section.3.2}{Historias de usuario}{chapter.3}% 12
 \BOOKMARK [1][-]{section.3.3}{Requisitos funcionales}{chapter.3}% 13
 \BOOKMARK [1][-]{section.3.4}{Requisitos no funcionales}{chapter.3}% 14
-\BOOKMARK [1][-]{section.3.5}{Cluster Kahan}{chapter.3}% 15
+\BOOKMARK [1][-]{section.3.5}{Cluster kahan}{chapter.3}% 15
 \BOOKMARK [1][-]{section.3.6}{Riesgos}{chapter.3}% 16
 \BOOKMARK [0][-]{chapter.4}{Dise\361o de la soluci\363n}{}% 17
 \BOOKMARK [1][-]{section.4.1}{Interacci\363n del Sistema}{chapter.4}% 18
@@ -20,11 +20,11 @@
 \BOOKMARK [1][-]{section.4.3}{Arquitectura del Sistema}{chapter.4}% 20
 \BOOKMARK [1][-]{section.4.4}{Modelo de datos}{chapter.4}% 21
 \BOOKMARK [2][-]{subsection.4.4.1}{Paquetes de Python}{section.4.4}% 22
-\BOOKMARK [1][-]{section.4.5}{Dise\361o de la Aplicaci\363n en Flask}{chapter.4}% 23
-\BOOKMARK [1][-]{section.4.6}{Env\355o de soluciones de Tareas}{chapter.4}% 24
-\BOOKMARK [1][-]{section.4.7}{Sistema de colas}{chapter.4}% 25
-\BOOKMARK [0][-]{chapter.5}{Desarrollo de la soluci\363n}{}% 26
-\BOOKMARK [1][-]{section.5.1}{Entregables}{chapter.5}% 27
+\BOOKMARK [1][-]{section.4.5}{Sistema de colas}{chapter.4}% 23
+\BOOKMARK [0][-]{chapter.5}{Desarrollo de la soluci\363n}{}% 24
+\BOOKMARK [1][-]{section.5.1}{Dise\361o de la Aplicaci\363n en Flask}{chapter.5}% 25
+\BOOKMARK [1][-]{section.5.2}{Env\355o de soluciones de Tareas}{chapter.5}% 26
+\BOOKMARK [1][-]{section.5.3}{Entregables}{chapter.5}% 27
 \BOOKMARK [0][-]{chapter.6}{Implantaci\363n}{}% 28
 \BOOKMARK [1][-]{section.6.1}{Docker y Kubernetes}{chapter.6}% 29
 \BOOKMARK [1][-]{section.6.2}{Despliegue en la Nube con Kubernetes}{chapter.6}% 30

@@ -20,43 +20,43 @@
 \contentsline {section}{\numberline {3.2}Historias de usuario}{8}{section.3.2}%
 \contentsline {section}{\numberline {3.3}Requisitos funcionales}{8}{section.3.3}%
 \contentsline {section}{\numberline {3.4}Requisitos no funcionales}{16}{section.3.4}%
-\contentsline {section}{\numberline {3.5}Cluster Kahan}{17}{section.3.5}%
+\contentsline {section}{\numberline {3.5}Cluster \texttt {kahan}\xspace }{17}{section.3.5}%
 \contentsline {section}{\numberline {3.6}Riesgos}{17}{section.3.6}%
 \contentsline {chapter}{\numberline {4}Diseño de la solución}{19}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Interacción del Sistema}{19}{section.4.1}%
 \contentsline {section}{\numberline {4.2}Software}{20}{section.4.2}%
 \contentsline {section}{\numberline {4.3}Arquitectura del Sistema}{20}{section.4.3}%
-\contentsline {section}{\numberline {4.4}Modelo de datos}{20}{section.4.4}%
-\contentsline {subsection}{\numberline {4.4.1}Paquetes de Python}{22}{subsection.4.4.1}%
-\contentsline {subsubsection}{Flask}{22}{subsubsection*.32}%
-\contentsline {subsubsection}{Colas}{23}{subsubsection*.33}%
-\contentsline {subsubsection}{Datos de ejemplo}{23}{subsubsection*.34}%
-\contentsline {subsubsection}{Conexión con sistemas externos}{23}{subsubsection*.35}%
-\contentsline {subsubsection}{Otros}{23}{subsubsection*.36}%
-\contentsline {section}{\numberline {4.5}Diseño de la Aplicación en Flask}{24}{section.4.5}%
-\contentsline {section}{\numberline {4.6}Envío de soluciones de Tareas}{25}{section.4.6}%
-\contentsline {section}{\numberline {4.7}Sistema de colas}{26}{section.4.7}%
-\contentsline {chapter}{\numberline {5}Desarrollo de la solución}{29}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Entregables}{30}{section.5.1}%
-\contentsline {chapter}{\numberline {6}Implantación}{31}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Docker y Kubernetes}{31}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Despliegue en la Nube con Kubernetes}{33}{section.6.2}%
-\contentsline {subsection}{\numberline {6.2.1}Pasos de un despliegue en GCE}{33}{subsection.6.2.1}%
-\contentsline {subsection}{\numberline {6.2.2}Costos asociados}{35}{subsection.6.2.2}%
-\contentsline {chapter}{\numberline {7}Mantenimiento}{37}{chapter.7}%
-\contentsline {section}{\numberline {7.1}Entorno local de desarrollo}{37}{section.7.1}%
-\contentsline {section}{\numberline {7.2}Depuración de errores}{39}{section.7.2}%
-\contentsline {section}{\numberline {7.3}Calidad de código}{39}{section.7.3}%
-\contentsline {chapter}{\numberline {8}Extensibilidad}{41}{chapter.8}%
-\contentsline {section}{\numberline {8.1}Otros sistemas de Gestión de Tareas}{41}{section.8.1}%
-\contentsline {section}{\numberline {8.2}Localización}{42}{section.8.2}%
-\contentsline {chapter}{\numberline {9}Conclusiones}{45}{chapter.9}%
-\contentsline {section}{\numberline {9.1}Relación del trabajo desarrollado con los estudios cursados}{45}{section.9.1}%
-\contentsline {chapter}{\numberline {10}Trabajos futuros}{47}{chapter.10}%
-\contentsline {chapter}{Bibliograf\'{\i }a}{49}{chapter*.46}%
+\contentsline {section}{\numberline {4.4}Modelo de datos}{21}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}Paquetes de Python}{23}{subsection.4.4.1}%
+\contentsline {subsubsection}{Flask}{23}{subsubsection*.33}%
+\contentsline {subsubsection}{Colas}{24}{subsubsection*.34}%
+\contentsline {subsubsection}{Datos de ejemplo}{24}{subsubsection*.35}%
+\contentsline {subsubsection}{Conexión con sistemas externos}{24}{subsubsection*.36}%
+\contentsline {subsubsection}{Otros}{24}{subsubsection*.37}%
+\contentsline {section}{\numberline {4.5}Sistema de colas}{25}{section.4.5}%
+\contentsline {chapter}{\numberline {5}Desarrollo de la solución}{27}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Diseño de la Aplicación en Flask}{27}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Envío de soluciones de Tareas}{29}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Entregables}{31}{section.5.3}%
+\contentsline {chapter}{\numberline {6}Implantación}{33}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Docker y Kubernetes}{33}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Despliegue en la Nube con Kubernetes}{35}{section.6.2}%
+\contentsline {subsection}{\numberline {6.2.1}Pasos de un despliegue en GCE}{35}{subsection.6.2.1}%
+\contentsline {subsection}{\numberline {6.2.2}Costos asociados}{37}{subsection.6.2.2}%
+\contentsline {chapter}{\numberline {7}Mantenimiento}{39}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Entorno local de desarrollo}{39}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Depuración de errores}{41}{section.7.2}%
+\contentsline {section}{\numberline {7.3}Calidad de código}{41}{section.7.3}%
+\contentsline {chapter}{\numberline {8}Extensibilidad}{43}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Otros sistemas de Gestión de Tareas}{43}{section.8.1}%
+\contentsline {section}{\numberline {8.2}Localización}{44}{section.8.2}%
+\contentsline {chapter}{\numberline {9}Conclusiones}{47}{chapter.9}%
+\contentsline {section}{\numberline {9.1}Relación del trabajo desarrollado con los estudios cursados}{47}{section.9.1}%
+\contentsline {chapter}{\numberline {10}Trabajos futuros}{49}{chapter.10}%
+\contentsline {chapter}{Bibliograf\'{\i }a}{51}{chapter*.46}%
 \noindent \hrulefill \par 
 \appendicesname \par 
-\contentsline {chapter}{\numberline {A}Configuración del sistema}{51}{appendix.Alph1}%
-\contentsline {section}{\numberline {A.1}Inicialización}{51}{section.Alph1.1}%
-\contentsline {section}{\numberline {A.2}Parámetros}{52}{section.Alph1.2}%
-\contentsline {chapter}{\numberline {B}Licencia}{55}{appendix.Alph2}%
+\contentsline {chapter}{\numberline {A}Configuración del sistema}{53}{appendix.Alph1}%
+\contentsline {section}{\numberline {A.1}Inicialización}{53}{section.Alph1.1}%
+\contentsline {section}{\numberline {A.2}Parámetros}{54}{section.Alph1.2}%
+\contentsline {chapter}{\numberline {B}Licencia}{57}{appendix.Alph2}%

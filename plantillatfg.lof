@@ -11,20 +11,20 @@
 \contentsline {figure}{\numberline {3.1}{\ignorespaces Diagrama del cluster \texttt {kahan}\xspace }}{17}{figure.caption.29}%
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {4.1}{\ignorespaces Modelado Interacción entre elementos del sistema}}{20}{figure.caption.30}%
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Diagrama UML de la Base de Datos}}{22}{figure.caption.31}%
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Diagrama de flujo de una petición web para un Envío}}{27}{figure.caption.37}%
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Proceso que sigue un Envío en la Cola interna}}{28}{figure.caption.38}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Arquitectura del Sistema}}{21}{figure.caption.31}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Diagrama UML de la Base de Datos}}{23}{figure.caption.32}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces AdminLTE: plantilla de Panel de Control }}{29}{figure.caption.39}%
+\contentsline {figure}{\numberline {5.1}{\ignorespaces AdminLTE: plantilla de Panel de Control }}{27}{figure.caption.38}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Diagrama de flujo de una petición web para un Envío}}{30}{figure.caption.39}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {6.1}{\ignorespaces Diferencias entre contenedor Docker y máquina virtual}}{31}{figure.caption.40}%
-\contentsline {figure}{\numberline {6.2}{\ignorespaces nuevo proyecto en GCE}}{33}{figure.caption.41}%
-\contentsline {figure}{\numberline {6.3}{\ignorespaces Calculadora de precios en GCE}}{36}{figure.caption.42}%
-\contentsline {figure}{\numberline {6.4}{\ignorespaces Estimación de costos en GCE}}{36}{figure.caption.43}%
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Diferencias entre contenedor Docker y máquina virtual}}{33}{figure.caption.40}%
+\contentsline {figure}{\numberline {6.2}{\ignorespaces nuevo proyecto en GCE}}{35}{figure.caption.41}%
+\contentsline {figure}{\numberline {6.3}{\ignorespaces Calculadora de precios en GCE}}{38}{figure.caption.42}%
+\contentsline {figure}{\numberline {6.4}{\ignorespaces Estimación de costos en GCE}}{38}{figure.caption.43}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {7.1}{\ignorespaces Inicio de sesión en Pizarra}}{38}{figure.caption.44}%
+\contentsline {figure}{\numberline {7.1}{\ignorespaces Inicio de sesión en Pizarra}}{40}{figure.caption.44}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {8.1}{\ignorespaces Selector de Idiomas en Pizarra}}{43}{figure.caption.45}%
+\contentsline {figure}{\numberline {8.1}{\ignorespaces Selector de Idiomas en Pizarra}}{45}{figure.caption.45}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

@@ -132,6 +132,8 @@
 \newacronym{mvc}{MVC}{Modelo Vista Controlador}
 \newacronym{gii}{GII}{Grado de Ingeniería Informática}
 \newacronym{cpu}{CPU}{Unidad central de procesamiento}
+\newacronym{wsgi}{WSGI}{Web Server Gateway Interface}
+\newacronym{http}{HTTP}{Hypertext Transfer Protocol}
 
 
 \usepackage{listings}
@@ -198,17 +200,19 @@ Este proyecto ha sido realizado con el apoyo del DSIC de la UPV con la finalidad
 
 \chapter{Introducción}
 
-En este proyecto se trabajarán dos conceptos importantes, la programación paralela y la gamificación. \par
+En este proyecto se trabajarán dos conceptos importantes, la programación paralela y la \textit{gamificación}. \par
 
-La programación paralela es una rama importante de la computación donde se buscar partir problemas de gran magnitud en pedazos más pequeños donde cada partición es ejecutada de forma simultanea por diferentes recursos computacionales de forma coordinada. Este tipo de ejecución tiene varias ventajas como la posibilidad de obtener soluciones a problemas que no pueden ser resueltos en un tiempo razonable, que tienen una orden y complejidad mayor, y que no podrían resolverse con el uso de una única . La programación paralela también trae sus desventajas como una mayor complejidad al escribir los programas, evitar condiciones de carrera y la sincronización entre los recursos. \par
+La programación paralela es una rama importante de la computación donde se busca partir problemas de gran magnitud en pedazos más pequeños donde cada partición es ejecutada de forma simultánea por diferentes recursos computacionales de forma coordinada. Este tipo de ejecución tiene varias ventajas como la posibilidad de obtener soluciones a problemas que no pueden ser resueltos en un tiempo razonable, que tienen un orden y complejidad mayor, y que no podrían resolverse con el uso de una única \gls{cpu}. La programación paralela también trae sus desventajas como una mayor complejidad al escribir los programas, evitar condiciones de carrera y la sincronización entre los recursos. \par
 
-La gamificación como estrategia para motivar al alumnado añadiendo elementos y estructuras propias de juegos como destacar en posiciones de clasificación, la competencia entre equipos y la obtención de premios. Estos añadidos estimulan y hacen más atractiva la participación de los estudiantes y así llegar a transformar las actividades de laboratorio de \acrfull{lpp}, asignatura de la rama de Computación, así como también a los de \acrfull{cpa}, asignatura obligatoria del tercer bloque; ambas del \acrfull{gii}. \par
+La gamificación como estrategia para motivar al alumnado añadiendo elementos y estructuras propias de juegos como destacar en posiciones de clasificación, la competencia entre equipos y la obtención de premios. 
 
-El objetivo final es crear una herramienta de software (aplicación web) que acerque estos ``dos mundos`` y así crear a una experiencia que fomente la colaboración, incentive al alumnado en mejorar sus resultados y afianzar conceptos desde el marco de la competición.
+Estos añadidos estimulan y hacen más atractiva la participación de los estudiantes y así llegar a transformar las actividades de laboratorio de \acrfull{lpp}, asignatura de la rama de Computación, así como también a los de \acrfull{cpa}, asignatura obligatoria del tercer bloque; ambas del \acrfull{gii}. \par
+
+El objetivo final es crear una herramienta de software (aplicación web) que acerque estos ``dos mundos'' y así crear a una experiencia que fomente la colaboración, incentive al alumnado en mejorar sus resultados y afianzar conceptos desde el marco de la competición.
 
 \section{Motivación}
 
-Desde el inicio de mis estudios en el \acrshort{gii} me han interesado los concursos de programación ya sean los promovidos desde la propia \acrshort{etsinf} así como también los disponibles en plataformas online como UVa\footnote{UVa Online Judge website: \url{https://onlinejudge.org/}}, HackerRank\footnote{HackerRank website: \url{https://www.hackerrank.com/}}, CheckIO\footnote{CheckIO website: \url{https://checkio.org/}} y Project Euler\footnote{Project Euler website: \url{https://projecteuler.net/}}. Estas competiciones ayudan a promover el interés en diferentes conceptos fundamentales que debe conocer cualquier profesional de las Ciencias de la Computación como son las estructuras de datos y la algoritmia con el añadido de un marco lúdico con elementos de lo que llamamos previamente gamificación. \par
+Desde el inicio de mis estudios en el \acrshort{gii} me han interesado los concursos de programación, ya sean los promovidos desde la propia \acrshort{etsinf} así como también los disponibles en plataformas online como UVa\footnote{UVa Online Judge website: \url{https://onlinejudge.org/}}, HackerRank\footnote{HackerRank website: \url{https://www.hackerrank.com/}}, CheckIO\footnote{CheckIO website: \url{https://checkio.org/}} y Project Euler\footnote{Project Euler website: \url{https://projecteuler.net/}}. Estas competiciones ayudan a promover el interés en diferentes conceptos fundamentales que debe conocer cualquier profesional de las Ciencias de la Computación, como son las estructuras de datos y la algoritmia, con el añadido de un marco lúdico con elementos de lo que llamamos previamente gamificación. \par
 
 Normalmente los concursos o competiciones de programación sólo buscan la resolución de una serie de problemas para un conjunto finito de entradas sin importar los tiempos de ejecución o su eficiencia. Por eso al ver la publicación de la propuesta del \acrfull{tfg} donde se añade la programación paralela me ha despertado el interés ya que también se premiará la eficacia del código en obtener una solución en el menor tiempo posible y el añadido de tener que trabajar con un elemento externo como lo es el \foreign{english}{cluster} \kahan del \acrfull{dsic}.  \par
 
@@ -216,9 +220,9 @@ Crear esta aplicación que podrán utilizar los alumnos en cursos venideros es m
 
 \section{Objetivo}
 
-Desde mi punto de vista no existe un único objetivo al realizar un \acrfull{tfg}, mas allá de que el principal sea la implementación de un sitio web para concursos de programación paralela, hay otros puntos importantes a considerar como la documentación del proceso realizado, lo que se ha aprendido y que aportes puede brindar a la comunidad científica. \par 
+Desde mi punto de vista no existe un único objetivo al realizar un \acrfull{tfg}, mas allá de que el principal sea la implementación de un sitio web para concursos de programación paralela. Existen otros puntos importantes a considerar como la documentación del proceso realizado, lo que se ha aprendido y qué aportes puede brindar a la comunidad científica. \par 
 
-Otros objetivos adicionales o secundarios pueden ser; el seguimiento de un proceso formal para el análisis, diseño, implantación y mantenimiento del software, siendo conceptos previamente vistos en la rama de Ingeniería de Software y esenciales en cualquier proyecto ingenieril. Ofrecer una herramienta \foreign{english}{open source} abierta a la colaboración, de uso libre y a disposición de otros centros de estudio. Y explorar nuevas herramientas utilizadas actualmente en el mercado ampliando así mis capacidades como profesional de la Informática.
+Otros objetivos adicionales o secundarios son: 1) el seguimiento de un proceso formal para el análisis, diseño, implantación y mantenimiento del software, siendo conceptos previamente vistos en la rama de Ingeniería de Software y esenciales en cualquier proyecto ingenieril; 2) ofrecer una herramienta \foreign{english}{open source} abierta a la colaboración, de uso libre y a disposición de otros centros de estudio; 3) explorar nuevas herramientas utilizadas actualmente en el mercado ampliando así mis capacidades como profesional de la Informática.
 
 \section{Estructura de la memoria}
 
@@ -227,13 +231,13 @@ La memoria recoge el proceso de ``desarrollo del software`` o ``ciclo de vida de
 \begin{itemize}
 	\item \textbf{Estado del arte}: análisis de las alternativas que existen al trabajo planteado. 
 	\item \textbf{Análisis del problema}: recopilación de los requerimientos para así llegar a una propuesta que abarque las necesidades actuales de la asignatura \acrshort{lpp}.
-	\item \textbf{Diseño de la solución}: descripción de los elementos que forman parte de la solución y el procese que se ha seguido para la elección de las herramientas utilizadas.
+	\item \textbf{Diseño de la solución}: descripción de los elementos que forman parte de la solución y el proceso que se ha seguido para la elección de las herramientas utilizadas.
 	\item \textbf{Desarrollo de la solución}: enfoque que se ha seguido para el desarrollo del software con sus entregables.
-	\item \textbf{Implantación}: pasos a seguir para el despliegue de la solución en una plataforma \foreignlanguage{english}{cloud}.
-	\item \textbf{Mantenimiento}: explicación de como configurar un entorno de desarrollo local, depurar errores y mantener una calidad de código aceptable. 
-	\item \textbf{Extensibilidad}: formas en las cuales se puede añadir funcionalidades nuevas.
-	\item \textbf{Conclusiones}: resultado final del \acrshort{tfg} y los objetivos alcanzados.
-	\item \textbf{Trabajos futuros}: puntos interesantes a tratar en próximas iteraciones o nuevas versiones del software.
+	\item \textbf{Implantación}: enumeración de los pasos a seguir para el despliegue de la solución en una plataforma \foreignlanguage{english}{cloud}.
+	\item \textbf{Mantenimiento}: explicación de cómo configurar un entorno de desarrollo local, depurar errores y mantener una calidad de código aceptable. 
+	\item \textbf{Extensibilidad}: disertación acerca de las formas en las cuales se pueden añadir funcionalidades nuevas.
+	\item \textbf{Conclusiones}: reflexiones finales sobre el \acrshort{tfg} y los objetivos alcanzados.
+	\item \textbf{Trabajos futuros}: propuesta de puntos interesantes a tratar en próximas iteraciones o nuevas versiones del software.
 \end{itemize}
 
 \chapter{Estado del arte}
@@ -243,7 +247,7 @@ La memoria recoge el proceso de ``desarrollo del software`` o ``ciclo de vida de
 
 \chapter{Análisis del problema}
 
-Como todo proyecto de desarrollo de software se debe seguir un modelo o proceso que garantice el éxito y la calidad del producto final. Siguiendo un proceso tradicional el primer paso es la ``toma de requisitos`` en el cual se realiza un análisis que involucra a los usuarios (Actores) que utilizarán el sistema, cada uno con sus necesidades (Requisitos). De este estudio se llegará una especificación funcional del software antes de comenzar a escribir siquiera una linea de código. Una vez terminada esta etapa se irán sucediendo las siguientes en próximos capítulos en el orden habitual de un modelo en cascada: toma de requisitos, diseño, implementación, implantación y mantenimiento.
+Como todo proyecto de desarrollo de software se debe seguir un modelo o proceso que garantice el éxito y la calidad del producto final. Siguiendo un proceso tradicional el primer paso es la ``toma de requisitos'' en el cual se realiza un análisis que involucra a los usuarios (Actores) que utilizarán el sistema, cada uno con sus necesidades (Requisitos). De este estudio se llegará una especificación funcional del software antes de comenzar a escribir siquiera una linea de código. Una vez terminada esta etapa se irán sucediendo las siguientes en próximos capítulos en el orden habitual de un modelo en cascada: toma de requisitos, diseño, implementación, implantación y mantenimiento.
 
 \section{Actores}
 
@@ -836,10 +840,9 @@ Para las siguientes tablas también se ha creado una plantilla estándar similar
 \end{table}
 
 
-\section{Cluster Kahan}
+\section{Cluster \kahan}
 
-\kahan es un \foreign{english}{cluster} de computación perteneciente a la \acrshort{upv} y será el encargado de procesar el código envíen los alumnos a la aplicación web. Consta de un nodo cabecera (\textit{Frontend}) a la que un usuario se puede conectar mediante escritorio remoto o consola y así enviar el trabajo a procesar en alguna de sus colas. El nodo \textit{Frontend} es el encargado de comunicarse con el \foreign{english}{cluster} de 6 nodos y procesar los envíos.
-
+\kahan es un \foreign{english}{cluster} de computación perteneciente a la \acrshort{upv} y será el encargado de procesar el código que envíen los alumnos a la aplicación web. Consta de un nodo cabecera (\textit{Frontend}) a la que un usuario se puede conectar mediante escritorio remoto o consola y así enviar el trabajo a procesar en alguna de sus colas. El nodo \textit{Frontend} es el encargado de comunicarse con el \foreign{english}{cluster} de 6 nodos y procesar los envíos.
 
 \begin{figure}[!ht]
 	\centering
@@ -848,7 +851,9 @@ Para las siguientes tablas también se ha creado una plantilla estándar similar
 	\label{figura:kahan-cluster}
 \end{figure}
 
-En las practicas de las asignaturas de \acrshort{lpp} y \acrshort{cpa} la ejecución de los pasos de conexión al \textit{Frontend}, envío de código a una cola, revisión de estado de la ejecución y descarga de resultados es un proceso completamente manual que inclusive llega a ser tedioso. Y Por esto uno de los puntos más importantes y complejos que vale la pena remarcar será lograr que la aplicación se encargue de la comunicación con el \foreign{english}{cluster} realizando el proceso completo de forma automatizada, añadiendo también la verificación de resultados y así ofrecer una mejor experiencia de usuario. El proceso interacción con el \foreign{english}{cluster} \kahan debe ser asíncrono y no bloquear el funcionamiento de la aplicación, y la mejor forma de lograr esto es hacer que la aplicación tenga un \textit{Administrador de Tareas} que en la práctica es un sistema de colas donde se envían ``trabajos`` (\foreign{english}{tasks}) a procesarse en un determinado momento de tiempo.
+En las prácticas de las asignaturas de \acrshort{lpp} y \acrshort{cpa} la ejecución de los pasos de conexión al \textit{Frontend}, envío de código a una cola, revisión de estado de la ejecución y descarga de resultados es un proceso completamente manual que inclusive llega a ser tedioso. Y Por esto uno de los puntos más importantes y complejos que vale la pena remarcar será lograr que la aplicación se encargue de la comunicación con el \foreign{english}{cluster} realizando el proceso completo de forma automatizada, añadiendo también la verificación de resultados y así ofrecer una mejor experiencia de usuario. El proceso interacción con el \foreign{english}{cluster} \kahan debe ser asíncrono y no bloquear el funcionamiento de la aplicación, y la mejor forma de lograr esto es hacer que la aplicación tenga un \textit{Administrador de Tareas} que en la práctica es un sistema de colas donde se envían ``trabajos`` (\foreign{english}{tasks}) a procesarse en un determinado momento de tiempo.
+
+El trabajo, no obstante, se ha desarrollado con la idea puesta en su extensibilidad a cualquier otro \foreign{english}{cluster}. De hecho, el  \foreign{english}{cluster} \kahan va a ser sustituido este curso que viene por \textit{kahan2}, que será más avanzado y ligeramente diferente del actual. El trabajo realizado aquí, por tanto, está preparado para ser migrado al nuevo  \foreign{english}{cluster} con mínimas modificaciones.
 
 \section{Riesgos}
 
@@ -871,7 +876,7 @@ En la introducción del capítulo se han visto algunos elementos de la aplicaci�
 	\item la \acrfull{bd} donde se guarda la información.
 	\item un \acrlong{nfs} para alojar los ficheros con código fuente de los \gls{envio}s.
 	\item un \textit{Administrador de Tareas} basado en un sistema de colas interno.
-	\item el \foreign{english}{cluster} kahan.
+	\item el \foreign{english}{cluster} \kahan.
 \end{itemize} 
 
 Una interacción habitual sería la que se modela a continuación donde el \textit{Administrador de Tareas} es el encargado de todas las interacciones con el sistema de colas de \kahan para actualizar el \foreign{english}{status} del \gls{envio}. A partir de aquí ya queda claro la importancia de una separación de roles entre lo que será el \foreign{english}{frontend} o punto de interacción de los usuarios con la aplicación y el procesamiento de \gls{envio}s. Esto tendrá vital importancia en la elección del software a utilizar.
@@ -889,19 +894,39 @@ Como hemos visto en el apartado \textbf{Estado del Arte} la única herramienta s
 
 Dadas las limitaciones que tiene \textit{Tablón} una de las aspiraciones en la creación de ésta aplicación web para concursos de programación paralela es que sea su sucesor (o reemplazo) a futuro. Por esto mismo he decidido llamar a la aplicación web \textit{Pizarra} en honor a \textit{Tablón} y de aquí en adelante cuando se nombre \textit{Pizarra} se hace referencia a la aplicación web y otros elementos adicionales necesarios para su funcionamiento. 
 
-El lenguaje de programación a utlizar será \textit{python}, ya conocido por el Autor y con una extensa cantidad de \gls{paquete}s, que son librerías que añaden funcionalidades extra y que serán de gran utilidad para acelerar los tiempos de desarrollo. Dado que ya hemos abordado la \textbf{Interacción del Sistema} a alto nivel solo resta escoger el \textbf{Software} que dará vida a la aplicación web y al \textit{Administrador de Tareas}.
+El lenguaje de programación a utlizar será \textit{python}, ya conocido por el Autor y con una extensa cantidad de \gls{paquete}s, que son librerías que añaden funcionalidades extra y que serán de gran utilidad para acelerar los tiempos de desarrollo. 
 
+Dado que ya hemos abordado la \textbf{Interacción del Sistema} a alto nivel solo resta escoger el \textbf{Software} que dará vida a la aplicación web y al \textit{Administrador de Tareas}. Debido a una experiencia previa en otra asignatura de los estudios de grado he decido optar por \textit{Flask}\footnote{Sitio web Flask: \url{https://flask.palletsprojects.com/en/1.1.x/}}, un micro-framework de Python con gran acogida por la comunidad de desarrollo que incluye un sistema de plantillas para la generación de páginas web llamado \text{Jinja}. 
 
+Para el \textit{Administrador de Tareas} existen diferentes \gls{paquete}s en \textit{python} para crear un sistema de \gls{cola}s interno, en este caso se ha optado por \textit{RQ}\footnote{Sitio web RQ: \url{https://python-rq.org/}} (Redis Queue) que utiliza pocos recursos y permite que  los ``trabajos'' o \foreign{english}{tasks} se procesen en determinado tiempo del futuro, funcionalidad que será útil para revisar los resultados de ejecuciones en \kahan. \textit{RQ} permitirá desacoplar las colas del aplicativo web al utilizar un servicio de \textit{Redis} como repositorio de \foreign{english}{tasks} además de disponer de un panel de control (\foreign{english}{dashboard}) que puede ser embebido en cualquier aplicación web.
 
 \section{Arquitectura del Sistema}
 
+Para el despliegue aplicaciones basadas en \textit{Flask} existen una lista de recomendaciones que debemos seguir. En primer lugar \textit{Flask} no está optimizado para aceptar peticiones web directamente de un navegador ya que utiliza la \acrfull{wsgi} para mostrar el contenido web de sus aplicaciones. Siendo \acrshort{wsgi} un estándar de \textit{python} que permite a cualquier aplicación comunicarse a través del protocolo \acrshort{http}, es decir, Internet. Además, la ejecución sin más de un \foreign{english}{script} en \textit{python} no es una buena práctica ya que una excepción del sistema puede abortar el proceso y otras situaciones anormales que puedan producirse. Para estos casos existe Gunicorn\footnote{Sitio Web Gunicorn: \url{https://gunicorn.org/}} que funciona como un servidor de aplicaciones y se encarga de ser el intermediario entre una petición web y \textit{Flask} además de monitorear el servicio y reiniciarlo en caso de problemas.
 
+Otra buena práctica al realizar un despliegue es poner nuestra aplicación detrás de un proxy reverso, esto es un Servidor Web que se encargue de administrar las conexiones, servir los certificados digitales y ficheros estáticos. Este tipo de arquitectura brinda una mejora en el rendimiento global del sistema y una separación de roles donde cada capa o \foreign{english}{layer} tiene una tarea específica. Para la arquitectura actual se ha escogido NGix\footnote{Sitio web Ngix: \url{https://www.nginx.com/}}, uno de los servidores webs más utilizados en Internet.
+
+explicacion workers RQ..
+
+NFS..
+
+contenedores.. 
+
+
+El diseño final de la \textbf{Arquitectura del Sistema} es el que se ve en la siguiente figura.
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=0.95\textwidth]{img/infrastructure-pizarra}
+	\caption[Arquitectura del Sistema]{Arquitectura del Sistema}
+	\label{figura:infrastructure-pizarra}
+\end{figure}
 
 \section {Modelo de datos}
 
 Uno de los \Gls{paquete}s más importantes utilizados en la aplicación es \textit{SQLAlchemy} que permite mapear los objetos de Python a una base de datos de tipo relacional. \textit{SQLAlchemy} soporta varios motores de base de datos, entre otros SQLite, MySQL, PostgreSQL, Oracle o MS SQL. En este caso se optará por SQLite para el entorno de desarrollo local (se crea el fichero \textit{database.db} en el directorio raiz del aplicativo) y PostgreSQL para un entorno productivo dado que son de libre uso.
 
-Dados los requerimientos funcionales, se han identificado y creado las siguientes clases de Python que mediante el uso de \textit{SQLAlchemy} podrán ser persistidos, consultados y actualizados en la \acrfull{bd}.
+Dados los requerimientos funcionales, se han identificado y creado las siguientes clases de \textit{python} que mediante el uso de \textit{SQLAlchemy} podrán ser persistidos, consultados y actualizados en la \acrfull{bd}.
 
 \begin{itemize}
 	\item User: usuario del sistema
@@ -918,7 +943,7 @@ Dados los requerimientos funcionales, se han identificado y creado las siguiente
 
 Los modelos expuestos previamente se pueden encontrar en el fichero \textbf{models.py} siguiendo el estándar en \textit{Flask} y se expresan como clases en Python que extienden de la clase \textit{db.Model} del paquete de SQLAlchemy, esto permite la serialización del objeto y su persistencia en la \Gls{bd}. 
 
-A continuación como ejemplo la representación de un equipo:
+A continuación como ejemplo la representación de un equipo (\foreign{english}{Team}):
 
 \begin{code}{models.py}
 	...
@@ -976,7 +1001,7 @@ El framework base de la aplicación, con otros \Gls{paquete}s para dar soporte a
 
 \subsubsection{Colas}
 
-Existen varios sistemas de \Gls{cola}s en Python, en este caso se ha optado por uno que utiliza pocos recursos y permite encolar tareas a ejecutar en cierto determinado de tiempo en el futuro, funcionalidad que será útil para revisar los resultados de ejecuciones en \kahan. \textit{RQ}\footnote{Sitio web RQ: \url{https://python-rq.org/}} (Redis Queue) permitirá desacoplar las colas del aplicativo web al utilizar \textit{Redis} además de disponer de un \foreignlanguage{english}{dashboard} que puede ser embebido en cualquier aplicación web.
+
 
 \begin{itemize}
 	\item rq: librería de Redis Queue
@@ -1009,6 +1034,44 @@ Para poder utilizar las \Gls{cola}s de \kahan es necesario poder conectarnos ví
 	\item lizard: analizador de código estático
 	\item rule\_engine: evaluador de reglas con expresiones lógicas, utilizado para asignar \Gls{insignia}s
 \end{itemize}
+
+
+
+\section{Sistema de colas}
+
+Como se vio previamente, \textit{Pizarra} tiene un sistema de \Gls{cola}s interno. Esto se debe a varios motivos de peso, en primer lugar se quiere hacer una separación de roles entre la aplicación web con la que los usuarios interactúan y la ejecución de código fuente. \textit{Pizarra} debe estar preparado para encolar tareas en el cluster \kahan del \acrshort{dsic}, pero otra de las posibilidades es la disponibilidad de poder hacerlo de forma local para cualquier otra persona que quiera hacer uso del aplicativo. \textit{Tablón}, el software del cual nos hemos inspirado también ofrece ejecución local, pero con ciertas limitaciones, siendo una de ellas la obligación de reiniciar la aplicación cada 60 minutos, como podemos ver en su apartado de preguntas frecuentes (FAQ)\footnote{Tablón FAQ: \url{http://frontendv.infor.uva.es/faq}}
+
+\say{El servidor tablón está configurado para reiniciarse cada cierto tiempo. De está forma se eliminan trabajos erróneos y se eliminan las peticiones http no completadas. El tiempo que resta hasta el próximo reinicio se muestra en la página principal.}
+
+Además, una ejecución local desde el mismo aplicativo obliga a brindarle de recursos necesarios ya sean procesadores y memoria; Esto no es muy eficiente ya que las aplicaciones en Python, y especialmente en \textit{Flask} consumen muy pocos recursos. Por eso mismo, nuestra aplicación se puede ejecutar en dos modos diferentes:
+
+\begin{itemize}
+	\item Modo \textit{Pizarra}: aplicación web con la que interactúan los usuarios
+	\item Modo \textit{Worker}: un proceso que se encarga de revisar en las colas disponibles si hay \textit{Tasks} a procesar
+\end{itemize}
+
+Otro beneficio que brinda esta separación de roles es que se pueden ejecutar un número indefinido de \foreignlanguage{english}{Workers}, donde cada uno puede tener diferentes colas configuradas y unos recursos disponibles exclusivos para cada uno de ellos. La definición de  \foreignlanguage{english}{Worker} y \Gls{cola} que utilizamos están definidos en la librería RQ (Redis Queue) que permite procesar ``trabajos`` de forma asíncrona usando como fuente de datos un servicio de \textit{Redis}
+
+Este proceso se puede ver resumido en la siguiente figura.
+
+
+
+\chapter{Desarrollo de la solución}
+
+
+
+
+La usabilidad es uno de los aspectos más importantes de una aplicación web y en este caso no se puede dejar de lado. Un usuario de \textit{Pizarra} esperará una interfaz intuitiva y fácil de utilizar que le facilite el proceso de envío de soluciones a los problemas propuestos; No queremos que la aplicación se interponga entre el proceso de aprendizaje y la satisfacción de participar y obtener logros. Una gran cantidad de aplicaciones utilizan las mismas librerías para maquetar los sitios web, entre estas librerías la más importante es \textit{Bootstrap}\footnote{Sitio web Bootstrap: \url{https://getbootstrap.com/}}, y además, a partir de estas librerías existen Dashboards o Paneles de Control de código abierto para utilizar como punto de partida en nuevas aplicaciones.
+
+Después de varias búsquedas y pruebas se ha optado por \textit{AdminLTE}\footnote{Sitio web AdminLTE: \url{https://adminlte.io/}} dada su variedad de plantillas disponibles, uso de otras librerías con amplia documentación y un aspecto visual amigable y moderno.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.95\textwidth]{img/admin-lte}
+	\caption[AdminLTE: plantilla de Panel de Control ]{AdminLTE: plantilla de Panel de Control }
+	\label{figura:admin-lte}
+\end{figure}
+
 
 \section{Diseño de la Aplicación en Flask}
 
@@ -1086,18 +1149,18 @@ A continuación varios ejemplos; Una autentificación fallida, un \gls{envio} sa
 \begin{lstlisting}[style=ascii-tree]
 $ curl -k -X POST -F 'file=@primos.c' http://foo:bar@127.0.0.1:5000/assignments/primos
 {
-	"code": 401,
-	"message": "Authentication failed"
+"code": 401,
+"message": "Authentication failed"
 }
 $ curl -k -X POST -F 'file=@primos.c' http://foo:gB8HSgWANT7x7OipnFIkFQkC1sVLpO@127.0.0.1:5000/assignments/primos
 {
-	"code": 201,
-	"message": "Request created, please navigate to http://127.0.0.1:5000/requests/13 to check the results"
+"code": 201,
+"message": "Request created, please navigate to http://127.0.0.1:5000/requests/13 to check the results"
 }
 $ curl -k -X POST -F 'file=@primos.c' http://foo:gB8HSgWANT7x7OipnFIkFQkC1sVLpO@127.0.0.1:5000/assignments/primos
 {
-	"code": 403,
-	"message": "You are sending Requests too fast. Time between Requests is 60 seconds"
+"code": 403,
+"message": "You are sending Requests too fast. Time between Requests is 60 seconds"
 }
 \end{lstlisting}
 
@@ -1109,48 +1172,6 @@ El diagrama de flujo de una petición web es el siguiente:
 	\caption[Diagrama de flujo de una petición web para un Envío]{Diagrama de flujo de una petición web para un Envío}
 	\label{figura:request-flowchart}
 \end{figure}
-
-\section{Sistema de colas}
-
-Como se vio previamente, \textit{Pizarra} tiene un sistema de \Gls{cola}s interno. Esto se debe a varios motivos de peso, en primer lugar se quiere hacer una separación de roles entre la aplicación web con la que los usuarios interactúan y la ejecución de código fuente. \textit{Pizarra} debe estar preparado para encolar tareas en el cluster \kahan del \acrshort{dsic}, pero otra de las posibilidades es la disponibilidad de poder hacerlo de forma local para cualquier otra persona que quiera hacer uso del aplicativo. \textit{Tablón}, el software del cual nos hemos inspirado también ofrece ejecución local, pero con ciertas limitaciones, siendo una de ellas la obligación de reiniciar la aplicación cada 60 minutos, como podemos ver en su apartado de preguntas frecuentes (FAQ)\footnote{Tablón FAQ: \url{http://frontendv.infor.uva.es/faq}}
-
-\say{El servidor tablón está configurado para reiniciarse cada cierto tiempo. De está forma se eliminan trabajos erróneos y se eliminan las peticiones http no completadas. El tiempo que resta hasta el próximo reinicio se muestra en la página principal.}
-
-Además, una ejecución local desde el mismo aplicativo obliga a brindarle de recursos necesarios ya sean procesadores y memoria; Esto no es muy eficiente ya que las aplicaciones en Python, y especialmente en \textit{Flask} consumen muy pocos recursos. Por eso mismo, nuestra aplicación se puede ejecutar en dos modos diferentes:
-
-\begin{itemize}
-	\item Modo \textit{Pizarra}: aplicación web con la que interactúan los usuarios
-	\item Modo \textit{Worker}: un proceso que se encarga de revisar en las colas disponibles si hay \textit{Tasks} a procesar
-\end{itemize}
-
-Otro beneficio que brinda esta separación de roles es que se pueden ejecutar un número indefinido de \foreignlanguage{english}{Workers}, donde cada uno puede tener diferentes colas configuradas y unos recursos disponibles exclusivos para cada uno de ellos. La definición de  \foreignlanguage{english}{Worker} y \Gls{cola} que utilizamos están definidos en la librería RQ (Redis Queue) que permite procesar ``trabajos`` de forma asíncrona usando como fuente de datos un servicio de \textit{Redis}
-
-Este proceso se puede ver resumido en la siguiente figura.
-
-\begin{figure}[ht]
-	\centering
-	\includegraphics[width=0.90\textwidth]{img/queues}
-	\caption[Proceso que sigue un Envío en la Cola interna]{Proceso que sigue un Envío en la Cola interna}
-	\label{figura:queues}
-\end{figure}
-
-
-\chapter{Desarrollo de la solución}
-
-
-Ya escogido el lenguaje de programación, el próximo paso es analizar las posibilidades para la aplicación web en sí que será el punto de acceso a los usuarios. Debido a experiencia previa en otra asignatura de la carrera universitaria he decido optar por \textit{Flask}\footnote{Sitio web Flask: \url{https://flask.palletsprojects.com/en/1.1.x/}}, un micro-framework de Python con gran acogida por la comunidad que incluye un sistema de plantillas para la generación de páginas web llamado \text{Jinja}. 
-
-La usabilidad es uno de los aspectos más importantes de una aplicación web y en este caso no se puede dejar de lado. Un usuario de \textit{Pizarra} esperará una interfaz intuitiva y fácil de utilizar que le facilite el proceso de envío de soluciones a los problemas propuestos; No queremos que la aplicación se interponga entre el proceso de aprendizaje y la satisfacción de participar y obtener logros. Una gran cantidad de aplicaciones utilizan las mismas librerías para maquetar los sitios web, entre estas librerías la más importante es \textit{Bootstrap}\footnote{Sitio web Bootstrap: \url{https://getbootstrap.com/}}, y además, a partir de estas librerías existen Dashboards o Paneles de Control de código abierto para utilizar como punto de partida en nuevas aplicaciones.
-
-Después de varias búsquedas y pruebas se ha optado por \textit{AdminLTE}\footnote{Sitio web AdminLTE: \url{https://adminlte.io/}} dada su variedad de plantillas disponibles, uso de otras librerías con amplia documentación y un aspecto visual amigable y moderno.
-
-\begin{figure}[ht]
-	\centering
-	\includegraphics[width=0.95\textwidth]{img/admin-lte}
-	\caption[AdminLTE: plantilla de Panel de Control ]{AdminLTE: plantilla de Panel de Control }
-	\label{figura:admin-lte}
-\end{figure}
-
 
 \section{Entregables}
 
