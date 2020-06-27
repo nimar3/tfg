@@ -80,6 +80,8 @@
 	}%
 }{}
 
+\hypersetup{citecolor=black}
+
 \usepackage{listings}
 \lstdefinestyle{ascii-tree}{
 	literate={├}{|}1 {─}{--}1 {└}{+}1 ,
@@ -107,7 +109,7 @@
 \newglossaryentry{cola}{name={Cola},description={Estructura de datos que sigue una filosofía FIFO}}
 \newglossaryentry{clase}{name={Clase},description={Plantilla para la creación de objetos de datos según un modelo predeterminado}}
 \newglossaryentry{paquete}{name={Paquete},description={Carpeta que contiene varios módulos de Python}}
-\newglossaryentry{envio}{name={Envio},description={Petición web que incluye el código fuente a compilar y ejecutar como propuesta de solución a una Tarea}}
+\newglossaryentry{envio}{name={Envío},description={Petición web que incluye el código fuente a compilar y ejecutar como propuesta de solución a una Tarea}}
 
 \newacronym{dsic}{DSIC}{Departamento de Sistemas Informáticos y Computación}
 \newacronym{upv}{UPV}{Universitat Politècnica de València}
@@ -265,15 +267,15 @@ En esta memoria se han seguido una serie de convenciones listadas a continuació
 
 \chapter{Análisis del problema}
 
-Como todo proyecto de desarrollo de software se debe seguir un modelo o proceso que garantice el éxito y la calidad del producto final. Siguiendo un proceso tradicional el primer paso es la ``toma de requisitos'' en el cual se realiza un análisis que involucra a los usuarios (Actores) que utilizarán el sistema, cada uno con sus necesidades (Requisitos). De este estudio se llegará una especificación funcional del software antes de comenzar a escribir siquiera una linea de código. Una vez terminada esta etapa se irán sucediendo las siguientes en próximos capítulos en el orden habitual de un modelo en cascada: toma de requisitos, diseño, implementación, implantación y mantenimiento.
+Como todo proyecto de desarrollo de software se debe seguir un modelo o proceso que garantice el éxito y la calidad del producto final. Siguiendo un modelo tradicional el primer paso es la documentación de requisitos \cite{libingreq} en el cual se realiza un análisis que involucra a los usuarios (Actores) que utilizarán el sistema, cada uno con sus necesidades (Requisitos). De este estudio se llegará una especificación funcional del software antes de comenzar a escribir siquiera una linea de código. Una vez terminada esta etapa se irán sucediendo las siguientes en próximos capítulos dado el orden habitual de un ciclo de vida clásico \cite{libingsoft} o en ``cascada'': toma de requisitos, diseño, implementación, implantación y mantenimiento.
 
 \section{Actores}
 
-El sistema contará con dos perfiles de usuarios que llamaremos actores, estos son el \Gls{alumno} y \Gls{administrador}. También veremos que en la memoria se hace mención al ``usuario`` (\foreign{english}{User}), esto se hace para referirnos a funcionalidades que se aplican tanto a los \gls{alumno}s como \gls{administrador}es
+El sistema contará con dos perfiles de usuarios que llamaremos actores, estos son el \Gls{alumno} y \Gls{administrador}. También veremos que en la memoria se hace mención al ``usuario`` (\foreign{english}{User}), esto se hace para referirnos a funcionalidades que se aplican tanto a los \gls{alumno}s como \gls{administrador}es.
 
 \begin{itemize}
-	\item \textbf{\gls{alumno}}: el actor principal del sistema. Enviará soluciones a los problemas propuestos y tratará de mejorar sus resultados para subir su ranking en las tablas de posiciones. Su trabajo será recompensado en forma de puntos e insignias, que son trofeos o marcas obtenidas después de lograr cierto objetivo. Un alumno pertenecerá a un \gls{grupo} (\foreign{english}{Group}) que será el curso en el cual está matriculado y también podrá formar un \gls{equipo} (\foreign{english}{Team}) con sus compañeros de clase para resolver problemas en conjunto.
-	\item \textbf{\gls{administrador}}: el actor que se encarga de poner el sistema en marcha. Tendrá que tener conocimientos sólidos en programación paralela para poder crear tareas que varíen en dificultad y motive al alumnado a mejorar sus resultados. Normalmente será el profesor de la asignatura \acrshort{lpp} o \acrshort{cpa}.
+	\item \textbf{\gls{alumno}}: el actor principal del sistema. Enviará soluciones a los problemas propuestos y tratará de mejorar sus resultados para subir su ranking en las tablas de posiciones (\foreign{english}{Leaderboard}). Su trabajo será recompensado en forma de puntos e insignias, que son trofeos o marcas obtenidas después de lograr cierto objetivo. Un alumno pertenecerá a un \gls{grupo} (\foreign{english}{Group}) que será el curso en el cual está matriculado y también podrá formar un \gls{equipo} (\foreign{english}{Team}) con sus compañeros de clase para resolver problemas en conjunto.
+	\item \textbf{\gls{administrador}}: el actor que se encarga de poner el sistema en marcha. Tendrá que tener conocimientos sólidos en programación paralela para poder crear \gls{tarea}s que varíen en dificultad y motive al alumnado a mejorar sus resultados. Normalmente será el profesor de la asignatura \acrshort{lpp} o \acrshort{cpa}.
 \end{itemize}
 
 Antes de comenzar a listar las \textbf{Historias de usuario} hay dos conceptos importantes a definir que son los de \gls{tarea} (\foreign{english}{Assignment}) y \gls{envio} (\foreign{english}{Request}). La \gls{tarea} este es un problema o ejercicio a resolver en la aplicación con una serie de entradas y una salida (resultado) que el \gls{alumno} desconoce; la \gls{tarea} es creada por el \gls{administrador}. El \gls{envio} es una petición web de un \textit{usuario} hacia la aplicación web con el código fuente a compilar y ejecutar que tratará de dar solución a una \gls{tarea} específica. 
@@ -1702,10 +1704,17 @@ En el menú se visualizará el nuevo idioma disponible.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % MODEL DE LLIBRE                                                             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\bibitem{ifrah}
-   Georges Ifrah.
-   \newblock \textit{Historia universal de las cifras}.
-   \newblock Espasa Calpe, S.A., Madrid, sisena edició, 2008.
+
+\bibitem{libingreq}
+	del Águila Cano, Isabel María.
+	\newblock ``Documentación de los requisitos''. \textit{Ingeniería de requisitos: Material didáctico. Cuaderno de teoría}.
+	\newblock Almería, Editorial Universidad de Almería, 2019, pp 67-82.ISBN: 9788417261795
+
+\bibitem{libingsoft}
+	Amo, F. Alonso. Martínez Normand, Loïc A. Segovia Pérez, Francisco Javier.
+	\newblock ``El ciclo de vida clásico''. \textit{Introducción a la Ingeniería del software}.
+	\newblock Madrid: Delta Publicaciones, 2005, pp. 77-91. ISBN: 8496477002
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % MODEL D'URL                                                                 %
