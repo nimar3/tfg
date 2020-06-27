@@ -111,7 +111,7 @@
 
 \newacronym{dsic}{DSIC}{Departamento de Sistemas Informáticos y Computación}
 \newacronym{upv}{UPV}{Universitat Politècnica de València}
-\newacronym{etsinf}{ETSINF}{Escuela Técnica Superior de Ingeniería Informática}
+\newacronym{etsinf}{ETSINF}{Escola Tècnica Superior d'Enginyeria Informàtica}
 \newacronym{cpa}{CPA}{Computación Paralela}
 \newacronym{lpp}{LPP}{Lenguajes y Entornos de la Programación Paralela}
 \newacronym{tfg}{TFG}{Trabajo Final de Grado}
@@ -160,7 +160,7 @@
 
 	\chapter*{Agradecimientos}
 		A mi tutor Pedro Alonso Jordá por su apoyo y la oportunidad de hacer este proyecto con la esperanza que produzca un impacto positivo en la enseñanza en los cursos venideros. \par
-		A la ETSINF y todos sus profesores, gracias a ellos he podido crecer personal y profesionalmente. \par
+		A la Escola Tècnica Superior d'Enginyeria Informàtica y todos sus profesores, gracias a ellos he podido crecer personal y profesionalmente. \par
 		Al Ministerio de Educación y Gobierno de España, gracias a sus ayudas he podido acceder los estudios de grado.
 		
 \end{dedication}
@@ -202,31 +202,39 @@ Este proyecto ha sido realizado con el apoyo del DSIC de la UPV con la finalidad
 
 En este proyecto se trabajarán dos conceptos importantes, la programación paralela y la \textit{gamificación}. \par
 
-La programación paralela es una rama importante de la computación donde se busca partir problemas de gran magnitud en pedazos más pequeños donde cada partición es ejecutada de forma simultánea por diferentes recursos computacionales de forma coordinada. Este tipo de ejecución tiene varias ventajas como la posibilidad de obtener soluciones a problemas que no pueden ser resueltos en un tiempo razonable, que tienen un orden y complejidad mayor, y que no podrían resolverse con el uso de una única \gls{cpu}. La programación paralela también trae sus desventajas como una mayor complejidad al escribir los programas, evitar condiciones de carrera y la sincronización entre los recursos. \par
+La programación paralela es una rama importante de la computación donde se busca partir problemas de gran magnitud en pedazos más pequeños donde cada partición es ejecutada de forma simultánea por diferentes recursos computacionales de forma coordinada. Este tipo de ejecución tiene varias ventajas como la posibilidad de obtener soluciones a problemas que no pueden ser resueltos en un tiempo razonable, que tienen un orden y complejidad mayor. La programación paralela también trae sus desventajas como una mayor complejidad al escribir los programas, evitar condiciones de carrera y la sincronización entre los recursos. \par
 
-La gamificación como estrategia para motivar al alumnado añadiendo elementos y estructuras propias de juegos como destacar en posiciones de clasificación, la competencia entre equipos y la obtención de premios. 
+La gamificación es una técnica o método de aprendizaje que busca potenciar la motivación, esfuerzo e implicación utilizando elementos y estructuras propias de juegos como destacar en posiciones de clasificación, la competencia entre equipos y la obtención de premios. Todo esto para crear una experiencia positiva y dinámica que implique a los usuarios y produzca una asimilación natural de los contenidos. \par
 
-Estos añadidos estimulan y hacen más atractiva la participación de los estudiantes y así llegar a transformar las actividades de laboratorio de \acrfull{lpp}, asignatura de la rama de Computación, así como también a los de \acrfull{cpa}, asignatura obligatoria del tercer bloque; ambas del \acrfull{gii}. \par
+El objetivo es crear una herramienta de software (aplicación web) que acerque estos ``dos mundos'' y crear a una experiencia que fomente la colaboración, incentive al alumnado en mejorar sus resultados y afianzar conceptos desde el marco de la competición.
 
-El objetivo final es crear una herramienta de software (aplicación web) que acerque estos ``dos mundos'' y así crear a una experiencia que fomente la colaboración, incentive al alumnado en mejorar sus resultados y afianzar conceptos desde el marco de la competición.
+Con la implementación de un sitio web para un concurso de programación paralela y el uso de la gamificación se espera lograr una mejora en la participación de los estudiantes y así llegar a transformar las actividades de laboratorio de \acrfull{lpp}, asignatura de la rama de Computación, como también la de \acrfull{cpa}, asignatura obligatoria del tercer bloque; ambas del \acrfull{gii} de la \acrfull{etsinf}. \par
 
 \section{Motivación}
 
 Desde el inicio de mis estudios en el \acrshort{gii} me han interesado los concursos de programación, ya sean los promovidos desde la propia \acrshort{etsinf} así como también los disponibles en plataformas online como UVa\footnote{UVa Online Judge website: \url{https://onlinejudge.org/}}, HackerRank\footnote{HackerRank website: \url{https://www.hackerrank.com/}}, CheckIO\footnote{CheckIO website: \url{https://checkio.org/}} y Project Euler\footnote{Project Euler website: \url{https://projecteuler.net/}}. Estas competiciones ayudan a promover el interés en diferentes conceptos fundamentales que debe conocer cualquier profesional de las Ciencias de la Computación, como son las estructuras de datos y la algoritmia, con el añadido de un marco lúdico con elementos de lo que llamamos previamente gamificación. \par
 
-Normalmente los concursos o competiciones de programación sólo buscan la resolución de una serie de problemas para un conjunto finito de entradas sin importar los tiempos de ejecución o su eficiencia. Por eso al ver la publicación de la propuesta del \acrfull{tfg} donde se añade la programación paralela me ha despertado el interés ya que también se premiará la eficacia del código en obtener una solución en el menor tiempo posible y el añadido de tener que trabajar con un elemento externo como lo es el \foreign{english}{cluster} \kahan del \acrfull{dsic}.  \par
+Normalmente los concursos o competiciones de programación sólo buscan la resolución de una serie de problemas para un conjunto finito de entradas sin importar los tiempos de ejecución o su eficiencia. Por eso al ver la publicación de la propuesta del \acrfull{tfg} donde se añade la programación paralela me ha despertado el interés ya que también se premiará la eficacia del código, esto es, obtener una solución correcta en el menor tiempo posible y además, el añadido de tener que trabajar con un elemento externo como lo es el \foreign{english}{cluster} \kahan del \acrfull{dsic}.  \par
 
-Crear esta aplicación que podrán utilizar los alumnos en cursos venideros es mi principal motivación y forma de devolver a la Universidad todas las herramientas que me ha dado, haberme formado y ayudarme a convertirme en un profesional de la Informática. 
+Crear esta aplicación que podrán utilizar los alumnos en cursos venideros es mi principal motivación y forma de devolver a la Universidad las herramientas y formación recibida para lograr convertirme en un profesional de la Informática. 
 
 \section{Objetivo}
 
-Desde mi punto de vista no existe un único objetivo al realizar un \acrfull{tfg}, mas allá de que el principal sea la implementación de un sitio web para concursos de programación paralela. Existen otros puntos importantes a considerar como la documentación del proceso realizado, lo que se ha aprendido y qué aportes puede brindar a la comunidad científica. \par 
+Desde mi punto de vista no existe un único objetivo al realizar un \acrshort{tfg}, mas allá de que el principal de este sea la implementación de un sitio web para concursos de programación paralela existen otros puntos importantes a considerar; la documentación del proceso realizado, los conocimientos aplicados, lo que se ha aprendido y qué aportes puede brindar a la comunidad científica. \par 
 
-Otros objetivos adicionales o secundarios son: 1) el seguimiento de un proceso formal para el análisis, diseño, implantación y mantenimiento del software, siendo conceptos previamente vistos en la rama de Ingeniería de Software y esenciales en cualquier proyecto ingenieril; 2) ofrecer una herramienta \foreign{english}{open source} abierta a la colaboración, de uso libre y a disposición de otros centros de estudio; 3) explorar nuevas herramientas utilizadas actualmente en el mercado ampliando así mis capacidades como profesional de la Informática.
+Considero de suma importancia poner de manifiesto los siguientes objetivos secundarios: 1) el seguimiento de un proceso formal para el análisis, diseño, implantación y mantenimiento del software, siendo conceptos previamente vistos en la rama de Ingeniería de Software y esenciales en cualquier proyecto ingenieril; 2) ofrecer una herramienta \foreign{english}{open source} abierta a la colaboración, de uso libre y a disposición de otros centros de estudio; 3) explorar nuevas herramientas utilizadas actualmente en el mercado ampliando así mis capacidades como profesional de la Informática.
+
+\section{Impacto esperado}
+
+La creación de este producto logra una serie de mejoras con respecto a las alternativas actuales de software para competiciones de programación paralela. Como principal característica se añade la posibilidad de despliegue de la aplicación en un servicio en la nube (\foreign{english}{cloud}) y el uso de tecnologías actuales en el ámbito del desarrollo de software como lo son \textit{Docker} y \textit{Kubernetes} 
+
+Otro beneficio añadido es la simple implantación por parte del \gls{administrador} ofreciendo una interfaz web de configuración y mantenimiento amigable donde en la competencia son inexistentes o muy pobres. Así como también al \gls{alumno} se le simplifica la interacción con la aplicación utilizando peticiones web estándar haciendo uso de una \acrshort{api} sin la necesidad de software adicional.
+
+En su conjunto la solución completa que se detalla en la memoria, de fácil extensibilidad, localizada en distintos idiomas y abierta mejoras por parte de la comunidad de desarrollo da pie a otros centros de estudio a considerarla como un herramienta adicional a la enseñanza.
 
 \section{Estructura de la memoria}
 
-La memoria recoge el proceso de ``desarrollo del software`` o ``ciclo de vida del software`` con bloques adicionales que forman parte de un \acrshort{tfg} como lo son el Estado del arte o las Conclusiones. Está dividida en los siguientes capítulos, cada uno con sus objetivos.
+La memoria recoge el proceso de ``desarrollo del software'' o ``ciclo de vida del software'' con bloques adicionales que forman parte de un \acrshort{tfg} como lo son el Estado del arte o las Conclusiones. Está dividida en los siguientes capítulos, cada uno con sus objetivos.
 
 \begin{itemize}
 	\item \textbf{Estado del arte}: análisis de las alternativas que existen al trabajo planteado. 
@@ -238,6 +246,16 @@ La memoria recoge el proceso de ``desarrollo del software`` o ``ciclo de vida de
 	\item \textbf{Extensibilidad}: disertación acerca de las formas en las cuales se pueden añadir funcionalidades nuevas.
 	\item \textbf{Conclusiones}: reflexiones finales sobre el \acrshort{tfg} y los objetivos alcanzados.
 	\item \textbf{Trabajos futuros}: propuesta de puntos interesantes a tratar en próximas iteraciones o nuevas versiones del software.
+\end{itemize}
+
+\section{Convenciones}
+
+En esta memoria se han seguido una serie de convenciones listadas a continuación:
+
+\begin{itemize}
+	\item las palabras en inglés que aparecen entre paréntesis a continuación de un término hacen referencia a al objeto en \textit{python} que lo representa en el código fuente.
+	\item el código fuente de la aplicación incluido en la memoria tiene en su etiqueta la ubicación del fichero al que hace referencia.
+	\item las palabras en inglés están remarcadas en cursiva.
 \end{itemize}
 
 \chapter{Estado del arte}
@@ -258,7 +276,7 @@ El sistema contará con dos perfiles de usuarios que llamaremos actores, estos s
 	\item \textbf{\gls{administrador}}: el actor que se encarga de poner el sistema en marcha. Tendrá que tener conocimientos sólidos en programación paralela para poder crear tareas que varíen en dificultad y motive al alumnado a mejorar sus resultados. Normalmente será el profesor de la asignatura \acrshort{lpp} o \acrshort{cpa}.
 \end{itemize}
 
-Antes de comenzar a listar las \textbf{Historias de usuario} hay dos conceptos importante a definir que son los de \gls{tarea} (\foreign{english}{Assignment}) y \gls{envio} (\foreign{english}{Request}). La \gls{tarea} este es un problema o ejercicio a resolver en la aplicación con una serie de entradas y una salida (resultado) que el \gls{alumno} desconoce; la \gls{tarea} es creada por el \gls{administrador}. El \gls{envio} es una petición web de un \textit{usuario} hacia la aplicación web con el código fuente a compilar y ejecutar que tratará de dar solución a una \gls{tarea} específica. 
+Antes de comenzar a listar las \textbf{Historias de usuario} hay dos conceptos importantes a definir que son los de \gls{tarea} (\foreign{english}{Assignment}) y \gls{envio} (\foreign{english}{Request}). La \gls{tarea} este es un problema o ejercicio a resolver en la aplicación con una serie de entradas y una salida (resultado) que el \gls{alumno} desconoce; la \gls{tarea} es creada por el \gls{administrador}. El \gls{envio} es una petición web de un \textit{usuario} hacia la aplicación web con el código fuente a compilar y ejecutar que tratará de dar solución a una \gls{tarea} específica. 
 
 Adicionalmente cuando en la memoria se haga mención a la palabra \foreign{english}{job} no nos referimos a una \gls{tarea} sino a un ``trabajo'' a procesarse en una cola (\foreign{english}{queue}) interna o de \kahan.
 
