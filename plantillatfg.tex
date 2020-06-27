@@ -136,6 +136,7 @@
 \newacronym{cpu}{CPU}{Unidad central de procesamiento}
 \newacronym{wsgi}{WSGI}{Web Server Gateway Interface}
 \newacronym{http}{HTTP}{Hypertext Transfer Protocol}
+\newacronym{json}{JSON}{JavaScript Object Notation}
 
 
 \usepackage{listings}
@@ -267,11 +268,11 @@ En esta memoria se han seguido una serie de convenciones listadas a continuació
 
 \chapter{Análisis del problema}
 
-Como todo proyecto de desarrollo de software se debe seguir un modelo o proceso que garantice el éxito y la calidad del producto final. Siguiendo un modelo tradicional el primer paso es la documentación de requisitos \cite{libingreq} en el cual se realiza un análisis que involucra a los usuarios (Actores) que utilizarán el sistema, cada uno con sus necesidades (Requisitos). De este estudio se llegará una especificación funcional del software antes de comenzar a escribir siquiera una linea de código. Una vez terminada esta etapa se irán sucediendo las siguientes en próximos capítulos dado el orden habitual de un ciclo de vida clásico \cite{libingsoft} o en ``cascada'': toma de requisitos, diseño, implementación, implantación y mantenimiento.
+Como en todo proyecto de desarrollo de software debemos escoger un modelo o proceso que garantice el éxito y la calidad del producto final. Siguiendo un modelo tradicional el primer paso es la documentación de requisitos \cite{libingreq} en el cual se realiza un análisis que involucra a los usuarios (Actores) que utilizarán el sistema, cada uno con sus necesidades (Requisitos). De este estudio se llegará una especificación funcional del software antes de comenzar a escribir siquiera una linea de código. Una vez terminada esta etapa se irán sucediendo las siguientes en próximos capítulos dado el orden habitual de un ciclo de vida clásico \cite{libingsoft} o en ``cascada'': toma de requisitos, diseño, implementación, implantación y mantenimiento.
 
 \section{Actores}
 
-El sistema contará con dos perfiles de usuarios que llamaremos actores, estos son el \Gls{alumno} y \Gls{administrador}. También veremos que en la memoria se hace mención al ``usuario`` (\foreign{english}{User}), esto se hace para referirnos a funcionalidades que se aplican tanto a los \gls{alumno}s como \gls{administrador}es.
+El sistema contará con dos perfiles de usuarios que llamaremos actores, estos son el \Gls{alumno} y \Gls{administrador}. También veremos que en la memoria se hace mención al ``usuario'' (\foreign{english}{User}), esto se hace para referirnos a funcionalidades que se aplican tanto a los \gls{alumno}s como \gls{administrador}es.
 
 \begin{itemize}
 	\item \textbf{\gls{alumno}}: el actor principal del sistema. Enviará soluciones a los problemas propuestos y tratará de mejorar sus resultados para subir su ranking en las tablas de posiciones (\foreign{english}{Leaderboard}). Su trabajo será recompensado en forma de puntos e insignias, que son trofeos o marcas obtenidas después de lograr cierto objetivo. Un alumno pertenecerá a un \gls{grupo} (\foreign{english}{Group}) que será el curso en el cual está matriculado y también podrá formar un \gls{equipo} (\foreign{english}{Team}) con sus compañeros de clase para resolver problemas en conjunto.
@@ -284,34 +285,48 @@ Adicionalmente cuando en la memoria se haga mención a la palabra \foreign{engli
 
 \section{Historias de usuario}
 
-El primer paso es realizar una entrevista con los actores involucrados para describir el resultado esperado de este proyecto en un lenguaje sencillo que más adelante darán partida a los requisitos funcionales y no funcionales de la aplicación. A esto se le llama \textbf{Historias de usuario}. Para este caso en particular ambos actores fueron interpretados por el tutor y el autor del \acrshort{tfg} intercambiando roles al comienzo de la elaboración de la memoria.
+El primer paso es realizar una entrevista con los actores involucrados para describir sus necesidades en un lenguaje sencillo que más adelante darán partida a los requisitos funcionales (\acrshort{rf})  y no funcionales de la aplicación (\acrshort{rnf}). A esto se le llama \textbf{Historias de usuario}. \par
+
+Para este caso en particular ambos actores fueron interpretados por el tutor y el autor del \acrshort{tfg} intercambiando roles al comienzo de la elaboración de la memoria y el resultado es el siguiente:
 
 \begin{itemize}
 	\item Como \gls{alumno}, quiero ingresar al sistema utilizando mis credenciales personales.
 	\item Como \gls{alumno}, quiero cambiar mi contraseña.
-	\item Como \gls{alumno}, quiero registrarme en el sistema para poder hacer uso del mismo.
-	\item Como \gls{alumno}, quiero enviar las resoluciones a mis \gls{tarea}s asignadas.
+	\item Como \gls{alumno}, quiero poder registrarme en el sistema.
+	\item Como \gls{alumno}, quiero ver un listado de los integrantes de mi \gls{grupo}.
+	\item Como \gls{alumno}, quiero ver un listado de mis \gls{tarea}s a resolver.
+	\item Como \gls{alumno}, quiero ver el listado de posiciones de mi \gls{grupo}.
+	\item Como \gls{alumno}, quiero ver el listado de posiciones de una \gls{tarea}. 
+	\item Como \gls{alumno}, quiero poder hacer un \gls{envio} a una de mis \gls{tarea}s asignadas.
 	\item Como \gls{alumno}, quiero formar parte de un equipo con otros \gls{alumno}s de mi \gls{grupo}.
+	\item Como \gls{alumno}, quiero ver las \gls{insignia}s que he obtenido.
 	\item Como \gls{alumno}, quiero acceder a mi perfil para ver toda mi información.
-	\item Como \gls{alumno}, quiero visualizar los resultados de las ejecuciones para ver como han quedado posicionadas en la tabla de clasificación.
+	\item Como \gls{alumno}, quiero visualizar los resultados de los \gls{envio}s.
 	\item Como \gls{alumno}, quiero ver un resumen de mi actividad.
-	\item Como \gls{administrador}, quiero crear \gls{grupo}s para que los \gls{alumno}s puedan formar parte de ellos.
-	\item Como \gls{administrador}, quiero crear \gls{alumno}s subiendo un fichero csv o txt.
-	\item Como \gls{administrador}, quiero crear y asignar \gls{tarea}s a diferentes \gls{grupo}s.
-	\item Como \gls{administrador}, quiero crear \gls{insignia}s para asignar a \gls{tarea}s.
-	\item Como \gls{administrador}, quiero editar y eliminar \gls{grupo}s, \gls{alumno}s, \gls{tarea}s e \gls{insignia}s.
+	\item Como \gls{alumno}, quiero ver la cantidad de puntos que tengo.
+	\item Como \gls{administrador}, quiero crear \gls{grupo}s.
+	\item Como \gls{administrador}, quiero borrar \gls{grupo}s.
+	\item Como \gls{administrador}, quiero asignar \gls{alumno}s a \gls{grupo}s.
+	\item Como \gls{administrador}, quiero crear \gls{alumno}s subiendo un fichero.
+	\item Como \gls{administrador}, quiero borrar \gls{alumno}s.
+	\item Como \gls{administrador}, quiero restablecer la contraseña de un \gls{alumno}.
+	\item Como \gls{administrador}, quiero crear y asignar \gls{tarea}s a uno o más \gls{grupo}s.
+	\item Como \gls{administrador}, quiero crear \gls{insignia}s y asignarlas a una o más \gls{tarea}s.
+	\item Como \gls{administrador}, quiero asignar \gls{insignia}s a una o más \gls{tarea}s.
+	\item Como \gls{administrador}, quiero editar \gls{tarea}s.
+	\item Como \gls{administrador}, quiero editar \gls{insignia}s.
 	\item Como \gls{administrador}, quiero poder configurar la aplicación.
 	\item Como \gls{administrador}, quiero desplegar la aplicación en una solución \foreign{english}{cloud}.
 \end{itemize}
 
 \section{Requisitos funcionales}
 
-Una vez identificadas las \textbf{Historias de Usuario} más importantes el próximo paso es convertirlas en requisitos funcionales formales , específicos y consistentes. Esto evitará ambigüedades y dejará por sentado como se comportará el sistema. Aquí se describen todos los requisitos funcionales del aplicativo siguiendo una plantilla estandarizada con los siguientes campos:
+Una vez identificadas las \textbf{Historias de Usuario} más importantes el próximo paso es convertirlas en requisitos funcionales formales, específicos y consistentes. Esto evitará ambigüedades y dejará por sentado como se comportará el sistema. Aquí se describen todos los requisitos del aplicativo siguiendo una plantilla adaptada de varios modelos consultados en Internet \cite{link-esp-rq-jan}. A La plantilla creada se le ha añadido un identificador único para dar un seguimiento durante la etapa de desarrollo, pruebas y entrega final; la misma tiene los siguientes apartados:
 
 \begin{itemize}
 	\item \textbf{Nombre}: título del requerimiento funcional.
 	\item \textbf{Descripción}: objetivo que debe cumplir el requisito.
-	\item \textbf{Prioridad}: nivel de importancia. \\
+	\item \textbf{Prioridad}: nivel de importancia. 
 	\begin{itemize}
 		\item Muy Alta.
 		\item Alta.
@@ -319,10 +334,8 @@ Una vez identificadas las \textbf{Historias de Usuario} más importantes el pró
 		\item Baja.
 	\end{itemize}
 	
-	\item \textbf{Criterio de aceptación}: condiciones que se deben cumplir o satisfacer para que el requisito se considere cumplido.
+	\item \textbf{Criterio de aceptación}: condiciones que se deben cumplir o satisfacer para que el requisito se considere realizado.
 \end{itemize}
-
-Además, para dar un seguimiento durante la etapa de desarrollo, pruebas y entrega final se le añade un identificador único.
 
 \begin{table}[!ht]
 	\centering
@@ -360,9 +373,7 @@ Además, para dar un seguimiento durante la etapa de desarrollo, pruebas y entre
 		Prioridad & Muy Alta\\
 		\hline
 		Criterio de aceptación & 
-		\begin{tabitem}
-			\item solo se podrá ingresar al sistema si la cuenta está activa
-		\end{tabitem} \\
+			solo se podrá ingresar al sistema si la cuenta está activa \\
 		\hline
 	\end{tabular}
 	\caption{RF-2 Ingreso de usuarios}
@@ -486,7 +497,7 @@ Además, para dar un seguimiento durante la etapa de desarrollo, pruebas y entre
 		Criterio de aceptación & Se deben mostrar los siguientes apartados e información: \newline  
 		\begin{tabitem}
 			\item si el usuario es un \gls{alumno} se deben mostrar las tareas asignadas a su grupo
-			\item si el usuario es un \gls{alumno} se deben mostrar todas las tareas en el sistema
+			\item si el usuario es un \gls{administrador} se deben mostrar todas las tareas en el sistema
 			\item por cada \gls{tarea} debe haber un resumen, insignias y últimos envíos
 			\item no se deben mostrar las \gls{insignia}s secretas
 		\end{tabitem} \\
@@ -528,20 +539,25 @@ Además, para dar un seguimiento durante la etapa de desarrollo, pruebas y entre
 	\begin{tabular}{ |p{4cm}||p{10cm}|  }
 		\multicolumn{2}{l}{\textbf{RF-9}} \\
 		\hline
-		Nombre   & FAQ \\
+		Nombre   & Envío \\
 		\hline
-		Descripción  & Página con preguntas frecuentes que se pueden hacer los usuarios del sistema y sus respuestas  \\
+		Descripción  & \acrshort{api} disponible a los \textit{usuarios} para las peticiones web que contienen código fuente  \\
 		\hline
-		Prioridad &  Baja\\
+		Prioridad &  Muy Alta\\
 		\hline
-		Criterio de aceptación & 
+		Criterio de aceptación & La API creada para el \gls{envio} de código fuente debe cumplir con los siguientes apartados: \newline
 		\begin{tabitem}
-			\item debe estar localizado en al menos 2 idiomas
-			\item no debe contener más de 10 preguntas
+			\item las peticiones deben ser seguran con la utilización de un token único por usuario
+			\item la URL de envío debe ser única por \gls{tarea}
+			\item si el usuario es un \gls{alumno} se debe limitar la cantidad de peticiones que puede hacer en una franja de tiempo determinada (segundos)
+			\item si el usuario es un \gls{alumno} debe verificarse que la \gls{tarea} esté asignada a su \gls{grupo} y se encuentra abierta para recibir peticiones
+			\item si el usuario es un \gls{administrador} no debe existir ningún tipo de limitación en las peticiones web
+			\item dependiendo el resultado de la ejecución de un \gls{envio} se le deben asignar los puntos correspondientes
+			\item las respuestas deben ser en formato \acrshort{json}
 		\end{tabitem} \\
 		\hline
 	\end{tabular}
-	\caption{RF-9 FAQ}
+	\caption{RF-9 Envío}
 	\label{table:9}
 \end{table}
 
@@ -684,7 +700,7 @@ Además, para dar un seguimiento durante la etapa de desarrollo, pruebas y entre
 		Debe mostrarse una resumen con la siguiente información y funcionalidades: \newline
 		\begin{tabitem}
 			\item colas internas disponibles y su estado
-			\item información sobre las \foreign{english}{tasks} encoladas y en espera
+			\item información sobre las \foreign{english}{jobs} en las colas.
 		\end{tabitem} \\
 		\hline
 	\end{tabular}
@@ -704,7 +720,7 @@ Además, para dar un seguimiento durante la etapa de desarrollo, pruebas y entre
 		Prioridad & Alta\\
 		\hline
 		Criterio de aceptación & Solo los \gls{administrador}es pueden acceder a esta página. \newline
-		Se debe poder borrar \gls{alumno}s del sistema y resetear sus contraseñas. \newline
+		Se debe poder borrar \gls{alumno}s del sistema y regenerar sus contraseñas. \newline
 		El listado de \gls{alumno}s debe contener la siguiente información: \newline
 		\begin{tabitem}
 			\item nombre de usuario, correo y nombre
@@ -781,13 +797,36 @@ Además, para dar un seguimiento durante la etapa de desarrollo, pruebas y entre
 	\label{table:18}
 \end{table}
 
+\begin{table}[ht!]
+	\centering
+	\begin{tabular}{ |p{4cm}||p{10cm}|  }
+		\multicolumn{2}{l}{\textbf{RF-19}} \\
+		\hline
+		Nombre   & FAQ \\
+		\hline
+		Descripción  & Página con preguntas frecuentes que se pueden hacer los usuarios del sistema y sus respuestas  \\
+		\hline
+		Prioridad &  Baja\\
+		\hline
+		Criterio de aceptación & 
+		\begin{tabitem}
+			\item debe estar localizado en al menos 2 idiomas
+			\item no debe contener más de 10 preguntas
+		\end{tabitem} \\
+		\hline
+	\end{tabular}
+	\caption{RF-19 FAQ}
+	\label{table:19}
+\end{table}
+
+
 \FloatBarrier
 
 \section{Requisitos no funcionales}
 
-Los requisitos no funcionales son criterios que se deben cumplir para juzgar la correcta operación del sistema. En contraste con los requisitos funcionales no definen comportamientos específicos. \par
+Los requisitos no funcionales son criterios que se deben cumplir para juzgar la correcta operación del sistema; en contraste con los requisitos funcionales no definen comportamientos específicos. \par
 
-Para las siguientes tablas también se ha creado una plantilla estándar similar a la de requisitos funcionales pero con menos atributos. La definición de los mismos es la misma de las tablas vistas anteriormente.
+Para las siguientes tablas también se ha creado una plantilla estándar similar a la de requisitos funcionales pero con menos atributos y la definición de los mismos es la misma de las tablas vistas anteriormente.
 
 \begin{table}[ht!]
 	\centering
@@ -802,7 +841,7 @@ Para las siguientes tablas también se ha creado una plantilla estándar similar
 		\hline
 	\end{tabular}
 	\caption{RNF-1 Usabilidad}
-	\label{table:19}
+	\label{table:20}
 \end{table}
 
 \begin{table}[ht!]
@@ -818,7 +857,7 @@ Para las siguientes tablas también se ha creado una plantilla estándar similar
 		\hline
 	\end{tabular}
 	\caption{RNF-2 Implantación}
-	\label{table:20}
+	\label{table:21}
 \end{table}
 
 \begin{table}[ht!]
@@ -834,7 +873,7 @@ Para las siguientes tablas también se ha creado una plantilla estándar similar
 		\hline
 	\end{tabular}
 	\caption{RNF-3 Configuración}
-	\label{table:21}
+	\label{table:22}
 \end{table}
 
 \begin{table}[ht!]
@@ -850,7 +889,7 @@ Para las siguientes tablas también se ha creado una plantilla estándar similar
 		\hline
 	\end{tabular}
 	\caption{RNF-4 Localización}
-	\label{table:22}
+	\label{table:23}
 \end{table}
 
 \begin{table}[ht!]
@@ -866,13 +905,13 @@ Para las siguientes tablas también se ha creado una plantilla estándar similar
 		\hline
 	\end{tabular}
 	\caption{RNF-5 Almacenamiento}
-	\label{table:23}
+	\label{table:24}
 \end{table}
 
 
 \section{Cluster \kahan}
 
-\kahan es un \foreign{english}{cluster} de computación perteneciente a la \acrshort{upv} y será el encargado de procesar el código que envíen los alumnos a la aplicación web. Consta de un nodo cabecera (\textit{Frontend}) a la que un usuario se puede conectar mediante escritorio remoto o consola y así enviar el trabajo a procesar en alguna de sus colas. El nodo \textit{Frontend} es el encargado de comunicarse con el \foreign{english}{cluster} de 6 nodos y procesar los envíos.
+\kahan es un \foreign{english}{cluster} de computación perteneciente a la \acrshort{upv} \cite{link-cluster-kahan} y será el encargado de procesar el código que envíen los alumnos a la aplicación web. Consta de un nodo cabecera (\textit{Frontend}) a la que un usuario se puede conectar mediante escritorio remoto o consola y así enviar el trabajo a procesar en alguna de sus colas. El nodo \textit{Frontend} es el encargado de comunicarse con el \foreign{english}{cluster} de 6 nodos y procesar los envíos.
 
 \begin{figure}[!ht]
 	\centering
@@ -881,7 +920,9 @@ Para las siguientes tablas también se ha creado una plantilla estándar similar
 	\label{figura:kahan-cluster}
 \end{figure}
 
-En las prácticas de las asignaturas de \acrshort{lpp} y \acrshort{cpa} la ejecución de los pasos de conexión al \textit{Frontend}, envío de código a una cola, revisión de estado de la ejecución y descarga de resultados es un proceso completamente manual que inclusive llega a ser tedioso. Y Por esto uno de los puntos más importantes y complejos que vale la pena remarcar será lograr que la aplicación se encargue de la comunicación con el \foreign{english}{cluster} realizando el proceso completo de forma automatizada, añadiendo también la verificación de resultados y así ofrecer una mejor experiencia de usuario. El proceso interacción con el \foreign{english}{cluster} \kahan debe ser asíncrono y no bloquear el funcionamiento de la aplicación, y la mejor forma de lograr esto es hacer que la aplicación tenga un \textit{Administrador de Tareas} que en la práctica es un sistema de colas donde se envían ``trabajos`` (\foreign{english}{tasks}) a procesarse en un determinado momento de tiempo.
+En las prácticas de las asignaturas de \acrshort{lpp} y \acrshort{cpa} la ejecución de los pasos de conexión al \textit{Frontend}, envío de código a una cola, revisión de estado de la ejecución y descarga de resultados es un trabajo manual que inclusive llega a ser tedioso ya que los tiempos en los cuales será procesada nuestra petición varía según el uso y estado actual de las colas en \kahan. Por esto uno de los puntos más importantes que vale la pena remarcar dada su complejidad será lograr que la aplicación se encargue de la comunicación con el \foreign{english}{cluster} realizando el proceso completo de forma automatizada, añadiendo también la verificación de resultados y así ofrecer una mejor experiencia de usuario. 
+
+Además, El proceso interacción con el \foreign{english}{cluster} \kahan debe ser asíncrono y no bloquear el funcionamiento de la aplicación web, y la mejor forma de lograr esto es disponer de un \textit{Administrador de Tareas}; que en la práctica es un sistema de colas donde se envían ``trabajos`` (\foreign{english}{jobs}) a procesarse en un determinado momento de tiempo.
 
 El trabajo, no obstante, se ha desarrollado con la idea puesta en su extensibilidad a cualquier otro \foreign{english}{cluster}. De hecho, el  \foreign{english}{cluster} \kahan va a ser sustituido este curso que viene por \textit{kahan2}, que será más avanzado y ligeramente diferente del actual. El trabajo realizado aquí, por tanto, está preparado para ser migrado al nuevo  \foreign{english}{cluster} con mínimas modificaciones.
 
@@ -890,6 +931,8 @@ El trabajo, no obstante, se ha desarrollado con la idea puesta en su extensibili
 Un análisis de riesgo también forma parte del estudio del problema ya que se debe evaluar si el resultado esperado es realizable en tiempo y forma. Para el listado anterior se pueden identificar tres puntos críticos ya que tienen una complejidad alta.
 
 Por un lado la interacción con el \foreign{english}{cluster} \kahan puede ser dificultosa porque lo haremos desde un sistema externo, además hay que sumarle la posibilidad de que la aplicación se despliegue en una solución \foreign{english}{cloud} siendo el autor de la memoria un usuario novel de esos sistemas. Y por último la verificación de resultados, asignación de \gls{insignia}s y tablas de posiciones (\foreign{english}{Leaderboards}) que pueden ir cambiando en el tiempo.
+
+Para mitigar riesgos se ha seguido un plan de acción con el apoyo del Tutor. En el primer caso se han hecho pruebas utilizando los protocolos \acrshort{ssh} y \acrfull{scp} para replicar los pasos manuales que haría un \gls{alumno} en una práctica de una asignatura como \acrshort{lpp} o \acrshort{cpa}. El Autor por su parte ha participado de un curso online \cite{link-coursera-google} sobre la solución \foreign{english}{cloud} escogida para mejorar su base de conocimiento; y por último se han analizado las librerías disponibles del software a utilizar para simplificar las tareas complejas expuestas previamente.
 
 \chapter{Diseño de la solución}
 
@@ -1696,10 +1739,10 @@ En el menú se visualizará el nuevo idioma disponible.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % MODEL D'ARTICLE                                                             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\bibitem{light}
-   Jennifer~S. Light.
-   \newblock When computers were women.
-   \newblock \textit{Technology and Culture}, 40:3:455--483, juliol, 1999.
+%\bibitem{light}
+%   Jennifer~S. Light.
+%   \newblock When computers were women.
+%   \newblock \textit{Technology and Culture}, 40:3:455--483, juliol, 1999.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % MODEL DE LLIBRE                                                             %
@@ -1719,11 +1762,20 @@ En el menú se visualizará el nuevo idioma disponible.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % MODEL D'URL                                                                 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\bibitem{WAR}
-   Comunicat de premsa del Departament de la Guerra, 
-   emés el 16 de febrer de 1946. 
-   \newblock Consultat a 
-   \url{http://americanhistory.si.edu/comphist/pr1.pdf}.
+\bibitem{link-esp-rq-jan}
+   Junta de Andalucía. \textit{Plantilla Especificación de Requisitos} [en línea]
+   \newblock Consultado en 10 Mayo 2020.
+   \url{http://www.juntadeandalucia.es/servicios/madeja/contenido/recurso/456}.
+
+\bibitem{link-cluster-kahan}
+	Jose E. Roman. \textit{Clúster de Computación ``Kahan''} [en línea]
+	\newblock Consultado en 12 Abril 2020.
+	\url{http://personales.upv.es/jroman/kahan.html}
+	
+\bibitem{link-coursera-google}
+	Google. \textit{Getting Started with Google Kubernetes Engine}
+	\newblock Consultado en 1 Junio 2020.
+	\url{https://www.coursera.org/learn/google-kubernetes-engine}
 
 \end{thebibliography}
 \cleardoublepage
@@ -1838,7 +1890,6 @@ Los mencionados a continuación con su descripción y opciones son los más rele
 		\item Valor por defecto: \textit{app/data/keys/id\_rsa}
 	\end{itemize}
 \end{itemize}
-
 
 \begin{itemize}
 	\item \textbf{LOG\_LEVEL}
