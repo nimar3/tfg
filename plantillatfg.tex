@@ -1269,6 +1269,7 @@ El diagrama de flujo de una petición web para un \gls{envio} es el que se ve en
 
 \section{Ejecución en una cola interna}
 
+explicación de la case job y automata aqui
 
 
 \section{Asignación de Insignias}
@@ -1629,6 +1630,12 @@ exclude=./migrations
 
 Otro punto importante es la cobertura del código fuente. Aunque el repositorio incluye las librerías de \textit{coveralls} y \textit{pytest} por cuestiones de tiempo no se han escrito tests unitarios y se ha dejado como una mejora futura.
 
+\section{Gestión de versiones}
+
+Como se ha visto anteriormente desde el inicio del desarrollo de la aplicación se ha utilizado como herramienta de gestión de versiones \textit{Git}\footnote{Sitio web Git: \url{https://git-scm.com/}} para el seguimiento de los cambios y entregables. La rama principal es ``master'' y solo para requisitos de gran impacto se han creado nuevas que finalmente han sido fusionadas a ``master'' una vez validadas. Cada vez que se producía el fin de un \foreign{english}{sprint} con su bloque de tareas se creaba una nueva ``etiqueta'' o \foreign{english}{tag} marcando la versión; comenzando desde la \textit{0.1} llegando al final de la entrega del \acrshort{tfg} a la \textit{1.0}.
+
+Este ha sido un trabajo de una sola persona y se ha seguido el método de \foreign{english}{Feature Branch Workflow} \cite{link-git-flow} donde se tiene una rama principal y nuevas funcionalidades o \foreign{english}{features} divergen de esta para luego volver a fusionarse. Ya que se espera recibir colaboraciones a futuro se deberá acomodar a un proceso que involucre a un equipo de trabajo y ramas en diferentes estados como \foreign{english}{dev, release} y \foreign{english}{master} como en \foreign{english}{Gitflow Workflow}.
+
 \chapter{Extensibilidad}
 
 Uno de los puntos más importantes es permitir la colaboración y que Pizarra pueda utilizar otros sistemas de tareas que no sean una \Gls{cola} local o la de un cluster como \kahan(TORQUE\footnote{Sitio web de TORQUE: \url{https://adaptivecomputing.com/cherry-services/torque-resource-manager/}}) así como también que pueda ser localizado en diferentes idiomas.
@@ -1858,6 +1865,11 @@ En el menú se visualizará el nuevo idioma disponible.
 	McIntyre, Spencer. \textit{Rule Engine Documentation} [en línea]
 	\newblock Consultado en 3 Junio 2020.
 	\url{https://zerosteiner.github.io/rule-engine/}
+	
+\bibitem{link-git-flow}
+	Attlasian. \textit{Comparing Workflows} [en línea]
+	\newblock Consultado en 1 Marzo 2020.
+	\url{https://www.atlassian.com/git/tutorials/comparing-workflows}
 
 
 \end{thebibliography}
