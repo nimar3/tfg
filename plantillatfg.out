@@ -17,40 +17,41 @@
 \BOOKMARK [1][-]{section.3.5}{Cluster kahan}{chapter.3}% 17
 \BOOKMARK [1][-]{section.3.6}{Riesgos}{chapter.3}% 18
 \BOOKMARK [1][-]{section.3.7}{An\341lisis del marco legal y \351tico}{chapter.3}% 19
-\BOOKMARK [0][-]{chapter.4}{Dise\361o de la soluci\363n}{}% 20
-\BOOKMARK [1][-]{section.4.1}{Interacci\363n del Sistema}{chapter.4}% 21
-\BOOKMARK [1][-]{section.4.2}{Software}{chapter.4}% 22
-\BOOKMARK [1][-]{section.4.3}{Arquitectura del Sistema}{chapter.4}% 23
-\BOOKMARK [1][-]{section.4.4}{Modelo de datos}{chapter.4}% 24
-\BOOKMARK [1][-]{section.4.5}{Dise\361o de la Aplicaci\363n en Flask}{chapter.4}% 25
-\BOOKMARK [1][-]{section.4.6}{Sistema de Colas interno}{chapter.4}% 26
-\BOOKMARK [0][-]{chapter.5}{Desarrollo de la soluci\363n}{}% 27
-\BOOKMARK [1][-]{section.5.1}{Flask boilerplate}{chapter.5}% 28
-\BOOKMARK [1][-]{section.5.2}{Paquetes de Python}{chapter.5}% 29
-\BOOKMARK [2][-]{subsection.5.2.1}{Flask}{section.5.2}% 30
-\BOOKMARK [2][-]{subsection.5.2.2}{Colas}{section.5.2}% 31
-\BOOKMARK [2][-]{subsection.5.2.3}{Conexi\363n con sistemas externos}{section.5.2}% 32
-\BOOKMARK [2][-]{subsection.5.2.4}{Datos de ejemplo}{section.5.2}% 33
-\BOOKMARK [2][-]{subsection.5.2.5}{Otros}{section.5.2}% 34
-\BOOKMARK [1][-]{section.5.3}{Env\355o de soluciones a Tareas}{chapter.5}% 35
-\BOOKMARK [1][-]{section.5.4}{Ejecuci\363n en una cola interna}{chapter.5}% 36
-\BOOKMARK [1][-]{section.5.5}{Asignaci\363n de Insignias}{chapter.5}% 37
-\BOOKMARK [0][-]{chapter.6}{Implantaci\363n}{}% 38
-\BOOKMARK [1][-]{section.6.1}{Docker y Kubernetes}{chapter.6}% 39
-\BOOKMARK [1][-]{section.6.2}{Despliegue en la Nube con Kubernetes}{chapter.6}% 40
-\BOOKMARK [2][-]{subsection.6.2.1}{Pasos de un despliegue en GCE}{section.6.2}% 41
-\BOOKMARK [2][-]{subsection.6.2.2}{Costos asociados}{section.6.2}% 42
-\BOOKMARK [0][-]{chapter.7}{Mantenimiento}{}% 43
-\BOOKMARK [1][-]{section.7.1}{Entorno local de desarrollo}{chapter.7}% 44
-\BOOKMARK [1][-]{section.7.2}{Depuraci\363n de errores}{chapter.7}% 45
-\BOOKMARK [1][-]{section.7.3}{Calidad de c\363digo}{chapter.7}% 46
-\BOOKMARK [0][-]{chapter.8}{Extensibilidad}{}% 47
-\BOOKMARK [1][-]{section.8.1}{Otros sistemas de Gesti\363n de Tareas}{chapter.8}% 48
-\BOOKMARK [1][-]{section.8.2}{Localizaci\363n}{chapter.8}% 49
-\BOOKMARK [0][-]{chapter.9}{Conclusiones}{}% 50
-\BOOKMARK [1][-]{section.9.1}{Relaci\363n del trabajo desarrollado con los estudios cursados}{chapter.9}% 51
-\BOOKMARK [0][-]{chapter.10}{Trabajos futuros}{}% 52
-\BOOKMARK [0][-]{chapter*.42}{Bibliograf\355a}{}% 53
-\BOOKMARK [0][-]{appendix.Alph1}{Configuraci\363n del sistema}{}% 54
-\BOOKMARK [1][-]{section.Alph1.1}{Inicializaci\363n}{appendix.Alph1}% 55
-\BOOKMARK [1][-]{section.Alph1.2}{Par\341metros}{appendix.Alph1}% 56
+\BOOKMARK [1][-]{section.3.8}{Plan de Trabajo}{chapter.3}% 20
+\BOOKMARK [0][-]{chapter.4}{Dise\361o de la soluci\363n}{}% 21
+\BOOKMARK [1][-]{section.4.1}{Interacci\363n del Sistema}{chapter.4}% 22
+\BOOKMARK [1][-]{section.4.2}{Tecnolog\355a utilizada}{chapter.4}% 23
+\BOOKMARK [1][-]{section.4.3}{Arquitectura del Sistema}{chapter.4}% 24
+\BOOKMARK [1][-]{section.4.4}{Modelo de datos}{chapter.4}% 25
+\BOOKMARK [1][-]{section.4.5}{Dise\361o de la Aplicaci\363n en Flask}{chapter.4}% 26
+\BOOKMARK [1][-]{section.4.6}{Sistema de Colas interno}{chapter.4}% 27
+\BOOKMARK [0][-]{chapter.5}{Desarrollo de la soluci\363n}{}% 28
+\BOOKMARK [1][-]{section.5.1}{Flask boilerplate}{chapter.5}% 29
+\BOOKMARK [1][-]{section.5.2}{Paquetes de Python}{chapter.5}% 30
+\BOOKMARK [2][-]{subsection.5.2.1}{Flask}{section.5.2}% 31
+\BOOKMARK [2][-]{subsection.5.2.2}{Colas}{section.5.2}% 32
+\BOOKMARK [2][-]{subsection.5.2.3}{Conexi\363n con sistemas externos}{section.5.2}% 33
+\BOOKMARK [2][-]{subsection.5.2.4}{Datos de ejemplo}{section.5.2}% 34
+\BOOKMARK [2][-]{subsection.5.2.5}{Otros}{section.5.2}% 35
+\BOOKMARK [1][-]{section.5.3}{Env\355o de soluciones a Tareas}{chapter.5}% 36
+\BOOKMARK [1][-]{section.5.4}{Ejecuci\363n en una cola interna}{chapter.5}% 37
+\BOOKMARK [1][-]{section.5.5}{Asignaci\363n de Insignias}{chapter.5}% 38
+\BOOKMARK [0][-]{chapter.6}{Implantaci\363n}{}% 39
+\BOOKMARK [1][-]{section.6.1}{Docker y Kubernetes}{chapter.6}% 40
+\BOOKMARK [1][-]{section.6.2}{Despliegue en la Nube con Kubernetes}{chapter.6}% 41
+\BOOKMARK [2][-]{subsection.6.2.1}{Pasos de un despliegue en GCE}{section.6.2}% 42
+\BOOKMARK [2][-]{subsection.6.2.2}{Costos asociados}{section.6.2}% 43
+\BOOKMARK [0][-]{chapter.7}{Mantenimiento}{}% 44
+\BOOKMARK [1][-]{section.7.1}{Entorno local de desarrollo}{chapter.7}% 45
+\BOOKMARK [1][-]{section.7.2}{Depuraci\363n de errores}{chapter.7}% 46
+\BOOKMARK [1][-]{section.7.3}{Calidad de c\363digo}{chapter.7}% 47
+\BOOKMARK [0][-]{chapter.8}{Extensibilidad}{}% 48
+\BOOKMARK [1][-]{section.8.1}{Otros sistemas de Gesti\363n de Tareas}{chapter.8}% 49
+\BOOKMARK [1][-]{section.8.2}{Localizaci\363n}{chapter.8}% 50
+\BOOKMARK [0][-]{chapter.9}{Conclusiones}{}% 51
+\BOOKMARK [1][-]{section.9.1}{Relaci\363n del trabajo desarrollado con los estudios cursados}{chapter.9}% 52
+\BOOKMARK [0][-]{chapter.10}{Trabajos futuros}{}% 53
+\BOOKMARK [0][-]{chapter*.42}{Bibliograf\355a}{}% 54
+\BOOKMARK [0][-]{appendix.Alph1}{Configuraci\363n del sistema}{}% 55
+\BOOKMARK [1][-]{section.Alph1.1}{Inicializaci\363n}{appendix.Alph1}% 56
+\BOOKMARK [1][-]{section.Alph1.2}{Par\341metros}{appendix.Alph1}% 57

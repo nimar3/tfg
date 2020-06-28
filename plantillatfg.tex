@@ -942,6 +942,17 @@ Como este es un proyecto de código abierto, se ha escogido la Licencia MIT\foot
 
 Además, todos elementos utilizados en el producto final que no son creación del Autor de este \acrshort{tfg} como librerías \textit{javascript} e imágenes son de libre uso y tienen su atribución correspondiente.
 
+\section{Plan de Trabajo}
+
+Después de haber revisado el listado de todos los requerimientos funcionales se ha creado un resumen agrupado a alto nivel para dar un seguimiento sin la necesidad de una herramienta externa. El listado se ha subido como parte del fichero \textbf{README.md} del repositorio de código y permite al Tutor, como al Autor del \acrshort{tfg} ver el estado del desarrollo y cuales son los tópicos a abordar a continuación.
+
+Con el uso del listado y una reunión semanal vía \textit{Skype} se ha seguido el siguiente protocolo: 1) revisión de las funcionalidades implementadas mediante una \foreign{english}{demo}; 2) ronda de preguntas y dudas a resolver; 3) acuerdo entre partes de las próximas funcionalidades a implementar para la próxima semana.
+
+Debido a ciertas dificultades presentadas en el proceso de desarrollo y el esfuerzo que podía realizar el Autor (tiempo libre disponible) debido a la carga de su trabajo actual se ha ido pivotando entre las prioridades cada semana. Desde un punto de vista de proceso se puede asumir que se ha seguido un Desarrollo Ágil, similar al de \textit{Scrum} seleccionando un listado de tareas a abordar en un \textit{sprint} (iteración para entregar ``valor'') con una duración de una semana. 
+
+\textit{Scrum}, como metodología de Desarrollo Ágil, se centra en tener un \textit{software} en funcionamiento que seguir un proceso rígido de desarrollo; premiando así la entrega constante y la posibilidad de adecuarse al cambio. 
+
+
 \chapter{Diseño de la solución}
 
 Una vez analizados los requisitos funcionales y no funcionales el próximo paso es hacer el diseño de la aplicación. Aunque la finalidad de este trabajo es la creación de una aplicación web existen elementos adicionales que deben considerarse para cumplir con el objetivo ya que aunque el punto de entrada de interacción del sistema será una página web, toda la información se tendrá que alojar en una \acrfull{bd} y los \gls{envio}s que contienen ficheros con código fuente para la resolución de \Gls{tarea}s deberán guardarse en un \acrfull{nfs}. Estos elementos y más forman parte de lo que será la \textbf{Arquitectura de la solución} pero antes de llegar a esto hay que comprender como será la \textbf{Interacción del Sistema} y decidirse en el \textbf{Software} a utilizar que lo haga posible. \par
@@ -969,7 +980,7 @@ Una interacción habitual sería la que se modela a continuación donde el \text
 	\label{figura:modelado-interaccion}
 \end{figure}
 
-\section{Software}
+\section{Tecnología utilizada}
 
 Como hemos visto en el apartado \textbf{Estado del Arte} la única herramienta similar a la aplicación web a desarrollar es \textit{Tablón}, no sin sus muchas limitaciones y problemas que ya hemos expuesto previamente. Sin embargo \textit{Tablón} es un buen punto de partida porque ya ha sido utilizado previamente por el Tutor en la asignatura de \acrshort{lpp} y algunos de los requisitos funcionales como la Tabla de Posiciones (RF-10) ya existen y pueden servir como inspiración.
 
@@ -1807,6 +1818,7 @@ En el menú se visualizará el nuevo idioma disponible.
 	Grinberg, Miguel
 	\newblock ``Deployment''. \textit{Flask Web Development: Developing Web Applications with Python}
 	\newblock California: O'Reilly Media, Inc., 2014. ISBN: 9781491947616
+	
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
