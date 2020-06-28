@@ -822,7 +822,6 @@ Una vez identificadas las \textbf{Historias de Usuario} más importantes el pró
 	\label{table:19}
 \end{table}
 
-
 \FloatBarrier
 
 \section{Requisitos no funcionales}
@@ -1207,26 +1206,26 @@ Para facilitar el desarrollo y su posterior mantenimiento se debe poder disponer
 \end{itemize}
 
 
-\section{Envío de soluciones de Tareas}
+\section{Envío de soluciones a Tareas}
 
-Cuando un \Gls{alumno} realiza un \Gls{envio}, esto es, una petición web que incluye el código fuente a compilar y ejecutar como propuesta de solución a una \Gls{tarea}, la aplicación debe procesar la petición y el \Gls{envio} pasa por una serie de verificaciones que se describen a continuación, algunas de estas no se realizan para un usuario con rol de administrador del sistema.
+Cuando un \Gls{alumno} realiza un \Gls{envio}, esto es, una petición web que incluye el código fuente a compilar y ejecutar como propuesta de solución a una \Gls{tarea}, la aplicación debe procesar la petición y el \Gls{envio} pasa por una serie de verificaciones que se describen a continuación, algunas de estas no se realizan para un usuario con rol de \gls{administrador} del sistema.
 
 \begin{enumerate}
-	\item se autentifica al usuario
-	\item se busca la \Gls{tarea} en la \Gls{bd}
-	\item la \Gls{tarea} debe estar abierta a recibir \Gls{envio}s
-	\item el \Gls{alumno} pertenece a un \Gls{grupo} que la tenga asignada
-	\item el \Gls{alumno} no ha enviado peticiones muy rápido
-	\item el \Gls{alumno} tiene Quota (tiempo disponible de ejecución) para procesar el \Gls{envio}
-	\item el \Gls{envio} contiene un fichero a procesar
-	\item el fichero a procesar con el código fuente no contiene código malicioso
+	\item se autentifica al usuario.
+	\item se busca la \Gls{tarea} en la \Gls{bd}.
+	\item la \Gls{tarea} debe estar abierta a recibir \Gls{envio}s.
+	\item el \Gls{alumno} pertenece a un \Gls{grupo} que la tenga asignada.
+	\item el \Gls{alumno} no ha enviado peticiones muy rápido.
+	\item el \Gls{alumno} tiene Quota (tiempo disponible de ejecución) para procesar el \Gls{envio}.
+	\item el \Gls{envio} contiene un fichero a procesar.
+	\item el fichero a procesar con el código fuente no contiene código malicioso.
 \end{enumerate}
 
-Si alguno de los pasos anteriores no pasa uno de los puntos de verificación se devuelve un mensaje de error con el código HTTP correspondiente. En el caso de que todas las checkeos sean satisfactorios se crea un objeto de tipo \textit{Request} en la \acrshort{bd} y otro de tipo \textit{Task} para la \Gls{cola} interna en Redis.
+Si alguno de los pasos anteriores no pasa uno de los puntos de verificación se devuelve un mensaje de error con el código HTTP correspondiente. En el caso de que todas las chequeos sean satisfactorios se crea un objeto de tipo \textit{Request} en la \acrshort{bd} y otro de tipo \foreign{english}{job} para la \Gls{cola} interna en \textit{Redis}.
 
-El \Gls{envio} de una \Gls{tarea} se realiza desde un terminal de comandos u otro cliente que permita enviar peticiones web como \textit{Postman} y está construida para devolver respuestas en formato JSON ya que es un estándar utilizado en muchas aplicaciones web. Un \Gls{envio} contiene como parámetros el usuario, token de acceso, fichero a procesar con el código fuente y la URL de la \Gls{tarea}, al procesarse la petición se recibe la respuesta.
+El \Gls{envio} de una \Gls{tarea} se realiza desde un terminal de comandos u otro cliente que permita realizar peticiones web como \textit{Postman}\footnote{Sitio web Postman: \url{https://www.postman.com/}} y está construida para devolver respuestas en formato JSON ya que es un estándar utilizado en muchas aplicaciones web cuando se diseña una \acrshort{api}. Un \Gls{envio} contiene como parámetros el usuario, token de acceso, fichero con el código fuente y la URL de la \Gls{tarea}, al procesarse la petición se recibe la respuesta.
 
-A continuación varios ejemplos; Una autentificación fallida, un \gls{envio} satisfactorio y un \Gls{envio} no procesado porque el usuario debe esperar un tiempo.
+A continuación varios ejemplos; 1) una autentificación fallida, 2) un \gls{envio} satisfactorio y 3) un \Gls{envio} no procesado porque el usuario debe esperar un tiempo.
 
 \begin{lstlisting}[style=ascii-tree]
 $ curl -k -X POST -F 'file=@primos.c' http://foo:bar@127.0.0.1:5000/assignments/primos
@@ -1234,19 +1233,19 @@ $ curl -k -X POST -F 'file=@primos.c' http://foo:bar@127.0.0.1:5000/assignments/
 "code": 401,
 "message": "Authentication failed"
 }
-$ curl -k -X POST -F 'file=@primos.c' http://foo:gB8HSgWANT7x7OipnFIkFQkC1sVLpO@127.0.0.1:5000/assignments/primos
+$ curl -k -X POST -F 'file=@primos.c' http://foo:gB8HSgWhfg@127.0.0.1:5000/assignments/primos
 {
 "code": 201,
 "message": "Request created, please navigate to http://127.0.0.1:5000/requests/13 to check the results"
 }
-$ curl -k -X POST -F 'file=@primos.c' http://foo:gB8HSgWANT7x7OipnFIkFQkC1sVLpO@127.0.0.1:5000/assignments/primos
+$ curl -k -X POST -F 'file=@primos.c' http://foo:gB8HSgWhfg@127.0.0.1:5000/assignments/primos
 {
 "code": 403,
 "message": "You are sending Requests too fast. Time between Requests is 60 seconds"
 }
 \end{lstlisting}
 
-El diagrama de flujo de una petición web es el siguiente:
+El diagrama de flujo de una petición web para un \gls{envio} es el que se ve en la Figura \ref{figura:request-flowchart}
 
 \begin{figure}[!ht]
 	\centering
@@ -1255,9 +1254,40 @@ El diagrama de flujo de una petición web es el siguiente:
 	\label{figura:request-flowchart}
 \end{figure}
 
-\section{Entregables}
+\FloatBarrier
 
-Sprints ¿?
+\section{Ejecución en una cola interna}
+
+
+
+\section{Asignación de Insignias}
+
+Cuando se llegó a la etapa de desarrollo en el cual se tenían que crear las \gls{insignia}s (\foreign{english}{Badges}) se encontró un problema de gran dificultad. ¿Cómo hacer que un \gls{administrador} desde su panel web pueda hacer que una \gls{insignia} se aplique cuando suceda algo en particular? Las \gls{insignia}s no solo se obtienen al completar una \gls{tarea} de forma correcta, sino que también en otros casos que puedan darse como por ejemplo que el \gls{envio} se encuentre en los primeros tres puestos de la tabla de posiciones (\foreign{english}{leaderboard}).
+
+La primera opción que posteriormente fue descartada era crear una clase en \textit{python} por cada tipo de \gls{insignia} que se quiera asignar a un \gls{alumno}; esto quitaba dinamismo y forzaba al \gls{administrador} a modificar el código fuente de la aplicación, algo que quiere evitarse ya que impone una barrera de entrada a cualquier persona que quiera hacer uso de \textit{Pizarra} en un futuro.
+
+Después de investigar otras posibilidades y realizar una serie de pruebas se ha optado por añadir el \gls{paquete} \textit{rule\_engine} que permite la creación de objetos de tipo ``Rule'' que pueden ser evaluados con expresiones lógicas y son escritas como cadenas de texto y puedan guardarse en una columna de la \acrshort{bd} como atributo de la clase \foreign{english}{badge}. \textit{rule\_engine} no es la única librería que añade este tipo de funcionalidad en \textit{python} pero su simplicidad y el soporte de \textit{Data objects} \cite{link-rule-engine}, que es la representación de una clase en formato \acrshort{json} fue la razón por la cual se ha hecho la elección.
+
+Con la posibilidad de escribir reglas como cadenas de texto y sabiendo que un \foreign{english}{job} tiene los atributos \textit{user, request, assignment} y \textit{leaderboard} como diccionarios de \textit{python} podemos crear \foreign{english}{Badges} como las que se encuentran en los datos de ejemplos del fichero \textbf{sample.yml}.
+
+\begin{code}{sample.py}
+- Badge:
+	- name: "beat_the_machine"
+	description: "Earn when your program runs below a certain threshold"
+	rule: "request.run_time < 10"
+	- name: "leader"
+	description: "Earn when your Request is in the first positions of the leaderboard"
+	rule: "leaderboard.position <= 3"
+\end{code}
+
+En el ejemplo previo podemos ver la creación de dos \gls{insignia}s que se asignarán a un \gls{alumno} cuando la ejecución de su programa sea en menos de 10 segundos y también otro caso donde la posición de la ejecución quede entre las tres mejores. La descripción de los atributos es:
+
+\begin{itemize}
+	\item \textbf{name}: ID único de la \gls{insignia}.
+	\item \textbf{description}: descripción que se mostrará a los \textit{usuarios} del sistema.
+	\item \textbf{rule}: regla que se comprobará al terminar la ejecución.
+\end{itemize}
+
 
 \chapter{Implantación}
 
@@ -1804,13 +1834,18 @@ En el menú se visualizará el nuevo idioma disponible.
 	
 \bibitem{link-sharing-docker-containers}
 	Jacobs, Todd A. \textit{Sharing Docker Containers across DevOps Environments} [en línea]
-	\newblock Consoltado en 2 Mayo 2020.
+	\newblock Consultado en 2 Mayo 2020.
 	\url{https://www.linuxjournal.com/content/sharing-docker-containers-across-devops-environments}
 	
 \bibitem{link-tablon-faq}
 	Grupo Trasgo \textit{Tablón FAQ} [en línea]
-	\newblock Consoltado en 5 Marzo 2020.
+	\newblock Consultado en 5 Marzo 2020.
 	\url{http://frontendv.infor.uva.es/faq}
+	
+\bibitem{link-rule-engine}
+	McIntyre, Spencer. \textit{Rule Engine Documentation} [en línea]
+	\newblock Consultado en 3 Junio 2020.
+	\url{https://zerosteiner.github.io/rule-engine/}
 
 
 \end{thebibliography}

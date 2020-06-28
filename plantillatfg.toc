@@ -40,8 +40,9 @@
 \contentsline {subsection}{\numberline {5.2.3}Conexión con sistemas externos}{31}{subsection.5.2.3}%
 \contentsline {subsection}{\numberline {5.2.4}Datos de ejemplo}{31}{subsection.5.2.4}%
 \contentsline {subsection}{\numberline {5.2.5}Otros}{31}{subsection.5.2.5}%
-\contentsline {section}{\numberline {5.3}Envío de soluciones de Tareas}{31}{section.5.3}%
-\contentsline {section}{\numberline {5.4}Entregables}{32}{section.5.4}%
+\contentsline {section}{\numberline {5.3}Envío de soluciones a Tareas}{31}{section.5.3}%
+\contentsline {section}{\numberline {5.4}Ejecución en una cola interna}{33}{section.5.4}%
+\contentsline {section}{\numberline {5.5}Asignación de Insignias}{33}{section.5.5}%
 \contentsline {chapter}{\numberline {6}Implantación}{35}{chapter.6}%
 \contentsline {section}{\numberline {6.1}Docker y Kubernetes}{35}{section.6.1}%
 \contentsline {section}{\numberline {6.2}Despliegue en la Nube con Kubernetes}{37}{section.6.2}%
