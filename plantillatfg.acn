@@ -69,10 +69,13 @@
 \glossaryentry{CPU?\glossentry{cpu}|setentrycounter[]{page}\glsnumberformat}{27}
 \glossaryentry{RAM?\glossentry{ram}|setentrycounter[]{page}\glsnumberformat}{27}
 \glossaryentry{BD?\glossentry{bd}|setentrycounter[]{page}\glsnumberformat}{30}
-\glossaryentry{SSH?\glossentry{ssh}|setentrycounter[]{page}\glsnumberformat}{30}
-\glossaryentry{SCP?\glossentry{scp}|setentrycounter[]{page}\glsnumberformat}{30}
+\glossaryentry{SSH?\glossentry{ssh}|setentrycounter[]{page}\glsnumberformat}{31}
+\glossaryentry{SSH?\glossentry{ssh}|setentrycounter[]{page}\glsnumberformat}{31}
+\glossaryentry{SCP?\glossentry{scp}|setentrycounter[]{page}\glsnumberformat}{31}
+\glossaryentry{SCP?\glossentry{scp}|setentrycounter[]{page}\glsnumberformat}{31}
 \glossaryentry{BD?\glossentry{bd}|setentrycounter[]{page}\glsnumberformat}{31}
 \glossaryentry{BD?\glossentry{bd}|setentrycounter[]{page}\glsnumberformat}{31}
+\glossaryentry{BD?\glossentry{bd}|setentrycounter[]{page}\glsnumberformat}{32}
 \glossaryentry{NFS?\glossentry{nfs}|setentrycounter[]{page}\glsnumberformat}{35}
 \glossaryentry{SO?\glossentry{so}|setentrycounter[]{page}\glsnumberformat}{35}
 \glossaryentry{GCE?\glossentry{gce}|setentrycounter[]{page}\glsnumberformat}{37}

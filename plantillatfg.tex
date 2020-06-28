@@ -1121,8 +1121,8 @@ Como se vio previamente, \textit{Pizarra} tiene un sistema de \Gls{cola}s intern
 Además, una ejecución local desde el mismo aplicativo obliga a brindarle de recursos necesarios ya sean procesadores (\acrshort{cpu}s) y memoria (\acrshort{ram}); esto no es muy eficiente ya que las aplicaciones en \textit{python}, y especialmente en \textit{Flask} consumen muy pocos recursos. Por eso mismo este aplicativo se puede ejecutar en dos modos diferentes:
 
 \begin{itemize}
-	\item Modo \textit{Pizarra}: aplicación web con la que interactúan los usuarios.
-	\item Modo \textit{Worker}: un proceso que se encarga de revisar en las \gls{cola}s internas si hay \foreign{english}{jobs} a procesar.
+	\item \textbf{Modo \textit{Pizarra}}: aplicación web con la que interactúan los usuarios.
+	\item \textbf{Modo \textit{Worker}}: un proceso que se encarga de revisar en las \gls{cola}s internas si hay \foreign{english}{jobs} a procesar.
 \end{itemize}
 
 La elección por la cual se han escogido dos modos diferentes de ejecución de la aplicación en contraposición a la creación de diferentes \textit{scripts} es para poder hacer uso de la misma definición de contenedor en \textit{Docker}, una estrategia habitual al utilizar esta solución \cite{link-sharing-docker-containers}.
@@ -1131,53 +1131,53 @@ Por último, otro beneficio que brinda esta separación de roles es que se puede
 
 \chapter{Desarrollo de la solución}
 
+En este capítulo presentamos un resumen de como se ha pasado del diseño de la aplicación a la solución final; no se explicará el desarrollo del código fuente en si, sino un repaso de ciertas particularidades de la aplicación como el \gls{envio} de \gls{tarea}s, los \gls{paquete}s que permiten todas las funcionalidades disponibles, el uso de un \foreign{english}{boilerplate}, una plantilla que simplificará el desarrollo de la interfaz web y un resumen de los entregables que se fueron produciendo para dar vida al producto final.
 
-La usabilidad es uno de los aspectos más importantes de una aplicación web y en este caso no se puede dejar de lado. Un usuario de \textit{Pizarra} esperará una interfaz intuitiva y fácil de utilizar que le facilite el proceso de envío de soluciones a los problemas propuestos; No queremos que la aplicación se interponga entre el proceso de aprendizaje y la satisfacción de participar y obtener logros. Una gran cantidad de aplicaciones utilizan las mismas librerías para maquetar los sitios web, entre estas librerías la más importante es \textit{Bootstrap}\footnote{Sitio web Bootstrap: \url{https://getbootstrap.com/}}, y además, a partir de estas librerías existen Dashboards o Paneles de Control de código abierto para utilizar como punto de partida en nuevas aplicaciones.
+\section{Flask \foreign{english}{boilerplate}}
 
-Después de varias búsquedas y pruebas se ha optado por \textit{AdminLTE}\footnote{Sitio web AdminLTE: \url{https://adminlte.io/}} dada su variedad de plantillas disponibles, uso de otras librerías con amplia documentación y un aspecto visual amigable y moderno.
+La usabilidad es uno de los aspectos más importantes de una aplicación web y en este caso no se puede dejar de lado. Un \textit{usuario} de \textit{Pizarra} esperará una interfaz intuitiva y fácil de utilizar que le facilite el proceso de envío de soluciones (\foreign{english}{Requests}) a los problemas propuestos (\foreign{english}{Assignments}); No queremos que la aplicación se interponga entre el proceso de aprendizaje y la satisfacción de participar y obtener logros \foreign{english}{Badges}. Una gran cantidad de aplicaciones utilizan las mismas librerías para maquetar los sitios web, entre estas librerías la más importante es \textit{Bootstrap}\footnote{Sitio web Bootstrap: \url{https://getbootstrap.com/}}, y además, a partir de estas librerías existen \foreign{english}{Dashboards} o Paneles de Control de código abierto para utilizar como punto de partida en nuevas aplicaciones.
+	
 
-\begin{figure}[ht]
+\begin{figure}[!ht]
 	\centering
-	\includegraphics[width=0.95\textwidth]{img/admin-lte}
-	\caption[AdminLTE: plantilla de Panel de Control ]{AdminLTE: plantilla de Panel de Control }
+	\includegraphics[width=0.70\textwidth]{img/admin-lte}
+	\caption[AdminLTE: plantilla de Panel de Control ]{AdminLTE: plantilla de Panel de Control}
 	\label{figura:admin-lte}
 \end{figure}
 
+Este conjunto de librerías y plantillas HTML tienen el nombre de \foreign{english}{boilerplate} y aceleran el desarrollo de una aplicación web a usuarios noveles como también expertos ya que solo deben preocuparse de reutilizar componentes ya predefinidos.
+
+Después de una búsqueda y pruebas de varias alternativa se ha optado por \textit{AdminLTE}\footnote{Sitio web AdminLTE: \url{https://adminlte.io/}} dada su variedad de plantillas disponibles, uso de otras librerías con amplia documentación y un aspecto visual amigable y moderno.
 
 \section{Paquetes de Python}
 
-Python será el lenguaje a utilizar, pero para dar funcionalidades adicionales normalmente se utilizan librerías o \Gls{paquete}s externos que simplifican y aceleran el desarrollo de la solución. A continuación se hace un repaso de las librerías que son necesarias para \textit{Pizarra}, este listado se encuentra disponible en el fichero \textbf{requirements.txt}, un estandar utilizado para su fácil instalación a posteriori por administradores de paquetes como \textit{pip}.
+Para dar funcionalidades adicionales en \textit{python} normalmente se utilizan librerías o \Gls{paquete}s externos que simplifican y aceleran el desarrollo de la aplicación. A continuación se hace un repaso de las librerías que son necesarias para \textit{Pizarra}, este listado se encuentra disponible en el fichero \textbf{requirements.txt}, un estándar utilizado por desarrolladores y proveedores de servicios de \textit{hosting} \cite{book-developing-web-python} para su fácil instalación a posterior por administradores de paquetes de \textit{python} como \textit{pip}\footnote{Sitio web pip: \url{https://pip.pypa.io/en/stable/}}.
+
+Un sistema de administración de paquetes es un \foreign{english}{software} que se encarga de resolver las referencias en un repositorio central, su descarga e instalación de forma segura.
 
 \subsection{Flask}
 
-El framework base de la aplicación, con otros \Gls{paquete}s para dar soporte a ciertas funcionalidades no incluidas en la librería base.
+El framework base de la aplicación, con otros \Gls{paquete}s adicionales para dar soporte a ciertas funcionalidades no incluidas en la librería base.
 
 \begin{itemize}
-	\item flask: framework
-	\item flask\_login: funcionalidades extras para el manejo de sesiones de usuario
-	\item flask\_security: uso de roles en el sistema  
-	\item flask\_wtf: validación de formularios web
-	\item flask\_sqlalchemy: soporte a SQLAlchemy para el mapeo objeto-relacional a diferentes \acrshort{bd}
-	\item flask\_migrate: migración de base de datos basadas en SQLAlchemy
-	\item flask-babel: localización de la aplicación en diferentes idiomas
-	\item email-validator: validación de correos electrónicos para la librería wtf
+	\item \textbf{flask}: framework base.
+	\item \textbf{flask\_login}: funcionalidades extras para el manejo de sesiones de \textit{usuario}.
+	\item \textbf{flask\_security}: uso de roles en el sistema.
+	\item \textbf{flask\_wtf}: validación de formularios web.
+	\item \textbf{flask\_sqlalchemy}: soporte a SQLAlchemy para el mapeo objeto-relacional a diferentes \acrshort{bd}.
+	\item \textbf{flask\_migrate}: migración de base de datos basadas en SQLAlchemy.
+	\item \textbf{flask-babel}: localización de la aplicación en diferentes idiomas.
+	\item \textbf{email-validator}: validación de correos electrónicos para la librería wtf.
 \end{itemize}
 
 \subsection{Colas}
 
-\begin{itemize}
-	\item rq: librería de Redis Queue
-	\item rq-dashboard: visualización web del estado de \Gls{cola}s y \Gls{tarea}s
-	\item redis: soporte y conectividad a Redis 
-\end{itemize}
-
-\subsection{Datos de ejemplo}
-
-Para facilitar el desarrollo y su posterior mantenimiento se debe poder disponer de una forma fácil y estandarizada para carga de datos de ejemplo. Para esta funcionalidad se ha optado por ficheros \textit{yaml}.
+Paquetes para el Sistema de colas interno y conectividad con \textit{Redis}.
 
 \begin{itemize}
-	\item pyyaml: analizador de ficheros \textit{yaml} 
-	\item sqla-yaml-fixtures: definición de datos via \textit{yaml} para su posterior importación a SQLAlchemy
+	\item \textbf{rq}: librería de Redis Queue (\textit{RQ}).
+	\item \textbf{rq-dashboard}: visualización web del estado de \foreign{english}{queues} y \foreign{english}{jobs}.
+	\item \textbf{redis}: soporte y conectividad al servicio de \textit{Redis}.
 \end{itemize}
 
 \subsection{Conexión con sistemas externos}
@@ -1185,16 +1185,25 @@ Para facilitar el desarrollo y su posterior mantenimiento se debe poder disponer
 Para poder utilizar las \Gls{cola}s de \kahan es necesario poder conectarnos vía protocolos seguros ya sea para ejecutar comandos o copiar ficheros.
 
 \begin{itemize}
-	\item paramiko: soporte de protocolo \acrshort{ssh}
-	\item scp: soporte de protocolo \acrshort{scp}
+	\item \textbf{paramiko}: soporte de protocolo \acrfull{ssh}.
+	\item \textbf{scp}: soporte de protocolo \acrfull{scp}.
+\end{itemize}
+
+\subsection{Datos de ejemplo}
+
+Para facilitar el desarrollo y su posterior mantenimiento se debe poder disponer de una forma fácil y estandarizada para carga de datos de ejemplo. Para esta funcionalidad se ha optado por ficheros en formato \textit{yaml}.
+
+\begin{itemize}
+	\item \textbf{pyyaml}: analizador de ficheros \textit{yaml} 
+	\item \textbf{sqla-yaml-fixtures}: definición de datos via \textit{yaml}, transformación a objetos e importación a la \acrshort{bd} con \textit{SQLAlchemy}.
 \end{itemize}
 
 \subsection{Otros}
 
 \begin{itemize}
-	\item gunicorn: ejecución y monitoreo de la aplicación
-	\item lizard: analizador de código estático
-	\item rule\_engine: evaluador de reglas con expresiones lógicas, utilizado para asignar \Gls{insignia}s
+	\item \textbf{gunicorn}: ejecución y monitoreo de la aplicación.
+	\item \textbf{lizard}: analizador de código estático.
+	\item \textbf{rule\_engine}: evaluador de reglas con expresiones lógicas, utilizado para asignar \Gls{insignia}s.
 \end{itemize}
 
 
@@ -1762,7 +1771,12 @@ En el menú se visualizará el nuevo idioma disponible.
 	Stouffer, Jack.
 	\newblock ``Creating Controllers with Blueprints''. \textit{Mastering Flask}
 	\newblock Birbingham: Pack Publishing Ltd., 2015, pp. 57-62. ISBN: 9781784391928
-
+	
+	
+\bibitem{book-developing-web-python}
+	Grinberg, Miguel
+	\newblock ``Deployment''. \textit{Flask Web Development: Developing Web Applications with Python}
+	\newblock California: O'Reilly Media, Inc., 2014. ISBN: 9781491947616
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

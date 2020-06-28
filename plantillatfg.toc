@@ -33,14 +33,15 @@
 \contentsline {section}{\numberline {4.5}Diseño de la Aplicación en Flask}{26}{section.4.5}%
 \contentsline {section}{\numberline {4.6}Sistema de Colas interno}{27}{section.4.6}%
 \contentsline {chapter}{\numberline {5}Desarrollo de la solución}{29}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Paquetes de Python}{29}{section.5.1}%
-\contentsline {subsection}{\numberline {5.1.1}Flask}{30}{subsection.5.1.1}%
-\contentsline {subsection}{\numberline {5.1.2}Colas}{30}{subsection.5.1.2}%
-\contentsline {subsection}{\numberline {5.1.3}Datos de ejemplo}{30}{subsection.5.1.3}%
-\contentsline {subsection}{\numberline {5.1.4}Conexión con sistemas externos}{30}{subsection.5.1.4}%
-\contentsline {subsection}{\numberline {5.1.5}Otros}{31}{subsection.5.1.5}%
-\contentsline {section}{\numberline {5.2}Envío de soluciones de Tareas}{31}{section.5.2}%
-\contentsline {section}{\numberline {5.3}Entregables}{32}{section.5.3}%
+\contentsline {section}{\numberline {5.1}Flask \foreignlanguage {english}{\textit {boilerplate}}}{29}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Paquetes de Python}{30}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Flask}{30}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}Colas}{30}{subsection.5.2.2}%
+\contentsline {subsection}{\numberline {5.2.3}Conexión con sistemas externos}{31}{subsection.5.2.3}%
+\contentsline {subsection}{\numberline {5.2.4}Datos de ejemplo}{31}{subsection.5.2.4}%
+\contentsline {subsection}{\numberline {5.2.5}Otros}{31}{subsection.5.2.5}%
+\contentsline {section}{\numberline {5.3}Envío de soluciones de Tareas}{31}{section.5.3}%
+\contentsline {section}{\numberline {5.4}Entregables}{32}{section.5.4}%
 \contentsline {chapter}{\numberline {6}Implantación}{35}{chapter.6}%
 \contentsline {section}{\numberline {6.1}Docker y Kubernetes}{35}{section.6.1}%
 \contentsline {section}{\numberline {6.2}Despliegue en la Nube con Kubernetes}{37}{section.6.2}%
