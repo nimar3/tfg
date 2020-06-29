@@ -49,20 +49,22 @@
 \contentsline {section}{\numberline {6.2}Despliegue en la Nube con Kubernetes}{37}{section.6.2}%
 \contentsline {subsection}{\numberline {6.2.1}Pasos de un despliegue en GCE}{37}{subsection.6.2.1}%
 \contentsline {subsection}{\numberline {6.2.2}Costos asociados}{39}{subsection.6.2.2}%
-\contentsline {chapter}{\numberline {7}Mantenimiento}{41}{chapter.7}%
-\contentsline {section}{\numberline {7.1}Entorno local de desarrollo}{41}{section.7.1}%
-\contentsline {section}{\numberline {7.2}Depuración de errores}{43}{section.7.2}%
-\contentsline {section}{\numberline {7.3}Calidad de código}{43}{section.7.3}%
-\contentsline {section}{\numberline {7.4}Gestión de versiones}{43}{section.7.4}%
-\contentsline {chapter}{\numberline {8}Extensibilidad}{45}{chapter.8}%
-\contentsline {section}{\numberline {8.1}Otros sistemas de Gestión de Tareas}{45}{section.8.1}%
-\contentsline {section}{\numberline {8.2}Localización}{46}{section.8.2}%
-\contentsline {chapter}{\numberline {9}Conclusiones}{49}{chapter.9}%
-\contentsline {section}{\numberline {9.1}Relación del trabajo desarrollado con los estudios cursados}{49}{section.9.1}%
-\contentsline {chapter}{\numberline {10}Trabajos futuros}{51}{chapter.10}%
-\contentsline {chapter}{Bibliograf\'{\i }a}{53}{chapter*.42}%
+\contentsline {chapter}{\numberline {7}Pruebas}{41}{chapter.7}%
+\contentsline {chapter}{\numberline {8}Mantenimiento}{43}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Entorno local de desarrollo}{43}{section.8.1}%
+\contentsline {section}{\numberline {8.2}Depuración de errores}{45}{section.8.2}%
+\contentsline {section}{\numberline {8.3}Calidad de código}{45}{section.8.3}%
+\contentsline {section}{\numberline {8.4}Gestión de versiones}{45}{section.8.4}%
+\contentsline {chapter}{\numberline {9}Extensibilidad}{47}{chapter.9}%
+\contentsline {section}{\numberline {9.1}Otros sistemas de Gestión de Tareas}{47}{section.9.1}%
+\contentsline {section}{\numberline {9.2}Localización}{48}{section.9.2}%
+\contentsline {chapter}{\numberline {10}Conclusiones}{51}{chapter.10}%
+\contentsline {section}{\numberline {10.1}Relación del trabajo desarrollado con los estudios cursados}{51}{section.10.1}%
+\contentsline {section}{\numberline {10.2}C}{51}{section.10.2}%
+\contentsline {chapter}{\numberline {11}Trabajos futuros}{53}{chapter.11}%
+\contentsline {chapter}{Bibliograf\'{\i }a}{55}{chapter*.42}%
 \noindent \hrulefill \par 
 \appendixname \par 
-\contentsline {chapter}{\numberline {A}Configuración del sistema}{55}{appendix.Alph1}%
-\contentsline {section}{\numberline {A.1}Inicialización}{55}{section.Alph1.1}%
-\contentsline {section}{\numberline {A.2}Parámetros}{56}{section.Alph1.2}%
+\contentsline {chapter}{\numberline {A}Configuración del sistema}{57}{appendix.Alph1}%
+\contentsline {section}{\numberline {A.1}Inicialización}{57}{section.Alph1.1}%
+\contentsline {section}{\numberline {A.2}Parámetros}{58}{section.Alph1.2}%
