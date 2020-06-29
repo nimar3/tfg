@@ -313,7 +313,7 @@ Para este caso en particular ambos actores fueron interpretados por el tutor y e
 	\item Como \gls{administrador}, quiero crear \gls{alumno}s subiendo un fichero.
 	\item Como \gls{administrador}, quiero borrar \gls{alumno}s.
 	\item Como \gls{administrador}, quiero restablecer la contraseña de un \gls{alumno}.
-	\item Como \gls{administrador}, quiero crear y asignar \gls{tarea}s a uno o más \gls{grupo}s.
+	\item Como \gls{administrador}, quiero crear \gls{tarea}s y asignarlas a uno o más \gls{grupo}s.
 	\item Como \gls{administrador}, quiero crear \gls{insignia}s y asignarlas a una o más \gls{tarea}s.
 	\item Como \gls{administrador}, quiero asignar \gls{insignia}s a una o más \gls{tarea}s.
 	\item Como \gls{administrador}, quiero editar \gls{tarea}s.
@@ -910,6 +910,34 @@ Para las siguientes tablas también se ha creado una plantilla estándar similar
 	\label{table:24}
 \end{table}
 
+\section{Bocetos}
+
+Como parte del análisis del problema se han realizado bocetos de la interfaz web de algunos de los requisitos funcionales que tienen una gran cantidad de información a mostrar. Estos bocetos se llaman \foreign{english}{wireframes} y representan de forma sencilla la estructura de una página web. No se espera que muestren el diseño final o perfectos estéticamente ya que su cometido es aportar claridad, detectar problemas de usabilidad y crear una conexión entre los requisitos e información con la interfaz.
+
+Los bocetos corresponden a los requisitos funcionales Página de inicio (RF-4) para la Figura \ref{figura:wireframe-dashboard}, Tarea (RF-8) para la Figura \ref{figura:wireframe-tarea} y Perfil (RF-11) para la Figura \ref{figura:wireframe-perfil}.
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=0.95\textwidth]{img/wireframe-tarea}
+	\caption[Boceto Tarea]{Boceto Tarea (RF-8)}
+	\label{figura:wireframe-tarea}
+\end{figure}
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=0.9\textwidth]{img/wireframe-dashboard}
+	\caption[Boceto Página de inicio]{Boceto Página de inicio (RF-4)}
+	\label{figura:wireframe-dashboard}
+\end{figure}
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=0.9\textwidth]{img/wireframe-perfil}
+	\caption[Boceto Perfil]{Boceto Perfil (RF-11)}
+	\label{figura:wireframe-perfil}
+\end{figure}
+
+\FloatBarrier
 
 \section{Cluster \kahan}
 
@@ -934,11 +962,13 @@ Un análisis de riesgo también forma parte del estudio del problema ya que se d
 
 Por un lado la interacción con el \foreign{english}{cluster} \kahan puede ser dificultosa porque lo haremos desde un sistema externo, además hay que sumarle la posibilidad de que la aplicación se despliegue en una solución \foreign{english}{cloud} siendo el autor de la memoria un usuario novel de esos sistemas. Y por último la verificación de resultados, asignación de \gls{insignia}s y tablas de posiciones (\foreign{english}{Leaderboards}) que pueden ir cambiando en el tiempo.
 
-Para mitigar riesgos se ha seguido un plan de acción con el apoyo del Tutor. En el primer caso se han hecho pruebas utilizando los protocolos \acrshort{ssh} y \acrfull{scp} para replicar los pasos manuales que haría un \gls{alumno} en una práctica de una asignatura como \acrshort{lpp} o \acrshort{cpa}. El Autor por su parte ha participado de un curso online \cite{link-coursera-google} sobre la solución \foreign{english}{cloud} escogida para mejorar su base de conocimiento; y por último se han analizado las librerías disponibles del software a utilizar para simplificar las tareas complejas expuestas previamente.
+Para mitigar riesgos se ha seguido un plan de acción con el apoyo del Tutor. En el primer caso se han hecho pruebas utilizando los protocolos \acrshort{ssh} y \acrfull{scp} para replicar los pasos manuales que haría un \gls{alumno} en una práctica de una asignatura como \acrshort{lpp} o \acrshort{cpa} y verificar que pueden ser automatizados. El Autor por su parte ha participado de un curso online \cite{link-coursera-google} sobre la solución \foreign{english}{cloud} escogida para mejorar su base de conocimiento; y por último se han analizado las librerías disponibles del \foreign{english}{software} a utilizar para simplificar las tareas complejas expuestas previamente.
+
+Una vez realizadas estas tareas y viendo que el riesgo remanente es bajo se ha optado por continuar con el calendario de entrega del \acrshort{tfg} en la fecha acordada.
 
 \section{Análisis del marco legal y ético}
 
-Como este es un proyecto de código abierto, se ha escogido la Licencia MIT\footnote{Licencia MIT: \url{https://opensource.org/licenses/MIT}} ya que es una de las más permisivas para fomentar la reutilización y colaboración. Este tipo de licencia permite el libre uso de forma privada o comercial, la modificación y distribución del código sin ningún tipo de garantía donde solo se pide que se mantengan las menciones a la licencia y derechos de autor.
+Como este es un proyecto de código abierto se ha escogido la Licencia MIT\footnote{Licencia MIT: \url{https://opensource.org/licenses/MIT}} ya que es una de las más permisivas para fomentar la reutilización y colaboración. Este tipo de licencia permite el libre uso de forma privada o comercial, la modificación y distribución del código sin ningún tipo de garantía donde solo se pide que se mantengan las menciones a la licencia y derechos de autor.
 
 Además, todos elementos utilizados en el producto final que no son creación del Autor de este \acrshort{tfg} como librerías \textit{javascript} e imágenes son de libre uso y tienen su atribución correspondiente.
 
@@ -1141,7 +1171,7 @@ Por último, otro beneficio que brinda esta separación de roles es que se puede
 
 \chapter{Desarrollo de la solución}
 
-En este capítulo presentamos un resumen de como se ha pasado del diseño de la aplicación a la solución final; no se explicará el desarrollo del código fuente en si, sino un repaso de ciertas particularidades de la aplicación como el \gls{envio} de \gls{tarea}s, los \gls{paquete}s que permiten todas las funcionalidades disponibles, el uso de un \foreign{english}{boilerplate}, una plantilla que simplificará el desarrollo de la interfaz web y un resumen de los entregables que se fueron produciendo para dar vida al producto final.
+En este capítulo presentamos un resumen de como se ha pasado del diseño de la aplicación a la solución final; no se explicará el desarrollo del código fuente en si, sino un repaso de ciertas particularidades de la aplicación como el \gls{envio} de \gls{tarea}s, los \gls{paquete}s que permiten todas las funcionalidades disponibles, el uso de un \foreign{english}{boilerplate}, una plantilla que simplificará el desarrollo de la interfaz web, el uso de la librería \textit{RQ} para las colas internas y un resumen de los entregables que se fueron produciendo para dar vida al producto final.
 
 \section{Flask \foreign{english}{boilerplate}}
 
@@ -1274,15 +1304,15 @@ explicación de la case job y automata aqui
 
 \section{Asignación de Insignias}
 
-Cuando se llegó a la etapa de desarrollo en el cual se tenían que crear las \gls{insignia}s (\foreign{english}{Badges}) se encontró un problema de gran dificultad. ¿Cómo hacer que un \gls{administrador} desde su panel web pueda hacer que una \gls{insignia} se aplique cuando suceda algo en particular? Las \gls{insignia}s no solo se obtienen al completar una \gls{tarea} de forma correcta, sino que también en otros casos que puedan darse como por ejemplo que el \gls{envio} se encuentre en los primeros tres puestos de la tabla de posiciones (\foreign{english}{leaderboard}).
+Cuando se llegó a la etapa de desarrollo en el cual se tenían que crear las \gls{insignia}s (\foreign{english}{Badges}) se encontró un problema de gran dificultad. ¿Cómo hacer que un \gls{administrador} desde su panel web pueda hacer que una \gls{insignia} se aplique cuando suceda algo en particular? Las \gls{insignia}s no solo se obtienen al completar una \gls{tarea} de forma correcta, sino que también en otros casos que puedan darse; como por ejemplo, que el \gls{envio} se encuentre en los primeros tres puestos de la tabla de posiciones (\foreign{english}{leaderboard}).
 
 La primera opción que posteriormente fue descartada era crear una clase en \textit{python} por cada tipo de \gls{insignia} que se quiera asignar a un \gls{alumno}; esto quitaba dinamismo y forzaba al \gls{administrador} a modificar el código fuente de la aplicación, algo que quiere evitarse ya que impone una barrera de entrada a cualquier persona que quiera hacer uso de \textit{Pizarra} en un futuro.
 
-Después de investigar otras posibilidades y realizar una serie de pruebas se ha optado por añadir el \gls{paquete} \textit{rule\_engine} que permite la creación de objetos de tipo ``Rule'' que pueden ser evaluados con expresiones lógicas y son escritas como cadenas de texto y puedan guardarse en una columna de la \acrshort{bd} como atributo de la clase \foreign{english}{badge}. \textit{rule\_engine} no es la única librería que añade este tipo de funcionalidad en \textit{python} pero su simplicidad y el soporte de \textit{Data objects} \cite{link-rule-engine}, que es la representación de una clase en formato \acrshort{json} fue la razón por la cual se ha hecho la elección.
+Después de investigar otras posibilidades y realizar una serie de pruebas se ha optado por añadir el \gls{paquete} \textit{rule\_engine} que permite la creación de objetos de tipo ``Rule'' que pueden ser evaluados con expresiones lógicas, son escritas como cadenas de texto y pueden guardarse en una columna de la \acrshort{bd} como atributo de la clase \foreign{english}{Badge}. \textit{rule\_engine} no es la única librería que añade este tipo de funcionalidad en \textit{python} pero su simplicidad y el soporte de \textit{Data objects} \cite{link-rule-engine}, que es la representación de una clase en formato \acrshort{json} fue la razón por la cual se ha hecho esta elección.
 
 Con la posibilidad de escribir reglas como cadenas de texto y sabiendo que un \foreign{english}{job} tiene los atributos \textit{user, request, assignment} y \textit{leaderboard} como diccionarios de \textit{python} podemos crear \foreign{english}{Badges} como las que se encuentran en los datos de ejemplos del fichero \textbf{sample.yml}.
 
-\begin{code}{sample.py}
+\begin{code}{app/data/sample.py}
 - Badge:
 	- name: "beat_the_machine"
 	description: "Earn when your program runs below a certain threshold"
@@ -1292,7 +1322,7 @@ Con la posibilidad de escribir reglas como cadenas de texto y sabiendo que un \f
 	rule: "leaderboard.position <= 3"
 \end{code}
 
-En el ejemplo previo podemos ver la creación de dos \gls{insignia}s que se asignarán a un \gls{alumno} cuando la ejecución de su programa sea en menos de 10 segundos y también otro caso donde la posición de la ejecución quede entre las tres mejores. La descripción de los atributos es:
+En el ejemplo previose tenemos la creación de dos \gls{insignia}s que se asignarán a un \gls{alumno} cuando la ejecución de su programa sea en menos de 10 segundos y también otro caso donde la posición de la ejecución quede entre las tres mejores. La descripción de los atributos es:
 
 \begin{itemize}
 	\item \textbf{name}: ID único de la \gls{insignia}.
