@@ -1297,10 +1297,144 @@ El diagrama de flujo de una petición web para un \gls{envio} es el que se ve en
 
 \FloatBarrier
 
-\section{Ejecución en una cola interna}
+\section{Ejecución en una Cola interna}
 
-explicación de la case job y automata aqui
+Previamente se ha hablado de que el \gls{paquete} \textit{RQ} permite simular un \textit{Administrador de Tareas} con el uso de una \gls{cola} interna de ``trabajos'' o \foreign{english}{jobs} ejecutados por unos \foreign{english}{Workers}; aunque ha faltado explicar el cómo. Primero vamos a presentar las dos clases que proporciona \textit{RQ}; 1) \foreign{english}{Worker} y 2) \foreign{english}{Queue} y cómo son utilizados por \textit{Pizarra}.
 
+En el siguiente ejemplo podemos ver la creación de un ``trabajador'' o \foreign{english}{Worker} al iniciar \textit{Pizarra} en éste modo. 
+
+\begin{code}{app/\_\_init.py\_\_}
+...
+redis_url = app.config["RQ_DASHBOARD_REDIS_URL"]
+redis_connection = redis.from_url(redis_url)
+with Connection(redis_connection):
+	worker = Worker(app.config['QUEUES'])
+	worker.work(with_scheduler=True)
+...
+\end{code}
+
+El extracto de código del fichero \textbf{app/\_\_init.py\_\_} realiza el siguiente trabajo:
+
+\begin{enumerate}
+	\item lee de la configuración de \textit{Pizarra} la URL del servicio de \textit{Redis}.
+	\item crea una conexión con el servicio de \textit{Redis}.
+	\item crea un Objeto de tipo \foreign{english}{Worker} con las \gls{cola}s disponibles.
+	\item pone al \foreign{english}{Worker} a ``trabajar'' revisando el servicio de \textit{Redis} periodicamente para ver si hay \foreign{english}{jobs} a ejecutar.
+\end{enumerate}
+
+El próximo paso es ver cómo se crean los \foreign{english}{jobs} que en el caso de nuestra aplicación serán las \textit{Requests} o \gls{envio}s de los \textit{usuarios} a procesar por los \foreign{english}{Workers}. Para esta funcionalidad tenemos dos métodos en el fichero \textbf{app/base/models\_jobs.py} \newline
+
+\begin{code}{app/base/models\_jobs.py}
+...
+def process_job(job):
+	"""
+	process a given job
+	"""
+	job.process()
+
+def create_job(user_request) -> str:
+	"""
+	creates and enqueues a job from pizarra to be executed by a worker and returns job id
+	"""
+	with Connection(redis.from_url(current_app.config["RQ_DASHBOARD_REDIS_URL"])):
+	q = Queue(name=user_request.assignment.queue)
+	rq_job = q.enqueue(process_job, LocalJob(user_request))
+	return rq_job.get_id()
+...
+\end{code}
+
+El método \textit{create\_job} recibe como parámetro un \textit{Request}, donde su definición no es relevante salvo que se utilizará para el \textit{job} a procesar y además tiene el nombre de la \foreign{english}{Queue} interna donde debe encolarse. Lo que hace es lo siguiente:
+
+\begin{enumerate}
+	\item abrir una conexión con el servicio de \textit{Redis}.
+	\item crea un objeto de tipo \foreign{english}{Queue} con el nombre de la \gls{cola} a utilizar.
+	\item crea un \foreign{english}{job} utilizando el método \textit{process\_job}, que recibe como parámetro una clase genérica que debe tener implementado el método \textit{process}. Ese \foreign{english}{job} se inserta en la \foreign{english}{Queue}.
+	\item devuelve el ID del \foreign{english}{job} para poder asignarlo a la \textit{Request}.
+\end{enumerate}
+
+Por último veo muy importante explicar la creación del siguiente autómata ya que es la forma en la cual se ha podido resolver la ejecución en una \gls{cola} Local, \kahan y cualquier otra que se quiera utilizar en un futuro. El código presentado de la clase \textit{LocalJob} es una simplificación de la clase real de \textit{Pizarra} donde se presentan los elementos básicos para dar el contexto de su funcionamiento.
+
+Para facilitar la lectura se ha partido el código fuente en tres recuadros; asumir que continúa entre los mismos.
+
+\begin{code}{app/base/models\_jobs.py}
+class StepResult(enum.Enum):
+	START = 0
+	OK = 1
+	NOK = 2
+	WAIT = 3
+	END = 4
+	
+class LocalJob:
+	def __init__(self, user_request):
+		...
+		self.user_request = user_request
+		self.task_process = {
+			RequestStatus.CREATED: {
+				'f': self.start,
+				'steps': {
+					StepResult.OK: RequestStatus.VERIFYING,
+				}
+			},
+			RequestStatus.VERIFYING: {
+				'f': self.verify,
+				'steps': {
+					StepResult.OK: RequestStatus.COMPILE,
+					StepResult.NOK: RequestStatus.ERROR
+				}
+			}
+			...
+		}
+	
+\end{code}
+
+Este autómata tiene una serie de etiquetas que ayudarán a saber a que estado pasar a continuación (\foreign{english}{StepResult}). Al crear un objeto del tipo \textit{LocalJob} en esta versión simplificada se puede ver como se asigna el \foreign{english}{Request} y además existe la definición del autómata como un mapa, donde para una etiqueta se le asigna un método a ejecutar y un mapa de transiciones dependiendo el resultado de la ejecución del paso. \newline
+	
+\begin{code}{app/base/models\_jobs.py}
+	def get_task_step(self):
+		return self.task_process[self.user_request.status]
+	
+	def is_job_completed(self):
+		return self.user_request.status in [RequestStatus.CANCELED, RequestStatus.ERROR, RequestStatus.TIMEWALL,
+		RequestStatus.FINISHED, RequestStatus.UNHANDLED_ERROR]
+\end{code}
+
+La función \textit{get\_task\_step} devuelve el método para el paso en el que se encuentra el autómata y el atributo dinámico \textit{is\_job\_completed} verifica si el proceso ha terminado. \newline 
+
+\begin{code}{app/base/models\_jobs.py}
+	def process(self):
+		"""
+		process the task request step by step until the task is enqueued again or it finishes
+		"""
+		step_result = StepResult.OK
+		while step_result != StepResult.END:
+			step = self.get_task_step()
+			f = step['f']
+			step_result = f()
+			
+			if step_result == StepResult.WAIT:
+				requeue_job(self)
+				break
+				
+			self.update_request(step['steps'][step_result])
+	
+	def start(self):
+		return StepResult.OK
+	
+	def verify(self):
+		return StepResult.OK if (
+	self.__not_contains_malicious_content() and self.__static_code_analysis()) else StepResult.NOK
+\end{code}
+
+En el tercer bloque se encuentra la función \textit{process}, que como explicamos previamente es el método que ejecuta el \foreign{english}{Worker} al obtener un \foreign{english}{job} de una \gls{cola}. Lo que hace es obtener el estado actual de la \foreign{english}{Request} y hacer el siguiente proceso hasta terminar:
+
+\begin{enumerate}
+	\item obtener la función.
+	\item ejecutarla y asignar el resultado al estado actual.
+	\item si el resultado es \textit{WAIT}, vuelve a encolar la tarea para ejecutar en un futuro. Esto se hace para \gls{cola}s como \kahan donde debemos revisar el estado de una ejecución cada cierta cantidad de tiempo.
+	\item se actualiza el estado de la \textit{Request} donde el nuevo estado se obtiene del mapa \textit{steps} del resultado del paso.
+\end{enumerate}
+
+Como se puede ver en el método de ejemplo \textit{start} se devolverá un OK y el nuevo estado de la \textit{Request} será \textit{VERIFYING}. En el próximo paso ejecutará el método \textit{verify} que llama dos métodos adicionales que verifican que no haya código malicioso y realiza el análisis del código estático; y así hasta terminar la ejecución.
 
 \section{Asignación de Insignias}
 
@@ -1338,7 +1472,6 @@ Pizarra es una herramienta que necesita de otros aplicativos para su funcionamie
 Para evitar todos estos pasos y acelerar la implantación el proyecto incluye la posibilidad de que todos los elementos de la arquitectura se desplieguen en \Gls{contenedor}es. Estos \Gls{contenedor}es están creados con la tecnología Docker y son paquetes que incluyen todo lo necesario, sean librerías y herramientas del sistema para que el software se ejecute.
 
 Docker funciona de forma similar a una maquina virtual, con algunas ventajas como la asignación de recursos de forma dinámica, espacio en disco reducido ya que podemos evitar la instalación de un \acrshort{so} en los contenedores y la portabilidad.
-
 
 \begin{figure}[ht]
 	\centering
@@ -1441,7 +1574,6 @@ $ export DB_PASSWORD=pizarra
 	$ docker push eu.gcr.io/${PROJECT_ID}/nginx
 	\end{lstlisting}
 	
-	
 	\item Creación de cluster en Kubernetes con 2 nodos. Una vez creado se descargan las credenciales para trabajar con él.
 
 	\begin{lstlisting}[language=bash]	
@@ -1493,13 +1625,7 @@ Una vez completados todos los pasos se puede obtener la IP pública de Pizarra e
 $ kubectl get services
 \end{lstlisting}
 
-También se puede obtener en la web de \acrshort{gce} sobre la pestaña Services e Ingress.
-
-IMAGEN
-
-Hemos completado el despliegue y ya podemos navegar a Pizarra para comenzar a interactuar con el aplicativo.
-
-IMAGEN
+Con esto se ha completado el despliegue y ya podemos navegar a Pizarra para comenzar a interactuar con el aplicativo.
 
 \subsection{Costos asociados}
 
