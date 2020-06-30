@@ -275,20 +275,20 @@ Como en todo proyecto de desarrollo de software debemos escoger un modelo o proc
 
 \section{Actores}
 
-El sistema contará con dos perfiles de usuarios que llamaremos actores, estos son el \Gls{alumno} y \Gls{administrador}. También veremos que en la memoria se hace mención al ``usuario'' (\foreign{english}{User}), esto se hace para referirnos a funcionalidades que se aplican tanto a los \gls{alumno}s como \gls{administrador}es.
+El sistema contará con dos perfiles de usuarios que llamaremos actores, estos son el \Gls{alumno} y el \Gls{administrador}. También veremos que en la memoria se hace mención al ``usuario'' (\foreign{english}{User}), esto se hace para referirnos a funcionalidades que se aplican tanto a \gls{alumno}s como \gls{administrador}es.
 
 \begin{itemize}
-	\item \textbf{\gls{alumno}}: el actor principal del sistema. Enviará soluciones a los problemas propuestos y tratará de mejorar sus resultados para subir su ranking en las tablas de posiciones (\foreign{english}{Leaderboard}). Su trabajo será recompensado en forma de puntos e insignias, que son trofeos o marcas obtenidas después de lograr cierto objetivo. Un alumno pertenecerá a un \gls{grupo} (\foreign{english}{Group}) que será el curso en el cual está matriculado y también podrá formar un \gls{equipo} (\foreign{english}{Team}) con sus compañeros de clase para resolver problemas en conjunto.
+    \item \textbf{\gls{alumno}}: el actor principal del sistema. Enviará soluciones a los problemas propuestos y tratará de mejorar sus resultados para subir su ranking en las tablas de posiciones (\foreign{english}{Leaderboard}). Su trabajo será recompensado en forma de puntos e insignias, que son trofeos o marcas obtenidas después de lograr cierto objetivo. Un alumno pertenecerá a un \gls{grupo} (\foreign{english}{Group}), que será el curso en el cual está matriculado, y también podrá formar un \gls{equipo} (\foreign{english}{Team}) con sus compañeros de clase para resolver problemas en conjunto.
 	\item \textbf{\gls{administrador}}: el actor que se encarga de poner el sistema en marcha. Tendrá que tener conocimientos sólidos en programación paralela para poder crear \gls{tarea}s que varíen en dificultad y motive al alumnado a mejorar sus resultados. Normalmente será el profesor de la asignatura \acrshort{lpp} o \acrshort{cpa}.
 \end{itemize}
 
 Antes de comenzar a listar las \textbf{Historias de usuario} hay dos conceptos importantes a definir que son los de \gls{tarea} (\foreign{english}{Assignment}) y \gls{envio} (\foreign{english}{Request}). La \gls{tarea} este es un problema o ejercicio a resolver en la aplicación con una serie de entradas y una salida (resultado) que el \gls{alumno} desconoce; la \gls{tarea} es creada por el \gls{administrador}. El \gls{envio} es una petición web de un \textit{usuario} hacia la aplicación web con el código fuente a compilar y ejecutar que tratará de dar solución a una \gls{tarea} específica. 
 
-Adicionalmente cuando en la memoria se haga mención a la palabra \foreign{english}{job} no nos referimos a una \gls{tarea} sino a un ``trabajo'' a procesarse en una cola (\foreign{english}{queue}) interna o de \kahan.
+Adicionalmente, cuando en la memoria se haga mención a la palabra \foreign{english}{job}, no nos referiremos a una \gls{tarea} sino al ``trabajo'' que será procesado en una cola (\foreign{english}{queue}) interna o del \foreign{english}{cluster} (\kahan en nuestro caso).
 
 \section{Historias de usuario}
 
-El primer paso es realizar una entrevista con los actores involucrados para describir sus necesidades en un lenguaje sencillo que más adelante darán partida a los requisitos funcionales (\acrshort{rf})  y no funcionales de la aplicación (\acrshort{rnf}). A esto se le llama \textbf{Historias de usuario}. \par
+El primer paso es realizar una entrevista con los actores involucrados para describir sus necesidades en un lenguaje sencillo que más adelante darán lugar a los requisitos funcionales (\acrshort{rf})  y no funcionales de la aplicación (\acrshort{rnf}). A esto se le llama \textbf{Historias de usuario}. \par
 
 Para este caso en particular ambos actores fueron interpretados por el tutor y el autor del \acrshort{tfg} intercambiando roles al comienzo de la elaboración de la memoria y el resultado es el siguiente:
 
@@ -324,7 +324,7 @@ Para este caso en particular ambos actores fueron interpretados por el tutor y e
 
 \section{Requisitos funcionales}
 
-Una vez identificadas las \textbf{Historias de Usuario} más importantes el próximo paso es convertirlas en requisitos funcionales formales, específicos y consistentes. Esto evitará ambigüedades y dejará por sentado como se comportará el sistema. Aquí se describen todos los requisitos del aplicativo siguiendo una plantilla adaptada de varios modelos consultados en Internet \cite{link-esp-rq-jan}. A La plantilla creada se le ha añadido un identificador único para dar un seguimiento durante la etapa de desarrollo, pruebas y entrega final; la misma tiene los siguientes apartados:
+Una vez identificadas las \textbf{Historias de Usuario} más importantes el próximo paso es convertirlas en requisitos funcionales formales, específicos y consistentes. Esto evitará ambigüedades y dejará por sentado cómo se comportará el sistema. Aquí se describen todos los requisitos del aplicativo siguiendo una plantilla adaptada de varios modelos consultados en Internet \cite{link-esp-rq-jan}. A la plantilla creada se le ha añadido un identificador único para dar un seguimiento durante la etapa de desarrollo, pruebas y entrega final; la misma tiene los siguientes apartados:
 
 \begin{itemize}
 	\item \textbf{Nombre}: título del requerimiento funcional.
@@ -408,7 +408,6 @@ Una vez identificadas las \textbf{Historias de Usuario} más importantes el pró
 	\caption{RF-3 Equipos}
 	\label{table:3}
 \end{table}
-
 
 \begin{table}[!ht]
 	\centering
@@ -952,7 +951,7 @@ Para las siguientes tablas también se ha creado una plantilla estándar similar
 
 \section{Bocetos}
 
-Como parte del análisis del problema se han realizado bocetos de la interfaz web de algunos de los requisitos funcionales que tienen una gran cantidad de información a mostrar. Estos bocetos se llaman \foreign{english}{wireframes} y representan de forma sencilla la estructura de una página web. No se espera que muestren el diseño final o perfectos estéticamente ya que su cometido es aportar claridad, detectar problemas de usabilidad y crear una conexión entre los requisitos e información con la interfaz.
+Como parte del análisis del problema se han realizado bocetos de la interfaz web de algunos de los requisitos funcionales que tienen una gran cantidad de información a mostrar. Estos bocetos se llaman \foreign{english}{wireframes} y representan de forma sencilla la estructura de una página web. No se espera que muestren el diseño final o que sean perfectos estéticamente ya que su cometido es aportar claridad, detectar problemas de usabilidad y crear una conexión entre los requisitos e información con la interfaz.
 
 Los bocetos corresponden a los requisitos funcionales Página de inicio (RF-4) para la Figura \ref{figura:wireframe-dashboard}, Tarea (RF-8) para la Figura \ref{figura:wireframe-tarea} y Perfil (RF-11) para la Figura \ref{figura:wireframe-perfil}.
 
@@ -979,9 +978,11 @@ Los bocetos corresponden a los requisitos funcionales Página de inicio (RF-4) p
 
 \FloatBarrier
 
-\section{Cluster \kahan}
+%\section{Cluster \kahan}
+\section{Clusters de computadoras }
+El objeto de la aplicación es el de ejecutar trabajos (\foreign{english}{jobs}) en un \foreign{english}{cluster} de computadoras. Estas configuraciones están formadas por nodos de computación unidos entre sí mediante redes de alta velocidad. Su programación está basada en el paradigma conocido como \emph{programación en memoria distribuida} donde todos los nodos ejecutan el mismo código, particularizado por un identificador de proceso (valor de 0 a $p$-1, siendo $p$ el número de nodos) y se intercambian datos entre sí mediante paso explícito de mensajes. La programación de este tipo de configuraciones suele realizarse utilizando MPI (Message Passing Interface), una librería que permite la programación de estos equipos siguiendo el paradigma mencionado. Es usual que estos equipos dispongan de un nodo principal llamado \textit{Frontend}, al cuál se conectan los usuarios mediante una conexión \texttt{ssh} para desarrollar código y lanzar el programa que se ejecutará en los nodos de cómputo. 
 
-\kahan es un \foreign{english}{cluster} de computación perteneciente a la \acrshort{upv} \cite{link-cluster-kahan} y será el encargado de procesar el código que envíen los alumnos a la aplicación web. Consta de un nodo cabecera (\textit{Frontend}) a la que un usuario se puede conectar mediante escritorio remoto o consola y así enviar el trabajo a procesar en alguna de sus colas. El nodo \textit{Frontend} es el encargado de comunicarse con el \foreign{english}{cluster} de 6 nodos y procesar los envíos.
+En este trabajo utilizaremos un \foreign{english}{cluster} de computadores particular, como ejemplo de uso y representante de este tipo de configuraciones, denominado \kahan. El \foreign{english}{cluster} \kahan es un \foreign{english}{cluster} de computación perteneciente a la \acrshort{upv}~\cite{link-cluster-kahan} y será el encargado de procesar el código que envíen los alumnos a la aplicación web. Consta de un nodo cabecera (\textit{Frontend}) a la que un usuario se puede conectar mediante escritorio remoto o consola y así enviar el trabajo a procesar en alguna de sus colas. El nodo \textit{Frontend} es el encargado de comunicarse con el \foreign{english}{cluster} de 6 nodos y procesar los envíos.
 
 \begin{figure}[!ht]
 	\centering
@@ -990,19 +991,19 @@ Los bocetos corresponden a los requisitos funcionales Página de inicio (RF-4) p
 	\label{figura:kahan-cluster}
 \end{figure}
 
-En las prácticas de las asignaturas de \acrshort{lpp} y \acrshort{cpa} la ejecución de los pasos de conexión al \textit{Frontend}, envío de código a una cola, revisión de estado de la ejecución y descarga de resultados es un trabajo manual que inclusive llega a ser tedioso ya que los tiempos en los cuales será procesada nuestra petición varía según el uso y estado actual de las colas en \kahan. Por esto uno de los puntos más importantes que vale la pena remarcar dada su complejidad será lograr que la aplicación se encargue de la comunicación con el \foreign{english}{cluster} realizando el proceso completo de forma automatizada, añadiendo también la verificación de resultados y así ofrecer una mejor experiencia de usuario. 
+En las prácticas de las asignaturas de \acrshort{lpp} y \acrshort{cpa} la ejecución de los pasos de conexión al \textit{Frontend}, envío de código a una cola, revisión de estado de la ejecución y descarga de resultados es un trabajo manual que inclusive llega a ser tedioso ya que los tiempos en los cuales será procesada nuestra petición varía según el uso y estado actual de las colas en \kahan. Por esto, uno de los puntos más importantes que vale la pena remarcar dada su complejidad será lograr que la aplicación se encargue de la comunicación con el \foreign{english}{cluster} realizando el proceso completo de forma automatizada, añadiendo también la verificación de resultados y así ofrecer una mejor experiencia de usuario. 
 
-Además, El proceso interacción con el \foreign{english}{cluster} \kahan debe ser asíncrono y no bloquear el funcionamiento de la aplicación web, y la mejor forma de lograr esto es disponer de un \textit{Administrador de Tareas}; que en la práctica es un sistema de colas donde se envían ``trabajos`` (\foreign{english}{jobs}) a procesarse en un determinado momento de tiempo.
+Además, el proceso de interacción con el \foreign{english}{cluster} \kahan debe ser asíncrono y no bloquear el funcionamiento de la aplicación web y la mejor forma de lograr esto es disponer de un \textit{Administrador de Tareas}, que en la práctica es un sistema de colas donde se envían ``trabajos'' (\foreign{english}{jobs}) a procesarse en un determinado momento de tiempo.
 
 El trabajo, no obstante, se ha desarrollado con la idea puesta en su extensibilidad a cualquier otro \foreign{english}{cluster}. De hecho, el  \foreign{english}{cluster} \kahan va a ser sustituido este curso que viene por \textit{kahan2}, que será más avanzado y ligeramente diferente del actual. El trabajo realizado aquí, por tanto, está preparado para ser migrado al nuevo  \foreign{english}{cluster} con mínimas modificaciones.
 
 \section{Riesgos}
 
-Un análisis de riesgo también forma parte del estudio del problema ya que se debe evaluar si el resultado esperado es realizable en tiempo y forma. Para el listado anterior se pueden identificar tres puntos críticos ya que tienen una complejidad alta.
+Un análisis de riesgo también forma parte del estudio del problema ya que se debe evaluar si el resultado esperado es realizable en tiempo y forma. En el listado de requisitos anterior se pueden identificar tres puntos críticos ya que tienen una complejidad alta.
 
-Por un lado la interacción con el \foreign{english}{cluster} \kahan puede ser dificultosa porque lo haremos desde un sistema externo, además hay que sumarle la posibilidad de que la aplicación se despliegue en una solución \foreign{english}{cloud} siendo el autor de la memoria un usuario novel de esos sistemas. Y por último la verificación de resultados, asignación de \gls{insignia}s y tablas de posiciones (\foreign{english}{Leaderboards}) que pueden ir cambiando en el tiempo.
+En primer lugar, la interacción con el \foreign{english}{cluster} \kahan puede ser dificultosa. Por un lado, porque es posible que no se disponga del software adecuado en el \emph{Frontend} para la instalación de la aplicación o porque los administradores del sistema no tengan la capacitación para instalar dicho software. Por otro lado, porque la solución a lo anterior significa el acceso de la aplicación desde un sistema externo. Además, hay que sumarle la posibilidad de que la aplicación se despliegue en una solución \foreign{english}{cloud}, siendo el autor de la memoria un usuario novel de esos sistemas. Y por último la verificación de resultados, asignación de \gls{insignia}s y tablas de posiciones (\foreign{english}{Leaderboards}) que pueden ir cambiando en el tiempo.
 
-Para mitigar riesgos se ha seguido un plan de acción con el apoyo del Tutor. En el primer caso se han hecho pruebas utilizando los protocolos \acrshort{ssh} y \acrfull{scp} para replicar los pasos manuales que haría un \gls{alumno} en una práctica de una asignatura como \acrshort{lpp} o \acrshort{cpa} y verificar que pueden ser automatizados. El Autor por su parte ha participado de un curso online \cite{link-coursera-google} sobre la solución \foreign{english}{cloud} escogida para mejorar su base de conocimiento; y por último se han analizado las librerías disponibles del \foreign{english}{software} a utilizar para simplificar las tareas complejas expuestas previamente.
+Para mitigar riesgos se ha seguido un plan de acción con el apoyo del Tutor. En el primer caso se han hecho pruebas utilizando los protocolos \acrshort{ssh} y \acrfull{scp} para replicar los pasos manuales que haría un \gls{alumno} en una práctica de una asignatura como \acrshort{lpp} o \acrshort{cpa} y verificar que pueden ser automatizados. El Autor por su parte ha participado de un curso online \cite{link-coursera-google} sobre la solución \foreign{english}{cloud} escogida para mejorar su base de conocimiento; y, por último, se han analizado las librerías disponibles del \foreign{english}{software} a utilizar para simplificar las tareas complejas expuestas previamente.
 
 Una vez realizadas estas tareas y viendo que el riesgo remanente es bajo se ha optado por continuar con el calendario de entrega del \acrshort{tfg} en la fecha acordada.
 
@@ -1010,15 +1011,15 @@ Una vez realizadas estas tareas y viendo que el riesgo remanente es bajo se ha o
 
 Como este es un proyecto de código abierto se ha escogido la Licencia MIT\footnote{Licencia MIT: \url{https://opensource.org/licenses/MIT}} ya que es una de las más permisivas para fomentar la reutilización y colaboración. Este tipo de licencia permite el libre uso de forma privada o comercial, la modificación y distribución del código sin ningún tipo de garantía donde solo se pide que se mantengan las menciones a la licencia y derechos de autor.
 
-Además, todos elementos utilizados en el producto final que no son creación del Autor de este \acrshort{tfg} como librerías \textit{javascript} e imágenes son de libre uso y tienen su atribución correspondiente.
+Además, todos los elementos utilizados en el producto final que no son creación del Autor de este \acrshort{tfg}, como librerías \textit{javascript} e imágenes, son de libre uso y tienen su atribución correspondiente.
 
 \section{Plan de Trabajo}
 
-Después de haber revisado el listado de todos los requerimientos funcionales se ha creado un resumen agrupado a alto nivel para dar un seguimiento sin la necesidad de una herramienta externa. El listado se ha subido como parte del fichero \textbf{README.md} del repositorio de código y permite al Tutor, como al Autor del \acrshort{tfg} ver el estado del desarrollo y cuales son los tópicos a abordar a continuación.
+Después de haber revisado el listado de todos los requerimientos funcionales se ha creado un resumen agrupado a alto nivel para dar un seguimiento sin la necesidad de una herramienta externa. El listado se ha subido como parte del fichero \textbf{README.md} del repositorio de código y permite tanto al Tutor como al Autor del \acrshort{tfg} ver el estado del desarrollo y cuáles son los tópicos a abordar en el paso siguiente.
 
 Con el uso del listado y una reunión semanal vía \textit{Skype} se ha seguido el siguiente protocolo: 1) revisión de las funcionalidades implementadas mediante una \foreign{english}{demo}; 2) ronda de preguntas y dudas a resolver; 3) acuerdo entre partes de las próximas funcionalidades a implementar para la próxima semana.
 
-Debido a ciertas dificultades presentadas en el proceso de desarrollo y el esfuerzo que podía realizar el Autor (tiempo libre disponible) debido a la carga de su trabajo actual se ha ido pivotando entre las prioridades cada semana. Desde un punto de vista de proceso se puede asumir que se ha seguido un Desarrollo Ágil, similar al de \textit{Scrum} seleccionando un listado de tareas a abordar en un \textit{sprint} (iteración para entregar ``valor'') con una duración de una semana. 
+Debido a ciertas dificultades presentadas en el proceso de desarrollo y el esfuerzo que podía realizar el Autor (tiempo libre disponible) debido a la carga de su trabajo actual se ha ido pivotando entre las prioridades cada semana. Desde un punto de vista de proceso se puede asumir que se ha seguido un Desarrollo Ágil, similar al de \textit{Scrum}, seleccionando un listado de tareas a abordar en un \textit{sprint} (iteración para entregar ``valor'') con una duración de una semana. 
 
 \textit{Scrum}, como metodología de Desarrollo Ágil, se centra en tener un \textit{software} en funcionamiento que seguir un proceso rígido de desarrollo; premiando así la entrega constante y la posibilidad de adecuarse al cambio. 
 
