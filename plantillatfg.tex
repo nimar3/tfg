@@ -548,7 +548,8 @@ Una vez identificadas las \textbf{Historias de Usuario} más importantes el pró
 		\hline
 		Prioridad &  Muy Alta\\
 		\hline
-		Criterio de aceptación & La API creada para el \gls{envio} de código fuente debe cumplir con los siguientes apartados: \newline
+		Criterio de aceptación & El código enviado debe compilarse, ejecutarse y su resultado verificado con la \gls{tarea} que tiene asignada.
+		La API creada para el \gls{envio} de código fuente debe cumplir con los siguientes apartados: \newline
 		\begin{tabitem}
 			\item las peticiones deben ser seguran con la utilización de un token único por usuario
 			\item la URL de envío debe ser única por \gls{tarea}
@@ -620,6 +621,29 @@ Una vez identificadas las \textbf{Historias de Usuario} más importantes el pró
 	\begin{tabular}{ |p{4cm}||p{10cm}|  }
 		\multicolumn{2}{l}{\textbf{RF-12}} \\
 		\hline
+		Nombre & Insignias \\
+		\hline
+		Descripción & Trofeo o marca que se le asigna a un \gls{alumno} cuando se cumple una condición al procesarse un \gls{envio}  \\
+		\hline
+		Prioridad & Media\\
+		\hline
+		Criterio de aceptación & Una Insignia tiene las siguientes restricciones \newline
+		\begin{tabitem}
+			\item se debe asignar de forma dinámica a través de una regla al terminarse el proceso de un envío.
+			\item un \gls{alumno} puede obtener una \gls{insignia} específica una única vez.
+			\item una ejecución fallida (TIMEWALL o ERROR) pueden ser condiciones para asignarlas.
+		\end{tabitem} \\
+		\hline
+	\end{tabular}
+	\caption{RF-12 Perfil}
+	\label{table:12}
+\end{table}
+
+\begin{table}[ht!]
+	\centering
+	\begin{tabular}{ |p{4cm}||p{10cm}|  }
+		\multicolumn{2}{l}{\textbf{RF-13}} \\
+		\hline
 		Nombre & Configuración del Sistema \\
 		\hline
 		Descripción & Apartado con el resumen de todos los parámetros de despliegue de la aplicación \\
@@ -629,14 +653,14 @@ Una vez identificadas las \textbf{Historias de Usuario} más importantes el pró
 		Criterio de aceptación & Se debe mostrar en forma de tabla todos los parámetros de despliegue de la aplicación en formato clave:valor. Esta página solo puede ser accedida por un \gls{administrador} \\
 		\hline
 	\end{tabular}
-	\caption{RF-12 Configuración del Sistema \\}
-	\label{table:12}
+	\caption{RF-13 Configuración del Sistema \\}
+	\label{table:13}
 \end{table}
 
 \begin{table}[ht!]
 	\centering
 	\begin{tabular}{ |p{4cm}||p{10cm}|  }
-		\multicolumn{2}{l}{\textbf{RF-13}} \\
+		\multicolumn{2}{l}{\textbf{RF-14}} \\
 		\hline
 		Nombre & Administración de Envíos \\
 		\hline
@@ -657,14 +681,14 @@ Una vez identificadas las \textbf{Historias de Usuario} más importantes el pró
 		\end{tabitem} \\
 		\hline
 	\end{tabular}
-	\caption{RF-13 Administración de Envíos}
-	\label{table:13}
+	\caption{RF-14 Administración de Envíos}
+	\label{table:14}
 \end{table}
 
 \begin{table}[ht!]
 	\centering
 	\begin{tabular}{ |p{4cm}||p{10cm}|  }
-		\multicolumn{2}{l}{\textbf{RF-14}} \\
+		\multicolumn{2}{l}{\textbf{RF-15}} \\
 		\hline
 		Nombre & Administración de Grupos \\
 		\hline
@@ -684,14 +708,14 @@ Una vez identificadas las \textbf{Historias de Usuario} más importantes el pró
 		\end{tabitem} \\
 		\hline
 	\end{tabular}
-	\caption{RF-14 Administración de Grupos}
-	\label{table:14}
+	\caption{RF-15 Administración de Grupos}
+	\label{table:15}
 \end{table}
 
 \begin{table}[ht!]
 	\centering
 	\begin{tabular}{ |p{4cm}||p{10cm}|  }
-		\multicolumn{2}{l}{\textbf{RF-15}} \\
+		\multicolumn{2}{l}{\textbf{RF-16}} \\
 		\hline
 		Nombre & Administración de colas internas \\
 		\hline
@@ -707,14 +731,14 @@ Una vez identificadas las \textbf{Historias de Usuario} más importantes el pró
 		\end{tabitem} \\
 		\hline
 	\end{tabular}
-	\caption{RF-15 Administración de colas internas \\}
-	\label{table:15}
+	\caption{RF-16 Administración de colas internas \\}
+	\label{table:16}
 \end{table}
 
 \begin{table}[ht!]
 	\centering
 	\begin{tabular}{ |p{4cm}||p{10cm}|  }
-		\multicolumn{2}{l}{\textbf{RF-16}} \\
+		\multicolumn{2}{l}{\textbf{RF-17}} \\
 		\hline
 		Nombre & Administración de Alumnos \\
 		\hline
@@ -733,14 +757,14 @@ Una vez identificadas las \textbf{Historias de Usuario} más importantes el pró
 		\end{tabitem} \\
 		\hline
 	\end{tabular}
-	\caption{RF-16 Administración de Alumnos}
-	\label{table:16}
+	\caption{RF-17 Administración de Alumnos}
+	\label{table:17}
 \end{table}
 
 \begin{table}[ht!]
 	\centering
 	\begin{tabular}{ |p{4cm}||p{10cm}|  }
-		\multicolumn{2}{l}{\textbf{RF-17}} \\
+		\multicolumn{2}{l}{\textbf{RF-18}} \\
 		\hline
 		Nombre & Administración de Tareas \\
 		\hline
@@ -763,14 +787,14 @@ Una vez identificadas las \textbf{Historias de Usuario} más importantes el pró
 		\end{tabitem} \\
 		\hline
 	\end{tabular}
-	\caption{RF-17 Administración de Tareas}
-	\label{table:17}
+	\caption{RF-18 Administración de Tareas}
+	\label{table:18}
 \end{table}
 
 \begin{table}[ht!]
 	\centering
 	\begin{tabular}{ |p{4cm}||p{10cm}|  }
-		\multicolumn{2}{l}{\textbf{RF-18}} \\
+		\multicolumn{2}{l}{\textbf{RF-19}} \\
 		\hline
 		Nombre & Creación y edición de Tarea \\
 		\hline
@@ -796,14 +820,14 @@ Una vez identificadas las \textbf{Historias de Usuario} más importantes el pró
 		\end{tabitem} \\
 		\hline
 	\end{tabular}
-	\caption{RF-18 Creación y edición de Tarea}
-	\label{table:18}
+	\caption{RF-19 Creación y edición de Tarea}
+	\label{table:19}
 \end{table}
 
 \begin{table}[ht!]
 	\centering
 	\begin{tabular}{ |p{4cm}||p{10cm}|  }
-		\multicolumn{2}{l}{\textbf{RF-19}} \\
+		\multicolumn{2}{l}{\textbf{RF-20}} \\
 		\hline
 		Nombre   & FAQ \\
 		\hline
@@ -818,8 +842,8 @@ Una vez identificadas las \textbf{Historias de Usuario} más importantes el pró
 		\end{tabitem} \\
 		\hline
 	\end{tabular}
-	\caption{RF-19 FAQ}
-	\label{table:19}
+	\caption{RF-20 FAQ}
+	\label{table:20}
 \end{table}
 
 \FloatBarrier
@@ -843,7 +867,7 @@ Para las siguientes tablas también se ha creado una plantilla estándar similar
 		\hline
 	\end{tabular}
 	\caption{RNF-1 Usabilidad}
-	\label{table:20}
+	\label{table:21}
 \end{table}
 
 \begin{table}[ht!]
@@ -859,7 +883,7 @@ Para las siguientes tablas también se ha creado una plantilla estándar similar
 		\hline
 	\end{tabular}
 	\caption{RNF-2 Implantación}
-	\label{table:21}
+	\label{table:22}
 \end{table}
 
 \begin{table}[ht!]
@@ -875,7 +899,7 @@ Para las siguientes tablas también se ha creado una plantilla estándar similar
 		\hline
 	\end{tabular}
 	\caption{RNF-3 Configuración}
-	\label{table:22}
+	\label{table:23}
 \end{table}
 
 \begin{table}[ht!]
@@ -891,7 +915,7 @@ Para las siguientes tablas también se ha creado una plantilla estándar similar
 		\hline
 	\end{tabular}
 	\caption{RNF-4 Localización}
-	\label{table:23}
+	\label{table:24}
 \end{table}
 
 \begin{table}[ht!]
@@ -907,7 +931,23 @@ Para las siguientes tablas también se ha creado una plantilla estándar similar
 		\hline
 	\end{tabular}
 	\caption{RNF-5 Almacenamiento}
-	\label{table:24}
+	\label{table:25}
+\end{table}
+
+\begin{table}[ht!]
+	\centering
+	\begin{tabular}{ |p{4cm}||p{10cm}|  }
+		\multicolumn{2}{l}{\textbf{RNF-6}} \\
+		\hline
+		Nombre & Comunicación \\
+		\hline
+		Descripción  & Todas las comunicaciones con sistemas externos deben realizarse con protocolos seguros. \\
+		\hline
+		Prioridad &  Muy alta \\
+		\hline
+	\end{tabular}
+	\caption{RNF-6 Comunicación}
+	\label{table:26}
 \end{table}
 
 \section{Bocetos}
@@ -1469,6 +1509,52 @@ En el ejemplo previo tenemos la creación de dos \gls{insignia}s que se asignar�
 El sistema de reglas expuesto dará pie a la creación de algunas \gls{insignia}s especiales como una primera ejecución correcta en el \foreign{english}{cluster}, haber agotado el tiempo de ejecución al recibir un TIMEWALL, que el ID del \textit{Request} sea un número especial como el 1000 y más.
 
 \section{Entregables}
+
+Como la creación de la aplicación ha sido en un marco de Desarrollo Ágil, cada entregable ha presentado una nueva serie de nuevas funcionalidades hasta llegar al producto final. Mediante el siguiente resumen de las versiones se puede ver como partiendo de unos cimientos ha ido evolucionando el \foreign{english}{software} hasta su estado actual.
+
+\begin{itemize}
+	\item \textbf{Versión 0.1}
+	\begin{itemize}
+		\item \textbf{fecha entrega}: 8 de Abril.
+		\item \textbf{resumen}: registro e ingreso de \textit{usuarios} con visualización de página de inicio.
+		\item \textbf{requisitos funcionales}: RF-1, RF-2 y RF-4.
+	\end{itemize}
+	\item \textbf{Version 0.2}
+	\begin{itemize}
+		\item \textbf{fecha entrega}: 22 de Abril.
+		\item \textbf{resumen}: envío de código, análisis estático y procesamiento. Visualización de \gls{tarea}s. Creación de equipos.
+		\item \textbf{requisitos funcionales}: RF-3, RF-8 y RF-9.
+	\end{itemize}
+	\item \textbf{Version 0.3}
+\begin{itemize}
+	\item \textbf{fecha entrega}: 29 de Abril.
+	\item \textbf{resumen}: asignación de \gls{insignia}s y visualización de \gls{envio}s.
+	\item \textbf{requisitos funcionales}: RF-5, RF-6 y RF-12.
+\end{itemize}
+	\item \textbf{Version 0.4}
+\begin{itemize}
+	\item \textbf{fecha entrega}: 7 de Mayo.
+	\item \textbf{resumen}: panel de administración.
+	\item \textbf{requisitos funcionales}: RF-13, RF-14, RF-15, RF-16, RF-17, RF-18
+\end{itemize}
+	\item \textbf{Version 0.5}
+\begin{itemize}
+	\item \textbf{fecha entrega}: 13 de Mayo.
+	\item \textbf{resumen}: Equipos. Creación y edición de \gls{tarea}s. Ejecución en \kahan.
+	\item \textbf{requisitos funcionales}: RF-3 y RF-19.
+\end{itemize}
+	\item \textbf{Version 0.6}
+\begin{itemize}
+	\item \textbf{fecha entrega}: 20 de Mayo.
+	\item \textbf{resumen}: FAQ y Perfil. 
+	\item \textbf{requisitos funcionales}: RF-11 y RF-20.
+\end{itemize}
+	\item \textbf{Version 1.0}
+\begin{itemize}
+	\item \textbf{fecha entrega}: 27 de Mayo.
+	\item \textbf{resumen}: versión final con correcciones menores y despliegue en la nube.
+\end{itemize}	
+\end{itemize}
 
 \chapter{Implantación}
 

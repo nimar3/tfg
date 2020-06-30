@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.5.2)  30 JUN 2020 13:03
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.5.2)  30 JUN 2020 14:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -860,17 +860,17 @@ LaTeX Font Info:    Trying to load font information for OT1+zplm on input line
 (/usr/local/texlive/2020/texmf-dist/tex/latex/psnfss/ot1zplm.fd
 File: ot1zplm.fd 2002/09/08 Fontinst v1.914 font definitions for OT1/zplm.
 )
-<logo-upv.pdf, id=249, 331.2375pt x 105.39375pt>
+<logo-upv.pdf, id=253, 331.2375pt x 105.39375pt>
 File: logo-upv.pdf Graphic file (type pdf)
 <use logo-upv.pdf>
 Package pdftex.def Info: logo-upv.pdf  used on input line 157.
 (pdftex.def)             Requested size: 178.85042pt x 56.9055pt.
-<logo-etsinf.pdf, id=250, 311.1625pt x 120.45pt>
+<logo-etsinf.pdf, id=254, 311.1625pt x 120.45pt>
 File: logo-etsinf.pdf Graphic file (type pdf)
 <use logo-etsinf.pdf>
 Package pdftex.def Info: logo-etsinf.pdf  used on input line 157.
 (pdftex.def)             Requested size: 147.00606pt x 56.9055pt.
-<baseportada.png, id=251, 1027.84pt x 578.16pt>
+<baseportada.png, id=255, 1027.84pt x 578.16pt>
 File: baseportada.png Graphic file (type png)
 <use baseportada.png>
 Package pdftex.def Info: baseportada.png  used on input line 157.
@@ -997,192 +997,192 @@ LaTeX Font Info:    Trying to load font information for TS1+ppl on input line 3
  (/usr/local/texlive/2020/texmf-dist/tex/latex/psnfss/ts1ppl.fd
 File: ts1ppl.fd 2001/06/04 font definitions for TS1/ppl.
 )
-LaTeX Info: Redefining \. on input line 825.
-LaTeX Info: Redefining \% on input line 825.
+LaTeX Info: Redefining \. on input line 849.
+LaTeX Info: Redefining \% on input line 849.
 
 [9]
-LaTeX Info: Redefining \. on input line 825.
-LaTeX Info: Redefining \% on input line 825.
+LaTeX Info: Redefining \. on input line 849.
+LaTeX Info: Redefining \% on input line 849.
  [10]
-LaTeX Info: Redefining \. on input line 825.
-LaTeX Info: Redefining \% on input line 825.
+LaTeX Info: Redefining \. on input line 849.
+LaTeX Info: Redefining \% on input line 849.
  [11]
-LaTeX Info: Redefining \. on input line 825.
-LaTeX Info: Redefining \% on input line 825.
+LaTeX Info: Redefining \. on input line 849.
+LaTeX Info: Redefining \% on input line 849.
  [12]
-LaTeX Info: Redefining \. on input line 825.
-LaTeX Info: Redefining \% on input line 825.
+LaTeX Info: Redefining \. on input line 849.
+LaTeX Info: Redefining \% on input line 849.
  [13]
-LaTeX Info: Redefining \. on input line 825.
-LaTeX Info: Redefining \% on input line 825.
+LaTeX Info: Redefining \. on input line 849.
+LaTeX Info: Redefining \% on input line 849.
  [14]
-LaTeX Info: Redefining \. on input line 825.
-LaTeX Info: Redefining \% on input line 825.
+LaTeX Info: Redefining \. on input line 849.
+LaTeX Info: Redefining \% on input line 849.
  [15]
-LaTeX Info: Redefining \. on input line 825.
-LaTeX Info: Redefining \% on input line 825.
+LaTeX Info: Redefining \. on input line 849.
+LaTeX Info: Redefining \% on input line 849.
  [16]
-LaTeX Info: Redefining \. on input line 825.
-LaTeX Info: Redefining \% on input line 825.
+LaTeX Info: Redefining \. on input line 849.
+LaTeX Info: Redefining \% on input line 849.
  [17]
-LaTeX Info: Redefining \. on input line 916.
-LaTeX Info: Redefining \% on input line 916.
+LaTeX Info: Redefining \. on input line 956.
+LaTeX Info: Redefining \% on input line 956.
  [18
 
 ]
-<img/wireframe-tarea.png, id=776, 1024.82875pt x 1039.885pt>
+<img/wireframe-tarea.png, id=790, 1024.82875pt x 1039.885pt>
 File: img/wireframe-tarea.png Graphic file (type png)
 <use img/wireframe-tarea.png>
-Package pdftex.def Info: img/wireframe-tarea.png  used on input line 921.
+Package pdftex.def Info: img/wireframe-tarea.png  used on input line 961.
 (pdftex.def)             Requested size: 405.45047pt x 411.40857pt.
-<img/wireframe-dashboard.png, id=777, 1024.82875pt x 824.07875pt>
+<img/wireframe-dashboard.png, id=791, 1024.82875pt x 824.07875pt>
 File: img/wireframe-dashboard.png Graphic file (type png)
 <use img/wireframe-dashboard.png>
-Package pdftex.def Info: img/wireframe-dashboard.png  used on input line 928.
+Package pdftex.def Info: img/wireframe-dashboard.png  used on input line 968.
 (pdftex.def)             Requested size: 384.1096pt x 308.8653pt.
-<img/wireframe-perfil.png, id=778, 1023.825pt x 813.0375pt>
+<img/wireframe-perfil.png, id=792, 1023.825pt x 813.0375pt>
 File: img/wireframe-perfil.png Graphic file (type png)
 <use img/wireframe-perfil.png>
-Package pdftex.def Info: img/wireframe-perfil.png  used on input line 935.
+Package pdftex.def Info: img/wireframe-perfil.png  used on input line 975.
 (pdftex.def)             Requested size: 384.1096pt x 305.02478pt.
-LaTeX Info: Redefining \. on input line 940.
-LaTeX Info: Redefining \% on input line 940.
+LaTeX Info: Redefining \. on input line 980.
+LaTeX Info: Redefining \% on input line 980.
  [19 <./img/wireframe-tarea.png>]
 LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 942.
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 982.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-LaTeX Info: Redefining \. on input line 945.
-LaTeX Info: Redefining \% on input line 945.
+LaTeX Info: Redefining \. on input line 985.
+LaTeX Info: Redefining \% on input line 985.
  [20 <./img/wireframe-dashboard.png> <./img/wireframe-perfil.png>]
-<img/kahan-cluster.png, id=792, 781.92125pt x 230.8625pt>
+<img/kahan-cluster.png, id=807, 781.92125pt x 230.8625pt>
 File: img/kahan-cluster.png Graphic file (type png)
 <use img/kahan-cluster.png>
-Package pdftex.def Info: img/kahan-cluster.png  used on input line 948.
+Package pdftex.def Info: img/kahan-cluster.png  used on input line 988.
 (pdftex.def)             Requested size: 341.43437pt x 100.80833pt.
-LaTeX Info: Redefining \. on input line 966.
-LaTeX Info: Redefining \% on input line 966.
+LaTeX Info: Redefining \. on input line 1006.
+LaTeX Info: Redefining \% on input line 1006.
  [21 <./img/kahan-cluster.png>]
-LaTeX Info: Redefining \. on input line 986.
-LaTeX Info: Redefining \% on input line 986.
+LaTeX Info: Redefining \. on input line 1026.
+LaTeX Info: Redefining \% on input line 1026.
  [22]
 Cap\'{\i }tulo 4.
-<img/modelado-interaccion.png, id=842, 824.07875pt x 310.15875pt>
+<img/modelado-interaccion.png, id=856, 824.07875pt x 310.15875pt>
 File: img/modelado-interaccion.png Graphic file (type png)
 <use img/modelado-interaccion.png>
-Package pdftex.def Info: img/modelado-interaccion.png  used on input line 1008.
+Package pdftex.def Info: img/modelado-interaccion.png  used on input line 1048.
 
 (pdftex.def)             Requested size: 405.45047pt x 152.59909pt.
 [23
 
 ]
-LaTeX Info: Redefining \. on input line 1028.
-LaTeX Info: Redefining \% on input line 1028.
+LaTeX Info: Redefining \. on input line 1068.
+LaTeX Info: Redefining \% on input line 1068.
  [24 <./img/modelado-interaccion.png>]
-<img/infrastructure-pizarra.png, id=871, 754.82pt x 482.80376pt>
+<img/infrastructure-pizarra.png, id=885, 754.82pt x 482.80376pt>
 File: img/infrastructure-pizarra.png Graphic file (type png)
 <use img/infrastructure-pizarra.png>
-Package pdftex.def Info: img/infrastructure-pizarra.png  used on input line 103
+Package pdftex.def Info: img/infrastructure-pizarra.png  used on input line 107
 1.
 (pdftex.def)             Requested size: 405.45047pt x 259.33252pt.
 
 Underfull \vbox (badness 2027) has occurred while \output is active []
 
-LaTeX Info: Redefining \. on input line 1046.
-LaTeX Info: Redefining \% on input line 1046.
+LaTeX Info: Redefining \. on input line 1086.
+LaTeX Info: Redefining \% on input line 1086.
  [25 <./img/infrastructure-pizarra.png>]
-LaTeX Info: Redefining \. on input line 1083.
-LaTeX Info: Redefining \% on input line 1083.
+LaTeX Info: Redefining \. on input line 1123.
+LaTeX Info: Redefining \% on input line 1123.
  [26]
-<img/database-uml-diagram.png, id=938, 2876.7475pt x 2549.525pt>
+<img/database-uml-diagram.png, id=952, 2876.7475pt x 2549.525pt>
 File: img/database-uml-diagram.png Graphic file (type png)
 <use img/database-uml-diagram.png>
-Package pdftex.def Info: img/database-uml-diagram.png  used on input line 1099.
+Package pdftex.def Info: img/database-uml-diagram.png  used on input line 1139.
 
 (pdftex.def)             Requested size: 405.45047pt x 359.30412pt.
-LaTeX Info: Redefining \. on input line 1105.
-LaTeX Info: Redefining \% on input line 1105.
+LaTeX Info: Redefining \. on input line 1145.
+LaTeX Info: Redefining \% on input line 1145.
  [27 <./img/database-uml-diagram.png>]
-LaTeX Info: Redefining \. on input line 1147.
-LaTeX Info: Redefining \% on input line 1147.
+LaTeX Info: Redefining \. on input line 1187.
+LaTeX Info: Redefining \% on input line 1187.
 
 [28]
-LaTeX Info: Redefining \. on input line 1172.
-LaTeX Info: Redefining \% on input line 1172.
+LaTeX Info: Redefining \. on input line 1212.
+LaTeX Info: Redefining \% on input line 1212.
  [29] [30
 
 ]
 Cap\'{\i }tulo 5.
-<img/admin-lte.png, id=1006, 1204.5pt x 634.37pt>
+<img/admin-lte.png, id=1020, 1204.5pt x 634.37pt>
 File: img/admin-lte.png Graphic file (type png)
 <use img/admin-lte.png>
-Package pdftex.def Info: img/admin-lte.png  used on input line 1183.
+Package pdftex.def Info: img/admin-lte.png  used on input line 1223.
 (pdftex.def)             Requested size: 298.75264pt x 157.34341pt.
 
 Underfull \vbox (badness 4316) has occurred while \output is active []
 
  [31 <./img/admin-lte.png (PNG copy)>]
-LaTeX Info: Redefining \. on input line 1228.
-LaTeX Info: Redefining \% on input line 1228.
- [32]
 LaTeX Info: Redefining \. on input line 1268.
 LaTeX Info: Redefining \% on input line 1268.
+ [32]
+LaTeX Info: Redefining \. on input line 1308.
+LaTeX Info: Redefining \% on input line 1308.
  [33]
-<img/request-flowchart.png, id=1077, 740.7675pt x 1161.33875pt>
+<img/request-flowchart.png, id=1091, 740.7675pt x 1161.33875pt>
 File: img/request-flowchart.png Graphic file (type png)
 <use img/request-flowchart.png>
-Package pdftex.def Info: img/request-flowchart.png  used on input line 1293.
+Package pdftex.def Info: img/request-flowchart.png  used on input line 1333.
 (pdftex.def)             Requested size: 341.43437pt x 535.28555pt.
-LaTeX Info: Redefining \. on input line 1298.
-LaTeX Info: Redefining \% on input line 1298.
+LaTeX Info: Redefining \. on input line 1338.
+LaTeX Info: Redefining \% on input line 1338.
  [34]
-LaTeX Info: Redefining \. on input line 1309.
-LaTeX Info: Redefining \% on input line 1309.
+LaTeX Info: Redefining \. on input line 1349.
+LaTeX Info: Redefining \% on input line 1349.
  [35 <./img/request-flowchart.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 1325--1326
+Underfull \hbox (badness 10000) in paragraph at lines 1365--1366
 
  []
 
-LaTeX Info: Redefining \. on input line 1353.
-LaTeX Info: Redefining \% on input line 1353.
+LaTeX Info: Redefining \. on input line 1393.
+LaTeX Info: Redefining \% on input line 1393.
 [36]
-Underfull \hbox (badness 10000) in paragraph at lines 1390--1391
+Underfull \hbox (badness 10000) in paragraph at lines 1430--1431
 
  []
 
-LaTeX Info: Redefining \. on input line 1397.
-LaTeX Info: Redefining \% on input line 1397.
+LaTeX Info: Redefining \. on input line 1437.
+LaTeX Info: Redefining \% on input line 1437.
 [37]
-Underfull \hbox (badness 10000) in paragraph at lines 1401--1402
+Underfull \hbox (badness 10000) in paragraph at lines 1441--1442
 
  []
 
-LaTeX Info: Redefining \. on input line 1439.
-LaTeX Info: Redefining \% on input line 1439.
+LaTeX Info: Redefining \. on input line 1479.
+LaTeX Info: Redefining \% on input line 1479.
 [38]
-LaTeX Info: Redefining \. on input line 1470.
-LaTeX Info: Redefining \% on input line 1470.
+LaTeX Info: Redefining \. on input line 1510.
+LaTeX Info: Redefining \% on input line 1510.
  [39]
-LaTeX Info: Redefining \. on input line 1473.
-LaTeX Info: Redefining \% on input line 1473.
+LaTeX Info: Redefining \. on input line 1559.
+LaTeX Info: Redefining \% on input line 1559.
  [40]
 Cap\'{\i }tulo 6.
-<img/container-vs-vm.png, id=1262, 580.1675pt x 317.185pt>
+<img/container-vs-vm.png, id=1279, 580.1675pt x 317.185pt>
 File: img/container-vs-vm.png Graphic file (type png)
 <use img/container-vs-vm.png>
-Package pdftex.def Info: img/container-vs-vm.png  used on input line 1483.
+Package pdftex.def Info: img/container-vs-vm.png  used on input line 1569.
 (pdftex.def)             Requested size: 277.41176pt x 151.66628pt.
 [41
 
  <./img/container-vs-vm.png>]
-LaTeX Info: Redefining \. on input line 1530.
-LaTeX Info: Redefining \% on input line 1530.
+LaTeX Info: Redefining \. on input line 1616.
+LaTeX Info: Redefining \% on input line 1616.
  [42]
-<img/gce-new-project.png, id=1298, 500.36937pt x 540.51938pt>
+<img/gce-new-project.png, id=1315, 500.36937pt x 540.51938pt>
 File: img/gce-new-project.png Graphic file (type png)
 <use img/gce-new-project.png>
-Package pdftex.def Info: img/gce-new-project.png  used on input line 1539.
+Package pdftex.def Info: img/gce-new-project.png  used on input line 1625.
 (pdftex.def)             Requested size: 234.73654pt x 253.57402pt.
 
 (/usr/local/texlive/2020/texmf-dist/tex/latex/listings/lstlang1.sty
@@ -1191,30 +1191,30 @@ File: lstlang1.sty 2020/03/24 1.8d listings language file
 (/usr/local/texlive/2020/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
 )
-LaTeX Info: Redefining \. on input line 1550.
-LaTeX Info: Redefining \% on input line 1550.
+LaTeX Info: Redefining \. on input line 1636.
+LaTeX Info: Redefining \% on input line 1636.
  [43 <./img/gce-new-project.png>]
-LaTeX Info: Redefining \. on input line 1617.
-LaTeX Info: Redefining \% on input line 1617.
+LaTeX Info: Redefining \. on input line 1703.
+LaTeX Info: Redefining \% on input line 1703.
  [44]
-<img/google-cloud-engine-cluster-cost.png, id=1378, 706.13812pt x 884.30376pt>
+<img/google-cloud-engine-cluster-cost.png, id=1395, 706.13812pt x 884.30376pt>
 File: img/google-cloud-engine-cluster-cost.png Graphic file (type png)
 <use img/google-cloud-engine-cluster-cost.png>
 Package pdftex.def Info: img/google-cloud-engine-cluster-cost.png  used on inpu
-t line 1641.
+t line 1727.
 (pdftex.def)             Requested size: 362.77525pt x 454.30832pt.
-<img/google-cloud-engine-estimated-cost.png, id=1379, 575.14874pt x 427.5975pt>
+<img/google-cloud-engine-estimated-cost.png, id=1396, 575.14874pt x 427.5975pt>
 
 File: img/google-cloud-engine-estimated-cost.png Graphic file (type png)
 <use img/google-cloud-engine-estimated-cost.png>
 Package pdftex.def Info: img/google-cloud-engine-estimated-cost.png  used on in
-put line 1668.
+put line 1754.
 (pdftex.def)             Requested size: 234.73654pt x 174.51358pt.
-LaTeX Info: Redefining \. on input line 1673.
-LaTeX Info: Redefining \% on input line 1673.
+LaTeX Info: Redefining \. on input line 1759.
+LaTeX Info: Redefining \% on input line 1759.
  [45]
-LaTeX Info: Redefining \. on input line 1673.
-LaTeX Info: Redefining \% on input line 1673.
+LaTeX Info: Redefining \. on input line 1759.
+LaTeX Info: Redefining \% on input line 1759.
  [46 <./img/google-cloud-engine-cluster-cost.png> <./img/google-cloud-engine-es
 timated-cost.png>]
 Cap\'{\i }tulo 7.
@@ -1225,24 +1225,24 @@ Cap\'{\i }tulo 7.
 ]
 Cap\'{\i }tulo 8.
 [49]
-<img/docker-compose-pizarra.png, id=1439, 471.7625pt x 592.2125pt>
+<img/docker-compose-pizarra.png, id=1457, 471.7625pt x 592.2125pt>
 File: img/docker-compose-pizarra.png Graphic file (type png)
 <use img/docker-compose-pizarra.png>
-Package pdftex.def Info: img/docker-compose-pizarra.png  used on input line 174
-8.
+Package pdftex.def Info: img/docker-compose-pizarra.png  used on input line 183
+4.
 (pdftex.def)             Requested size: 170.71393pt x 214.29877pt.
-LaTeX Info: Redefining \. on input line 1759.
-LaTeX Info: Redefining \% on input line 1759.
+LaTeX Info: Redefining \. on input line 1845.
+LaTeX Info: Redefining \% on input line 1845.
  [50 <./img/docker-compose-pizarra.png>]
-LaTeX Info: Redefining \. on input line 1799.
-LaTeX Info: Redefining \% on input line 1799.
+LaTeX Info: Redefining \. on input line 1885.
+LaTeX Info: Redefining \% on input line 1885.
  [51]
-LaTeX Info: Redefining \. on input line 1802.
-LaTeX Info: Redefining \% on input line 1802.
+LaTeX Info: Redefining \. on input line 1888.
+LaTeX Info: Redefining \% on input line 1888.
  [52]
 Cap\'{\i }tulo 9.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1804--1804
+Underfull \hbox (badness 10000) in paragraph at lines 1890--1890
 [][][]\T1/ppl/m/n/9 Sitio web de TOR-QUE: [][]$\T1/cmtt/m/n/9 https : / / adapt
 ivecomputing . com / cherry-[]services /
  []
@@ -1252,22 +1252,22 @@ File: lstlang1.sty 2020/03/24 1.8d listings language file
 ) [53
 
 ]
-Overfull \hbox (16.3721pt too wide) in paragraph at lines 1882--1883
+Overfull \hbox (16.3721pt too wide) in paragraph at lines 1968--1969
 \T1/ppl/m/n/10.95 ca-nean-do to-dos los fi-che-ros y el re-sul-ta-do lo ten-dre
 -mos dis-po-ni-ble en el fi-che-ro [] 
  []
 
-LaTeX Info: Redefining \. on input line 1897.
-LaTeX Info: Redefining \% on input line 1897.
+LaTeX Info: Redefining \. on input line 1983.
+LaTeX Info: Redefining \% on input line 1983.
 [54]
-<img/pizarra-new-language.png, id=1590, 358.33875pt x 241.90375pt>
+<img/pizarra-new-language.png, id=1607, 358.33875pt x 241.90375pt>
 File: img/pizarra-new-language.png Graphic file (type png)
 <use img/pizarra-new-language.png>
-Package pdftex.def Info: img/pizarra-new-language.png  used on input line 1937.
+Package pdftex.def Info: img/pizarra-new-language.png  used on input line 2023.
 
 (pdftex.def)             Requested size: 213.39568pt x 144.05817pt.
-LaTeX Info: Redefining \. on input line 1945.
-LaTeX Info: Redefining \% on input line 1945.
+LaTeX Info: Redefining \. on input line 2031.
+LaTeX Info: Redefining \% on input line 2031.
  [55 <./img/pizarra-new-language.png>] [56
 
 ]
@@ -1279,13 +1279,13 @@ Cap\'{\i }tulo 11.
 [59] [60
 
 ]
-Underfull \hbox (badness 1354) in paragraph at lines 2022--2025
+Underfull \hbox (badness 1354) in paragraph at lines 2108--2111
 []\T1/ppl/m/n/10.95 Jacobs, Todd A. \T1/ppl/m/it/10.95 Sha-ring Doc-ker Con-tai
 -ners across De-vOps En-vi-ron-ments \T1/ppl/m/n/10.95 [en lí-
  []
 
 
-Underfull \hbox (badness 1043) in paragraph at lines 2022--2025
+Underfull \hbox (badness 1043) in paragraph at lines 2108--2111
 \T1/ppl/m/n/10.95 nea]  Con-sul-ta-do en 2 Ma-yo 2020. [][]$\T1/cmtt/m/n/10.95 
 https : / / www . linuxjournal . com / content /
  []
@@ -1297,11 +1297,11 @@ Ap\'{e}ndice A.
 [63
 
 ]
-LaTeX Info: Redefining \. on input line 2152.
-LaTeX Info: Redefining \% on input line 2152.
+LaTeX Info: Redefining \. on input line 2238.
+LaTeX Info: Redefining \% on input line 2238.
  [64]
-LaTeX Info: Redefining \. on input line 2224.
-LaTeX Info: Redefining \% on input line 2224.
+LaTeX Info: Redefining \. on input line 2310.
+LaTeX Info: Redefining \% on input line 2310.
  [65] (./plantillatfg.acr
 LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
@@ -1311,12 +1311,12 @@ LaTeX Info: Redefining \% on input line 1.
 ] [68
 
 ])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2261.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2347.
 
 [69
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 2261.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 2347.
  (./plantillatfg.aux
 LaTeX Info: Redefining \. on input line 31.
 LaTeX Info: Redefining \% on input line 31.
@@ -1329,25 +1329,18 @@ LaTeX Info: Redefining \% on input line 35.
 LaTeX Info: Redefining \. on input line 37.
 LaTeX Info: Redefining \% on input line 37.
 )
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 2261.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2261.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 2347.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2347.
 
-
-
-Package rerunfilecheck Warning: File `plantillatfg.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `plantillatfg.out':
-(rerunfilecheck)             Before: 6365877038738B4AF9A9A39C1364ABB2;3984
-(rerunfilecheck)             After:  29707E926BA0A2B2E77D727A0EBADB26;4042.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2261.
+Package rerunfilecheck Info: File `plantillatfg.out' has not changed.
+(rerunfilecheck)             Checksum: 7BB9D64B9A12F4A8645BE8F7E978F56C;4042.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2347.
  ) 
 Here is how much of TeX's memory you used:
- 22064 strings out of 480608
- 350592 string characters out of 5903631
- 966858 words of memory out of 5000000
- 36857 multiletter control sequences out of 15000+600000
+ 22069 strings out of 480608
+ 350657 string characters out of 5903631
+ 966961 words of memory out of 5000000
+ 36860 multiletter control sequences out of 15000+600000
  587868 words of font info for 117 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  51i,12n,93p,1013b,2107s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1386,10 +1379,10 @@ ts/type1/public/cm-super/sftt1440.pfb></usr/local/texlive/2020/texmf-dist/fonts
 urw/palatino/uplbi8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/urw/pa
 latino/uplr8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/urw/palatino/
 uplri8a.pfb>
-Output written on plantillatfg.pdf (79 pages, 1990171 bytes).
+Output written on plantillatfg.pdf (79 pages, 1992827 bytes).
 PDF statistics:
- 2122 PDF objects out of 2487 (max. 8388607)
- 1973 compressed objects within 20 object streams
- 655 named destinations out of 1000 (max. 500000)
- 579 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 2139 PDF objects out of 2487 (max. 8388607)
+ 1990 compressed objects within 20 object streams
+ 657 named destinations out of 1000 (max. 500000)
+ 587 words of extra memory for PDF output out of 10000 (max. 10000000)
 
