@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.5.2)  29 JUN 2020 18:33
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.5.2)  30 JUN 2020 13:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1161,25 +1161,28 @@ Underfull \hbox (badness 10000) in paragraph at lines 1401--1402
 LaTeX Info: Redefining \. on input line 1439.
 LaTeX Info: Redefining \% on input line 1439.
 [38]
-LaTeX Info: Redefining \. on input line 1468.
-LaTeX Info: Redefining \% on input line 1468.
- [39] [40
-
-]
+LaTeX Info: Redefining \. on input line 1470.
+LaTeX Info: Redefining \% on input line 1470.
+ [39]
+LaTeX Info: Redefining \. on input line 1473.
+LaTeX Info: Redefining \% on input line 1473.
+ [40]
 Cap\'{\i }tulo 6.
-<img/container-vs-vm.png, id=1259, 580.1675pt x 317.185pt>
+<img/container-vs-vm.png, id=1262, 580.1675pt x 317.185pt>
 File: img/container-vs-vm.png Graphic file (type png)
 <use img/container-vs-vm.png>
-Package pdftex.def Info: img/container-vs-vm.png  used on input line 1478.
+Package pdftex.def Info: img/container-vs-vm.png  used on input line 1483.
 (pdftex.def)             Requested size: 277.41176pt x 151.66628pt.
-[41 <./img/container-vs-vm.png>]
-LaTeX Info: Redefining \. on input line 1525.
-LaTeX Info: Redefining \% on input line 1525.
+[41
+
+ <./img/container-vs-vm.png>]
+LaTeX Info: Redefining \. on input line 1530.
+LaTeX Info: Redefining \% on input line 1530.
  [42]
-<img/gce-new-project.png, id=1295, 500.36937pt x 540.51938pt>
+<img/gce-new-project.png, id=1298, 500.36937pt x 540.51938pt>
 File: img/gce-new-project.png Graphic file (type png)
 <use img/gce-new-project.png>
-Package pdftex.def Info: img/gce-new-project.png  used on input line 1534.
+Package pdftex.def Info: img/gce-new-project.png  used on input line 1539.
 (pdftex.def)             Requested size: 234.73654pt x 253.57402pt.
 
 (/usr/local/texlive/2020/texmf-dist/tex/latex/listings/lstlang1.sty
@@ -1188,30 +1191,30 @@ File: lstlang1.sty 2020/03/24 1.8d listings language file
 (/usr/local/texlive/2020/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
 )
-LaTeX Info: Redefining \. on input line 1545.
-LaTeX Info: Redefining \% on input line 1545.
+LaTeX Info: Redefining \. on input line 1550.
+LaTeX Info: Redefining \% on input line 1550.
  [43 <./img/gce-new-project.png>]
-LaTeX Info: Redefining \. on input line 1612.
-LaTeX Info: Redefining \% on input line 1612.
+LaTeX Info: Redefining \. on input line 1617.
+LaTeX Info: Redefining \% on input line 1617.
  [44]
-<img/google-cloud-engine-cluster-cost.png, id=1375, 706.13812pt x 884.30376pt>
+<img/google-cloud-engine-cluster-cost.png, id=1378, 706.13812pt x 884.30376pt>
 File: img/google-cloud-engine-cluster-cost.png Graphic file (type png)
 <use img/google-cloud-engine-cluster-cost.png>
 Package pdftex.def Info: img/google-cloud-engine-cluster-cost.png  used on inpu
-t line 1636.
+t line 1641.
 (pdftex.def)             Requested size: 362.77525pt x 454.30832pt.
-<img/google-cloud-engine-estimated-cost.png, id=1376, 575.14874pt x 427.5975pt>
+<img/google-cloud-engine-estimated-cost.png, id=1379, 575.14874pt x 427.5975pt>
 
 File: img/google-cloud-engine-estimated-cost.png Graphic file (type png)
 <use img/google-cloud-engine-estimated-cost.png>
 Package pdftex.def Info: img/google-cloud-engine-estimated-cost.png  used on in
-put line 1663.
+put line 1668.
 (pdftex.def)             Requested size: 234.73654pt x 174.51358pt.
-LaTeX Info: Redefining \. on input line 1668.
-LaTeX Info: Redefining \% on input line 1668.
+LaTeX Info: Redefining \. on input line 1673.
+LaTeX Info: Redefining \% on input line 1673.
  [45]
-LaTeX Info: Redefining \. on input line 1668.
-LaTeX Info: Redefining \% on input line 1668.
+LaTeX Info: Redefining \. on input line 1673.
+LaTeX Info: Redefining \% on input line 1673.
  [46 <./img/google-cloud-engine-cluster-cost.png> <./img/google-cloud-engine-es
 timated-cost.png>]
 Cap\'{\i }tulo 7.
@@ -1222,24 +1225,24 @@ Cap\'{\i }tulo 7.
 ]
 Cap\'{\i }tulo 8.
 [49]
-<img/docker-compose-pizarra.png, id=1436, 471.7625pt x 592.2125pt>
+<img/docker-compose-pizarra.png, id=1439, 471.7625pt x 592.2125pt>
 File: img/docker-compose-pizarra.png Graphic file (type png)
 <use img/docker-compose-pizarra.png>
 Package pdftex.def Info: img/docker-compose-pizarra.png  used on input line 174
-3.
+8.
 (pdftex.def)             Requested size: 170.71393pt x 214.29877pt.
-LaTeX Info: Redefining \. on input line 1754.
-LaTeX Info: Redefining \% on input line 1754.
+LaTeX Info: Redefining \. on input line 1759.
+LaTeX Info: Redefining \% on input line 1759.
  [50 <./img/docker-compose-pizarra.png>]
-LaTeX Info: Redefining \. on input line 1794.
-LaTeX Info: Redefining \% on input line 1794.
+LaTeX Info: Redefining \. on input line 1799.
+LaTeX Info: Redefining \% on input line 1799.
  [51]
-LaTeX Info: Redefining \. on input line 1797.
-LaTeX Info: Redefining \% on input line 1797.
+LaTeX Info: Redefining \. on input line 1802.
+LaTeX Info: Redefining \% on input line 1802.
  [52]
 Cap\'{\i }tulo 9.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1799--1799
+Underfull \hbox (badness 10000) in paragraph at lines 1804--1804
 [][][]\T1/ppl/m/n/9 Sitio web de TOR-QUE: [][]$\T1/cmtt/m/n/9 https : / / adapt
 ivecomputing . com / cherry-[]services /
  []
@@ -1249,22 +1252,22 @@ File: lstlang1.sty 2020/03/24 1.8d listings language file
 ) [53
 
 ]
-Overfull \hbox (16.3721pt too wide) in paragraph at lines 1877--1878
+Overfull \hbox (16.3721pt too wide) in paragraph at lines 1882--1883
 \T1/ppl/m/n/10.95 ca-nean-do to-dos los fi-che-ros y el re-sul-ta-do lo ten-dre
 -mos dis-po-ni-ble en el fi-che-ro [] 
  []
 
-LaTeX Info: Redefining \. on input line 1892.
-LaTeX Info: Redefining \% on input line 1892.
+LaTeX Info: Redefining \. on input line 1897.
+LaTeX Info: Redefining \% on input line 1897.
 [54]
-<img/pizarra-new-language.png, id=1587, 358.33875pt x 241.90375pt>
+<img/pizarra-new-language.png, id=1590, 358.33875pt x 241.90375pt>
 File: img/pizarra-new-language.png Graphic file (type png)
 <use img/pizarra-new-language.png>
-Package pdftex.def Info: img/pizarra-new-language.png  used on input line 1932.
+Package pdftex.def Info: img/pizarra-new-language.png  used on input line 1937.
 
 (pdftex.def)             Requested size: 213.39568pt x 144.05817pt.
-LaTeX Info: Redefining \. on input line 1940.
-LaTeX Info: Redefining \% on input line 1940.
+LaTeX Info: Redefining \. on input line 1945.
+LaTeX Info: Redefining \% on input line 1945.
  [55 <./img/pizarra-new-language.png>] [56
 
 ]
@@ -1276,13 +1279,13 @@ Cap\'{\i }tulo 11.
 [59] [60
 
 ]
-Underfull \hbox (badness 1354) in paragraph at lines 2017--2020
+Underfull \hbox (badness 1354) in paragraph at lines 2022--2025
 []\T1/ppl/m/n/10.95 Jacobs, Todd A. \T1/ppl/m/it/10.95 Sha-ring Doc-ker Con-tai
 -ners across De-vOps En-vi-ron-ments \T1/ppl/m/n/10.95 [en lí-
  []
 
 
-Underfull \hbox (badness 1043) in paragraph at lines 2017--2020
+Underfull \hbox (badness 1043) in paragraph at lines 2022--2025
 \T1/ppl/m/n/10.95 nea]  Con-sul-ta-do en 2 Ma-yo 2020. [][]$\T1/cmtt/m/n/10.95 
 https : / / www . linuxjournal . com / content /
  []
@@ -1294,11 +1297,11 @@ Ap\'{e}ndice A.
 [63
 
 ]
-LaTeX Info: Redefining \. on input line 2147.
-LaTeX Info: Redefining \% on input line 2147.
+LaTeX Info: Redefining \. on input line 2152.
+LaTeX Info: Redefining \% on input line 2152.
  [64]
-LaTeX Info: Redefining \. on input line 2219.
-LaTeX Info: Redefining \% on input line 2219.
+LaTeX Info: Redefining \. on input line 2224.
+LaTeX Info: Redefining \% on input line 2224.
  [65] (./plantillatfg.acr
 LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
@@ -1308,12 +1311,12 @@ LaTeX Info: Redefining \% on input line 1.
 ] [68
 
 ])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2256.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2261.
 
 [69
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 2256.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 2261.
  (./plantillatfg.aux
 LaTeX Info: Redefining \. on input line 31.
 LaTeX Info: Redefining \% on input line 31.
@@ -1326,16 +1329,23 @@ LaTeX Info: Redefining \% on input line 35.
 LaTeX Info: Redefining \. on input line 37.
 LaTeX Info: Redefining \% on input line 37.
 )
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 2256.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2256.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 2261.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2261.
 
-Package rerunfilecheck Info: File `plantillatfg.out' has not changed.
-(rerunfilecheck)             Checksum: 6365877038738B4AF9A9A39C1364ABB2;3984.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2256.
+
+
+Package rerunfilecheck Warning: File `plantillatfg.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `plantillatfg.out':
+(rerunfilecheck)             Before: 6365877038738B4AF9A9A39C1364ABB2;3984
+(rerunfilecheck)             After:  29707E926BA0A2B2E77D727A0EBADB26;4042.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2261.
  ) 
 Here is how much of TeX's memory you used:
- 22063 strings out of 480608
- 350581 string characters out of 5903631
+ 22064 strings out of 480608
+ 350592 string characters out of 5903631
  966858 words of memory out of 5000000
  36857 multiletter control sequences out of 15000+600000
  587868 words of font info for 117 fonts, out of 8000000 for 9000
@@ -1376,10 +1386,10 @@ ts/type1/public/cm-super/sftt1440.pfb></usr/local/texlive/2020/texmf-dist/fonts
 urw/palatino/uplbi8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/urw/pa
 latino/uplr8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/urw/palatino/
 uplri8a.pfb>
-Output written on plantillatfg.pdf (79 pages, 1989332 bytes).
+Output written on plantillatfg.pdf (79 pages, 1990171 bytes).
 PDF statistics:
- 2118 PDF objects out of 2487 (max. 8388607)
- 1969 compressed objects within 20 object streams
- 654 named destinations out of 1000 (max. 500000)
+ 2122 PDF objects out of 2487 (max. 8388607)
+ 1973 compressed objects within 20 object streams
+ 655 named destinations out of 1000 (max. 500000)
  579 words of extra memory for PDF output out of 10000 (max. 10000000)
 
