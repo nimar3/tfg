@@ -1559,11 +1559,12 @@ Dado que la creación de la aplicación ha sido elaborada dentro de un marco de 
 
 \chapter{Implantación}
 
-Pizarra es una herramienta que necesita de otros aplicativos para su funcionamiento. Por un lado una \textit{BD} para la persistencia de datos, Redis para el sistema de colas interno de envío de tareas, un \acrshort{nfs} para compartir recursos y Nginx para actuar como servidor web y redirigir las peticiones. En el pasado la implantación hubiera requerido la intervención del equipo de Administración de Sistemas que se encargue de instalar el \textit{SO} de cada máquina, crear usuarios, asignar permisos, abrir puertos y otro sinfín de tareas.
+Pizarra es una herramienta que necesita de otros aplicativos para su funcionamiento: una \textit{BD} para la persistencia de datos, Redis para el sistema de colas interno de envío de tareas, un \acrshort{nfs} para compartir recursos y Nginx para actuar como servidor web y redirigir las peticiones. 
 
-Para evitar todos estos pasos y acelerar la implantación el proyecto incluye la posibilidad de que todos los elementos de la arquitectura se desplieguen en \Gls{contenedor}es. Estos \Gls{contenedor}es están creados con la tecnología Docker y son paquetes que incluyen todo lo necesario, sean librerías y herramientas del sistema para que el software se ejecute.
+En el pasado, la implantación hubiera requerido la intervención del equipo de Administración de Sistemas que se encargue de instalar el \textit{SO} de cada máquina, crear usuarios, asignar permisos, abrir puertos y otro sinfín de tareas. Hoy en día es diferente.
+Para evitar tener que realizar todos estos pasos y acelerar la implantación, el proyecto incluye la posibilidad de que todos los elementos de la arquitectura se desplieguen en \Gls{contenedor}es. Estos \Gls{contenedor}es están creados con la tecnología Docker y son paquetes que incluyen todo lo necesario, ya sean librerías u otras herramientas del sistema necesarias para que el software se ejecute.
 
-Docker funciona de forma similar a una maquina virtual, con algunas ventajas como la asignación de recursos de forma dinámica, espacio en disco reducido ya que podemos evitar la instalación de un \acrshort{so} en los contenedores y la portabilidad.
+Docker ofrece una funcionalidad similar a la de una máquina virtual, siendo algo bastante diferente. Docker posee algunas ventajas con respecto a las máquinas virtuales, como son la asignación de recursos de forma dinámica o la necesidad de un espacio en disco reducido, ya que podemos evitar la instalación de un \acrshort{so} en los contenedores y la portabilidad (Figura~\ref{figura:container-vs-vm}).
 
 \begin{figure}[ht]
 	\centering
@@ -1574,9 +1575,10 @@ Docker funciona de forma similar a una maquina virtual, con algunas ventajas com
 
 \section{Docker y Kubernetes}
 
-Para nuestro entorno de desarrollo local utilizamos contenedores públicos como el de Postgres que con un fichero de configuración nos permite tener el servicio ejecutándose en cuestión de minutos.
+Para nuestro entorno de desarrollo local utilizamos contenedores públicos como el de Postgres que, con un fichero de configuración, permite tener el servicio ejecutándose en cuestión de minutos.
 
-A continuación, un extracto del fichero \textbf{docker-compose.yaml} del repositorio\footnote{Docker yaml: \url{https://github.com/nimar3/pizarra/blob/master/docker-compose.yml}.} con una breve explicación de los parámetros.
+A continuación, se muestra un extracto del fichero \textbf{docker-compose.yaml} del repositorio\footnote{Docker yaml: \url{https://github.com/nimar3/pizarra/blob/master/docker-compose.yml}.}: 
+\newline
 
 \begin{lstlisting}[language=yaml]
 version: "3.1"
@@ -1594,32 +1596,33 @@ services:
     restart: unless-stopped
 \end{lstlisting}
 
+La explicación de los parámetros es la siguiente: 
 \begin{itemize}
 	\item \textbf{version}: versión de la API de Docker que utilizaremos.
 	\item \textbf{services}: listado de servicios que desplegaremos.
-    \item \textbf{image}: contenedor que utilizaremos, en este caso el oficial de postgres\footnote{Postgres Official Docker Image: \url{https://hub.docker.com/_/postgres}.} sobre Linux Alpine.
+    \item \textbf{image}: contenedor que utilizaremos, en este caso el oficial de Postgres\footnote{Postgres Official Docker Image: \url{https://hub.docker.com/_/postgres}.} sobre Linux Alpine.
 	\item \textbf{container\_name}: nombre con el que comenzará el contenedor que se ejecute.
-	\item \textbf{volumes}: mapeo de directorios de nuesto entorno de desarrollo local al contenedor, esto se hace para evitar perder la información de la \textit{BD} al ser los contenedores \foreignlanguage{english}{stateless}.
+	\item \textbf{volumes}: mapeo de directorios de nuestro entorno de desarrollo local al contenedor. Esto se lleva a cabo para evitar perder la información de la \textit{BD} al ser los contenedores \foreignlanguage{english}{stateless}.
     \item \textbf{ports}: mapeo de puertos del \textit{SO} a los contenedores, esto permite acceder al servicio de Postgres por un puerto local.
-	\item \textbf{environment}: variables de entorno del \textit{SO}, en nuestro caso definimos un usuario y contraseña para acceder a la \textit{BD}
-	\item \textbf{restart}: con el parámetro \foreignlanguage{english}{unless-stopped} nuestro contenedor se reiniciará de forma automática en caso de errores a menos que se envíe un mensaje de finalización de ejecución.
+    \item \textbf{environment}: variables de entorno del \textit{SO}, en nuestro caso definimos un usuario y una contraseña para acceder a la \textit{BD}.
+    \item \textbf{restart}: con el parámetro \foreignlanguage{english}{unless-stopped} nuestro contenedor se reiniciará de forma automática en caso de errores, a menos que se envíe un mensaje de finalización de ejecución.
 \end{itemize}
 
-Con los parámetros previos y siguiendo la documentación de variables de entorno disponibles, al iniciarse el contenedor se crearán los \foreignlanguage{english}{schemas} y directorios necesarios en caso de que no existan y un usuario con privilegios con el nombre y contraseña proporcionados.
+Con los parámetros previos y siguiendo la documentación de variables de entorno disponibles, al iniciarse el contenedor, se crearán los \foreignlanguage{english}{schemas} y directorios necesarios en caso de que no existan y un usuario con privilegios con el nombre y contraseña proporcionados.
 
-Para un entorno de desarrollo local y/o de pruebas Docker puede ser una herramienta que cumpla con nuestras necesidades, pero para un entorno de producción es necesario contar con un servicio que realice la implantación de forma automatizada,que sea eficiente en el manejo de recursos y resilente en caso de problemas. Para ésta tarea utilizaremos Kubernetes, un \textit{orquestador} de contenedores que permite auto escalado de aplicaciones, automatización de despliegues y configuración de forma declarativa.
-
-Debido a una limitación de las máquinas donde está alojado \kahan no es posible la instalación del servicio de Kubernetes y se ha optado por un despliegue de Pizarra en la nube.
+Para un entorno de desarrollo local y/o de pruebas Docker puede ser una herramienta que cumpla con nuestras necesidades, pero para un entorno de producción es necesario contar con un servicio que realice la implantación de forma automatizada, que sea eficiente en el manejo de recursos y resiliente en caso de problemas. Para esta tarea utilizaremos Kubernetes, un \textit{orquestador} de contenedores que permite auto escalado de aplicaciones, automatización de despliegues y configuración de forma declarativa.
 
 \section{Despliegue en la Nube con Kubernetes}
 
-Existen varios proveedores de \textit{K8s} en Internet pudiendo consultar el listado de todos los partners en el sitio oficial\footnote{Kubernetes - Partners: \url{https://kubernetes.io/es/partners}.}. Siendo los más importantes Google Cloud Engine, Amazon AWS y Microsoft Azure se ha escogido por desplegar la aplicación en \textit{GCE} ya que dispone de buena documentación y además \textdollar 300 de crédito promocional que són más que suficientes para tener el aplicativo corriendo durante meses.
+Existe ciertas limitaciones en \foreign{english}{cluster} \kahan que han impedido la instalación del servicio de Kubernetes. Este era uno de los riesgos contemplados en el trabajo. Para resolver este problema se ha optado por un despliegue de Pizarra en la nube. 
+
+Existen varios proveedores de \textit{K8s} en Internet (puede consultarse el listado de todos los \foreign{english}{partners} en el sitio oficial de Kubernetes\footnote{Kubernetes - Partners: \url{https://kubernetes.io/es/partners}.}) siendo los más importantes: Google Cloud Engine (\textit{GCE}), Amazon Web Services (\textit{AWS}) y Microsoft Azure. Se ha optado por desplegar la aplicación en \textit{GCE}, ya que dispone de buena documentación y, además, \textdollar 300 de crédito promocional, que es más que suficiente para tener el aplicativo corriendo durante meses.
 
 \subsection{Pasos de un despliegue en GCE}
 
-Debemos crearnos una cuenta en Google o utilizar una existente que nunca ha activado \textit{GCE} de forma previa ya que el crédito promocional de bienvenida tiene una caducidad de 12 meses desde la activación.
+En primer lugar, debemos crear una cuenta en Google o utilizar una existente que nunca ha activado \textit{GCE} de forma previa ya que el crédito promocional de bienvenida tiene una caducidad de 12 meses desde la activación.
 
-Con nuestra cuenta accedemos a la Consola Web de \acrshort{gce} y creamos nuestro proyecto, en este caso lo llamaremos Pizarra. Nuestro aplicativo utiliza Kubernetes Engine y el Container Registry que son visibles desde el menú lateral, entraremos a cada uno de ellos para habilitar su \acrshort{api}.
+Con nuestra cuenta accedemos a la Consola Web de \acrshort{gce} y creamos nuestro proyecto, en este caso lo llamaremos Pizarra (Figura~\ref{figura:gce-new-project}). Nuestro aplicativo utiliza Kubernetes Engine y el Container Registry que son visibles desde el menú lateral. Entraremos a cada uno de ellos para habilitar su \acrshort{api}.
 
 \begin{figure}[ht]
 	\centering
@@ -1630,28 +1633,26 @@ Con nuestra cuenta accedemos a la Consola Web de \acrshort{gce} y creamos nuestr
 
 Una vez creado el proyecto y habilitadas las \acrshort{api}'s hay que descargar\footnote{Cómo instalar el SDK de Google Cloud: \url{https://cloud.google.com/sdk/install?hl=es-419}.} e inicializar\footnote{Cómo inicializar el SDK de Cloud:  \url{https://cloud.google.com/sdk/docs/initializing?hl=es-419}.} Google Cloud SDK para hacer uso de la consola de forma local. 
 
-Todos los pasos descritos a continuación se ejecutan de forma automática con un script\footnote{Script Despliegue \acrshort{gce}: \url{https://github.com/nimar3/pizarra/blob/master/gce/commands.sh}.} incluido en el repositorio de código. Lo único que se necesita de forma previa es la configuración de algunos parámetros de despliegue como variables de entorno del \acrshort{so} donde se ejecuta.
-
-Las variables de entorno necesarias son el ID del proyecto en \acrshort{gce} y las credenciales de la \acrshort{bd} que serán guardados como un secreto en Kubernetes. Podemos exportarlas antes de lanzar nuestro script ejecutando los siguientes comandos en nuestra consola.
-
+Todos los pasos descritos a continuación se ejecutan de forma automática con un script\footnote{Script Despliegue \acrshort{gce}: \url{https://github.com/nimar3/pizarra/blob/master/gce/commands.sh}.} incluido en el repositorio de código. Lo único que se necesita de forma previa es la configuración de algunos parámetros de despliegue, como variables de entorno del \acrshort{so} donde se ejecuta.
+Las variables de entorno necesarias son el ID del proyecto en \acrshort{gce} y las credenciales de la \acrshort{bd} que serán guardados como un secreto en Kubernetes. Podemos exportarlas antes de lanzar nuestro script ejecutando los siguientes comandos en la consola:
 \begin{lstlisting}[language=bash]
 $ export PROJECT_ID=pizarra-id
 $ export DB_USERNAME=pizarra
 $ export DB_PASSWORD=pizarra
 \end{lstlisting}
 
-Éstas son las lineas que ejecuta el script, donde todos los ficheros que forman parte de cada comando se encuentran en el repositorio\footnote{Ficheros de despliegue en \acrshort{gce}: \url{https://github.com/nimar3/pizarra/tree/master/gce}.}. Al ser la sintaxis similar a la previamente explicada y evitando que éste documento se extienda de sobremanera al mencionar cada ítem, invitamos al lector a revisar la documentación oficial de Kubernetes\footnote{Documentación Kubernetes: \url{https://kubernetes.io/docs}.}.
+Estas son las lineas que ejecuta el script, donde todos los ficheros que forman parte de cada comando se encuentran en el repositorio\footnote{Ficheros de despliegue en \acrshort{gce}: \url{https://github.com/nimar3/pizarra/tree/master/gce}.}. Al ser la sintaxis similar a la previamente explicada y para evitar que este documento se extienda sobremanera mencionando cada ítem, invitamos al lector a revisar la documentación oficial de Kubernetes\footnote{Documentación Kubernetes: \url{https://kubernetes.io/docs}.}.
 
 \begin{enumerate}
 	
-	\item Seteo de proyecto y zona geográfica donde desplegaremos el aplicativo. Por cercanía geográfica se ha escogido el centro de datos de Países Bajos.
+	\item Establecimiento del proyecto y zona geográfica donde desplegaremos el aplicativo. Por cercanía geográfica se ha escogido el centro de datos de Países Bajos.
 	
 	\begin{lstlisting}[language=bash]
 	$ gcloud config set project ${PROJECT_ID}
 	$ gcloud config set compute/zone europe-west4
 	\end{lstlisting}
 	
-	\item Credenciales para la \acrshort{bd} para ser obtenidas a posterior por los contenedores de Kubernetes
+\item Credenciales para la \acrshort{bd} para ser obtenidas a posterior por los contenedores de Kubernetes.
 	
 	\begin{lstlisting}[language=bash]
 	$ kubectl create secret generic pizarra-credentials \
@@ -1679,31 +1680,31 @@ $ export DB_PASSWORD=pizarra
 	$ kubectl apply -f storage.yaml
 	\end{lstlisting}
 	
-	\item Creación del servicio de \acrshort{nfs}
+\item Creación del servicio de \acrshort{nfs}.
 	
 	\begin{lstlisting}[language=bash]	
 	$ kubectl apply -f nfs.yaml
 	\end{lstlisting}
 	
-	\item Creación del servicio de Redis para el sistema de colas local
+\item Creación del servicio de Redis para el sistema de colas local.
 	
 	\begin{lstlisting}[language=bash]	
 	$ kubectl apply -f redis.yaml
 	\end{lstlisting}
 	
-	\item Creación del servicio de \acrlong{bd}
+\item Creación del servicio de \acrlong{bd}.
 	
 	\begin{lstlisting}[language=bash]	
 	$ kubectl apply -f postgress.yaml
 	\end{lstlisting}
 	
-	\item Despliegue de Pizarra y 1 Worker que se encargará de encolar las las \Gls{tarea}s en \kahan
+\item Despliegue de Pizarra y 1 Worker que se encargará de encolar las las \Gls{tarea}s en \kahan.
 	
 	\begin{lstlisting}[language=bash]	
 	$ kubectl apply -f pizarra.yaml
 	\end{lstlisting}
 	
-	\item Despliegue del servicio de NGinx con una IP pública para el acceso externo de usuarios
+\item Despliegue del servicio de NGinx con una IP pública para el acceso externo de usuarios.
 	
 	\begin{lstlisting}[language=bash]	
 	$ kubectl apply -f nginx.yaml
@@ -1711,7 +1712,7 @@ $ export DB_PASSWORD=pizarra
 	
 \end{enumerate}
 
-Una vez completados todos los pasos se puede obtener la IP pública de Pizarra ejecutando el siguiente comando.
+Una vez completados todos los pasos se puede obtener la IP pública de Pizarra ejecutando el siguiente comando:
 
 \begin{lstlisting}[language=bash]	
 $ kubectl get services
@@ -1721,7 +1722,7 @@ Con esto se ha completado el despliegue y ya podemos navegar a Pizarra para come
 
 \subsection{Costos asociados}
 
-\acrshort{gce} cuenta con una herramienta\footnote{Calculadora de precios de Google: \url{https://cloud.google.com/products/calculator/}.} para estimar el gasto mensual en el que podemos incurrir con la utilización de los recursos contratados. Se ha realiado una estimación con los siguientes parámetros:
+\acrshort{gce} cuenta con una herramienta\footnote{Calculadora de precios de Google: \url{https://cloud.google.com/products/calculator/}.} para estimar el gasto mensual en el que podemos incurrir con la utilización de los recursos contratados. Se ha realizado una estimación con los siguientes parámetros (Figura~\ref{figura:gce-estimated-cost}):
 
 \begin{figure}[ht]
 	\centering
@@ -1731,23 +1732,23 @@ Con esto se ha completado el despliegue y ya podemos navegar a Pizarra para come
 \end{figure}
 
 \begin{itemize}
-	\item  Kubernetes
+	\item  Kubernetes:
 	\begin{itemize}
-		\item Número de nodos: 2
-		\item Tipo de Instancia: n1-standard-n1 (vCPUs: 1, RAM: 3.75 GB)
-		\item Centro de Datos: Países Bajos 
+        \item Número de nodos: 2.
+        \item Tipo de Instancia: n1-standard-n1 (vCPUs: 1, RAM: 3.75 GB).
+        \item Centro de Datos: Países Bajos.
 	    \item Uso estipulado: 24 horas al día los 7 días a la semana.
 	 \end{itemize}
-    \item Persistencia
+    \item Persistencia:
 	\begin{itemize}
-		\item Tamaño disco: 10 GiB
-		\item Centro de Datos: Países Bajos
+        \item Tamaño disco: 10 GiB.
+        \item Centro de Datos: Países Bajos.
     \end{itemize}
 \end{itemize}
 
 En resumen, el número de nodos es 2 para tener servicio en caso de que haya una caída de uno de los nodos del cluster, el centro de datos se ha escogido Países Bajos por cercanía geográfica y una instancia con los recursos mínimos necesarios para los contenedores. El disco es compartido entre la \textit{BD} y Pizarra con suficiente margen para evitar problemas de espacio.
 
-En total llegamos a un costo estimado de \texteuro 49.00 mensuales. Como dato adicional, se puede variar de Centro de Datos y otros parámetros como el uso estipulado para reducir los costos aún más. Podemos guardar la estimación o enviárnosla por correo electrónico.
+En total llegamos a un costo estimado de \texteuro 49.00 mensuales. Como dato adicional, se puede variar de Centro de Datos y otros parámetros como el uso estipulado para reducir los costos aún más. Podemos guardar la estimación o enviárnosla por correo electrónico (Figura~\ref{figura:gce-estimated-cost-email}).
 
 
 \begin{figure}[ht]
