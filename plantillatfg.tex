@@ -1,6 +1,7 @@
 \documentclass[11pt,spanish,listoffigures,listoftables]{tfgetsinf}
 
 \usepackage[utf8]{inputenc} 
+\usepackage{textcomp}
 
 % custom bulletpoint for tables
 \usepackage{enumitem}
@@ -217,7 +218,7 @@ Con la implementación de un sitio web para un concurso de programación paralel
 
 \section{Motivación}
 
-Desde el inicio de mis estudios en el \acrshort{gii} me han interesado los concursos de programación, ya sean los promovidos desde la propia \acrshort{etsinf} así como también los disponibles en plataformas online como UVa\footnote{UVa Online Judge website: \url{https://onlinejudge.org/}}, HackerRank\footnote{HackerRank website: \url{https://www.hackerrank.com/}}, CheckIO\footnote{CheckIO website: \url{https://checkio.org/}} y Project Euler\footnote{Project Euler website: \url{https://projecteuler.net/}}. Estas competiciones ayudan a promover el interés en diferentes conceptos fundamentales que debe conocer cualquier profesional de las Ciencias de la Computación, como son las estructuras de datos y la algoritmia, con el añadido de un marco lúdico con elementos de lo que llamamos previamente gamificación. \par
+Desde el inicio de mis estudios en el \acrshort{gii} me han interesado los concursos de programación, ya sean los promovidos desde la propia \acrshort{etsinf} así como también los disponibles en plataformas online como UVa\footnote{UVa Online Judge website: \url{https://onlinejudge.org/}.}, HackerRank\footnote{HackerRank website: \url{https://www.hackerrank.com/}.}, CheckIO\footnote{CheckIO website: \url{https://checkio.org/}.} y Project Euler\footnote{Project Euler website: \url{https://projecteuler.net/}.}. Estas competiciones ayudan a promover el interés en diferentes conceptos fundamentales que debe conocer cualquier profesional de las Ciencias de la Computación, como son las estructuras de datos y la algoritmia, con el añadido de un marco lúdico con elementos de lo que llamamos previamente gamificación. \par
 
 Normalmente los concursos o competiciones de programación sólo buscan la resolución de una serie de problemas para un conjunto finito de entradas sin importar los tiempos de ejecución o su eficiencia. Por eso al ver la publicación de la propuesta del \acrfull{tfg} donde se añade la programación paralela me ha despertado el interés ya que también se premiará la eficacia del código, esto es, obtener una solución correcta en el menor tiempo posible y además, el añadido de tener que trabajar con un elemento externo como lo es el \foreign{english}{cluster} \kahan del \acrfull{dsic}.  \par
 
@@ -1009,7 +1010,7 @@ Una vez realizadas estas tareas y viendo que el riesgo remanente es bajo se ha o
 
 \section{Análisis del marco legal y ético}
 
-Como este es un proyecto de código abierto se ha escogido la Licencia MIT\footnote{Licencia MIT: \url{https://opensource.org/licenses/MIT}} ya que es una de las más permisivas para fomentar la reutilización y colaboración. Este tipo de licencia permite el libre uso de forma privada o comercial, la modificación y distribución del código sin ningún tipo de garantía donde solo se pide que se mantengan las menciones a la licencia y derechos de autor.
+Como este es un proyecto de código abierto se ha escogido la Licencia MIT\footnote{Licencia MIT: \url{https://opensource.org/licenses/MIT}.} ya que es una de las más permisivas para fomentar la reutilización y colaboración. Este tipo de licencia permite el libre uso de forma privada o comercial, la modificación y distribución del código sin ningún tipo de garantía donde solo se pide que se mantengan las menciones a la licencia y derechos de autor.
 
 Además, todos los elementos utilizados en el producto final que no son creación del Autor de este \acrshort{tfg}, como librerías \textit{javascript} e imágenes, son de libre uso y tienen su atribución correspondiente.
 
@@ -1026,69 +1027,69 @@ Debido a ciertas dificultades presentadas en el proceso de desarrollo y el esfue
 
 \chapter{Diseño de la solución}
 
-Una vez analizados los requisitos funcionales y no funcionales el próximo paso es hacer el diseño de la aplicación. Aunque la finalidad de este trabajo es la creación de una aplicación web existen elementos adicionales que deben considerarse para cumplir con el objetivo ya que aunque el punto de entrada de interacción del sistema será una página web, toda la información se tendrá que alojar en una \acrfull{bd} y los \gls{envio}s que contienen ficheros con código fuente para la resolución de \Gls{tarea}s deberán guardarse en un \acrfull{nfs}. Estos elementos y más forman parte de lo que será la \textbf{Arquitectura de la solución} pero antes de llegar a esto hay que comprender como será la \textbf{Interacción del Sistema} y decidirse en el \textbf{Software} a utilizar que lo haga posible. \par
+Una vez analizados los requisitos funcionales y no funcionales el próximo paso consiste en plantear el diseño de la aplicación. Aunque la finalidad de este trabajo es la creación de una aplicación web existen elementos adicionales que deben considerarse para cumplir con el objetivo ya que, aunque el punto de entrada de interacción del sistema será una página web, toda la información se tendrá que alojar en una \acrfull{bd} y los \gls{envio}s que contienen ficheros con código fuente para la resolución de \Gls{tarea}s deberán guardarse en un \acrfull{nfs}. Estos elementos junto a otros más forman parte de lo que será la \textbf{Arquitectura de la solución}. Pero antes de llegar a esto hay que comprender cómo será la \textbf{Interacción del Sistema} y decidir el \textbf{Software} a utilizar que lo haga posible. %\par
 
-Además, para alojar y recuperar información de una \acrshort{bd} debemos crear unos modelos que representen a todos los objetos que interactúan en el sistema, esto se llama el \textbf{Modelo de Datos}. Y por último la interacción con \kahan es tan importante que tendremos incluir un \textit{Administrador de Tareas} para el procesamiento de \foreign{english}{jobs} de forma asíncrona como un \textbf{Sistema de Colas interno}.
+Además, para alojar y recuperar información de una \acrshort{bd} debemos crear unos modelos que representen a todos los objetos que interactúan dentro del sistema, lo que se conoce como \textbf{Modelo de Datos}. Por último, la interacción con el \foreign{english}{cluster} \kahan es tan importante que tendremos que incluir un \textit{Administrador de Tareas} para el procesamiento de \foreign{english}{jobs} de forma asíncrona como un \textbf{Sistema de Colas interno}.
 
 \section{Interacción del Sistema}
 
 En la introducción del capítulo se han visto algunos elementos de la aplicación y es importante realizar un bosquejo de cómo será la interacción entre ellos para modelar la solución de forma correcta. Haciendo un repaso podemos encontrar los siguientes:
 
 \begin{itemize}
-	\item la aplicación web con la que interactúan los usuarios.
-	\item la \acrfull{bd} donde se guarda la información.
-	\item un \acrfull{nfs} para alojar los ficheros con código fuente de los \gls{envio}s.
-	\item un \textit{Administrador de Tareas} basado en un sistema de colas.
-	\item el \foreign{english}{cluster} \kahan del \acrshort{dsic}.
+	\item La aplicación web con la que interactúan los usuarios.
+	\item La \acrfull{bd} donde se guarda la información.
+	\item Un \acrfull{nfs} para alojar los ficheros con código fuente de los \gls{envio}s.
+	\item Un \textit{Administrador de Tareas} basado en un sistema de colas.
+	\item El \foreign{english}{cluster} \kahan del \acrshort{dsic}.
 \end{itemize} 
 
-Una interacción habitual sería la que se modela a continuación donde el \textit{Administrador de Tareas} es el encargado de de comunicación con el sistema de colas de \kahan para actualizar el \foreign{english}{status} del \gls{envio}. A partir de aquí ya queda claro la importancia de una separación de roles entre lo que será el \foreign{english}{frontend} o punto de interacción de los usuarios con la aplicación y el procesamiento de \gls{envio}s. Esto tendrá vital importancia en la elección del software a utilizar.
+Una interacción habitual sería la que se muestra en la Figura~\ref{figura:modelado-interaccion}, donde el \textit{Administrador de Tareas} es el encargado de la comunicación con el sistema de colas de \kahan para actualizar el \foreign{english}{status} del \gls{envio}. A partir de aquí ya queda clara la importancia de una separación de roles entre lo que será el \foreign{english}{frontend} o punto de interacción de los usuarios con la aplicación y el procesamiento de \gls{envio}s. Esto tendrá vital importancia en la elección del software a utilizar.
 
 \begin{figure}[!ht]
 	\centering
 	\includegraphics[width=0.95\textwidth]{img/modelado-interaccion}
-	\caption[Modelado Interacción entre elementos del sistema]{Interacción entre elementos del sistema}
+    \caption[Modelado Interacción entre elementos del sistema]{Interacción entre elementos del sistema.}
 	\label{figura:modelado-interaccion}
 \end{figure}
 
 \section{Tecnología utilizada}
 
-Como hemos visto en el apartado \textbf{Estado del Arte} la única herramienta similar a la aplicación web a desarrollar es \textit{Tablón}, no sin sus muchas limitaciones y problemas que ya hemos expuesto previamente. Sin embargo \textit{Tablón} es un buen punto de partida porque ya ha sido utilizado previamente por el Tutor en la asignatura de \acrshort{lpp} y algunos de los requisitos funcionales como la Tabla de Posiciones (RF-10) ya existen y pueden servir como inspiración.
+Como hemos visto en el apartado \textbf{Estado del Arte} la única herramienta similar a la aplicación web a desarrollar es \textit{Tablón}, no sin sus muchas limitaciones y problemas que ya hemos expuesto previamente. Sin embargo, \textit{Tablón} es un buen punto de partida porque ya ha sido utilizado previamente por el Tutor en la asignatura de \acrshort{lpp}, y algunos de los requisitos funcionales, como la Tabla de Posiciones (RF-10), ya existen y pueden servir como inspiración.
 
-Dadas las limitaciones que tiene \textit{Tablón} una de las aspiraciones en la creación de ésta aplicación web para concursos de programación paralela es que sea su sucesor (o reemplazo) a futuro. Por esto mismo he decidido llamar a la aplicación web \textit{Pizarra} en honor a \textit{Tablón} y de aquí en adelante cuando se mencione \textit{Pizarra} se hace referencia a la aplicación web y otros elementos adicionales necesarios para su funcionamiento. 
+Dadas las limitaciones que tiene \textit{Tablón}, una de las aspiraciones en la creación de esta aplicación web para concursos de programación paralela es que sea su sucesor (o reemplazo) a futuro. Por esto mismo he decidido llamar a la aplicación web \textit{Pizarra}, en honor a \textit{Tablón}, y de aquí en adelante, cuando se mencione \textit{Pizarra}, se hará referencia a la aplicación web y otros elementos adicionales necesarios para su funcionamiento. 
 
-El lenguaje de programación a utlizar será \textit{python}, ya conocido por el Autor y con una extensa cantidad de \gls{paquete}s, que son librerías que añaden funcionalidades extra y serán de gran utilidad para acelerar los tiempos de desarrollo. 
+El lenguaje de programación a utlizar será \textit{python}, ya conocido por el Autor y con una extensa cantidad de \gls{paquete}s, que son librerías que añaden funcionalidades extra y que serán de gran utilidad para acelerar los tiempos de desarrollo. 
 
-Dado que ya hemos abordado la \textbf{Interacción del Sistema} a alto nivel solo resta escoger el \textbf{Software} que dará vida a la aplicación web y al \textit{Administrador de Tareas}. Debido a una experiencia previa en otra asignatura de los estudios de grado he decido optar por \textit{Flask}\footnote{Sitio web Flask: \url{https://flask.palletsprojects.com/en/1.1.x/}}, un micro-framework de \textit{python} con gran acogida por la comunidad de desarrollo que incluye un sistema de plantillas para la generación de páginas web llamado \text{Jinja}. 
+Dado que ya hemos abordado la \textbf{Interacción del Sistema} a alto nivel solo resta escoger el \textbf{Software} que dará vida a la aplicación web y al \textit{Administrador de Tareas}. Debido a una experiencia previa en otra asignatura de estudios de grado, he decido optar por \textit{Flask}\footnote{Sitio web Flask: \url{https://flask.palletsprojects.com/en/1.1.x/}.}, un micro-framework de \textit{python} con gran acogida por la comunidad de desarrollo que incluye un sistema de plantillas para la generación de páginas web llamado \text{Jinja}. 
 
-Para el \textit{Administrador de Tareas} existen diferentes \gls{paquete}s en \textit{python} para crear un \textbf{Sistema de Colas interno}, en este caso se ha optado por \textit{RQ}\footnote{Sitio web RQ: \url{https://python-rq.org/}} (Redis Queue) que utiliza pocos recursos y permite que  los ``trabajos'' o \foreign{english}{jobs} se procesen en determinado tiempo del futuro, funcionalidad que será útil para revisar los resultados de ejecuciones en \kahan. \textit{RQ} permitirá desacoplar las \gls{cola}s del aplicativo web al utilizar un servicio de \textit{Redis} como repositorio de \foreign{english}{jobs} además de disponer de un panel de control (\foreign{english}{dashboard}) que puede ser embebido en cualquier aplicación web.
+En cuanto al \textit{Administrador de Tareas}, existen diferentes \gls{paquete}s en \textit{python} para crear un \textbf{Sistema de Colas interno}. En este caso se ha optado por \textit{RQ}\footnote{Sitio web RQ: \url{https://python-rq.org/}.} (Redis Queue), que utiliza pocos recursos y permite que los ``trabajos'' o \foreign{english}{jobs} se procesen en determinado tiempo futuro, funcionalidad que será útil para revisar los resultados de ejecuciones en \kahan. \textit{RQ} permitirá desacoplar las \gls{cola}s del aplicativo web al utilizar un servicio de \textit{Redis} como repositorio de \foreign{english}{jobs}, además de disponer de un panel de control (\foreign{english}{dashboard}) que puede ser embebido en cualquier aplicación web.
 
 \section{Arquitectura del Sistema}
 
-Para el despliegue aplicaciones basadas en \textit{Flask} existen una lista de recomendaciones que debemos seguir \cite{link-deploy-flask}. En primer lugar \textit{Flask} no está optimizado para aceptar peticiones web directamente de un navegador ya que utiliza la \acrfull{wsgi} para mostrar el contenido web de sus aplicaciones. Siendo \acrshort{wsgi} un estándar de \textit{python} que permite a cualquier aplicación comunicarse a través del protocolo \acrshort{http}, es decir, Internet. 
+Para el despliegue de aplicaciones basadas en \textit{Flask} existe una lista de recomendaciones que debemos seguir~\cite{link-deploy-flask}. En primer lugar, \textit{Flask} no está optimizado para aceptar peticiones web directamente de un navegador ya que utiliza la \acrfull{wsgi} para mostrar el contenido web de sus aplicaciones, siendo \acrshort{wsgi} un estándar de \textit{python} que permite a cualquier aplicación comunicarse a través del protocolo \acrshort{http}, es decir, Internet. 
 
-\begin{figure}[!ht]
+\begin{figure}[!t]
 	\centering
 	\includegraphics[width=0.95\textwidth]{img/infrastructure-pizarra}
-	\caption[Arquitectura del Sistema]{Arquitectura del Sistema}
+    \caption[Arquitectura del Sistema]{Arquitectura del Sistema.}
 	\label{figura:infrastructure-pizarra}
 \end{figure}
 
-Además, la ejecución sin más de un \foreign{english}{script} en \textit{python} no es una buena práctica ya que una excepción del sistema u otras situaciones anormales que puedan producirse puede abortar el proceso. Para estos casos existe Gunicorn\footnote{Sitio Web Gunicorn: \url{https://gunicorn.org/}} que funciona como un servidor de aplicaciones y se encarga de ser el intermediario entre una petición web y \textit{Flask} además de monitorear el servicio y reiniciarlo en caso de problemas.
+Además, la ejecución sin más de un \foreign{english}{script} en \textit{python} no es una buena práctica ya que una excepción del sistema u otras situaciones anormales que puedan producirse puede abortar el proceso. Para estos casos existe Gunicorn\footnote{Sitio Web Gunicorn: \url{https://gunicorn.org/}.}, que funciona como un servidor de aplicaciones y se encarga de ser el intermediario entre una petición web y \textit{Flask}, además de monitorear el servicio y reiniciarlo en caso de problemas.
 
-Otra buena práctica al realizar un despliegue es poner nuestra aplicación detrás de un proxy reverso, esto es un Servidor Web que se encargue de administrar las conexiones, servir los certificados digitales y ficheros estáticos. Este tipo de arquitectura brinda una mejora en el rendimiento global del sistema y una separación de roles donde cada capa o \foreign{english}{layer} tiene una tarea específica. Para la arquitectura actual se ha escogido NGix\footnote{Sitio web Ngix: \url{https://www.nginx.com/}}, uno de los servidores webs más utilizados en Internet.
+Otra buena práctica al realizar un despliegue es poner nuestra aplicación detrás de un proxy reverso, esto es, un Servidor Web que se encargue de administrar las conexiones y servir los certificados digitales y ficheros estáticos. Este tipo de arquitectura brinda una mejora en el rendimiento global del sistema y una separación de roles donde cada capa o \foreign{english}{layer} tiene una tarea específica. Para la arquitectura actual se ha escogido NGix\footnote{Sitio web Ngix: \url{https://www.nginx.com/}.}, uno de los servidores webs más utilizados en Internet.
 
-Ya se ha menciado que el \gls{paquete} \textit{RQ} utiliza un servicio de \textit{Redis} para el \textbf{Sistema de Colas interno}; pero además brinda una funcionalidad extra llamada \foreign{english}{Worker} o ``trabajador''; un proceso en \textit{python} que se ejecuta como un proceso en segundo plano con el único objetivo de procesar los \foreign{english}{jobs} de una \gls{cola}. El uso de estos \foreign{english}{Workers} no tiene límite y permite un uso ``elastico'' de los recursos, aumentando y disminuyendo su cantidad dependiendo la cantidad de \foreign{english}{jobs} a procesar.
+Ya se ha menciado que el \gls{paquete} \textit{RQ} utiliza un servicio de \textit{Redis} para el \textbf{Sistema de Colas interno}, pero además brinda una funcionalidad extra llamada \foreign{english}{Worker} o ``trabajador'': un proceso en \textit{python} que se ejecuta como un proceso en segundo plano con el único objetivo de procesar los \foreign{english}{jobs} de una \gls{cola}. El uso de estos \foreign{english}{Workers} no tiene límite y permite un uso ``elástico'' de los recursos, aumentando y disminuyendo su cantidad dependiendo la cantidad de \foreign{english}{jobs} a procesar.
 
-Existen tres elementos de la arquitectura que necesitan de almacenamiento; 1) la aplicación web para guardar los ficheros adjuntos de las \gls{tarea}s y el código fuente de los \gls{envio}s, 2) los \foreign{english}{Workers} deben poder acceder al código fuente para transferirlo a \kahan y 3) la \acrlong{bd} para almacenar las tablas.
+Existen tres elementos de la arquitectura que necesitan de almacenamiento: 1) la aplicación web, para guardar los ficheros adjuntos de las \gls{tarea}s y el código fuente de los \gls{envio}s, 2) los \foreign{english}{Workers}, que deben poder acceder al código fuente para transferirlo a \kahan, y 3) la \acrlong{bd}, para almacenar las tablas.
 
-Por último, todos los elementos estarán desplegados en forma de \textit{contenedores} Docker, un sistema que empaqueta el \foreign{english}{software} con todo lo necesario para que se ejecute y que es explicado en detalle en el capítulo 6 \textbf{Implanatación}.
+Por último, todos los elementos estarán desplegados en forma de \textit{contenedores} Docker, un sistema que empaqueta el \foreign{english}{software} con todo lo necesario para que se ejecute y que es explicado en detalle en el Capítulo 6 dedicado a la \textbf{Implantación}.
 
 \section {Modelo de datos}
 
-Una de las formas habituales de trabajar con \acrshort{bd} en \textit{python} es utilizar un \foreign{english}{Object-Relational mappi ng} (\acrshort{orm})  que transforme clases que representan una entidad o modelo a una estructura de datos relacional. La librería a utilizar será \textit{SQLAlchemy}, un \acrshort{orm} que soporta varios motores de \acrshort{bd}, entre otros SQLite, MySQL, PostgreSQL, Oracle o MS SQL. En este caso se optará por SQLite para el entorno de desarrollo local (se crea el fichero \textit{database.db} en el directorio raíz del aplicativo) y PostgreSQL para un entorno productivo dado que son de libre uso.
+Una de las formas habituales de trabajar con \acrshort{bd} en \textit{python} es utilizar un \foreign{english}{Object-Relational mappi ng} (\acrshort{orm})  que transforma clases que representan una entidad o modelo a una estructura de datos relacional. La librería a utilizar será \textit{SQLAlchemy}, un \acrshort{orm} que soporta varios motores de \acrshort{bd}, entre otros SQLite, MySQL, PostgreSQL, Oracle o MS SQL. En este caso se ha optado por SQLite, para el entorno de desarrollo local (se crea el fichero \textit{database.db} en el directorio raíz del aplicativo), y PostgreSQL, para un entorno productivo, dado que son de libre uso.
 
-Dados los requerimientos funcionales, se han identificado y creado las siguientes clases de \textit{python} que mediante el uso de \textit{SQLAlchemy} podrán ser persistidos, consultados y actualizados en la \acrfull{bd}.
+Dados los requerimientos funcionales, se han identificado y creado las siguientes clases de \textit{python} que, mediante el uso de \textit{SQLAlchemy}, podrán ser persistentes, consultadas y actualizadas en la \acrfull{bd}.
 
 \begin{itemize}
 	\item \textbf{User}: \textit{usuario} del sistema.
@@ -1103,9 +1104,9 @@ Dados los requerimientos funcionales, se han identificado y creado las siguiente
 	\item \textbf{Job}: trabajo a procesar, utilizada por la \Gls{cola} interna de \textit{Pizarra}.
 \end{itemize}
 
-Los modelos expuestos previamente se pueden encontrar en el fichero \textbf{models.py} siguiendo el estándar de \textit{Flask} y se expresan como clases que extienden de la clase \textit{db.Model} del paquete de \textit{SQLAlchemy}, esto permite la serialización del objeto y su persistencia en la \Gls{bd}. 
+Los modelos expuestos previamente se pueden encontrar en el fichero \textbf{models.py} siguiendo el estándar de \textit{Flask} y se expresan como clases que extienden de la clase \textit{db.Model} del paquete de \textit{SQLAlchemy}. Esto permite la serialización del objeto y su persistencia en la \Gls{bd}. 
 
-A continuación como ejemplo la representación de un \gls{equipo} (\foreign{english}{Team}):
+Se muestra a continuación, como ejemplo, la representación de un \gls{equipo} (\foreign{english}{Team}):
 
 \begin{code}{models.py}
 	...
@@ -1123,33 +1124,32 @@ A continuación como ejemplo la representación de un \gls{equipo} (\foreign{eng
 	...
 \end{code}
 
-En el código expuesto se puede identificar los siguientes elementos:
+En el código expuesto se pueden identificar los siguientes elementos:
 
 \begin{itemize}
-	\item la clase \textit{Team} extendiendo la clase \textit{db.Model}.
-	\item una descripción de la clase y su propósito enmarcada en comentarios.
-	\item el nombre de la tabla para persistir el objeto una vez serializado.
-	\item las diferentes columnas de la tabla con sus atributos (si es clave primaria, clave única y el tipo de datos).
-	\item la relación entre \textit{Team} y \textit{User}. Un \gls{equipo} tiene integrantes y un \gls{alumno} es parte de un \gls{equipo}.
+	\item la clase \textit{Team} extendiendo la clase \textit{db.Model},
+	\item una descripción de la clase y su propósito enmarcada en comentarios,
+	\item el nombre de la tabla para persistir el objeto una vez serializado,
+	\item las diferentes columnas de la tabla con sus atributos (si es clave primaria, clave única y el tipo de datos), y
+    \item la relación entre \textit{Team} y \textit{User} (un \gls{equipo} tiene integrantes y un \gls{alumno} es parte de un \gls{equipo}).
 \end{itemize}
 
-Una vez definidos todos las clases u objetos con sus relaciones podemos generar un diagrama de la \Gls{bd}, esto facilita la comprensión y ofrece una mejor visión general. Utilizando una herramienta ya incluida en el \acrshort{ide} de desarrollo \textit{PyCharm}\footnote{Sitio web Pycharm: \url{https://www.jetbrains.com/pycharm/}} se obtiene la Figura \ref{figura:database-uml-diagram}
+Una vez definidos todas las clases con sus relaciones, podemos generar un diagrama de la \Gls{bd}. Esto facilita la comprensión y ofrece una mejor visión general. Utilizando una herramienta ya incluida en el \acrshort{ide} de desarrollo \textit{PyCharm}\footnote{Sitio web Pycharm: \url{https://www.jetbrains.com/pycharm/}.} se obtiene la Figura~\ref{figura:database-uml-diagram}.
 
 \begin{figure}[!ht]
 	\centering
 	\includegraphics[width=0.95\textwidth]{img/database-uml-diagram}
-	\caption[Diagrama UML de la Base de Datos]{Diagrama UML de la Base de Datos}
+    \caption[Diagrama UML de la Base de Datos]{Diagrama UML de la Base de Datos.}
 	\label{figura:database-uml-diagram}
 \end{figure}
 
-Al ser las tablas de la \acrshort{bd} objetos serializados de \textit{python}, podemos asumir que la figura generada es la misma representación de un diagrama de clases en \acrfull{uml}; una estructura que muestra las relaciones de las clases en el sistema, sus atributos y métodos u operaciones.
+Al ser las tablas de la \acrshort{bd} objetos serializados de \textit{python}, podemos asumir que la figura generada es la misma representación de un diagrama de clases en \acrfull{uml}: una estructura que muestra las relaciones de las clases dentro del sistema, sus atributos y métodos u operaciones.
 
 \section{Diseño de la Aplicación en Flask}
 
-Al crear una nueva aplicación en \textit{Flask} existen ciertos patrones o mejores prácticas a seguir. Entre ellas se encuentra la utilización de uno de los patrones de diseño más comunes en la ingeniería de software, \acrlong{mvc} (\acrshort{mvc}). Con este patrón se crea una separación de capas entre lo que es el Modelo que contiene la representación de datos y persistencia, la Vista que es la interfaz de usuario y el Controlador como intermediario entre el Modelo y la Vista.
+Al crear una nueva aplicación en \textit{Flask}, existen ciertos patrones o mejores prácticas a seguir. Entre ellas se encuentra la utilización de uno de los patrones de diseño más comunes en la ingeniería de software, \acrlong{mvc} (\acrshort{mvc}). Con este patrón se crea una separación de capas entre lo que es el Modelo, que contiene la representación de los datos y su persistencia, la Vista, que es la interfaz de usuario, y el Controlador, como intermediario entre el Modelo y la Vista.
 
-Una aplicación estándar en \textit{Flask} inluye los siguientes ficheros:
-
+Una aplicación estándar en \textit{Flask} incluye los siguientes ficheros:
 \begin{itemize}
 	\item \textbf{models.py}: representación del modelo de datos (Modelo).
 	\item \textbf{templates}: carpeta con las plantillas HTML para la generación de páginas web (Vista).
@@ -1158,19 +1158,19 @@ Una aplicación estándar en \textit{Flask} inluye los siguientes ficheros:
 	\item \textbf{forms.py}: formularios y validación.
 \end{itemize}
 
-Además, otra buena práctica es separar las aplicaciones en módulos para añadir extensibilidad mediante reglas, nuevas vistas, separación de roles y otros beneficios añadidos mediante el uso de \foreign{english}{blueprints} \cite{book-mastering-flask}, una funcionalidad incluida en \textit{Flask}.
+Además, otra buena práctica consiste en separar las aplicaciones en módulos para añadir extensibilidad mediante reglas, nuevas vistas, separación de roles y otros beneficios añadidos mediante el uso de \foreign{english}{blueprints}~\cite{book-mastering-flask}, una funcionalidad incluida en \textit{Flask}.
 
 De esta forma se ha optado por crear los siguientes módulos o \foreign{english}{blueprints}, todos estos dentro del directorio \textbf{app}:
 
 \begin{itemize}
-	\item \textbf{account}: apartado de ``mi cuenta`` de un usuario
-	\item \textbf{admin}: panel de control del administrador, solo accesible para usuarios con ese rol
+    \item \textbf{account}: apartado de ``mi cuenta`` de un usuario.
+    \item \textbf{admin}: panel de control del administrador, solo accesible para usuarios con ese rol.
 	\item \textbf{base}: contiene la definición de Modelos y plantillas base.
-	\item \textbf{data}: importación de datos de ejemplo
-	\item \textbf{home}: \foreignlanguage{english}{dashboard} de usuario
+    \item \textbf{data}: importación de datos de ejemplo.
+    \item \textbf{home}: \foreignlanguage{english}{dashboard} de usuario.
 \end{itemize}
 
-Si se lista el directorio \textbf{app} se puede ver como cada módulo contiene una estructura de datos similar, siguiendo el estándar descrito previamente.
+Si se lista el directorio \textbf{app} se puede ver cómo cada módulo contiene una estructura de datos similar, siguiendo el estándar descrito previamente.
 
 \begin{lstlisting}[style=ascii-tree]
 $ tree -L 2 app/
@@ -1195,12 +1195,14 @@ app/
 
 \section{Sistema de Colas  interno}
 
-Como se vio previamente, \textit{Pizarra} tiene un sistema de \Gls{cola}s interno. Esto se debe a varios motivos de peso, en primer lugar se quiere hacer una separación de roles entre la aplicación web con la que los usuarios interactúan y la ejecución de código fuente. \textit{Pizarra} debe estar preparado para encolar tareas en el cluster \kahan del \acrshort{dsic}, pero otra de las posibilidades es la disponibilidad de poder hacerlo de forma local para cualquier otra persona que quiera hacer uso del aplicativo. \textit{Tablón}, el software del cual nos hemos inspirado también ofrece ejecución local, pero con ciertas limitaciones, siendo una de ellas la obligación de reiniciar la aplicación cada 60 minutos \cite{link-tablon-faq}.
+Como se vio previamente, \textit{Pizarra} tiene un sistema de \Gls{cola}s interno. Esto se debe a varios motivos de peso. En primer lugar, se quiere establecer una separación de roles entre la aplicación web con la que los usuarios interactúan y la ejecución de código fuente. \textit{Pizarra} debe estar preparada para encolar tareas en el cluster \kahan del \acrshort{dsic}, pero otra de las posibilidades es la disponibilidad de poder hacerlo de forma local para cualquier otra persona que quiera hacer uso del aplicativo. \textit{Tablón}, el software en el cuál nos hemos inspirado, también ofrece ejecución local, pero con ciertas limitaciones, siendo una de ellas la obligación de reiniciar la aplicación cada 60 minutos~\cite{link-tablon-faq}:
 
-<<El servidor tablón está configurado para reiniciarse cada cierto tiempo. De está forma se eliminan trabajos erróneos y se eliminan las peticiones http no completadas. El tiempo que resta hasta el próximo reinicio se muestra en la página principal>>.
+\begin{quote}
+    \textit{
+    <<El servidor tablón está configurado para reiniciarse cada cierto tiempo. De está forma se eliminan trabajos erróneos y se eliminan las peticiones http no completadas. El tiempo que resta hasta el próximo reinicio se muestra en la página principal>>.}
+\end{quote}
 
-Además, una ejecución local desde el mismo aplicativo obliga a brindarle de recursos necesarios ya sean procesadores (\acrshort{cpu}s) y memoria (\acrshort{ram}); esto no es muy eficiente ya que las aplicaciones en \textit{python}, y especialmente en \textit{Flask} consumen muy pocos recursos. Por eso mismo este aplicativo se puede ejecutar en dos modos diferentes:
-
+Además, una ejecución local desde el mismo aplicativo obliga a brindarle los recursos necesarios, ya sean procesadores (\acrshort{cpu}s) o memoria (\acrshort{ram}). Esto no es muy eficiente, ya que las aplicaciones en \textit{python}, y especialmente en \textit{Flask}, consumen muy pocos recursos. Por eso mismo, este aplicativo se puede ejecutar en dos modos diferentes:
 \begin{itemize}
 	\item \textbf{Modo \textit{Pizarra}}: aplicación web con la que interactúan los usuarios.
 	\item \textbf{Modo \textit{Worker}}: un proceso que se encarga de revisar en las \gls{cola}s internas si hay \foreign{english}{jobs} a procesar.
@@ -1208,7 +1210,7 @@ Además, una ejecución local desde el mismo aplicativo obliga a brindarle de re
 
 La elección por la cual se han escogido dos modos diferentes de ejecución de la aplicación en contraposición a la creación de diferentes \textit{scripts} es para poder hacer uso de la misma definición de contenedor en \textit{Docker}, una estrategia habitual al utilizar esta solución \cite{link-sharing-docker-containers}.
 
-Por último, otro beneficio que brinda esta separación de roles es que se pueden ejecutar un número indefinido de \foreign{english}{Workers}, donde cada uno puede tener diferentes colas configuradas y unos recursos disponibles exclusivos para cada uno de ellos.
+Por último, otro beneficio que brinda esta separación de roles consiste en que se pueden ejecutar un número indefinido de \foreign{english}{Workers}, donde cada uno de ellos puede tener diferentes colas configuradas y unos recursos disponibles exclusivos.
 
 \chapter{Desarrollo de la solución}
 
@@ -1216,7 +1218,7 @@ En este capítulo presentamos un resumen de como se ha pasado del diseño de la 
 
 \section{Flask \foreign{english}{boilerplate}}
 
-La usabilidad es uno de los aspectos más importantes de una aplicación web y en este caso no se puede dejar de lado. Un \textit{usuario} de \textit{Pizarra} esperará una interfaz intuitiva y fácil de utilizar que le facilite el proceso de envío de soluciones (\foreign{english}{Requests}) a los problemas propuestos (\foreign{english}{Assignments}); No queremos que la aplicación se interponga entre el proceso de aprendizaje y la satisfacción de participar y obtener logros \foreign{english}{Badges}. Una gran cantidad de aplicaciones utilizan las mismas librerías para maquetar los sitios web, entre estas librerías la más importante es \textit{Bootstrap}\footnote{Sitio web Bootstrap: \url{https://getbootstrap.com/}}, y además, a partir de estas librerías existen \foreign{english}{Dashboards} o Paneles de Control de código abierto para utilizar como punto de partida en nuevas aplicaciones.
+La usabilidad es uno de los aspectos más importantes de una aplicación web y en este caso no se puede dejar de lado. Un \textit{usuario} de \textit{Pizarra} esperará una interfaz intuitiva y fácil de utilizar que le facilite el proceso de envío de soluciones (\foreign{english}{Requests}) a los problemas propuestos (\foreign{english}{Assignments}); No queremos que la aplicación se interponga entre el proceso de aprendizaje y la satisfacción de participar y obtener logros \foreign{english}{Badges}. Una gran cantidad de aplicaciones utilizan las mismas librerías para maquetar los sitios web, entre estas librerías la más importante es \textit{Bootstrap}\footnote{Sitio web Bootstrap: \url{https://getbootstrap.com/}.}, y además, a partir de estas librerías existen \foreign{english}{Dashboards} o Paneles de Control de código abierto para utilizar como punto de partida en nuevas aplicaciones.
 	
 
 \begin{figure}[!ht]
@@ -1228,11 +1230,11 @@ La usabilidad es uno de los aspectos más importantes de una aplicación web y e
 
 Este conjunto de librerías y plantillas HTML tienen el nombre de \foreign{english}{boilerplate} y aceleran el desarrollo de una aplicación web a usuarios noveles como también expertos ya que solo deben preocuparse de reutilizar componentes ya predefinidos.
 
-Después de una búsqueda y pruebas de varias alternativa se ha optado por \textit{AdminLTE}\footnote{Sitio web AdminLTE: \url{https://adminlte.io/}} dada su variedad de plantillas disponibles, uso de otras librerías con amplia documentación y un aspecto visual amigable y moderno.
+Después de una búsqueda y pruebas de varias alternativa se ha optado por \textit{AdminLTE}\footnote{Sitio web AdminLTE: \url{https://adminlte.io/}.} dada su variedad de plantillas disponibles, uso de otras librerías con amplia documentación y un aspecto visual amigable y moderno.
 
 \section{Paquetes de Python}
 
-Para dar funcionalidades adicionales en \textit{python} normalmente se utilizan librerías o \Gls{paquete}s externos que simplifican y aceleran el desarrollo de la aplicación. A continuación se hace un repaso de las librerías que son necesarias para \textit{Pizarra}, este listado se encuentra disponible en el fichero \textbf{requirements.txt}, un estándar utilizado por desarrolladores y proveedores de servicios de \textit{hosting} \cite{book-developing-web-python} para su fácil instalación a posterior por administradores de paquetes de \textit{python} como \textit{pip}\footnote{Sitio web pip: \url{https://pip.pypa.io/en/stable/}}.
+Para dar funcionalidades adicionales en \textit{python} normalmente se utilizan librerías o \Gls{paquete}s externos que simplifican y aceleran el desarrollo de la aplicación. A continuación se hace un repaso de las librerías que son necesarias para \textit{Pizarra}, este listado se encuentra disponible en el fichero \textbf{requirements.txt}, un estándar utilizado por desarrolladores y proveedores de servicios de \textit{hosting} \cite{book-developing-web-python} para su fácil instalación a posterior por administradores de paquetes de \textit{python} como \textit{pip}\footnote{Sitio web pip: \url{https://pip.pypa.io/en/stable/}.}.
 
 Un sistema de administración de paquetes es un \foreign{english}{software} que se encarga de resolver las referencias en un repositorio central, su descarga e instalación de forma segura.
 
@@ -1305,7 +1307,7 @@ Cuando un \Gls{alumno} realiza un \Gls{envio}, esto es, una petición web que in
 
 Si alguno de los pasos anteriores no pasa uno de los puntos de verificación se devuelve un mensaje de error con el código HTTP correspondiente. En el caso de que todas las chequeos sean satisfactorios se crea un objeto de tipo \textit{Request} en la \acrshort{bd} y otro de tipo \foreign{english}{job} para la \Gls{cola} interna en \textit{Redis}.
 
-El \Gls{envio} de una \Gls{tarea} se realiza desde un terminal de comandos u otro cliente que permita realizar peticiones web como \textit{Postman}\footnote{Sitio web Postman: \url{https://www.postman.com/}} y está construida para devolver respuestas en formato JSON ya que es un estándar utilizado en muchas aplicaciones web cuando se diseña una \acrshort{api}. Un \Gls{envio} contiene como parámetros el usuario, token de acceso, fichero con el código fuente y la URL de la \Gls{tarea}, al procesarse la petición se recibe la respuesta.
+El \Gls{envio} de una \Gls{tarea} se realiza desde un terminal de comandos u otro cliente que permita realizar peticiones web como \textit{Postman}\footnote{Sitio web Postman: \url{https://www.postman.com/}.} y está construida para devolver respuestas en formato JSON ya que es un estándar utilizado en muchas aplicaciones web cuando se diseña una \acrshort{api}. Un \Gls{envio} contiene como parámetros el usuario, token de acceso, fichero con el código fuente y la URL de la \Gls{tarea}, al procesarse la petición se recibe la respuesta.
 
 A continuación varios ejemplos; 1) una autentificación fallida, 2) un \gls{envio} satisfactorio y 3) un \Gls{envio} no procesado porque el usuario debe esperar un tiempo.
 
@@ -1576,7 +1578,7 @@ Docker funciona de forma similar a una maquina virtual, con algunas ventajas com
 
 Para nuestro entorno de desarrollo local utilizamos contenedores públicos como el de Postgres que con un fichero de configuración nos permite tener el servicio ejecutándose en cuestión de minutos.
 
-A continuación, un extracto del fichero \textbf{docker-compose.yaml} del repositorio\footnote{Docker yaml: \url{https://github.com/nimar3/pizarra/blob/master/docker-compose.yml}} con una breve explicación de los parámetros.
+A continuación, un extracto del fichero \textbf{docker-compose.yaml} del repositorio\footnote{Docker yaml: \url{https://github.com/nimar3/pizarra/blob/master/docker-compose.yml}.} con una breve explicación de los parámetros.
 
 \begin{lstlisting}[language=yaml]
 version: "3.1"
@@ -1597,7 +1599,7 @@ services:
 \begin{itemize}
 	\item \textbf{version}: versión de la API de Docker que utilizaremos.
 	\item \textbf{services}: listado de servicios que desplegaremos.
-	\item \textbf{image}: contenedor que utilizaremos, en este caso el oficial de postgres\footnote{Postgres Official Docker Image: \url{https://hub.docker.com/_/postgres}} sobre Linux Alpine.
+    \item \textbf{image}: contenedor que utilizaremos, en este caso el oficial de postgres\footnote{Postgres Official Docker Image: \url{https://hub.docker.com/_/postgres}.} sobre Linux Alpine.
 	\item \textbf{container\_name}: nombre con el que comenzará el contenedor que se ejecute.
 	\item \textbf{volumes}: mapeo de directorios de nuesto entorno de desarrollo local al contenedor, esto se hace para evitar perder la información de la \textit{BD} al ser los contenedores \foreignlanguage{english}{stateless}.
     \item \textbf{ports}: mapeo de puertos del \textit{SO} a los contenedores, esto permite acceder al servicio de Postgres por un puerto local.
@@ -1613,7 +1615,7 @@ Debido a una limitación de las máquinas donde está alojado \kahan no es posib
 
 \section{Despliegue en la Nube con Kubernetes}
 
-Existen varios proveedores de \textit{K8s} en Internet pudiendo consultar el listado de todos los partners en el sitio oficial\footnote{Kubernetes - Partners: \url{https://kubernetes.io/es/partners}}. Siendo los más importantes Google Cloud Engine, Amazon AWS y Microsoft Azure se ha escogido por desplegar la aplicación en \textit{GCE} ya que dispone de buena documentación y además \textdollar 300 de crédito promocional que són más que suficientes para tener el aplicativo corriendo durante meses.
+Existen varios proveedores de \textit{K8s} en Internet pudiendo consultar el listado de todos los partners en el sitio oficial\footnote{Kubernetes - Partners: \url{https://kubernetes.io/es/partners}.}. Siendo los más importantes Google Cloud Engine, Amazon AWS y Microsoft Azure se ha escogido por desplegar la aplicación en \textit{GCE} ya que dispone de buena documentación y además \textdollar 300 de crédito promocional que són más que suficientes para tener el aplicativo corriendo durante meses.
 
 \subsection{Pasos de un despliegue en GCE}
 
@@ -1628,9 +1630,9 @@ Con nuestra cuenta accedemos a la Consola Web de \acrshort{gce} y creamos nuestr
 	\label{figura:gce-new-project}
 \end{figure}
 
-Una vez creado el proyecto y habilitadas las \acrshort{api}'s hay que descargar\footnote{Cómo instalar el SDK de Google Cloud: \url{https://cloud.google.com/sdk/install?hl=es-419}} e inicializar\footnote{Cómo inicializar el SDK de Cloud:  \url{https://cloud.google.com/sdk/docs/initializing?hl=es-419}} Google Cloud SDK para hacer uso de la consola de forma local. 
+Una vez creado el proyecto y habilitadas las \acrshort{api}'s hay que descargar\footnote{Cómo instalar el SDK de Google Cloud: \url{https://cloud.google.com/sdk/install?hl=es-419}.} e inicializar\footnote{Cómo inicializar el SDK de Cloud:  \url{https://cloud.google.com/sdk/docs/initializing?hl=es-419}.} Google Cloud SDK para hacer uso de la consola de forma local. 
 
-Todos los pasos descritos a continuación se ejecutan de forma automática con un script\footnote{Script Despliegue \acrshort{gce}: \url{https://github.com/nimar3/pizarra/blob/master/gce/commands.sh}} incluido en el repositorio de código. Lo único que se necesita de forma previa es la configuración de algunos parámetros de despliegue como variables de entorno del \acrshort{so} donde se ejecuta.
+Todos los pasos descritos a continuación se ejecutan de forma automática con un script\footnote{Script Despliegue \acrshort{gce}: \url{https://github.com/nimar3/pizarra/blob/master/gce/commands.sh}.} incluido en el repositorio de código. Lo único que se necesita de forma previa es la configuración de algunos parámetros de despliegue como variables de entorno del \acrshort{so} donde se ejecuta.
 
 Las variables de entorno necesarias son el ID del proyecto en \acrshort{gce} y las credenciales de la \acrshort{bd} que serán guardados como un secreto en Kubernetes. Podemos exportarlas antes de lanzar nuestro script ejecutando los siguientes comandos en nuestra consola.
 
@@ -1640,7 +1642,7 @@ $ export DB_USERNAME=pizarra
 $ export DB_PASSWORD=pizarra
 \end{lstlisting}
 
-Éstas son las lineas que ejecuta el script, donde todos los ficheros que forman parte de cada comando se encuentran en el repositorio\footnote{Ficheros de despliegue en \acrshort{gce}: \url{https://github.com/nimar3/pizarra/tree/master/gce}}. Al ser la sintaxis similar a la previamente explicada y evitando que éste documento se extienda de sobremanera al mencionar cada ítem, invitamos al lector a revisar la documentación oficial de Kubernetes\footnote{Documentación Kubernetes: \url{https://kubernetes.io/docs}}.
+Éstas son las lineas que ejecuta el script, donde todos los ficheros que forman parte de cada comando se encuentran en el repositorio\footnote{Ficheros de despliegue en \acrshort{gce}: \url{https://github.com/nimar3/pizarra/tree/master/gce}.}. Al ser la sintaxis similar a la previamente explicada y evitando que éste documento se extienda de sobremanera al mencionar cada ítem, invitamos al lector a revisar la documentación oficial de Kubernetes\footnote{Documentación Kubernetes: \url{https://kubernetes.io/docs}.}.
 
 \begin{enumerate}
 	
@@ -1721,7 +1723,7 @@ Con esto se ha completado el despliegue y ya podemos navegar a Pizarra para come
 
 \subsection{Costos asociados}
 
-\acrshort{gce} cuenta con una herramienta\footnote{Calculadora de precios de Google: \url{https://cloud.google.com/products/calculator/}} para estimar el gasto mensual en el que podemos incurrir con la utilización de los recursos contratados. Se ha realiado una estimación con los siguientes parámetros:
+\acrshort{gce} cuenta con una herramienta\footnote{Calculadora de precios de Google: \url{https://cloud.google.com/products/calculator/}.} para estimar el gasto mensual en el que podemos incurrir con la utilización de los recursos contratados. Se ha realiado una estimación con los siguientes parámetros:
 
 \begin{figure}[ht]
 	\centering
@@ -1770,7 +1772,7 @@ Acceso al código fuente, en este caso disponible en un repositorio de código a
 Para configurar un entorno de desarrollo local se debe cumplir  los siguientes requisitos.
 
 \begin{itemize}
-	\item  Tener instalado Python3\footnote{Descarga oficial de Python: \url{https://www.python.org/downloads/}} y Docker\footnote{Descarga oficial de Docker: \url{https://docs.docker.com/get-docker/}} en nuestra máquina
+    \item  Tener instalado Python3\footnote{Descarga oficial de Python: \url{https://www.python.org/downloads/}.} y Docker\footnote{Descarga oficial de Docker: \url{https://docs.docker.com/get-docker/}.} en nuestra máquina
 	\item Clonado el repositorio de Pizarra
 	\begin{enumerate}
 		\item Creación de directorio
@@ -1855,7 +1857,7 @@ En el entorno de desarrollo local, el modo Debug siempre está habilitado. Si qu
 
 \section{Calidad de código}
 
-Para una mejor lectura del código fuente se ha utilizado el \Gls{paquete} \textit{flake8}\footnote{Sitio Web de Flake8: \url{https://flake8.pycqa.org/en/latest/}} que nos obliga a seguir las guías de estilo oficiales de Python.
+Para una mejor lectura del código fuente se ha utilizado el \Gls{paquete} \textit{flake8}\footnote{Sitio Web de Flake8: \url{https://flake8.pycqa.org/en/latest/}.} que nos obliga a seguir las guías de estilo oficiales de Python.
 
 En el directorio raíz del repositorio de código ejecutamos el siguiente comando y podemos ver un listado de errores a corregir.
 
@@ -1882,19 +1884,19 @@ Otro punto importante es la cobertura del código fuente. Aunque el repositorio 
 
 \section{Gestión de versiones}
 
-Como se ha visto anteriormente desde el inicio del desarrollo de la aplicación se ha utilizado como herramienta de gestión de versiones \textit{Git}\footnote{Sitio web Git: \url{https://git-scm.com/}} para el seguimiento de los cambios y entregables. La rama principal es ``master'' y solo para requisitos de gran impacto se han creado nuevas que finalmente han sido fusionadas a ``master'' una vez validadas. Cada vez que se producía el fin de un \foreign{english}{sprint} con su bloque de tareas se creaba una nueva ``etiqueta'' o \foreign{english}{tag} marcando la versión; comenzando desde la \textit{0.1} llegando al final de la entrega del \acrshort{tfg} a la \textit{1.0}.
+Como se ha visto anteriormente desde el inicio del desarrollo de la aplicación se ha utilizado como herramienta de gestión de versiones \textit{Git}\footnote{Sitio web Git: \url{https://git-scm.com/}.} para el seguimiento de los cambios y entregables. La rama principal es ``master'' y solo para requisitos de gran impacto se han creado nuevas que finalmente han sido fusionadas a ``master'' una vez validadas. Cada vez que se producía el fin de un \foreign{english}{sprint} con su bloque de tareas se creaba una nueva ``etiqueta'' o \foreign{english}{tag} marcando la versión; comenzando desde la \textit{0.1} llegando al final de la entrega del \acrshort{tfg} a la \textit{1.0}.
 
 Este ha sido un trabajo de una sola persona y se ha seguido el método de \foreign{english}{Feature Branch Workflow} \cite{link-git-flow} donde se tiene una rama principal y nuevas funcionalidades o \foreign{english}{features} divergen de esta para luego volver a fusionarse. Ya que se espera recibir colaboraciones a futuro se deberá acomodar a un proceso que involucre a un equipo de trabajo y ramas en diferentes estados como \foreign{english}{dev, release} y \foreign{english}{master} como en \foreign{english}{Gitflow Workflow}.
 
 \chapter{Extensibilidad}
 
-Uno de los puntos más importantes es permitir la colaboración y que Pizarra pueda utilizar otros sistemas de tareas que no sean una \Gls{cola} local o la de un cluster como \kahan(TORQUE\footnote{Sitio web de TORQUE: \url{https://adaptivecomputing.com/cherry-services/torque-resource-manager/}}) así como también que pueda ser localizado en diferentes idiomas.
+Uno de los puntos más importantes es permitir la colaboración y que Pizarra pueda utilizar otros sistemas de tareas que no sean una \Gls{cola} local o la de un cluster como \kahan(TORQUE\footnote{Sitio web de TORQUE: \url{https://adaptivecomputing.com/cherry-services/torque-resource-manager/}.}) así como también que pueda ser localizado en diferentes idiomas.
 
 \section{Otros sistemas de Gestión de Tareas}
 
 La ejecución de una tarea es diferente en cada \Gls{cola} y para esto se ha implementado un autómata que va cambiando de estados en cada ejecución hasta finalizarla. Esto permite que cada nuevo tipo de \Gls{cola} tenga su propia definición, sea flexible y compatible con el funcionamiento del aplicativo.
 
-La definición de estas \Gls{cola}s se encuentra en \textbf{models\_tasks.py}\footnote{Definición de Colas: \url{https://github.com/nimar3/pizarra/blob/master/app/base/models_tasks.py}} siendo \textit{Task} el objeto a extender para las nuevas implementaciones.
+La definición de estas \Gls{cola}s se encuentra en \textbf{models\_tasks.py}\footnote{Definición de Colas: \url{https://github.com/nimar3/pizarra/blob/master/app/base/models_tasks.py}.} siendo \textit{Task} el objeto a extender para las nuevas implementaciones.
 
 \begin{lstlisting}[language=python]
 class Task:
@@ -1956,9 +1958,9 @@ En la definición del \textit{task\_process} tenemos un diccionario con los dife
 
 \section{Localización}
 
-Pizarra utiliza el \Gls{paquete} \textit{Babel}\footnote{Paquete \textit{Babel}: \url{http://babel.pocoo.org/en/latest/}} para ofrecer los diferentes idiomas disponibles a los usuarios. A continuación se muestra el \textit{paso a paso} para añadir un nuevo Idioma.
+Pizarra utiliza el \Gls{paquete} \textit{Babel}\footnote{Paquete \textit{Babel}: \url{http://babel.pocoo.org/en/latest/}.} para ofrecer los diferentes idiomas disponibles a los usuarios. A continuación se muestra el \textit{paso a paso} para añadir un nuevo Idioma.
 
-La configuración de \textit{Babel} se encuentra en el fichero \textbf{babel.cfg}\footnote{Configuración de \textit{Babel}: \url{https://github.com/nimar3/pizarra/blob/master/babel.cfg}} en la que se define los ficheros a escanear y extraer texto a traducir.
+La configuración de \textit{Babel} se encuentra en el fichero \textbf{babel.cfg}\footnote{Configuración de \textit{Babel}: \url{https://github.com/nimar3/pizarra/blob/master/babel.cfg}.} en la que se define los ficheros a escanear y extraer texto a traducir.
 
 \begin{lstlisting}[language=python]
 [python: app/**.py]
@@ -2145,7 +2147,7 @@ $ export DB_USERNAME=pizarra
 $ export DB_PASSWORD=pizarra
 \end{lstlisting}
 
-Si quisiéramos cambiar algún parámetro por defecto de Pizarra, debemos modificar el fichero \textbf{pizarra.yaml}\footnote{Fichero YAML de Pizarra: \url{https://github.com/nimar3/pizarra/blob/master/gce/pizarra.yaml}} añadiendo los nuevos parámetros. En el siguiente extracto se han cambiado los puntos de penalización al obtener un \textit{KO} y \textit{TIMEWALL} en el envío de una \Gls{tarea} y la carga de datos de ejemplo.
+Si quisiéramos cambiar algún parámetro por defecto de Pizarra, debemos modificar el fichero \textbf{pizarra.yaml}\footnote{Fichero YAML de Pizarra: \url{https://github.com/nimar3/pizarra/blob/master/gce/pizarra.yaml}.} añadiendo los nuevos parámetros. En el siguiente extracto se han cambiado los puntos de penalización al obtener un \textit{KO} y \textit{TIMEWALL} en el envío de una \Gls{tarea} y la carga de datos de ejemplo.
 
 \begin{lstlisting}[language=yaml]
 ...
@@ -2180,7 +2182,7 @@ $ kubectl get services
 
 Al iniciar un \Gls{contenedor} utilizamos variables de entorno del \acrshort{so} para configurar su funcionamiento. El \Gls{contenedor} de Pizarra soporta estas variables para dar diferentes posibilidades en cómo queremos que se comporte el aplicativo. 
 
-Los mencionados a continuación con su descripción y opciones son los más relevantes en un despliegue. También se listan otros parámetros adicionales como referencia. Todos estos pueden ser consultados en el fichero de configuración\footnote{Fichero de Configuración: \url{https://github.com/nimar3/pizarra/blob/master/config.py}}.
+Los mencionados a continuación con su descripción y opciones son los más relevantes en un despliegue. También se listan otros parámetros adicionales como referencia. Todos estos pueden ser consultados en el fichero de configuración\footnote{Fichero de Configuración: \url{https://github.com/nimar3/pizarra/blob/master/config.py}.}.
 
 \begin{itemize}
 	\item \textbf{APP\_MODE}
