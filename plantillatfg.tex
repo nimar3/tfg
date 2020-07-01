@@ -1214,33 +1214,32 @@ Por último, otro beneficio que brinda esta separación de roles consiste en que
 
 \chapter{Desarrollo de la solución}
 
-En este capítulo presentamos un resumen de como se ha pasado del diseño de la aplicación al producto final dando un repaso de cómo se ha abordado el desarrollo de los aspectos más relevantes como el \gls{envio} de \gls{tarea}s, el motor de reglas y el autómata creado para el proceso de tareas en diferentes tipos de \gls{cola}s. Esto no podría ser posible sin describir el listado completo de librerías necesarias y el sistema de plantillas que se utiliza para generar el contenido web. Por último se hace un resumen de los entregables que se fueron dando para dar vida al producto final.
+En este capítulo presentamos un resumen de cómo se ha pasado del diseño de la aplicación al producto final dando un repaso de cómo se ha abordado el desarrollo de los aspectos más relevantes como el \gls{envio} de \gls{tarea}s, el motor de reglas y el autómata creado para el proceso de tareas en diferentes tipos de \gls{cola}s. Esto no podría ser posible sin describir el listado completo de librerías necesarias y el sistema de plantillas que se utiliza para generar el contenido web. Por último, se presenta un resumen de los entregables que se fueron generando para dar vida al producto final.
 
 \section{Flask \foreign{english}{boilerplate}}
 
-La usabilidad es uno de los aspectos más importantes de una aplicación web y en este caso no se puede dejar de lado. Un \textit{usuario} de \textit{Pizarra} esperará una interfaz intuitiva y fácil de utilizar que le facilite el proceso de envío de soluciones (\foreign{english}{Requests}) a los problemas propuestos (\foreign{english}{Assignments}); No queremos que la aplicación se interponga entre el proceso de aprendizaje y la satisfacción de participar y obtener logros \foreign{english}{Badges}. Una gran cantidad de aplicaciones utilizan las mismas librerías para maquetar los sitios web, entre estas librerías la más importante es \textit{Bootstrap}\footnote{Sitio web Bootstrap: \url{https://getbootstrap.com/}.}, y además, a partir de estas librerías existen \foreign{english}{Dashboards} o Paneles de Control de código abierto para utilizar como punto de partida en nuevas aplicaciones.
+La usabilidad es uno de los aspectos más importantes de una aplicación web y, en este caso, no se puede dejar de lado. Un \textit{usuario} de \textit{Pizarra} esperará una interfaz intuitiva y fácil de utilizar que le facilite el proceso de envío de soluciones (\foreign{english}{Requests}) a los problemas propuestos (\foreign{english}{Assignments}). No queremos que la aplicación se interponga entre el proceso de aprendizaje y la satisfacción de participar y obtener logros (\foreign{english}{Badges}). Una gran cantidad de aplicaciones utilizan las mismas librerías para maquetar los sitios web. Entre estas librerías, la más importante es \textit{Bootstrap}\footnote{Sitio web Bootstrap: \url{https://getbootstrap.com/}.} y, además, alrededor de estas librerías existen \foreign{english}{Dashboards} o Paneles de Control de código abierto para utilizar como punto de partida en nuevas aplicaciones.
 	
+Este conjunto de librerías y plantillas HTML tienen el nombre de \foreign{english}{boilerplate} y aceleran el desarrollo de una aplicación web tanto para usuarios noveles como también para usuarios expertos, ya que solo deben preocuparse de reutilizar componentes ya predefinidos.
+
+Después de una búsqueda y pruebas de varias alternativas se ha optado por \textit{AdminLTE}\footnote{Sitio web AdminLTE: \url{https://adminlte.io/}.} (Figura~\ref{figura:admin-lte}) dada su variedad de plantillas disponibles, uso de otras librerías con amplia documentación y un aspecto visual amigable y moderno.
 
 \begin{figure}[!ht]
 	\centering
 	\includegraphics[width=0.70\textwidth]{img/admin-lte}
-	\caption[AdminLTE: plantilla de Panel de Control ]{AdminLTE: plantilla de Panel de Control}
+    \caption[AdminLTE: plantilla de Panel de Control ]{AdminLTE: plantilla de Panel de Control.}
 	\label{figura:admin-lte}
 \end{figure}
 
-Este conjunto de librerías y plantillas HTML tienen el nombre de \foreign{english}{boilerplate} y aceleran el desarrollo de una aplicación web a usuarios noveles como también expertos ya que solo deben preocuparse de reutilizar componentes ya predefinidos.
-
-Después de una búsqueda y pruebas de varias alternativa se ha optado por \textit{AdminLTE}\footnote{Sitio web AdminLTE: \url{https://adminlte.io/}.} dada su variedad de plantillas disponibles, uso de otras librerías con amplia documentación y un aspecto visual amigable y moderno.
-
 \section{Paquetes de Python}
 
-Para dar funcionalidades adicionales en \textit{python} normalmente se utilizan librerías o \Gls{paquete}s externos que simplifican y aceleran el desarrollo de la aplicación. A continuación se hace un repaso de las librerías que son necesarias para \textit{Pizarra}, este listado se encuentra disponible en el fichero \textbf{requirements.txt}, un estándar utilizado por desarrolladores y proveedores de servicios de \textit{hosting} \cite{book-developing-web-python} para su fácil instalación a posterior por administradores de paquetes de \textit{python} como \textit{pip}\footnote{Sitio web pip: \url{https://pip.pypa.io/en/stable/}.}.
+Para dar funcionalidades adicionales en \textit{python}, normalmente se utilizan librerías o \Gls{paquete}s externos que simplifican y aceleran el desarrollo de la aplicación. A continuación se presenta un repaso de las librerías que son necesarias para \textit{Pizarra}. Este listado se encuentra disponible en el fichero \textbf{requirements.txt}, un estándar utilizado por desarrolladores y proveedores de servicios de \textit{hosting}~\cite{book-developing-web-python} para su fácil instalación a posteriori por administradores de paquetes de \textit{python}, como \textit{pip}\footnote{Sitio web pip: \url{https://pip.pypa.io/en/stable/}.}.
 
-Un sistema de administración de paquetes es un \foreign{english}{software} que se encarga de resolver las referencias en un repositorio central, su descarga e instalación de forma segura.
+Un sistema de administración de paquetes es un \foreign{english}{software} que se encarga de resolver las referencias en un repositorio central, de su descarga y de su instalación de forma segura.
 
 \subsection{Flask}
 
-El framework base de la aplicación, con otros \Gls{paquete}s adicionales para dar soporte a ciertas funcionalidades no incluidas en la librería base.
+Este es el framework base de la aplicación, junto con otros \Gls{paquete}s adicionales que dan soporte a ciertas funcionalidades no incluidas en la librería base.
 
 \begin{itemize}
 	\item \textbf{flask}: framework base.
@@ -1253,7 +1252,7 @@ El framework base de la aplicación, con otros \Gls{paquete}s adicionales para d
 	\item \textbf{email-validator}: validación de correos electrónicos para la librería wtf.
 \end{itemize}
 
-\subsection{Colas}
+\subsection{Sistemas de Colas}
 
 Paquetes para el Sistema de colas interno y conectividad con \textit{Redis}.
 
@@ -1265,7 +1264,7 @@ Paquetes para el Sistema de colas interno y conectividad con \textit{Redis}.
 
 \subsection{Conexión con sistemas externos}
 
-Para poder utilizar las \Gls{cola}s de \kahan es necesario poder conectarnos vía protocolos seguros ya sea para ejecutar comandos o copiar ficheros.
+Para poder utilizar las \Gls{cola}s de \kahan es necesario poder conectarnos vía protocolos seguros, ya sea para ejecutar comandos o para copiar ficheros.
 
 \begin{itemize}
 	\item \textbf{paramiko}: soporte de protocolo \acrfull{ssh}.
@@ -1274,10 +1273,10 @@ Para poder utilizar las \Gls{cola}s de \kahan es necesario poder conectarnos ví
 
 \subsection{Datos de ejemplo}
 
-Para facilitar el desarrollo y su posterior mantenimiento se debe poder disponer de una forma fácil y estandarizada para carga de datos de ejemplo. Para esta funcionalidad se ha optado por ficheros en formato \textit{yaml}.
+Para facilitar el desarrollo y su posterior mantenimiento se debe poder disponer de una forma fácil y estandarizada de carga de datos de ejemplo. Para esta funcionalidad se ha optado por ficheros en formato \textit{yaml}.
 
 \begin{itemize}
-	\item \textbf{pyyaml}: analizador de ficheros \textit{yaml} 
+    \item \textbf{pyyaml}: analizador de ficheros \textit{yaml}.
 	\item \textbf{sqla-yaml-fixtures}: definición de datos via \textit{yaml}, transformación a objetos e importación a la \acrshort{bd} con \textit{SQLAlchemy}.
 \end{itemize}
 
@@ -1292,24 +1291,24 @@ Para facilitar el desarrollo y su posterior mantenimiento se debe poder disponer
 
 \section{Envío de soluciones a Tareas}
 
-Cuando un \Gls{alumno} realiza un \Gls{envio}, esto es, una petición web que incluye el código fuente a compilar y ejecutar como propuesta de solución a una \Gls{tarea}, la aplicación debe procesar la petición y el \Gls{envio} pasa por una serie de verificaciones que se describen a continuación, algunas de estas no se realizan para un usuario con rol de \gls{administrador} del sistema.
+Cuando un \Gls{alumno} realiza un \Gls{envio}, esto es, una petición web que incluye el código fuente a compilar y ejecutar como propuesta de solución a una \Gls{tarea}, la aplicación debe procesar la petición. El \Gls{envio} pasa por una serie de verificaciones que se describen a continuación, algunas de las cuáles no se realizan para un usuario con rol de \gls{administrador} del sistema:
 
 \begin{enumerate}
-	\item se autentifica al usuario.
-	\item se busca la \Gls{tarea} en la \Gls{bd}.
-	\item la \Gls{tarea} debe estar abierta a recibir \Gls{envio}s.
-	\item el \Gls{alumno} pertenece a un \Gls{grupo} que la tenga asignada.
-	\item el \Gls{alumno} no ha enviado peticiones muy rápido.
-	\item el \Gls{alumno} tiene Quota (tiempo disponible de ejecución) para procesar el \Gls{envio}.
-	\item el \Gls{envio} contiene un fichero a procesar.
-	\item el fichero a procesar con el código fuente no contiene código malicioso.
+	\item Se autentifica al usuario.
+	\item Se busca la \Gls{tarea} en la \Gls{bd}.
+	\item La \Gls{tarea} debe estar abierta a recibir \Gls{envio}s.
+	\item El \Gls{alumno} pertenece a un \Gls{grupo} que la tenga asignada.
+	\item El \Gls{alumno} no ha enviado peticiones muy rápido.
+	\item El \Gls{alumno} tiene Quota (tiempo disponible de ejecución) para procesar el \Gls{envio}.
+	\item El \Gls{envio} contiene un fichero a procesar.
+	\item El fichero a procesar con el código fuente no contiene código malicioso.
 \end{enumerate}
 
-Si alguno de los pasos anteriores no pasa uno de los puntos de verificación se devuelve un mensaje de error con el código HTTP correspondiente. En el caso de que todas las chequeos sean satisfactorios se crea un objeto de tipo \textit{Request} en la \acrshort{bd} y otro de tipo \foreign{english}{job} para la \Gls{cola} interna en \textit{Redis}.
+Si alguno de los pasos anteriores no pasa uno de los puntos de verificación se devuelve un mensaje de error con el código HTTP correspondiente. En el caso de que todas los chequeos sean satisfactorios se crea un objeto de tipo \textit{Request} en la \acrshort{bd} y otro de tipo \foreign{english}{job} para la \Gls{cola} interna en \textit{Redis}.
 
-El \Gls{envio} de una \Gls{tarea} se realiza desde un terminal de comandos u otro cliente que permita realizar peticiones web como \textit{Postman}\footnote{Sitio web Postman: \url{https://www.postman.com/}.} y está construida para devolver respuestas en formato JSON ya que es un estándar utilizado en muchas aplicaciones web cuando se diseña una \acrshort{api}. Un \Gls{envio} contiene como parámetros el usuario, token de acceso, fichero con el código fuente y la URL de la \Gls{tarea}, al procesarse la petición se recibe la respuesta.
+El \Gls{envio} de una \Gls{tarea} se realiza desde un terminal de comandos u otro cliente que permita realizar peticiones web como \textit{Postman}\footnote{Sitio web Postman: \url{https://www.postman.com/}.}, y está construida para devolver respuestas en formato JSON, que es un estándar utilizado en muchas aplicaciones web cuando se diseña una \acrshort{api}. Un \Gls{envio} contiene como parámetros el usuario, el token de acceso, un fichero con el código fuente y la URL de la \Gls{tarea}. Al procesarse la petición se recibe la respuesta.
 
-A continuación varios ejemplos; 1) una autentificación fallida, 2) un \gls{envio} satisfactorio y 3) un \Gls{envio} no procesado porque el usuario debe esperar un tiempo.
+En el siguiente código se muestran tres ejemplos: 1) una autentificación fallida, 2) un \gls{envio} satisfactorio, y 3) un \Gls{envio} no procesado porque el usuario debe esperar un tiempo. \newline
 
 \begin{lstlisting}[style=ascii-tree]
 $ curl -k -X POST -F 'file=@primos.c' http://foo:bar@127.0.0.1:5000/assignments/primos
@@ -1329,22 +1328,22 @@ $ curl -k -X POST -F 'file=@primos.c' http://foo:gB8HSgWhfg@127.0.0.1:5000/assig
 }
 \end{lstlisting}
 
-El diagrama de flujo de una petición web para un \gls{envio} es el que se ve en la Figura \ref{figura:request-flowchart}
+El diagrama de flujo de una petición web para un \gls{envio} es el que se ve en la Figura~\ref{figura:request-flowchart}.
 
-\begin{figure}[!ht]
+\begin{figure}[!t]
 	\centering
 	\includegraphics[width=0.8\textwidth]{img/request-flowchart}
-	\caption[Diagrama de flujo de una petición web para un Envío]{Diagrama de flujo de una petición web para un Envío}
+    \caption[Diagrama de flujo de una petición web para un Envío]{Diagrama de flujo de una petición web para un Envío.}
 	\label{figura:request-flowchart}
 \end{figure}
 
-\FloatBarrier
+%\FloatBarrier
 
 \section{Ejecución en una Cola interna}
 
-Previamente se ha hablado de que el \gls{paquete} \textit{RQ} permite simular un \textit{Administrador de Tareas} con el uso de una \gls{cola} interna de ``trabajos'' o \foreign{english}{jobs} ejecutados por unos \foreign{english}{Workers}; aunque ha faltado explicar el cómo. Primero vamos a presentar las dos clases que proporciona \textit{RQ}; 1) \foreign{english}{Worker} y 2) \foreign{english}{Queue} y cómo son utilizados por \textit{Pizarra}.
+Previamente se ha hablado de que el \gls{paquete} \textit{RQ} permite simular un \textit{Administrador de Tareas} con el uso de una \gls{cola} interna de ``trabajos'' o \foreign{english}{jobs} ejecutados por unos \foreign{english}{Workers}, aunque ha faltado explicar el cómo. Primero, vamos a presentar las dos clases que proporciona \textit{RQ}; 1) \foreign{english}{Worker} y 2) \foreign{english}{Queue}, y cómo son utilizadas por \textit{Pizarra}.
 
-En el siguiente ejemplo podemos ver la creación de un ``trabajador'' o \foreign{english}{Worker} al iniciar \textit{Pizarra} en éste modo. 
+En el siguiente ejemplo podemos ver la creación de un ``trabajador'' o \foreign{english}{Worker} al iniciar \textit{Pizarra} en este modo. \newline
 
 \begin{code}{app/\_\_init.py\_\_}
 ...
@@ -1359,13 +1358,13 @@ with Connection(redis_connection):
 El extracto de código del fichero \textbf{app/\_\_init.py\_\_} realiza el siguiente trabajo:
 
 \begin{enumerate}
-	\item lee de la configuración de \textit{Pizarra} la URL del servicio de \textit{Redis}.
-	\item crea una conexión con el servicio de \textit{Redis}.
-	\item crea un Objeto de tipo \foreign{english}{Worker} con las \gls{cola}s disponibles.
-	\item pone al \foreign{english}{Worker} a ``trabajar'' revisando el servicio de \textit{Redis} periodicamente para ver si hay \foreign{english}{jobs} a ejecutar.
+	\item Lee de la configuración de \textit{Pizarra} la URL del servicio de \textit{Redis}.
+	\item Crea una conexión con el servicio de \textit{Redis}.
+	\item Crea un Objeto de tipo \foreign{english}{Worker} con las \gls{cola}s disponibles.
+	\item Pone el \foreign{english}{Worker} a ``trabajar'' revisando el servicio de \textit{Redis} periodicamente para ver si hay \foreign{english}{jobs} a ejecutar.
 \end{enumerate}
 
-El próximo paso es ver cómo se crean los \foreign{english}{jobs} que en el caso de nuestra aplicación serán las \textit{Requests} o \gls{envio}s de los \textit{usuarios} a procesar por los \foreign{english}{Workers}. Para esta funcionalidad tenemos dos métodos en el fichero \textbf{app/base/models\_jobs.py} \newline
+El próximo paso es ver cómo se crean los \foreign{english}{jobs} que, en el caso de nuestra aplicación, serán las \textit{Requests} o \gls{envio}s de los \textit{usuarios} a procesar por los \foreign{english}{Workers}. Para esta funcionalidad tenemos dos métodos en el fichero \textbf{app/base/models\_jobs.py} \newline
 
 \begin{code}{app/base/models\_jobs.py}
 ...
@@ -1386,18 +1385,17 @@ def create_job(user_request) -> str:
 ...
 \end{code}
 
-El método \textit{create\_job} recibe como parámetro un \textit{Request}, donde su definición no es relevante salvo que se utilizará para el \textit{job} a procesar y además tiene el nombre de la \foreign{english}{Queue} interna donde debe encolarse. Lo que hace es lo siguiente:
+El método \textit{create\_job} recibe como parámetro un \textit{Request}, donde su definición no es relevante, salvo que se utilizará para el \textit{job} a procesar y, además, tiene el nombre de la \foreign{english}{Queue} interna donde debe encolarse. Realiza lo siguiente:
 
 \begin{enumerate}
-	\item abrir una conexión con el servicio de \textit{Redis}.
-	\item crea un objeto de tipo \foreign{english}{Queue} con el nombre de la \gls{cola} a utilizar.
+	\item Abre una conexión con el servicio de \textit{Redis}.
+	\item Crea un objeto de tipo \foreign{english}{Queue} con el nombre de la \gls{cola} a utilizar.
 	\item crea un \foreign{english}{job} utilizando el método \textit{process\_job}, que recibe como parámetro una clase genérica que debe tener implementado el método \textit{process}. Ese \foreign{english}{job} se inserta en la \foreign{english}{Queue}.
-	\item devuelve el ID del \foreign{english}{job} para poder asignarlo a la \textit{Request}.
+	\item Devuelve el ID del \foreign{english}{job} para poder asignarlo a la \textit{Request}.
 \end{enumerate}
 
-Por último veo muy importante explicar la creación del siguiente autómata ya que es la forma en la cual se ha podido resolver la ejecución en una \gls{cola} Local, \kahan y cualquier otra que se quiera utilizar en un futuro. El código presentado de la clase \textit{LocalJob} es una simplificación de la clase real de \textit{Pizarra} donde se presentan los elementos básicos para dar el contexto de su funcionamiento.
-
-Para facilitar la lectura se ha partido el código fuente en tres recuadros; asumir que continúa entre los mismos.
+Por último, veo muy importante explicar la creación del siguiente autómata, ya que es la forma en la cual se ha podido resolver la ejecución en una \gls{cola} Local de \kahan así como en cualquier otra que se quiera utilizar en un futuro. El código presentado de la clase \textit{LocalJob} es una simplificación de la clase real de \textit{Pizarra}, donde se presentan los elementos básicos para dar el contexto de su funcionamiento.
+Para facilitar la lectura se ha dividido el código fuente en tres recuadros, asumiendo que forman un solo código.
 
 \begin{code}{app/base/models\_jobs.py}
 class StepResult(enum.Enum):
@@ -1430,7 +1428,7 @@ class LocalJob:
 	
 \end{code}
 
-Este autómata tiene una serie de etiquetas que ayudarán a saber a que estado pasar a continuación (\foreign{english}{StepResult}). Al crear un objeto del tipo \textit{LocalJob} en esta versión simplificada se puede ver como se asigna el \foreign{english}{Request} y además existe la definición del autómata como un mapa, donde para una etiqueta se le asigna un método a ejecutar y un mapa de transiciones dependiendo el resultado de la ejecución del paso. \newline
+Este autómata tiene una serie de etiquetas que ayudarán a saber a qué estado se debe pasar a continuación (\foreign{english}{StepResult}). Al crear un objeto del tipo \textit{LocalJob} en esta versión simplificada se puede ver cómo se asigna el \foreign{english}{Request} y, además, existe la definición del autómata como un mapa, donde para una etiqueta se asigna un método a ejecutar y un mapa de transiciones que depende del resultado de la ejecución del paso. \newline
 	
 \begin{code}{app/base/models\_jobs.py}
 	def get_task_step(self):
@@ -1468,28 +1466,28 @@ La función \textit{get\_task\_step} devuelve el método para el paso en el que 
 	self.__not_contains_malicious_content() and self.__static_code_analysis()) else StepResult.NOK
 \end{code}
 
-En el tercer bloque se encuentra la función \textit{process}, que como explicamos previamente es el método que ejecuta el \foreign{english}{Worker} al obtener un \foreign{english}{job} de una \gls{cola}. Lo que hace es obtener el estado actual de la \foreign{english}{Request} y hacer el siguiente proceso hasta terminar:
+En el tercer bloque se encuentra la función \textit{process} que, como explicamos previamente, es el método que ejecuta el \foreign{english}{Worker} al obtener un \foreign{english}{job} de una \gls{cola}. Obtiene el estado actual de la \foreign{english}{Request} y lleva a cabo el siguiente proceso hasta terminar:
 
 \begin{enumerate}
-	\item obtener la función.
-	\item ejecutarla y asignar el resultado al estado actual.
-	\item si el resultado es \textit{WAIT}, vuelve a encolar la tarea para ejecutar en un futuro. Esto se hace para \gls{cola}s como \kahan donde debemos revisar el estado de una ejecución cada cierta cantidad de tiempo.
-	\item se actualiza el estado de la \textit{Request} donde el nuevo estado se obtiene del mapa \textit{steps} del resultado del paso.
+	\item Obtener la función.
+	\item Ejecutar la función y asignar el resultado al estado actual.
+    \item Si el resultado es \textit{WAIT}, vuelve a encolar la tarea para ejecutarla en un futuro. Esto se realiza para \gls{cola}s como la de \kahan, donde debemos revisar el estado de una ejecución cada cierto periodo de tiempo.
+    \item Se actualiza el estado de la \textit{Request}, donde el nuevo estado se obtiene del mapa \textit{steps} del resultado del paso.
 \end{enumerate}
 
-Como se puede ver en el método de ejemplo \textit{start} se devolverá un OK y el nuevo estado de la \textit{Request} será \textit{VERIFYING}. En el próximo paso ejecutará el método \textit{verify} que llama dos métodos adicionales que verifican que no haya código malicioso y realiza el análisis del código estático; y así hasta terminar la ejecución.
+Como se puede ver en el método de ejemplo \textit{start} se devolverá un OK y el nuevo estado de la \textit{Request} será \textit{VERIFYING}. En el próximo paso ejecutará el método \textit{verify} que llama a dos métodos adicionales que verifican que no haya código malicioso y realiza el análisis del código estático; y así hasta terminar la ejecución.
 
-Gracias a este simple pero efectivo autómata se podrá extender la aplicación para que soporte otros tipo de \gls{cola} como se verá más adelante en el Capitulo 9: Extensibilidad.
+Gracias a este simple pero efectivo autómata se podrá extender la aplicación para que soporte otros tipos de \gls{cola}, tal como se verá más adelante en el Capitulo 9 dedicado a la Extensibilidad del software desarrollado.
 
 \section{Asignación de Insignias}
 
-Cuando se llegó a la etapa de desarrollo en el cual se tenían que crear las \gls{insignia}s (\foreign{english}{Badges}) se encontró un problema de gran dificultad. ¿Cómo hacer que un \gls{administrador} desde su panel web pueda hacer que una \gls{insignia} se aplique cuando suceda algo en particular? Las \gls{insignia}s no solo se obtienen al completar una \gls{tarea} de forma correcta, sino que también en otros casos que puedan darse; como por ejemplo, que el \gls{envio} se encuentre en los primeros tres puestos de la tabla de posiciones (\foreign{english}{leaderboard}).
+Cuando se llegó a la etapa de desarrollo en la cuál se tenían que crear las \gls{insignia}s (\foreign{english}{Badges}) se encontró un problema de gran dificultad. ¿Cómo permitir que un \gls{administrador}, desde su panel web, pueda hacer que una \gls{insignia} se aplique cuando suceda algo en particular? Las \gls{insignia}s no solo se obtienen al completar una \gls{tarea} de forma correcta, sino que también pueden obtenerse en otros casos como, por ejemplo, que el \gls{envio} se encuentre en los primeros tres puestos de la tabla de posiciones (\foreign{english}{leaderboard}).
 
-La primera opción que posteriormente fue descartada era crear una clase en \textit{python} por cada tipo de \gls{insignia} que se quiera asignar a un \gls{alumno}; esto quitaba dinamismo y forzaba al \gls{administrador} a modificar el código fuente de la aplicación, algo que quiere evitarse ya que impone una barrera de entrada a cualquier persona que quiera hacer uso de \textit{Pizarra} en un futuro.
+La primera opción, que posteriormente fue descartada, fue crear una clase en \textit{python} por cada tipo de \gls{insignia} que se quería asignar a un \gls{alumno}. Esto quitaba dinamismo y forzaba al \gls{administrador} a modificar el código fuente de la aplicación, algo que quería evitarse ya que impone una barrera de entrada a cualquier persona que quiera hacer uso de \textit{Pizarra} en un futuro.
 
-Después de investigar otras posibilidades y realizar una serie de pruebas se ha optado por añadir el \gls{paquete} \textit{rule\_engine} que permite la creación de objetos de tipo ``Rule'' que pueden ser evaluados con expresiones lógicas, son escritas como cadenas de texto y pueden guardarse en una columna de la \acrshort{bd} como atributo de la clase \foreign{english}{Badge}. \textit{rule\_engine} no es la única librería que añade este tipo de funcionalidad en \textit{python} pero su simplicidad y el soporte de \textit{Data objects} \cite{link-rule-engine}, que es la representación de una clase en formato \acrshort{json} fue la razón por la cual se ha hecho esta elección.
+Después de investigar otras posibilidades y realizar una serie de pruebas se optó por añadir el \gls{paquete} \textit{rule\_engine} que permite la creación de objetos de tipo ``Rule''. Estos objetos pueden ser evaluados con expresiones lógicas que son escritas como cadenas de texto y pueden guardarse en una columna de la \acrshort{bd} como atributo de la clase \foreign{english}{Badge}. \textit{rule\_engine} no es la única librería que añade este tipo de funcionalidad en \textit{python} pero su simplicidad y el soporte de \textit{Data objects} \cite{link-rule-engine}, que es la representación de una clase en formato \acrshort{json}, fueron dos razones por las cuáles se optó por esta solución.
 
-Con la posibilidad de escribir reglas como cadenas de texto y sabiendo que un \foreign{english}{job} tiene los atributos \textit{user, request, assignment} y \textit{leaderboard} como diccionarios de \textit{python} podemos crear \foreign{english}{Badges} como las que se encuentran en los datos de ejemplos del fichero \textbf{sample.yml}.
+Con la posibilidad de escribir reglas como cadenas de texto y sabiendo que un \foreign{english}{job} tiene los atributos \textit{user, request, assignment} y \textit{leaderboard} como diccionarios de \textit{python}, podemos crear \foreign{english}{Badges} como las que se encuentran en los datos de ejemplos del fichero \textbf{sample.yml}. \newline
 
 \begin{code}{app/data/sample.py}
 - Badge:
@@ -1501,7 +1499,7 @@ Con la posibilidad de escribir reglas como cadenas de texto y sabiendo que un \f
 	rule: "leaderboard.position <= 3"
 \end{code}
 
-En el ejemplo previo tenemos la creación de dos \gls{insignia}s que se asignarán a un \gls{alumno} cuando la ejecución de su programa sea en menos de 10 segundos y también otro caso donde la posición de la ejecución quede entre las tres mejores. La descripción de los atributos es:
+En el ejemplo mostrado en \textbf{sample.yml} podemos observar la creación de dos \gls{insignia}s que se asignarán a un \gls{alumno} cuando la ejecución de su programa tarde menos de 10 segundos, y también otro caso donde la posición de la ejecución quede entre las tres mejores. La descripción de los atributos es:
 
 \begin{itemize}
 	\item \textbf{name}: ID único de la \gls{insignia}.
@@ -1509,11 +1507,11 @@ En el ejemplo previo tenemos la creación de dos \gls{insignia}s que se asignar�
 	\item \textbf{rule}: regla que se comprobará al terminar la ejecución.
 \end{itemize}
 
-El sistema de reglas expuesto dará pie a la creación de algunas \gls{insignia}s especiales como una primera ejecución correcta en el \foreign{english}{cluster}, haber agotado el tiempo de ejecución al recibir un TIMEWALL, que el ID del \textit{Request} sea un número especial como el 1000 y más.
+El sistema de reglas expuesto dará pie a la creación de algunas \gls{insignia}s especiales como, por ejemplo, una primera ejecución correcta en el \foreign{english}{cluster}, haber agotado el tiempo de ejecución al recibir un TIMEWALL, que el ID del \textit{Request} sea un número especial como el 1000 y otras.
 
 \section{Entregables}
 
-Como la creación de la aplicación ha sido en un marco de Desarrollo Ágil, cada entregable ha presentado una nueva serie de nuevas funcionalidades hasta llegar al producto final. Mediante el siguiente resumen de las versiones se puede ver como partiendo de unos cimientos ha ido evolucionando el \foreign{english}{software} hasta su estado actual.
+Dado que la creación de la aplicación ha sido elaborada dentro de un marco de Desarrollo Ágil, cada entregable ha presentado una serie de nuevas funcionalidades hasta llegar al producto final. Mediante el siguiente resumen de las versiones se puede ver cómo, partiendo de unos cimientos, ha ido evolucionando el \foreign{english}{software} hasta su estado actual.
 
 \begin{itemize}
 	\item \textbf{Versión 0.1}
@@ -1538,7 +1536,7 @@ Como la creación de la aplicación ha sido en un marco de Desarrollo Ágil, cad
 \begin{itemize}
 	\item \textbf{fecha entrega}: 7 de Mayo.
 	\item \textbf{resumen}: panel de administración.
-	\item \textbf{requisitos funcionales}: RF-13, RF-14, RF-15, RF-16, RF-17, RF-18
+    \item \textbf{requisitos funcionales}: RF-13, RF-14, RF-15, RF-16, RF-17, RF-18.
 \end{itemize}
 	\item \textbf{Version 0.5}
 \begin{itemize}

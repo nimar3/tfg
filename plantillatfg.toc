@@ -36,16 +36,16 @@
 \contentsline {section}{\numberline {4.6}Sistema de Colas interno}{31}{section.4.6}% 
 \contentsline {chapter}{\numberline {5}Desarrollo de la solución}{33}{chapter.5}% 
 \contentsline {section}{\numberline {5.1}Flask \foreignlanguage {english}{\textit {boilerplate}}}{33}{section.5.1}% 
-\contentsline {section}{\numberline {5.2}Paquetes de Python}{34}{section.5.2}% 
+\contentsline {section}{\numberline {5.2}Paquetes de Python}{33}{section.5.2}% 
 \contentsline {subsection}{\numberline {5.2.1}Flask}{34}{subsection.5.2.1}% 
-\contentsline {subsection}{\numberline {5.2.2}Colas}{34}{subsection.5.2.2}% 
+\contentsline {subsection}{\numberline {5.2.2}Sistemas de Colas}{34}{subsection.5.2.2}% 
 \contentsline {subsection}{\numberline {5.2.3}Conexión con sistemas externos}{35}{subsection.5.2.3}% 
 \contentsline {subsection}{\numberline {5.2.4}Datos de ejemplo}{35}{subsection.5.2.4}% 
 \contentsline {subsection}{\numberline {5.2.5}Otros}{35}{subsection.5.2.5}% 
 \contentsline {section}{\numberline {5.3}Envío de soluciones a Tareas}{35}{section.5.3}% 
-\contentsline {section}{\numberline {5.4}Ejecución en una Cola interna}{37}{section.5.4}% 
-\contentsline {section}{\numberline {5.5}Asignación de Insignias}{41}{section.5.5}% 
-\contentsline {section}{\numberline {5.6}Entregables}{42}{section.5.6}% 
+\contentsline {section}{\numberline {5.4}Ejecución en una Cola interna}{36}{section.5.4}% 
+\contentsline {section}{\numberline {5.5}Asignación de Insignias}{40}{section.5.5}% 
+\contentsline {section}{\numberline {5.6}Entregables}{41}{section.5.6}% 
 \contentsline {chapter}{\numberline {6}Implantación}{43}{chapter.6}% 
 \contentsline {section}{\numberline {6.1}Docker y Kubernetes}{43}{section.6.1}% 
 \contentsline {section}{\numberline {6.2}Despliegue en la Nube con Kubernetes}{45}{section.6.2}% 

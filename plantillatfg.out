@@ -30,7 +30,7 @@
 \BOOKMARK [1][-]{section.5.1}{Flask boilerplate}{chapter.5}% 30
 \BOOKMARK [1][-]{section.5.2}{Paquetes de Python}{chapter.5}% 31
 \BOOKMARK [2][-]{subsection.5.2.1}{Flask}{section.5.2}% 32
-\BOOKMARK [2][-]{subsection.5.2.2}{Colas}{section.5.2}% 33
+\BOOKMARK [2][-]{subsection.5.2.2}{Sistemas de Colas}{section.5.2}% 33
 \BOOKMARK [2][-]{subsection.5.2.3}{Conexi\363n con sistemas externos}{section.5.2}% 34
 \BOOKMARK [2][-]{subsection.5.2.4}{Datos de ejemplo}{section.5.2}% 35
 \BOOKMARK [2][-]{subsection.5.2.5}{Otros}{section.5.2}% 36
