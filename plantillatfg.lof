@@ -8,27 +8,27 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Boceto Tarea}}{19}{figure.caption.32}% 
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Boceto Página de inicio}}{20}{figure.caption.33}% 
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Boceto Perfil}}{20}{figure.caption.34}% 
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Diagrama del cluster \texttt {kahan}\xspace }}{21}{figure.caption.35}% 
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Boceto Tarea}}{19}{figure.caption.32}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Boceto Página de inicio}}{20}{figure.caption.33}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Boceto Perfil}}{20}{figure.caption.34}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Diagrama del cluster \texttt {kahan}\xspace }}{21}{figure.caption.35}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Modelado Interacción entre elementos del sistema}}{26}{figure.caption.36}% 
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Arquitectura del Sistema}}{27}{figure.caption.37}% 
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Diagrama UML de la Base de Datos}}{29}{figure.caption.38}% 
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Modelado Interacción entre elementos del sistema}}{26}{figure.caption.36}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Arquitectura del Sistema}}{27}{figure.caption.37}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Diagrama UML de la Base de Datos}}{30}{figure.caption.38}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces AdminLTE: plantilla de Panel de Control }}{34}{figure.caption.39}% 
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Diagrama de flujo de una petición web para un Envío}}{37}{figure.caption.40}% 
+\contentsline {figure}{\numberline {5.1}{\ignorespaces AdminLTE: plantilla de Panel de Control }}{34}{figure.caption.39}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Diagrama de flujo de una petición web para un Envío}}{37}{figure.caption.40}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {6.1}{\ignorespaces Diferencias entre contenedor Docker y máquina virtual}}{43}{figure.caption.41}% 
-\contentsline {figure}{\numberline {6.2}{\ignorespaces nuevo proyecto en GCE}}{45}{figure.caption.42}% 
-\contentsline {figure}{\numberline {6.3}{\ignorespaces Calculadora de precios en GCE}}{48}{figure.caption.43}% 
-\contentsline {figure}{\numberline {6.4}{\ignorespaces Estimación de costos en GCE}}{48}{figure.caption.44}% 
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Diferencias entre \textit {Docker} y máquina virtual}}{45}{figure.caption.41}%
+\contentsline {figure}{\numberline {6.2}{\ignorespaces nuevo proyecto en GCE}}{48}{figure.caption.42}%
+\contentsline {figure}{\numberline {6.3}{\ignorespaces Calculadora de precios en GCE}}{50}{figure.caption.43}%
+\contentsline {figure}{\numberline {6.4}{\ignorespaces Estimación de costos en GCE}}{51}{figure.caption.44}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {8.1}{\ignorespaces Inicio de sesión en Pizarra}}{52}{figure.caption.45}% 
+\contentsline {figure}{\numberline {8.1}{\ignorespaces Inicio de sesión en Pizarra}}{56}{figure.caption.45}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {9.1}{\ignorespaces Selector de Idiomas en Pizarra}}{57}{figure.caption.46}% 
+\contentsline {figure}{\numberline {9.1}{\ignorespaces Selector de Idiomas en Pizarra}}{61}{figure.caption.46}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
