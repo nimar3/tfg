@@ -232,7 +232,7 @@ Considero de suma importancia poner de manifiesto los siguientes objetivos secun
 
 \section{Impacto esperado}
 
-La creación de este producto logra una serie de mejoras con respecto a las alternativas actuales de software para competiciones de programación paralela. Como principal característica se añade la posibilidad de despliegue de la aplicación en un servicio en la nube (\foreign{english}{cloud}) y el uso de tecnologías actuales en el ámbito del desarrollo de software como lo son \textit{Docker} y \textit{Kubernetes}.
+La creación de este producto logra una serie de mejoras con respecto a las alternativas actuales de software para competiciones de programación paralela. Como principal característica se añade la posibilidad de despliegue de la aplicación en un servicio en la nube (\foreign{english}{cloud}) y el uso de tecnologías actuales en el ámbito del desarrollo de software como lo son \textit{Docker}\footnote{Sitio web \url{https://www.docker.com/}} y \textit{Kubernetes}\footnote{Sitio web Kubernetes: \url{https://kubernetes.io/}}.
 
 Otro beneficio añadido es la simple implantación por parte del \gls{administrador} ofreciendo una interfaz web de configuración y mantenimiento amigable donde en la competencia son inexistentes o muy pobres. Así como también al \gls{alumno} se le simplifica la interacción con la aplicación utilizando peticiones web estándar haciendo uso de una \acrshort{api} sin la necesidad de software adicional.
 
@@ -1022,7 +1022,7 @@ Con el uso del listado y una reunión semanal vía \textit{Skype} se ha seguido 
 
 Debido a ciertas dificultades presentadas en el proceso de desarrollo y el esfuerzo que podía realizar el Autor (tiempo libre disponible) debido a la carga de su trabajo actual se ha ido pivotando entre las prioridades cada semana. Desde un punto de vista de proceso se puede asumir que se ha seguido un Desarrollo Ágil, similar al de \textit{Scrum}, seleccionando un listado de tareas a abordar en un \textit{sprint} (iteración para entregar ``valor'') con una duración de una semana. 
 
-\textit{Scrum}, como metodología de Desarrollo Ágil, se centra en tener un \textit{software} en funcionamiento que seguir un proceso rígido de desarrollo; premiando así la entrega constante y la posibilidad de adecuarse al cambio. 
+\textit{Scrum}, como metodología de Desarrollo Ágil, se centra en tener un \textit{software} en funcionamiento antes que seguir un proceso rígido de desarrollo; premiando así la entrega constante y la posibilidad de adecuarse al cambio. 
 
 
 \chapter{Diseño de la solución}
@@ -1060,7 +1060,7 @@ Dadas las limitaciones que tiene \textit{Tablón}, una de las aspiraciones en la
 
 El lenguaje de programación a utlizar será \textit{python}, ya conocido por el Autor y con una extensa cantidad de \gls{paquete}s, que son librerías que añaden funcionalidades extra y que serán de gran utilidad para acelerar los tiempos de desarrollo. 
 
-Dado que ya hemos abordado la \textbf{Interacción del Sistema} a alto nivel solo resta escoger el \textbf{Software} que dará vida a la aplicación web y al \textit{Administrador de Tareas}. Debido a una experiencia previa en otra asignatura de estudios de grado, he decido optar por \textit{Flask}\footnote{Sitio web Flask: \url{https://flask.palletsprojects.com/en/1.1.x/}.}, un micro-framework de \textit{python} con gran acogida por la comunidad de desarrollo que incluye un sistema de plantillas para la generación de páginas web llamado \text{Jinja}. 
+Dado que ya hemos abordado la \textbf{Interacción del Sistema} a alto nivel solo resta escoger el \textbf{Software} que dará vida a la aplicación web y al \textit{Administrador de Tareas}. Debido a una experiencia previa en otra asignatura de estudios de grado, he decido optar por \textit{Flask}\footnote{Sitio web Flask: \url{https://flask.palletsprojects.com/en/1.1.x/}.}, un micro-framework de \textit{python} con gran acogida por la comunidad de desarrollo que incluye un sistema de plantillas para la generación de páginas web llamado \text{Jinja}\footnote{Sitio web Jinja: \url{https://jinja.palletsprojects.com/en/2.11.x/}}. 
 
 En cuanto al \textit{Administrador de Tareas}, existen diferentes \gls{paquete}s en \textit{python} para crear un \textbf{Sistema de Colas interno}. En este caso se ha optado por \textit{RQ}\footnote{Sitio web RQ: \url{https://python-rq.org/}.} (Redis Queue), que utiliza pocos recursos y permite que los ``trabajos'' o \foreign{english}{jobs} se procesen en determinado tiempo futuro, funcionalidad que será útil para revisar los resultados de ejecuciones en \kahan. \textit{RQ} permitirá desacoplar las \gls{cola}s del aplicativo web al utilizar un servicio de \textit{Redis} como repositorio de \foreign{english}{jobs}, además de disponer de un panel de control (\foreign{english}{dashboard}) que puede ser embebido en cualquier aplicación web.
 
@@ -1087,7 +1087,9 @@ Por último, todos los elementos estarán desplegados en forma de \textit{conten
 
 \section {Modelo de datos}
 
-Una de las formas habituales de trabajar con \acrshort{bd} en \textit{python} es utilizar un \foreign{english}{Object-Relational mappi ng} (\acrshort{orm})  que transforma clases que representan una entidad o modelo a una estructura de datos relacional. La librería a utilizar será \textit{SQLAlchemy}, un \acrshort{orm} que soporta varios motores de \acrshort{bd}, entre otros SQLite, MySQL, PostgreSQL, Oracle o MS SQL. En este caso se ha optado por SQLite, para el entorno de desarrollo local (se crea el fichero \textit{database.db} en el directorio raíz del aplicativo), y PostgreSQL, para un entorno productivo, dado que son de libre uso.
+Una de las formas habituales de trabajar con \acrshort{bd} en \textit{python} es utilizar un \foreign{english}{Object-Relational mappi ng} (\acrshort{orm})  que transforma clases que representan una entidad o modelo a una estructura de datos relacional. La librería a utilizar será \textit{SQLAlchemy}, un \acrshort{orm} que soporta varios motores de \acrshort{bd}, entre otros SQLite, MySQL, PostgreSQL, Oracle o MS SQL. En este caso se ha optado por SQLite para el entorno de desarrollo local (se crea el fichero \textit{database.db} en el directorio raíz del aplicativo), y PostgreSQL, para un entorno productivo.
+
+SQLite porque no necesita tener iniciado un proceso en la máquina ya que se escribe directamente a disco con un conector (\foreign{english}{driver}) y es ultra liviano en el uso de recursos ya sean memoria y espacio en disco. PostgreSQL tiene todas las características de un motor de \acrshort{bd} robusto al nivel de otras soluciones comerciales, ofrece una imagen de \textit{Docker} y no es necesario implementar un modelo de replicación. Otra añadido es que ambas herramientas son de libre uso y tienen soporte continuo de la comunidad.
 
 Dados los requerimientos funcionales, se han identificado y creado las siguientes clases de \textit{python} que, mediante el uso de \textit{SQLAlchemy}, podrán ser persistentes, consultadas y actualizadas en la \acrfull{bd}.
 
@@ -1524,7 +1526,7 @@ Dado que la creación de la aplicación ha sido elaborada dentro de un marco de 
 	\begin{itemize}
 		\item \textbf{fecha entrega}: 22 de Abril.
 		\item \textbf{resumen}: envío de código, análisis estático y procesamiento. Visualización de \gls{tarea}s. Creación de equipos.
-		\item \textbf{requisitos funcionales}: RF-3, RF-8 y RF-9.
+		\item \textbf{requisitos funcionales}: RF-3, RF-7, RF-8 y RF-9.
 	\end{itemize}
 	\item \textbf{Version 0.3}
 \begin{itemize}
