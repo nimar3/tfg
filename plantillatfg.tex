@@ -1765,6 +1765,62 @@ Utilizando la calculadora da un costo aproximado de \texteuro 49.00 mensuales. C
 
 \chapter{Pruebas}
 
+La pruebas son una etapa más del desarrollo de \textit{software} siendo una actividad relacionada con el proceso de control de calidad utilizando mecanismos, manuales o automatizados para verificar si el comportamiento del sistema es el deseado o no. En el desarollo de \textit{Pizarra} se han realizado dos tipos de pruebas, funcionales y automatizadas mediante test unitarios (\foreign{english}{Unit Testing}). En este capítulo presentaremos ambas y como ha sido su utilización en el proyecto.
+
+\section{Pruebas funcionales}
+
+Este tipo de pruebas está basado en los requisitos funcionales previamente recogidos en etapas previas. Las pruebas han sido manuales y se han realizado en cada entrega de una nueva versión de \textit{Pizarra} verificando el correcto funcionamiento desde el punto de vista de la funcionalidad y rendimiento. También dependiendo de las funcionalidades entregadas ha habido un proceso de pruebas de exploración para poder dar feedback sobre el estado de la aplicación y mejoras a realizar.
+
+\section{Pruebas unitarias}
+
+Este tipo de pruebas consiste en verificar de forma individual las funciones o métodos creados en la aplicación siendo su cometido probar una ``unidad de código'' sin tener dependencia de otros módulos o funciones. Estas pruebas verifican que los parámetros de entrada y salida sean correctos, como también el resultado esperado.
+
+En este proyecto se ha utilizado \textit{unittest}, funcionalidad incluida en \textit{python3} para la creación de test unitarios. Los tests se encuentran en el fichero \textbf{tests.py} y a continuación podemos ver un extracto de su definición: \newline
+
+\begin{code}{tests.py}
+class TestCases(unittest.TestCase):
+
+	def setUp(self):
+		self.app = create_app_web(config_dict['Debug'])
+	
+	def test_verify_hashed_password(self):
+		password = 'S9c1JkYAZQrXWDyFFNu9'
+		self.assertTrue(hash_pass(password), verify_pass(password, hash_pass(password)))
+		
+	def test_process_date_none(self):
+		self.assertEqual(process_date(None), None)
+	
+	def test_process_date_empty_string(self):
+		self.assertEqual(process_date(''), None)
+	
+	def test_process_date_invalid(self):
+		self.assertEqual(process_date('2020/02/30'), None)
+	
+	def test_process_date_valid(self):
+		self.assertEqual(process_date('2020/02/29'), datetime.datetime(2020, 2, 29, 0, 0))
+...
+\end{code}
+
+Los tests previamente presentados están relacionados con métodos que verifican que la encriptación / desencriptación de las contraseñas es correcto y que las fechas en formato texto se convierten a una clase \textit{datetime} de \textit{python} sin producirse errores; Siendo los apartados del extracto de código son los siguientes:
+
+\begin{itemize}
+	\item una clase que extiende de la clase \textit{unittest.TestCase} para poder utilizar los métodos de tipo ``assert'' heredados, es decir, funciones que aseveran que en un determinado momento del código una determinada condición debe ser cierta.
+	\item la implementación del método \textit{setUp} que será la función a ejecutar al iniciar la clase, normalmente para darle el contexto a la aplicación (añadiendo variables de entorno, conexión a la \acrshort{bd}, etc..)
+	\item la definición de cada test a ejecutar siempre y cuando comiencen con el nombre \textit{test\_}.
+\end{itemize}
+
+La ejecución de los tests unitarios se puede realizar desde una herramienta externa de forma automatizada o ejecutando el siguiente comando desde la consola:
+
+\begin{lstlisting}[style=ascii-tree]
+$ python -m unittest
+....................
+Ran 20 tests in 1.003s
+
+OK
+\end{lstlisting}
+
+El resultado esperado es OK si los tests se han ejecutado con éxito. Si llegara a haber algún fallo se mostraría la descripción del error en la consola. 
+
 \chapter{Mantenimiento}
 
 El desarrollo de \textit{software} es un proceso evolutivo y requiere de un mantenimiento continuo para asegurar el correcto funcionamiento, como así también la posibilidad de añadir mejoras y nuevas funcionalidades. Para poder asegurar este proceso tienen que cumplirse ciertas pautas como el acceso al código fuente, en este caso disponible en un repositorio de código abierto en Internet, una guía de como configurar un entorno de desarrollo local, el proceso a seguir para mantener un estándar de calidad en el código fuente y el manejo de versiones. Los siguientes apartados abordan todos estos puntos para cumplir con el proceso de mantenimiento de \textit{software}.
