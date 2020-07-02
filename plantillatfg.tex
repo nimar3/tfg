@@ -145,7 +145,7 @@
 \newacronym{mb}{MB}{Megabytes}
 
 \usepackage{listings}
-
+\usepackage{wrapfig}
 
 \title{Implementación de un sitio web para un concurso de programación paralela}
 \author{Nicolás Fernando Martini}
@@ -1766,31 +1766,29 @@ Utilizando la calculadora da un costo aproximado de \texteuro 49.00 mensuales. C
 
 \chapter{Mantenimiento}
 
-El desarrollo de software es un proceso evolutivo y requiere de un mantenimiento continuo para asegurar el correcto funcionamiento, como así también la posibilidad de añadir mejoras y nuevas funcionalidades. Para poder asegurar este proceso tienen que cumplirse ciertas pautas.
-
-Acceso al código fuente, en este caso disponible en un repositorio de código abierto en Internet, una guía de como configurar un entorno de desarrollo local y el proceso a seguir para mantener un estándar de calidad en el código fuente. Los siguientes apartados abordan todas estas pautas y así ayudar con este proceso.
+El desarrollo de \textit{software} es un proceso evolutivo y requiere de un mantenimiento continuo para asegurar el correcto funcionamiento, como así también la posibilidad de añadir mejoras y nuevas funcionalidades. Para poder asegurar este proceso tienen que cumplirse ciertas pautas como el acceso al código fuente, en este caso disponible en un repositorio de código abierto en Internet, una guía de como configurar un entorno de desarrollo local, el proceso a seguir para mantener un estándar de calidad en el código fuente y el manejo de versiones. Los siguientes apartados abordan todos estos puntos para cumplir con el proceso de mantenimiento de \textit{software}.
 
 \section{Entorno local de desarrollo}
 
-Para configurar un entorno de desarrollo local se debe cumplir  los siguientes requisitos.
+Para configurar un entorno de desarrollo local se debe cumplir los siguientes requisitos.
 
 \begin{itemize}
-    \item  Tener instalado Python3\footnote{Descarga oficial de Python: \url{https://www.python.org/downloads/}.} y Docker\footnote{Descarga oficial de Docker: \url{https://docs.docker.com/get-docker/}.} en nuestra máquina
-	\item Clonado el repositorio de Pizarra
+    \item  Tener instalado \textit{python3}\footnote{Descarga oficial de Python: \url{https://www.python.org/downloads/}.} y \textit{Docker}\footnote{Descarga oficial de Docker: \url{https://docs.docker.com/get-docker/}.} en nuestra máquina
+	\item Clonado el repositorio de \textit{Pizarra} realizando los siguientes pasos:
 	\begin{enumerate}
-		\item Creación de directorio
-		\begin{lstlisting}[language=bash]
+		\item Creación de directorio para el proyecto
+		\begin{lstlisting}[style=ascii-tree]
 		$ mkdir pizarra
 		$ cd pizarra/
 		\end{lstlisting}
-		\item Inicialización de un repositorio nuevo y la dirección remota
-		\begin{lstlisting}[language=bash]
+		\item Inicialización de un nuevo repositorio y añadida la dirección remota
+		\begin{lstlisting}[style=ascii-tree]
 		$ git init .
 		Initialized empty Git repository in /Users/nmartini/pizarra/.git/
 		$ git remote add upstream git@github.com:nimar3/pizarra.git
 		\end{lstlisting}
 		\item Descarga del código fuente
-		\begin{lstlisting}[language=bash]
+		\begin{lstlisting}[style=ascii-tree]
 		$ git fetch upstream
 		remote: Enumerating objects: 589, done.
 		remote: Counting objects: 100% (589/589), done.
@@ -1799,31 +1797,31 @@ Para configurar un entorno de desarrollo local se debe cumplir  los siguientes r
 		Receiving objects: 100% (6891/6891), 19.14 MiB | 675.00 KiB/s, done.
 		Resolving deltas: 100% (1748/1748), done.
 		\end{lstlisting}
-		\item \foreignlanguage{english}{checkout} a la rama de desarrollo
-		\begin{lstlisting}[language=bash]
+		\item \foreign{english}{checkout} a la rama donde se va a trabajar, en este caso \textit{master}
+		\begin{lstlisting}[style=ascii-tree]
 		$ git checkout master
 		Checking out files: 100% (4858/4858), done.
 		Branch 'master' set up to track remote branch 'master' from 'upstream'.
 		Already on 'master'
 		\end{lstlisting}
 	\end{enumerate}
-	\item Creación de un entorno virtual e instalación de todos los \Gls{paquete}s de Python necesarios
-	\begin{lstlisting}[language=bash]
+	\item Creación de un entorno virtual e instalación de todos los \Gls{paquete}s de \textit{python} necesarios.
+	\begin{lstlisting}[style=ascii-tree]
 	$ python3 -m venv env
 	$ source env/bin/activate   
 	(env) $ pip3 install -r requirements_dev.txt
 	\end{lstlisting}
 \end{itemize}
 
-Si hemos realizado cambios en el código fuente se debe ejecutar el siguiente comando para generar una nueva versión de nuestro \Gls{contenedor} de Docker de Pizarra
+Si hemos realizado cambios en el código fuente se debe ejecutar el siguiente comando para generar una nueva versión de nuestro \Gls{contenedor} de \textit{Docker} de \textit{Pizarra}: \newline
 
-\begin{lstlisting}[language=bash]
+\begin{lstlisting}[style=ascii-tree]
 $ docker build -t pizarra .
 \end{lstlisting}
 
-Por último, para ejecutar Pizarra con todos los componentes introducimos el siguiente comando en la raíz del repositorio. Todos los componentes deben mostrar que se han creado correctamente con el mensaje \textit{done}
+Por último, para iniciar \textit{Pizarra} con todos los componentes introducimos el siguiente comando en la raíz del repositorio. Todos los componentes deben mostrar que se han creado correctamente con el mensaje \textit{done}. \newline
 
-\begin{lstlisting}[language=bash]
+\begin{lstlisting}[style=ascii-tree]
 (env) $ docker-compose up
 Creating network "pizarra_default" with the default driver
 Creating redis    ... done
@@ -1833,38 +1831,37 @@ Creating worker   ... done
 Creating nginx    ... done
 \end{lstlisting}
 
-Se puede acceder a la aplicación web con mediante la URL https://127.0.0.1/ y se redirigirá automáticamente al inicio de sesión.
-
-\begin{figure}[ht]
-	\centering
-	\includegraphics[width=0.40\textwidth]{img/docker-compose-pizarra}
+\begin{wrapfigure}{r}{0.25\textwidth}
+	\includegraphics[width=0.25\textwidth]{img/docker-compose-pizarra}
 	\caption[Inicio de sesión en Pizarra]{Inicio de sesión en Pizarra.}
 	\label{figura:docker-compose-pizarra}
-\end{figure}
+\end{wrapfigure}
 
-En algunos casos sólo es necesario la ejecución del aplicativo web con una base de datos local en SQLite. Para estos casos se puede utilizar el siguiente comando y acceder mediante la  URL http://127.0.0.1:5000/ (el puerto por defecto de \textit{Flask} es el 5000).
+Se puede acceder a la aplicación web navegando a la URL https://127.0.0.1/ y se redirigirá automáticamente al inicio de sesión (Figura\ref{figura:docker-compose-pizarra})
 
-\begin{lstlisting}[language=bash]
+En algunos casos sólo es necesario la ejecución del aplicativo web con una \acrshort{bd} local en SQLite para hacer pruebas sobre cambios que no afectan otros componentes. Con este tipo de ejecución solo se podrá acceder a la aplicación web sin ningún \textit{Worker} o el servicio de \textit{Redis}, en resumen, se está ejecutando solamente el \textit{script} de la aplicación en \textit{Flask} y será útil para visualizar modificaciones a nivel visual.
+
+Esto se puede hacer utilizando el siguiente comando y \textit{Pizarra} estará disponible en la URL http://127.0.0.1:5000/ (el puerto por defecto de \textit{Flask} es el 5000). \newline
+
+\begin{lstlisting}[style=ascii-tree]
 (env) $ python3 run.py 
 * Serving Flask app "app" (lazy loading)
 * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
 \end{lstlisting}
 
-
-
 \section{Depuración de errores}
 
-Como todo software, Pizarra no estará exento de errores o \foreignlanguage{english}{bugs} que no se han identificado en la etapa de desarrollo y como muchos otros lenguajes Python ofrece la ejecución de código en modo Debug, lo que nos permite poner puntos de ruptura y hacer una ejecución \textit{paso a paso} del código para identificar el problema.
+Como todo software, \textit{Pizarra} no estará exento de errores o \foreign{english}{bugs} que no se han identificado en la etapa de desarrollo. Para aplacar estos problemas \textit{python} ofrece la ejecución de \textit{scripts} en modo \textit{Debug}, lo que nos permite poner puntos de ruptura y hacer una ejecución ``paso a paso'' del código para identificar las causas de errores.
 
-En el entorno de desarrollo local, el modo Debug siempre está habilitado. Si queremos habilitarlo cuando ejecutamos el aplicativo en modo \textit{Production} debemos especificarlo explícitamente en las variables de entorno del \acrshort{so}, en este caso y para más información revisar el Apéndice A: Configuración del Sistema.
+En el entorno de desarrollo local el modo \textit{Debug} siempre está habilitado pero sii queremos habilitarlo cuando ejecutamos el aplicativo en modo \textit{Production} debemos especificarlo explícitamente en las variables de entorno del \acrshort{so}, en este caso y para más información revisar el Apéndice A: Configuración del Sistema.
 
 \section{Calidad de código}
 
-Para una mejor lectura del código fuente se ha utilizado el \Gls{paquete} \textit{flake8}\footnote{Sitio Web de Flake8: \url{https://flake8.pycqa.org/en/latest/}.} que nos obliga a seguir las guías de estilo oficiales de Python.
+Crear código de calidad es una tarea compleja y si en un futuro se espera colaboración externa en \textit{Pizarra} se debe seguir una serie de pautas para que todos puedan trabajar sin tener que descifrar lo que se ha hecho. En estos casos lo que se hace es seguir unas guías de estilo que estipulan ciertas reglas de cómo debe escribirse el código fuente y hay herramientas que ayudan a identificar problemas como \Gls{paquete} \textit{flake8}\footnote{Sitio Web de Flake8: \url{https://flake8.pycqa.org/en/latest/}}.
 
-En el directorio raíz del repositorio de código ejecutamos el siguiente comando y podemos ver un listado de errores a corregir.
+En el directorio raíz del repositorio de código se ejecuta el siguiente comando y podemos ver un listado de reglas que no se cumplen y debemos solucionar:.
 
-\begin{lstlisting}[language=bash]
+\begin{lstlisting}[style=ascii-tree]
 $ flake8 app/
 app/__init__.py:8:1: F401 'logging.DEBUG' imported but unused
 app/__init__.py:71:5: E722 do not use bare 'except'
@@ -1874,22 +1871,20 @@ app/home/routes.py:216:101: E501 line too long (108 > 100 characters)
 app/admin/forms.py:32:28: N805 first argument of a method should be named 'self'
 \end{lstlisting}
 
-La configuración de \textit{flake8} se encuentra en el fichero \textbf{setup.tfg} en la raíz del repositorio.
+Adicionalmente, la configuración de \textit{flake8} se encuentra en el fichero \textbf{setup.tfg} en la raíz del repositorio en caso que se desee modificar la forma en la cual se ejecuta.
 
-\begin{lstlisting}[language=bash]
+\begin{code}{setup.tfg}}
 [flake8]
 max-line-length=100
 ignore=E402,E266
 exclude=./migrations
-\end{lstlisting}
-
-Otro punto importante es la cobertura del código fuente. Aunque el repositorio incluye las librerías de \textit{coveralls} y \textit{pytest} por cuestiones de tiempo no se han escrito tests unitarios y se ha dejado como una mejora futura.
+\end{code}
 
 \section{Gestión de versiones}
 
 Como se ha visto anteriormente desde el inicio del desarrollo de la aplicación se ha utilizado como herramienta de gestión de versiones \textit{Git}\footnote{Sitio web Git: \url{https://git-scm.com/}.} para el seguimiento de los cambios y entregables. La rama principal es ``master'' y solo para requisitos de gran impacto se han creado nuevas que finalmente han sido fusionadas a ``master'' una vez validadas. Cada vez que se producía el fin de un \foreign{english}{sprint} con su bloque de tareas se creaba una nueva ``etiqueta'' o \foreign{english}{tag} marcando la versión; comenzando desde la \textit{0.1} llegando al final de la entrega del \acrshort{tfg} a la \textit{1.0}.
 
-Este ha sido un trabajo de una sola persona y se ha seguido el método de \foreign{english}{Feature Branch Workflow} \cite{link-git-flow} donde se tiene una rama principal y nuevas funcionalidades o \foreign{english}{features} divergen de esta para luego volver a fusionarse. Ya que se espera recibir colaboraciones a futuro se deberá acomodar a un proceso que involucre a un equipo de trabajo y ramas en diferentes estados como \foreign{english}{dev, release} y \foreign{english}{master} como en \foreign{english}{Gitflow Workflow}.
+Este ha sido un trabajo de una sola persona y se ha seguido el método de \foreign{english}{Feature Branch Workflow} \cite{link-git-flow} donde se tiene una rama principal y nuevas funcionalidades o \foreign{english}{features} divergen de esta para luego volver a fusionarse. Ya que se espera recibir colaboraciones a futuro se deberá acomodar a un proceso que involucre a un equipo de trabajo y ramas en diferentes estados como \foreign{english}{dev, release} y \foreign{english}{master} como en el método \foreign{english}{Gitflow Workflow}.
 
 \chapter{Extensibilidad}
 

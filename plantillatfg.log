@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.5.2)  2 JUL 2020 00:01
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.5.2)  2 JUL 2020 10:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -698,10 +698,18 @@ Package glossaries Info: Writing glossary file plantillatfg.glo on input line 9
 Package glossaries Info: Writing glossary file plantillatfg.acn on input line 9
 8.
 
+(/usr/local/texlive/2020/texmf-dist/tex/latex/wrapfig/wrapfig.sty
+\wrapoverhang=\dimen190
+\WF@size=\dimen191
+\c@WF@wrappedlines=\count322
+\WF@box=\box56
+\WF@everypar=\toks39
+Package: wrapfig 2003/01/31  v 3.6
+)
 (/usr/local/texlive/2020/texmf-dist/tex/latex/l3backend/l3backend-pdfmode.def
 File: l3backend-pdfmode.def 2020-03-12 L3 backend support: PDF mode
-\l__kernel_color_stack_int=\count322
-\l__pdf_internal_box=\box56
+\l__kernel_color_stack_int=\count323
+\l__pdf_internal_box=\box57
 )
 (./plantillatfg.aux
 LaTeX Info: Redefining \. on input line 31.
@@ -780,17 +788,17 @@ LaTeX Info: Redefining \L on input line 160.
 
 (/usr/local/texlive/2020/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count323
-\scratchdimen=\dimen190
-\scratchbox=\box57
-\nofMPsegments=\count324
-\nofMParguments=\count325
-\everyMPshowfont=\toks39
-\MPscratchCnt=\count326
-\MPscratchDim=\dimen191
-\MPnumerator=\count327
-\makeMPintoPDFobject=\count328
-\everyMPtoPDFconversion=\toks40
+\scratchcounter=\count324
+\scratchdimen=\dimen192
+\scratchbox=\box58
+\nofMPsegments=\count325
+\nofMParguments=\count326
+\everyMPshowfont=\toks40
+\MPscratchCnt=\count327
+\MPscratchDim=\dimen193
+\MPnumerator=\count328
+\makeMPintoPDFobject=\count329
+\everyMPtoPDFconversion=\toks41
 ) (/usr/local/texlive/2020/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
@@ -809,9 +817,11 @@ Package caption Info: longtable package is loaded.
 Package: ltcaption 2018/08/26 v1.4a longtable captions (AR)
 )
 Package caption Info: supertabular package is loaded.
+Package caption Info: wrapfig package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\c@lstlisting=\count329
-\AtBeginShipoutBox=\box58
+Package newfloat Info: `wrapfig' package detected.
+\c@lstlisting=\count330
+\AtBeginShipoutBox=\box59
 Package hyperref Info: Link coloring ON on input line 160.
 
 (/usr/local/texlive/2020/texmf-dist/tex/latex/hyperref/nameref.sty
@@ -824,7 +834,7 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 ty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count330
+\c@section@level=\count331
 )
 LaTeX Info: Redefining \ref on input line 160.
 LaTeX Info: Redefining \pageref on input line 160.
@@ -1247,31 +1257,275 @@ Cap\'{\i }tulo 7.
 
 ]
 Cap\'{\i }tulo 8.
-(/usr/local/texlive/2020/texmf-dist/tex/latex/listings/lstlang1.sty
-File: lstlang1.sty 2020/03/24 1.8d listings language file
-)
-(/usr/local/texlive/2020/texmf-dist/tex/latex/listings/lstlang1.sty
-File: lstlang1.sty 2020/03/24 1.8d listings language file
-) [55]
-<img/docker-compose-pizarra.png, id=1538, 471.7625pt x 592.2125pt>
+[55]
+Underfull \hbox (badness 10000) in paragraph at lines 1816--1817
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1822--1823
+
+ []
+
+<img/docker-compose-pizarra.png, id=1535, 471.7625pt x 592.2125pt>
 File: img/docker-compose-pizarra.png Graphic file (type png)
 <use img/docker-compose-pizarra.png>
-Package pdftex.def Info: img/docker-compose-pizarra.png  used on input line 184
-0.
-(pdftex.def)             Requested size: 170.71393pt x 214.29877pt.
-LaTeX Info: Redefining \. on input line 1851.
-LaTeX Info: Redefining \% on input line 1851.
+Package pdftex.def Info: img/docker-compose-pizarra.png  used on input line 183
+5.
+(pdftex.def)             Requested size: 106.69783pt x 133.93787pt.
 
+Underfull \hbox (badness 10000) in paragraph at lines 1844--1845
+
+ []
+
+
+Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
+put line 1846.
+
+LaTeX Info: Redefining \. on input line 1847.
+LaTeX Info: Redefining \% on input line 1847.
 [56 <./img/docker-compose-pizarra.png>]
-LaTeX Info: Redefining \. on input line 1891.
-LaTeX Info: Redefining \% on input line 1891.
- [57]
-LaTeX Info: Redefining \. on input line 1894.
-LaTeX Info: Redefining \% on input line 1894.
+
+Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
+put line 1847.
+
+
+Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
+put line 1847.
+
+
+Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
+put line 1847.
+
+
+Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
+put line 1847.
+
+
+Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
+put line 1847.
+
+
+Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
+put line 1847.
+
+
+Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
+put line 1847.
+
+
+Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
+put line 1847.
+
+
+Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
+put line 1847.
+
+
+Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
+put line 1847.
+
+
+Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
+put line 1847.
+
+
+Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
+put line 1847.
+
+
+Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
+put line 1848.
+
+
+Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
+put line 1848.
+
+
+Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
+put line 1848.
+
+
+Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
+put line 1848.
+
+
+Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
+put line 1848.
+
+
+Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
+put line 1848.
+
+
+Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
+put line 1848.
+
+
+Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
+put line 1848.
+
+
+Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
+put line 1848.
+
+
+Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
+put line 1848.
+
+
+Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
+put line 1848.
+
+
+Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
+put line 1848.
+
+
+Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
+put line 1848.
+
+
+Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
+put line 1848.
+
+
+Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
+put line 1848.
+
+
+Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
+put line 1848.
+
+
+Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
+put line 1848.
+
+
+Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
+put line 1848.
+
+
+Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
+put line 1848.
+
+
+Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
+put line 1849.
+
+
+Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
+put line 1849.
+
+
+Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
+put line 1849.
+
+
+Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
+put line 1849.
+
+
+Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
+put line 1849.
+
+
+Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
+put line 1849.
+
+
+Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
+put line 1849.
+
+
+Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
+put line 1849.
+
+
+Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
+put line 1849.
+
+
+Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
+put line 1849.
+
+
+Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
+put line 1849.
+
+
+Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
+put line 1849.
+
+
+Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
+put line 1849.
+
+
+Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
+put line 1849.
+
+
+Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
+put line 1849.
+
+
+Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
+put line 1849.
+
+
+Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
+put line 1849.
+
+
+Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
+put line 1849.
+
+
+Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
+put line 1849.
+
+
+Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
+put line 1849.
+
+
+Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
+put line 1849.
+
+
+Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
+put line 1849.
+
+
+Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
+put line 1849.
+
+
+Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
+put line 1849.
+
+
+Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
+put line 1850.
+
+
+Package wrapfig Warning: wrapfigure used inside a conflicting environment on in
+put line 1850.
+
+
+Package Listings Warning: Text dropped after begin of listing on input line 187
+6.
+
+LaTeX Info: Redefining \. on input line 1886.
+LaTeX Info: Redefining \% on input line 1886.
+[57]
+LaTeX Info: Redefining \. on input line 1889.
+LaTeX Info: Redefining \% on input line 1889.
  [58]
 Cap\'{\i }tulo 9.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1896--1896
+Underfull \hbox (badness 10000) in paragraph at lines 1891--1891
 [][][]\T1/ppl/m/n/9 Sitio web de TOR-QUE: [][]$\T1/cmtt/m/n/9 https : / / adapt
 ivecomputing . com / cherry-[]services /
  []
@@ -1281,23 +1535,30 @@ File: lstlang1.sty 2020/03/24 1.8d listings language file
 ) [59
 
 ]
-Overfull \hbox (16.3721pt too wide) in paragraph at lines 1974--1975
+Overfull \hbox (16.3721pt too wide) in paragraph at lines 1969--1970
 \T1/ppl/m/n/10.95 ca-nean-do to-dos los fi-che-ros y el re-sul-ta-do lo ten-dre
 -mos dis-po-ni-ble en el fi-che-ro [] 
  []
 
-LaTeX Info: Redefining \. on input line 1989.
-LaTeX Info: Redefining \% on input line 1989.
-[60]
-<img/pizarra-new-language.png, id=1689, 358.33875pt x 241.90375pt>
+(/usr/local/texlive/2020/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2020/03/24 1.8d listings language file
+)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2020/03/24 1.8d listings language file
+)
+LaTeX Info: Redefining \. on input line 1984.
+LaTeX Info: Redefining \% on input line 1984.
+ [60]
+<img/pizarra-new-language.png, id=1691, 358.33875pt x 241.90375pt>
 File: img/pizarra-new-language.png Graphic file (type png)
 <use img/pizarra-new-language.png>
-Package pdftex.def Info: img/pizarra-new-language.png  used on input line 2029.
+Package pdftex.def Info: img/pizarra-new-language.png  used on input line 2024.
 
 (pdftex.def)             Requested size: 213.39568pt x 144.05817pt.
-LaTeX Info: Redefining \. on input line 2037.
-LaTeX Info: Redefining \% on input line 2037.
- [61 <./img/pizarra-new-language.png>] [62
+LaTeX Info: Redefining \. on input line 2032.
+LaTeX Info: Redefining \% on input line 2032.
+
+[61 <./img/pizarra-new-language.png>] [62
 
 ]
 Cap\'{\i }tulo 10.
@@ -1308,13 +1569,13 @@ Cap\'{\i }tulo 11.
 [65] [66
 
 ]
-Underfull \hbox (badness 1354) in paragraph at lines 2119--2122
+Underfull \hbox (badness 1354) in paragraph at lines 2114--2117
 []\T1/ppl/m/n/10.95 Jacobs, Todd A. \T1/ppl/m/it/10.95 Sha-ring Doc-ker Con-tai
 -ners across De-vOps En-vi-ron-ments \T1/ppl/m/n/10.95 [en lí-
  []
 
 
-Underfull \hbox (badness 1043) in paragraph at lines 2119--2122
+Underfull \hbox (badness 1043) in paragraph at lines 2114--2117
 \T1/ppl/m/n/10.95 nea]  Con-sul-ta-do en 2 Ma-yo 2020. [][]$\T1/cmtt/m/n/10.95 
 https : / / www . linuxjournal . com / content /
  []
@@ -1326,11 +1587,11 @@ Ap\'{e}ndice A.
 [69
 
 ]
-LaTeX Info: Redefining \. on input line 2249.
-LaTeX Info: Redefining \% on input line 2249.
+LaTeX Info: Redefining \. on input line 2244.
+LaTeX Info: Redefining \% on input line 2244.
  [70]
-LaTeX Info: Redefining \. on input line 2321.
-LaTeX Info: Redefining \% on input line 2321.
+LaTeX Info: Redefining \. on input line 2316.
+LaTeX Info: Redefining \% on input line 2316.
  [71] (./plantillatfg.acr
 LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
@@ -1340,12 +1601,12 @@ LaTeX Info: Redefining \% on input line 1.
 ] [74
 
 ])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2358.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2353.
 
 [75
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 2358.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 2353.
  (./plantillatfg.aux
 LaTeX Info: Redefining \. on input line 31.
 LaTeX Info: Redefining \% on input line 31.
@@ -1358,18 +1619,18 @@ LaTeX Info: Redefining \% on input line 35.
 LaTeX Info: Redefining \. on input line 37.
 LaTeX Info: Redefining \% on input line 37.
 )
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 2358.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2358.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 2353.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2353.
 
 Package rerunfilecheck Info: File `plantillatfg.out' has not changed.
 (rerunfilecheck)             Checksum: 68EAD79C8A78682047D8EBFC93266CFC;4066.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2358.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2353.
  ) 
 Here is how much of TeX's memory you used:
- 22163 strings out of 480608
- 351881 string characters out of 5903631
- 965801 words of memory out of 5000000
- 36935 multiletter control sequences out of 15000+600000
+ 22214 strings out of 480608
+ 352613 string characters out of 5903631
+ 971233 words of memory out of 5000000
+ 36982 multiletter control sequences out of 15000+600000
  589737 words of font info for 120 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  51i,18n,93p,1068b,2233s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1416,10 +1677,10 @@ ts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/type
 1/urw/palatino/uplbi8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/urw/
 palatino/uplr8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/urw/palatin
 o/uplri8a.pfb>
-Output written on plantillatfg.pdf (85 pages, 1984737 bytes).
+Output written on plantillatfg.pdf (85 pages, 1985842 bytes).
 PDF statistics:
- 2220 PDF objects out of 2487 (max. 8388607)
- 2064 compressed objects within 21 object streams
+ 2222 PDF objects out of 2487 (max. 8388607)
+ 2066 compressed objects within 21 object streams
  671 named destinations out of 1000 (max. 500000)
  587 words of extra memory for PDF output out of 10000 (max. 10000000)
 

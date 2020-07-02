@@ -56,7 +56,7 @@
 \contentsline {section}{\numberline {8.1}Entorno local de desarrollo}{55}{section.8.1}%
 \contentsline {section}{\numberline {8.2}Depuración de errores}{57}{section.8.2}%
 \contentsline {section}{\numberline {8.3}Calidad de código}{57}{section.8.3}%
-\contentsline {section}{\numberline {8.4}Gestión de versiones}{57}{section.8.4}%
+\contentsline {section}{\numberline {8.4}Gestión de versiones}{58}{section.8.4}%
 \contentsline {chapter}{\numberline {9}Extensibilidad}{59}{chapter.9}%
 \contentsline {section}{\numberline {9.1}Otros sistemas de Gestión de Tareas}{59}{section.9.1}%
 \contentsline {section}{\numberline {9.2}Localización}{60}{section.9.2}%
