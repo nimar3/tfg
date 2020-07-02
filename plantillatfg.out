@@ -33,7 +33,7 @@
 \BOOKMARK [2][-]{subsection.5.2.2}{Sistemas de Colas}{section.5.2}% 33
 \BOOKMARK [2][-]{subsection.5.2.3}{Conexi\363n con sistemas externos}{section.5.2}% 34
 \BOOKMARK [2][-]{subsection.5.2.4}{Datos de ejemplo}{section.5.2}% 35
-\BOOKMARK [2][-]{subsection.5.2.5}{Otros}{section.5.2}% 36
+\BOOKMARK [2][-]{subsection.5.2.5}{Otros Paquetes}{section.5.2}% 36
 \BOOKMARK [1][-]{section.5.3}{Env\355o de soluciones a Tareas}{chapter.5}% 37
 \BOOKMARK [1][-]{section.5.4}{Ejecuci\363n en una Cola interna}{chapter.5}% 38
 \BOOKMARK [1][-]{section.5.5}{Asignaci\363n de Insignias}{chapter.5}% 39
@@ -44,19 +44,20 @@
 \BOOKMARK [2][-]{subsection.6.2.1}{Pasos de un despliegue en GCE}{section.6.2}% 44
 \BOOKMARK [2][-]{subsection.6.2.2}{Costos asociados}{section.6.2}% 45
 \BOOKMARK [0][-]{chapter.7}{Pruebas}{}% 46
-\BOOKMARK [0][-]{chapter.8}{Mantenimiento}{}% 47
-\BOOKMARK [1][-]{section.8.1}{Entorno local de desarrollo}{chapter.8}% 48
-\BOOKMARK [1][-]{section.8.2}{Depuraci\363n de errores}{chapter.8}% 49
-\BOOKMARK [1][-]{section.8.3}{Calidad de c\363digo}{chapter.8}% 50
-\BOOKMARK [1][-]{section.8.4}{Gesti\363n de versiones}{chapter.8}% 51
-\BOOKMARK [0][-]{chapter.9}{Extensibilidad}{}% 52
-\BOOKMARK [1][-]{section.9.1}{Otros sistemas de Gesti\363n de Tareas}{chapter.9}% 53
-\BOOKMARK [1][-]{section.9.2}{Localizaci\363n}{chapter.9}% 54
-\BOOKMARK [0][-]{chapter.10}{Conclusiones}{}% 55
-\BOOKMARK [1][-]{section.10.1}{Relaci\363n del trabajo desarrollado con los estudios cursados}{chapter.10}% 56
-\BOOKMARK [1][-]{section.10.2}{C}{chapter.10}% 57
-\BOOKMARK [0][-]{chapter.11}{Trabajos futuros}{}% 58
-\BOOKMARK [0][-]{chapter*.47}{Bibliograf\355a}{}% 59
-\BOOKMARK [0][-]{appendix.Alph1}{Configuraci\363n del sistema}{}% 60
-\BOOKMARK [1][-]{section.Alph1.1}{Inicializaci\363n}{appendix.Alph1}% 61
-\BOOKMARK [1][-]{section.Alph1.2}{Par\341metros}{appendix.Alph1}% 62
+\BOOKMARK [1][-]{section.7.1}{Pruebas funcionales}{chapter.7}% 47
+\BOOKMARK [1][-]{section.7.2}{Pruebas unitarias}{chapter.7}% 48
+\BOOKMARK [0][-]{chapter.8}{Mantenimiento}{}% 49
+\BOOKMARK [1][-]{section.8.1}{Entorno local de desarrollo}{chapter.8}% 50
+\BOOKMARK [1][-]{section.8.2}{Depuraci\363n de errores}{chapter.8}% 51
+\BOOKMARK [1][-]{section.8.3}{Calidad de c\363digo}{chapter.8}% 52
+\BOOKMARK [1][-]{section.8.4}{Gesti\363n de versiones}{chapter.8}% 53
+\BOOKMARK [0][-]{chapter.9}{Extensibilidad}{}% 54
+\BOOKMARK [1][-]{section.9.1}{Otros sistemas de Gesti\363n de Tareas}{chapter.9}% 55
+\BOOKMARK [1][-]{section.9.2}{Localizaci\363n}{chapter.9}% 56
+\BOOKMARK [0][-]{chapter.10}{Conclusiones y trabajos futuros}{}% 57
+\BOOKMARK [1][-]{section.10.1}{Relaci\363n del trabajo con los estudios cursados}{chapter.10}% 58
+\BOOKMARK [1][-]{section.10.2}{Competencias transversales}{chapter.10}% 59
+\BOOKMARK [0][-]{chapter*.47}{Bibliograf\355a}{}% 60
+\BOOKMARK [0][-]{appendix.Alph1}{Configuraci\363n del sistema}{}% 61
+\BOOKMARK [1][-]{section.Alph1.1}{Inicializaci\363n}{appendix.Alph1}% 62
+\BOOKMARK [1][-]{section.Alph1.2}{Par\341metros}{appendix.Alph1}% 63

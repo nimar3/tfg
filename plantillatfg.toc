@@ -41,7 +41,7 @@
 \contentsline {subsection}{\numberline {5.2.2}Sistemas de Colas}{34}{subsection.5.2.2}%
 \contentsline {subsection}{\numberline {5.2.3}Conexión con sistemas externos}{35}{subsection.5.2.3}%
 \contentsline {subsection}{\numberline {5.2.4}Datos de ejemplo}{35}{subsection.5.2.4}%
-\contentsline {subsection}{\numberline {5.2.5}Otros}{35}{subsection.5.2.5}%
+\contentsline {subsection}{\numberline {5.2.5}Otros Paquetes}{35}{subsection.5.2.5}%
 \contentsline {section}{\numberline {5.3}Envío de soluciones a Tareas}{35}{section.5.3}%
 \contentsline {section}{\numberline {5.4}Ejecución en una Cola interna}{37}{section.5.4}%
 \contentsline {section}{\numberline {5.5}Asignación de Insignias}{41}{section.5.5}%
@@ -52,6 +52,8 @@
 \contentsline {subsection}{\numberline {6.2.1}Pasos de un despliegue en GCE}{47}{subsection.6.2.1}%
 \contentsline {subsection}{\numberline {6.2.2}Costos asociados}{49}{subsection.6.2.2}%
 \contentsline {chapter}{\numberline {7}Pruebas}{53}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Pruebas funcionales}{53}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Pruebas unitarias}{53}{section.7.2}%
 \contentsline {chapter}{\numberline {8}Mantenimiento}{55}{chapter.8}%
 \contentsline {section}{\numberline {8.1}Entorno local de desarrollo}{55}{section.8.1}%
 \contentsline {section}{\numberline {8.2}Depuración de errores}{57}{section.8.2}%
@@ -60,10 +62,9 @@
 \contentsline {chapter}{\numberline {9}Extensibilidad}{59}{chapter.9}%
 \contentsline {section}{\numberline {9.1}Otros sistemas de Gestión de Tareas}{59}{section.9.1}%
 \contentsline {section}{\numberline {9.2}Localización}{61}{section.9.2}%
-\contentsline {chapter}{\numberline {10}Conclusiones}{63}{chapter.10}%
-\contentsline {section}{\numberline {10.1}Relación del trabajo desarrollado con los estudios cursados}{63}{section.10.1}%
-\contentsline {section}{\numberline {10.2}C}{63}{section.10.2}%
-\contentsline {chapter}{\numberline {11}Trabajos futuros}{65}{chapter.11}%
+\contentsline {chapter}{\numberline {10}Conclusiones y trabajos futuros}{63}{chapter.10}%
+\contentsline {section}{\numberline {10.1}Relación del trabajo con los estudios cursados}{63}{section.10.1}%
+\contentsline {section}{\numberline {10.2}Competencias transversales}{64}{section.10.2}%
 \contentsline {chapter}{Bibliograf\'{\i }a}{67}{chapter*.47}%
 \noindent \hrulefill \par 
 \appendixname \par 
