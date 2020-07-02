@@ -2153,21 +2153,21 @@ Al reiniciar la aplicación tendremos en el menú se visualizará el nuevo idiom
 
 \chapter{Configuración del sistema}
 
-Para un correcto funcionamiento de Pizarra el sistema debe inicializarse siguiendo los pasos descritos a continuación. Aunque se dispone de un script que realiza el despliegue de forma automatizada hay algunos pasos que requieren de intervención manual.
+Para un correcto funcionamiento de \textit{Pizarra} el sistema debe inicializarse siguiendo los pasos descritos a continuación ya que aunque se dispone de un \foreign{english}{script} que realiza el despliegue de forma automatizada hay algunos pasos que requieren de intervención manual.
 
 \section{Inicialización}
 
-Antes de comenzar con la inicialización del sistema, debemos exportar las variables de entorno del \acrshort{so} que utiliza el script. Abrimos una consola y ejecutamos los siguientes comandos, donde \textit{pizarra-id} es el ID de proyecto en \acrfull{gce}.
+Antes de comenzar con la inicialización del sistema debemos exportar las variables de entorno del \acrshort{so} que utiliza el \foreign{english}{script}. Abrimos una consola y ejecutamos los siguientes comandos donde \textit{pizarra-id} es el ID de proyecto en \acrfull{gce}.
 
-\begin{lstlisting}[language=bash]
+\begin{lstlisting}[style=ascii-tree]
 $ export PROJECT_ID=pizarra-id
 $ export DB_USERNAME=pizarra
 $ export DB_PASSWORD=pizarra
 \end{lstlisting}
 
-Si quisiéramos cambiar algún parámetro por defecto de Pizarra, debemos modificar el fichero \textbf{pizarra.yaml}\footnote{Fichero YAML de Pizarra: \url{https://github.com/nimar3/pizarra/blob/master/gce/pizarra.yaml}.} añadiendo los nuevos parámetros. En el siguiente extracto se han cambiado los puntos de penalización al obtener un \textit{KO} y \textit{TIMEWALL} en el envío de una \Gls{tarea} y la carga de datos de ejemplo.
+Si se quisiera cambiar algún parámetro por defecto de \textit{Pizarra}, debemos modificar el fichero \textbf{pizarra.yaml}\footnote{Fichero YAML de Pizarra: \url{https://github.com/nimar3/pizarra/blob/master/gce/pizarra.yaml}.}. En el siguiente extracto se han cambiado los puntos de penalización al obtener un \textit{KO} y \textit{TIMEWALL} en el envío de una \Gls{tarea} y la carga de datos de ejemplo.
 
-\begin{lstlisting}[language=yaml]
+\begin{lstlisting}[style=ascii-tree]
 ...
 spec:
   containers:
@@ -2176,40 +2176,40 @@ spec:
       env:
         - name: TIMEWALL_PENALTY
           value: "-20"
-        - name: "KO_PENALTY
+        - name: KO_PENALTY
           value: "-30"
-        - name: "IMPORT_SAMPLE_DATA"
+        - name: IMPORT_SAMPLE_DATA
           value: "True"
 ...          
 \end{lstlisting}
 
 A continuación se ejecuta el script.
 
-\begin{lstlisting}[language=bash]
+\begin{lstlisting}[style=ascii-tree]
 $ sh commands.sh
 \end{lstlisting}
 
-Al terminar la ejecución deberíamos tener Pizarra con todos los componentes desplegados. Podemos obtener el estado de los contenedores y servicios con los siguientes comandos.
+Al terminar la ejecución deberíamos tener \textit{Pizarra} con todos los componentes desplegados. Podemos obtener el estado de los \gls{contenedor}es y servicios con los siguientes comandos.
 
-\begin{lstlisting}[language=bash]
+\begin{lstlisting}[style=ascii-tree]
 $ kubectl get pods
 $ kubectl get services
 \end{lstlisting}
 
 \section{Parámetros}
 
-Al iniciar un \Gls{contenedor} utilizamos variables de entorno del \acrshort{so} para configurar su funcionamiento. El \Gls{contenedor} de Pizarra soporta estas variables para dar diferentes posibilidades en cómo queremos que se comporte el aplicativo. 
+Al iniciar un \Gls{contenedor} utilizamos variables de entorno del \acrshort{so} para configurar su funcionamiento. \textit{Pizarra} soporta estas variables para dar diferentes posibilidades en cómo queremos que se comporte el aplicativo. 
 
 Los mencionados a continuación con su descripción y opciones son los más relevantes en un despliegue. También se listan otros parámetros adicionales como referencia. Todos estos pueden ser consultados en el fichero de configuración\footnote{Fichero de Configuración: \url{https://github.com/nimar3/pizarra/blob/master/config.py}.}.
 
 \begin{itemize}
 	\item \textbf{APP\_MODE}
 	\begin{itemize}
-		\item Descripción: ejecución del aplicativo web o un worker
-		\item Opciones
+		\item Descripción: ejecución del aplicativo como aplicación web o \textit{Worker}
+		\item Opciones:
 		\begin{itemize}
-			\item Pizarra: aplicativo web
-			\item Worker: worker
+			\item Pizarra: aplicativo web.
+			\item Worker: worker.
 		\end{itemize}
 		\item Valor por defecto: \textit{Pizarra}
 	\end{itemize}
@@ -2218,11 +2218,11 @@ Los mencionados a continuación con su descripción y opciones son los más rele
 \begin{itemize}
 	\item \textbf{CONFIG\_MODE}
 	\begin{itemize}
-		\item Descripción: modo en el cual queremos que se ejecute Pizarra
-		\item Opciones
+		\item Descripción: modo en el cual queremos que se ejecute \textit{Pizarra}.
+		\item Opciones:
 		\begin{itemize}
-			\item Debug: modo Debug habilitado y \acrfull{bd} SQLite
-			\item Production: modo Debug deshabilitado y \acrfull{bd} Postgres
+			\item Debug: modo Debug habilitado y \acrshort{bd} SQLite.
+			\item Production: modo Debug deshabilitado y \acrshort{bd} PostgreSQL.
 		\end{itemize}
 		\item Valor por defecto: \textit{Debug}
 	\end{itemize}
@@ -2231,7 +2231,7 @@ Los mencionados a continuación con su descripción y opciones son los más rele
 \begin{itemize}
 	\item \textbf{REMOTE\_HOST}
 	\begin{itemize}
-		\item Descripción: hostname o IP del sistema externo a conectarnos para las colas de \kahan
+		\item Descripción: hostname o IP del sistema externo a conectarnos para las colas de \kahan.
 		\item Valor por defecto: \textit{kahan.dsic.upv.es}
 	\end{itemize}
 \end{itemize}
@@ -2239,7 +2239,7 @@ Los mencionados a continuación con su descripción y opciones son los más rele
 \begin{itemize}
 	\item \textbf{REMOTE\_USER}
 	\begin{itemize}
-		\item Descripción: usuario con el que nos conectaremos por \acrshort{ssh} y \acrshort{scp} a \kahan
+		\item Descripción: usuario con el que nos conectaremos por \acrshort{ssh} y \acrshort{scp} a \kahan.
 		\item Valor por defecto: \textit{pizarra}
 	\end{itemize}
 \end{itemize}
@@ -2247,7 +2247,7 @@ Los mencionados a continuación con su descripción y opciones son los más rele
 \begin{itemize}
 	\item \textbf{REMOTE\_PATH}
 	\begin{itemize}
-		\item Descripción: directorio remoto donde se copiarán los ficheros de cada ejecución en \kahan
+		\item Descripción: directorio remoto donde se copiarán los ficheros de cada ejecución en \kahan.
 		\item Valor por defecto: \textit{/pizarra}
 	\end{itemize}
 \end{itemize}
@@ -2255,7 +2255,7 @@ Los mencionados a continuación con su descripción y opciones son los más rele
 \begin{itemize}
 	\item \textbf{SSH\_FILE\_PATH}
 	\begin{itemize}
-		\item Descripción: ubicación de la clave privada para conectarnos por \acrshort{ssh} y \acrshort{scp} a \kahan
+		\item Descripción: ubicación de la clave privada para conectarnos por \acrshort{ssh} y \acrshort{scp} a \kahan.
 		\item Valor por defecto: \textit{app/data/keys/id\_rsa}
 	\end{itemize}
 \end{itemize}
@@ -2263,7 +2263,7 @@ Los mencionados a continuación con su descripción y opciones son los más rele
 \begin{itemize}
 	\item \textbf{LOG\_LEVEL}
 	\begin{itemize}
-		\item Descripción: establece el nivel de mensajes que deben mostrarse al ejecutarse el aplicativo
+		\item Descripción: establece el nivel de mensajes que deben mostrarse al ejecutarse el aplicativo.
 		\item Opciones
 		\begin{itemize}
 			\item CRITICAL
@@ -2279,7 +2279,7 @@ Los mencionados a continuación con su descripción y opciones son los más rele
 \begin{itemize}
 	\item \textbf{SECRET\_KEY}
 	\begin{itemize}
-		\item Descripción: clave secreta con la que se encriptarán las contraseñas, no se puede cambiar una vez desplegada la aplicación y por seguridad nunca debe utilizarse el valor por defecto
+		\item Descripción: clave secreta con la que se encriptarán las contraseñas, no se puede cambiar una vez desplegada la aplicación y por seguridad nunca debe utilizarse el valor por defecto.
 		\item Valor por defecto: \textit{pizarra-app}
 	\end{itemize}
 \end{itemize}
@@ -2287,7 +2287,7 @@ Los mencionados a continuación con su descripción y opciones son los más rele
 \begin{itemize}
 	\item \textbf{IMPORT\_SAMPLE\_DATA}
 	\begin{itemize}
-		\item Descripción: borrado de información de la \acrlong{bd} e importación de data de ejemplo.
+		\item Descripción: borrado de información de la \acrshort{bd} e importación de data de ejemplo.
 		\item Valor por defecto: \textit{False}
 	\end{itemize}
 \end{itemize}
@@ -2295,7 +2295,7 @@ Los mencionados a continuación con su descripción y opciones son los más rele
 \begin{itemize}
 	\item \textbf{TIME\_BETWEEN\_REQUESTS}
 	\begin{itemize}
-		\item Descripción: tiempo mínimo en segundos que debe esperar un \Gls{alumno} entre cada envío de \Gls{tarea}s
+		\item Descripción: tiempo mínimo en segundos que debe esperar un \gls{alumno} entre cada envío de \Gls{tarea}s.
 		\item Valor por defecto: \textit{60}
 	\end{itemize}
 \end{itemize}
@@ -2303,7 +2303,7 @@ Los mencionados a continuación con su descripción y opciones son los más rele
 \begin{itemize}
 	\item \textbf{TEAM\_MAX\_SIZE}
 	\begin{itemize}
-		\item Descripción: tamaño máximo de \Gls{alumno}s que puede tener un \Gls{equipo}
+		\item Descripción: tamaño máximo de \Gls{alumno}s que puede tener un \Gls{equipo}.
 		\item Valor por defecto: \textit{3}
 	\end{itemize}
 \end{itemize}
@@ -2311,7 +2311,7 @@ Los mencionados a continuación con su descripción y opciones son los más rele
 \begin{itemize}
 	\item \textbf{REGISTRATION\_ENABLED}
 	\begin{itemize}
-		\item Descripción: habilita el registro de usuarios en el aplicativo
+		\item Descripción: habilita el registro de usuarios en el aplicativo.
 		\item Valor por defecto: \textit{False}
 	\end{itemize}
 \end{itemize}
@@ -2319,7 +2319,7 @@ Los mencionados a continuación con su descripción y opciones son los más rele
 \begin{itemize}
 	\item \textbf{TIMEWALL\_PENALTY}
 	\begin{itemize}
-		\item Descripción: puntos de penalización al obtener un resultado de \textit{TIMEWALL} en un envío de \Gls{tarea}
+		\item Descripción: puntos de penalización al obtener un resultado de \textit{TIMEWALL} en un envío de \Gls{tarea}.
 		\item Valor por defecto: \textit{-10}
 	\end{itemize}
 \end{itemize}
@@ -2327,7 +2327,7 @@ Los mencionados a continuación con su descripción y opciones son los más rele
 \begin{itemize}
 	\item \textbf{KO\_PENALTY}
 	\begin{itemize}
-		\item Descripción: puntos de penalización al obtener un resultado de \textit{KO} en un envío de \Gls{tarea}
+		\item Descripción: puntos de penalización al obtener un resultado de \textit{KO} en un envío de \Gls{tarea}.
 		\item Valor por defecto: \textit{-15}
 	\end{itemize}
 \end{itemize}
