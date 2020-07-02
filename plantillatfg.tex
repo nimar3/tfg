@@ -91,9 +91,10 @@
 	numbers=none
 }
 \usepackage{dirtytalk}
-
 \usepackage[acronym]{glossaries}
 \usepackage{placeins}
+\usepackage{pgf, tikz}
+\usetikzlibrary{arrows, automata}
 
 \makeglossaries
 
@@ -1888,146 +1889,155 @@ Este ha sido un trabajo de una sola persona y se ha seguido el método de \forei
 
 \chapter{Extensibilidad}
 
-Uno de los puntos más importantes es permitir la colaboración y que Pizarra pueda utilizar otros sistemas de tareas que no sean una \Gls{cola} local o la de un cluster como \kahan(TORQUE\footnote{Sitio web de TORQUE: \url{https://adaptivecomputing.com/cherry-services/torque-resource-manager/}.}) así como también que pueda ser localizado en diferentes idiomas.
+Uno de los puntos más importantes es permitir la colaboración y que \textit{Pizarra} se pueda utilizar otros sistemas de tareas que no sean una \Gls{cola} local o la de \kahan(TORQUE\footnote{Sitio web de TORQUE: \url{https://adaptivecomputing.com/cherry-services/torque-resource-manager/}.}); ya sabiendo que en el próximo curso académico \kahan será reemplazado por \textit{kahan2} y deberá ser adecuado. Además, la colaboración y uso no debe estar limitado por el lenguaje y debe estar abierto a ser localizado en diferentes idiomas. En este capítulo trataremos estos dos apartados al ser los más importantes.
 
 \section{Otros sistemas de Gestión de Tareas}
 
-La ejecución de una tarea es diferente en cada \Gls{cola} y para esto se ha implementado un autómata que va cambiando de estados en cada ejecución hasta finalizarla. Esto permite que cada nuevo tipo de \Gls{cola} tenga su propia definición, sea flexible y compatible con el funcionamiento del aplicativo.
+En el capítulo 5: Ejecución en una Cola interna ya se ha explicado el proceso de desarrollo y creación de un autómata para los pasos que seguiría en \gls{envio} de una \gls{tarea}. En modo de ejemplo se había presentado una versión simplificada del autómata para un \foreign{english}{job} local (clase \textit{LocalJob}) y para este tipo de ``trabajos'' la definición es muy simple ya que este tipo de \foreign{english}{jobs} no deben esperar su turno para ser procesados como en \kahan.
 
-La definición de estas \Gls{cola}s se encuentra en \textbf{models\_tasks.py}\footnote{Definición de Colas: \url{https://github.com/nimar3/pizarra/blob/master/app/base/models_tasks.py}.} siendo \textit{Task} el objeto a extender para las nuevas implementaciones.
+Para mostrar la facilidad con la cual se puede extender \textit{Pizarra} a otros sistemas de \gls{cola}s se hará un repaso de como se ha definido el nuevo autómata para la clase \textit{KahanJob} que extiende de \textit{LocalJob}.
 
-\begin{lstlisting}[language=python]
-class Task:
+Para el sistema de \Gls{cola}s de \kahan podemos ver el siguiente extracto donde se han creado nuevos métodos para obtener el ID con el que se ha desplegado la tarea y también la verificación de como si la tarea está todavía en la \gls{cola} o ejecutandose debemos esperar (\textit{StepResult.WAIT}) y volver a verificar en un futuro. \newline
 
-	def __init__(self, user_request):
-	self.user_request = user_request
-	self.output = ""
-	self.binary_file_location = ""
-	self.return_code = 0
-	self.run_time = 0.0
-	self.points_earned = 0
-	# automata
-	self.task_process = {}
-\end{lstlisting}
-
-El autómata cuenta con las siguientes transiciones
-
-\begin{lstlisting}[language=python]
-class StepResult(enum.Enum):
-	START = 0
-	OK = 1
-	NOK = 2
-	WAIT = 3
-	END = 4
-\end{lstlisting}
-
-Para el sistema de \Gls{cola}s de \kahan tenemos el siguiente extracto. Donde creamos la nueva clase \textit{KahanTask} que extiende de \textit{LocalTask} y hereda todos sus atributos y métodos.
-
-\begin{lstlisting}[language=python]
-class KahanTask(LocalTask):
-
-	def __init__(self, user_request):
-	super().__init__(user_request)
-	self.task_process = {
-		RequestStatus.CREATED: {
-		'f': self.start,
-		'steps': {
-			StepResult.OK: RequestStatus.VERIFYING,
-		}
-	},
-	RequestStatus.VERIFYING: {
-		'f': self.verify,
-		'steps': {
-			StepResult.OK: RequestStatus.COMPILING,
-			StepResult.NOK: RequestStatus.ERROR
-		}
-	},
-	RequestStatus.COMPILING: {
-		'f': self.compile,
-		'steps': {
-			StepResult.OK: RequestStatus.DEPLOYING,
-			StepResult.NOK: RequestStatus.ERROR
-		}
-	},
+\begin{code}{models\_jobs.py}
 ...
-\end{lstlisting}
+def deploy(self):
+	remote = RemoteClient.Instance()
+	output = remote.execute_commands_in_directory(self.remote_directory, ['qsub script.sh'])
+	kahan_queue_id = get_kahan_queue_id(output)
+	if kahan_queue_id is None:
+		return StepResult.NOK
+	
+	self.user_request.kahan_id = kahan_queue_id
+	return StepResult.OK
 
-En la definición del \textit{task\_process} tenemos un diccionario con los diferentes estados que puede encontrarse el autómata, la función a ejecutar \textit{f} y para cada ejecución el diccionario \textit{steps} con las transiciones.
+def check_queue(self):
+	remote = RemoteClient.Instance()
+		
+	output = remote.execute_commands(['qstat |grep ' + self.user_request.kahan_id])
+	request_status = get_kahan_queue_status(output)
+	
+	if request_status == RequestStatus.QUEUED or request_status == RequestStatus.RUNNING:
+		if request_status != self.user_request.status:
+			self.update_request(request_status)
+		# requeue task
+		return StepResult.WAIT
+...
+\end{code}
+
+Al comenzar la ejecución de los métodos \textit{deploy} y \textit{check\_queue} se obtiene una instancia de conexión con \kahan; esto se hace utilizando un patrón de diseño llamado \foreign{english}{Singleton} \cite{book-software-design-patterns} para evitar abrir de múltiples conexiones \textit{SSH} con el servidor frontal del \foreign{english}{cluster}. El método deploy ejecuta el comando ``qsub script.sh'' para encolar el trabajo y obtiene el ID de la \gls{cola}. En cambio, \textit{check\_queue} ejecuta el comando ``qstat'' para ver el estado del trabajo en la \gls{cola} y compara el estado, si sigue estando encolado (\textit{QUEUED}) o ejecutandose (\textit{RUNNING}) habrá que volver a revisar en un futuro.
+
+Estos nuevos estados del autómata que difieren de la clase \textit{LocalJob} se pueden ver en la definición de la clase \textit{KahanJob}: \newline
+
+\begin{code}{models\_jobs.py}
+class KahanJob(LocalJob):
+	def __init__(self, user_request):
+		super().__init__(user_request)
+		self.task_process = {
+			RequestStatus.CREATED: {
+				'f': self.start,
+				'steps': {
+					StepResult.OK: RequestStatus.VERIFYING,
+				}
+			},
+			RequestStatus.VERIFYING: {
+				'f': self.verify,
+				'steps': {
+					StepResult.OK: RequestStatus.COMPILING,
+					StepResult.NOK: RequestStatus.ERROR
+				}
+			},
+			RequestStatus.COMPILING: {
+				'f': self.compile,
+				'steps': {
+					StepResult.OK: RequestStatus.DEPLOYING,
+					StepResult.NOK: RequestStatus.ERROR
+				}
+			},
+			RequestStatus.DEPLOYING: {
+				'f': self.deploy,
+				'steps': {
+					StepResult.OK: RequestStatus.QUEUED,
+					StepResult.NOK: RequestStatus.ERROR
+				}
+			},
+		...
+\end{code}
 
 \section{Localización}
 
-Pizarra utiliza el \Gls{paquete} \textit{Babel}\footnote{Paquete \textit{Babel}: \url{http://babel.pocoo.org/en/latest/}.} para ofrecer los diferentes idiomas disponibles a los usuarios. A continuación se muestra el \textit{paso a paso} para añadir un nuevo Idioma.
+\textit{Pizarra} utiliza el \Gls{paquete} \textit{Babel}\footnote{Paquete \textit{Babel}: \url{http://babel.pocoo.org/en/latest/}.} para ofrecer los diferentes idiomas disponibles a los usuarios. La configuración de \textit{Babel} se encuentra en el fichero \textbf{babel.cfg}\footnote{Configuración de \textit{Babel}: \url{https://github.com/nimar3/pizarra/blob/master/babel.cfg}.} en la que se define los ficheros a escanear y extraer texto para traducir.
 
-La configuración de \textit{Babel} se encuentra en el fichero \textbf{babel.cfg}\footnote{Configuración de \textit{Babel}: \url{https://github.com/nimar3/pizarra/blob/master/babel.cfg}.} en la que se define los ficheros a escanear y extraer texto a traducir.
-
-\begin{lstlisting}[language=python]
+\begin{lstlisting}[style=ascii-tree]
 [python: app/**.py]
 [jinja2: app/**/templates/**.html]
 extensions=jinja2.ext.autoescape,jinja2.ext.with_
 \end{lstlisting}
 
-Con el siguiente comando se extrae el texto. En la consola se visualiza como se van escaneando todos los ficheros y el resultado lo tendremos disponible en el fichero \mbox{\textbf{messages.pot}} 
+A continuación se muestra el ``paso a paso'' para añadir un nuevo lenguaje a la aplicación.
 
-\begin{lstlisting}[language=bash]
-(venv) $ pybabel extract -F babel.cfg -k _l -o messages.pot .
-...
-extracting messages from app/home/templates/macros/summaries.html (extensions="jinja2.ext.autoescape,jinja2.ext.with_")
-extracting messages from app/home/templates/macros/teams.html (extensions="jinja2.ext.autoescape,jinja2.ext.with_")
-writing PO template file to messages.pot
-\end{lstlisting}
-
-Una vez extraído el texto hay que generar el fichero de localización para el idioma que vayamos a traducir. Las localizaciones se encuentran en el directorio \textit{/app/translations}. 
-
-\begin{lstlisting}[language=bash]
-(env) $ pybabel init -i messages.pot -d app/translations -l es
-creating catalog app/translations/es/LC_MESSAGES/messages.po based on messages.pot
-\end{lstlisting}
-
-El siguiente paso es comenzar a añadir las traducciones en las líneas identificadas con \textit{msgstr}
-
-\begin{lstlisting}[language=bash]
-$  cat app/translations/es/LC_MESSAGES/messages.po
-...
-#: app/account/routes.py:34
-msgid "New Access Token has been generated!"
-msgstr "Nuevo Token de acceso ha sido generado!"
-
-#: app/account/routes.py:54
-msgid "You joined Team {}"
-msgstr "Te has unido al equipo {}"
-
-#: app/account/routes.py:56
-msgid "You are unable to join team {} because is full"
-msgstr ""
-...
-\end{lstlisting}
-
-Se deben compilar las traducciones.
-
-\begin{lstlisting}[language=bash]
-(env) $ pybabel compile -d app/translations
-compiling catalog app/translations/es/LC_MESSAGES/messages.po to app/translations/es/LC_MESSAGES/messages.mo
-\end{lstlisting}
-
-Y se añade a la configuración de Pizarra el nuevo idioma disponible.
-
-\begin{code}{config.py}
+\begin{enumerate}
+	\item Con el siguiente comando se extrae el texto y mientras procesan los ficheros se van mostrando mensajes en la consola . Al finalizar el resultado lo tendremos disponible en el fichero \mbox{\textbf{messages.pot}}.
+	
+	\begin{lstlisting}[style=ascii-tree]
+	(venv) $ pybabel extract -F babel.cfg -k _l -o messages.pot .
 	...
-	SUPPORTED_LANGUAGES = {'es': 'Spanish', 'en': 'English'}
+	extracting messages from app/home/templates/macros/summaries.html (extensions="jinja2.ext.autoescape,jinja2.ext.with_")
+	extracting messages from app/home/templates/macros/teams.html (extensions="jinja2.ext.autoescape,jinja2.ext.with_")
+	writing PO template file to messages.pot
+	\end{lstlisting}
+	
+	\item Una vez extraído el texto hay que generar el fichero de localización para el idioma que vayamos a traducir. Las localizaciones se encuentran en el directorio \textit{/app/translations}. 
+	
+	\begin{lstlisting}[style=ascii-tree]
+	(env) $ pybabel init -i messages.pot -d app/translations -l es
+	creating catalog app/translations/es/LC_MESSAGES/messages.po based on messages.pot
+	\end{lstlisting}
+	
+	\item El siguiente paso es comenzar a añadir las traducciones en las líneas identificadas con \textit{msgstr}.
+	
+	\begin{lstlisting}[style=ascii-tree]
+	$  cat app/translations/es/LC_MESSAGES/messages.po
 	...
-\end{code}
+	#: app/account/routes.py:34
+	msgid "New Access Token has been generated!"
+	msgstr "Nuevo Token de acceso ha sido generado!"
+	
+	#: app/account/routes.py:54
+	msgid "You joined Team {}"
+	msgstr "Te has unido al equipo {}"
+	
+	#: app/account/routes.py:56
+	msgid "You are unable to join team {} because is full"
+	msgstr ""
+	...
+	\end{lstlisting}
+	
+	\item Se compilan las traducciones.
+	
+	\begin{lstlisting}[language=bash]
+	(env) $ pybabel compile -d app/translations
+	compiling catalog app/translations/es/LC_MESSAGES/messages.po to app/translations/es/LC_MESSAGES/messages.mo
+	\end{lstlisting}
+	
+	\item Y se añade a la configuración de Pizarra el nuevo idioma disponible.
+	
+	\begin{code}{config.py}
+		...
+		SUPPORTED_LANGUAGES = {'es': 'Spanish', 'en': 'English'}
+		...
+	\end{code}
+	
+\end{enumerate}
 
-En el menú se visualizará el nuevo idioma disponible.
+Al reiniciar la aplicación tendremos en el menú se visualizará el nuevo idioma disponible y al seleccionarlo el lenguaje de la aplicación web se mantendrá durante la sesión que tengamos activa.
 
-\begin{figure}[ht]
+\begin{figure}[!ht]
 	\centering
 	\includegraphics[width=0.50\textwidth]{img/pizarra-new-language}
 	\caption[Selector de Idiomas en Pizarra]{Selector de Idiomas en Pizarra.}
 	\label{figura:pizarra-new-language}
 \end{figure}
-
-
-
 
 \chapter{Conclusiones}
 
@@ -2084,6 +2094,11 @@ En el menú se visualizará el nuevo idioma disponible.
 	Grinberg, Miguel
 	\newblock ``Deployment''. \textit{Flask Web Development: Developing Web Applications with Python}
 	\newblock California: O'Reilly Media, Inc., 2014. ISBN: 9781491947616
+	
+\bibitem{book-software-design-patterns}
+	Gamma, E. and Helm, R. and Johnson, R. and Vlissides, J.
+	\newblock \textit{Design Patterns: Elements of Reusable Object-Oriented Software}
+	\newblock Pearson Education, 1994. ISBN: 9780321700698
 	
 
 

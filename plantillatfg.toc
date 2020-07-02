@@ -59,7 +59,7 @@
 \contentsline {section}{\numberline {8.4}Gestión de versiones}{58}{section.8.4}%
 \contentsline {chapter}{\numberline {9}Extensibilidad}{59}{chapter.9}%
 \contentsline {section}{\numberline {9.1}Otros sistemas de Gestión de Tareas}{59}{section.9.1}%
-\contentsline {section}{\numberline {9.2}Localización}{60}{section.9.2}%
+\contentsline {section}{\numberline {9.2}Localización}{61}{section.9.2}%
 \contentsline {chapter}{\numberline {10}Conclusiones}{63}{chapter.10}%
 \contentsline {section}{\numberline {10.1}Relación del trabajo desarrollado con los estudios cursados}{63}{section.10.1}%
 \contentsline {section}{\numberline {10.2}C}{63}{section.10.2}%
