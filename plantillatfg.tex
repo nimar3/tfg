@@ -184,7 +184,7 @@
 	
 El presente trabajo aborda la implementación de un sitio web para concursos de programación paralela, con el añadido de la gamificación o ludificación, una técnica de aprendizaje que busca recompensar al usuario y aumentar su motivación al sumar elementos y dinámicas propias de los juegos para así ofrecer una experiencia enriquecedora y positiva. \par 
 
-Esta es una tarea compleja, por un lado llevar el proceso de envío de código a un entorno web y la interacción que tendrá con el cluster \kahan del DSIC. Y por el otro, transformar las actividades de laboratorio de las asignaturas CPA y LPP con nuevas mecánicas que produzcan al estudiante buscar mejorar sus resultados inclusive después de llegar a una resolución correcta a los ejercicios planteados. \par
+Esta es una tarea compleja, por un lado llevar el proceso de envío de código a un entorno web y la interacción que tendrá con el cluster \kahan del DSIC. Y por el otro, transformar las actividades de laboratorio de las asignaturas CPA y LPP con nuevas mecánicas que fomenten al estudiante buscar mejorar sus resultados inclusive después de llegar a una resolución correcta a los ejercicios planteados. \par
 
 Este proyecto ha sido realizado con el apoyo del DSIC de la UPV con la finalidad de complementar otras herramientas utilizadas hoy en día en la enseñanza. \par
 
@@ -192,11 +192,11 @@ Este proyecto ha sido realizado con el apoyo del DSIC de la UPV con la finalidad
 
 \begin{abstract}[english]
 
-... \par
+This work addresses the implementation of a website for parallel programming contests, with the addition of gamification, a learning technique that seeks to reward the user and increase their motivation by adding elements and dynamics typical of games to offer an enriching and positive experience. \par
 
-... \par
+This is a complex task, on the one hand, bringing the process of sending code to a web environment and the interaction it will have with the DSIC cluster \ kahan. And on the other, to transform the laboratory activities of the CPA and LPP subjects with new mechanics that encourage the student to seek to improve their results even after reaching a correct resolution of the proposed exercises. \par
 
-... \par
+This project has been carried out with the support of the UPV DSIC  in order to complement other tools used today in teaching. \par
 
 \end{abstract}
 
@@ -265,13 +265,13 @@ En esta memoria se han seguido una serie de convenciones listadas a continuació
 
 \chapter{Estado del arte}
 
-La gamificación \cite{article-defining-gamification}, el uso de elementos propios de los juegos en otros contextos ha visto un aumento en su utilización en los últimos años, no solo aplicado al área de la educación sino que también como añadidos a otros productos donde se busca obtener la fidelización de los  usuarios a través de sistemas de recompensas en modo de premios, trofeos o puntos que creen experiencias positivas. En el área de las competiciones de programación, la gamificación no solo añade aspectos positivos ya que se ha podido ver que puede afectar a la colaboración entre personas \cite{article-improving-collaborative} y deben incluirse elementos que la fomenten.
+La gamificación \cite{article-defining-gamification}, el uso de elementos propios de los juegos en otros contextos ha visto un aumento en su utilización en los últimos años, no solo aplicado al área de la educación sino que también como añadidos a otros productos donde se busca obtener la fidelización de los  usuarios a través de sistemas de recompensas en modo de premios, trofeos o puntos que creen experiencias positivas. En el área de las competiciones de programación la gamificación no solo añade aspectos positivos, sino que también tiene sus retos ya que se ha podido ver que puede afectar a la colaboración entre personas \cite{article-improving-collaborative} y deben incluirse elementos adicionales que fomenten la cooperación.
 
-La cantidad de plataformas que utilizan la gamificación solo ha ido en aumento; especialmente las dedicadas al aprendizaje de la programación y sus competiciones \cite{article-programing-competition-platforms}. Cada una de ellas con diferentes objetivos, por ejemplo, Checkio tiene como misión la enseñanza de la programación mediante los juegos (<<expanding the world’s code literacy through game play.>>) ofreciendo un servicio preparado para el uso, tanto para un profesor como sus alumnos, en un curso de introducción de \textit{python} o \textit{typescript}. Mientras, HackerRank busca hacer de nexo entre empresas que buscan contratar perfiles con un alto nivel de pericia en la programación, algoritmos y resolución de problemas, y personas interesadas en participar en competiciones de programación para mejorar sus conocimientos, el entretenimiento o buscar una nueva oportunidad laboral. Como las 
+La cantidad de plataformas que utilizan la gamificación solo ha ido en aumento; especialmente las dedicadas al aprendizaje de la programación y sus competiciones \cite{article-programing-competition-platforms}. Cada una de ellas con diferentes objetivos, por ejemplo, Checkio tiene como misión la enseñanza de la programación mediante los juegos (<<expanding the world’s code literacy through game play.>>) ofreciendo un servicio preparado para el uso, tanto de un profesor como sus alumnos, en un curso de introducción de \textit{python} o \textit{typescript}. Mientras, HackerRank busca hacer de nexo entre empresas que buscan contratar perfiles con un alto nivel de pericia en la programación, algoritmos y resolución de problemas, y personas interesadas en participar en competiciones de programación para mejorar sus conocimientos, buscar una nueva oportunidad laboral o simplemente el entretenimiento.
 
 Cuando hacemos foco en aplicaciones para la creación de competiciones de programación paralela el resultado es desolador, solo existe una herramienta llamada \textit{Tablón} creada por Grupo Trasgo, un equipo de investigación de la Universidad de Valladolid\footnote{Sitio web Tablón: \url{https://trasgo.infor.uva.es/tablon/}} que lleva utilizándola desde hace varios años hasta la actualidad con resultados positivos \cite{article-applying-gamification}.
 
-Una de las principales razones por las que se puede intuir la falta de este tipo de herramientas orientadas a la programación paralela es que tienen un uso muy particular, debido que la optimización y paralelización de código es algo muy importante en la Computación de alto rendimiento (HPC) pero que quizá no tienen mucha relevancia o se dejan de lado en un curso introductorio a la programación. También, para la ejecución de código es necesario un entorno adecuado como un \textit{cluster} de computadoras al requerirse unos recursos fuera de lo habitual, con los costos asociados que esto conlleva.
+Una de las principales razones por las que se puede intuir la falta de este tipo de herramientas orientadas a la programación paralela es que tienen un uso muy particular, debido que la optimización y paralelización de código es algo muy importante en la Computación de alto rendimiento (HPC) pero que quizá no tienen mucha relevancia o se dejan de lado en un curso introductorio a la programación. También, para la ejecución de código es necesario un entorno adecuado como un \textit{cluster} de computadoras al requerirse unos recursos fuera de lo habitual con los costos asociados que esto conlleva.
 
 \section{Crítica al estado del arte}
 
