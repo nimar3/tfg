@@ -257,13 +257,13 @@ La memoria recoge el proceso de ``desarrollo del software'' o ``ciclo de vida de
 En esta memoria se han seguido una serie de convenciones listadas a continuación:
 
 \begin{itemize}
-	\item las palabras en inglés que aparecen entre paréntesis a continuación de un término hacen referencia a al objeto en \textit{python} que lo representa en el código fuente.
-	\item el código fuente de la aplicación incluido en la memoria tiene en su etiqueta la ubicación del fichero al que hace referencia.
-	\item las palabras en inglés están remarcadas en cursiva.
-	\item los ficheros del código fuente nombrados en párrafos están remarcados en negrita.
+	\item Las palabras en inglés que aparecen entre paréntesis a continuación de un término hacen referencia a al objeto en \textit{python} que lo representa en el código fuente.
+	\item El código fuente de la aplicación incluido en la memoria tiene en su etiqueta la ubicación del fichero al que hace referencia.
+	\item Las palabras en inglés están remarcadas en cursiva.
+	\item Los ficheros del código fuente nombrados en párrafos están remarcados en negrita.
 \end{itemize}
 
-\chapter{Estado del arte}
+\chapter{Estado del arte y propuesta}
 
 La gamificación \cite{article-defining-gamification}, el uso de elementos propios de los juegos en otros contextos ha visto un aumento en su utilización en los últimos años, no solo aplicado al área de la educación sino que también como añadidos a otros productos donde se busca obtener la fidelización de los  usuarios a través de sistemas de recompensas en modo de premios, trofeos o puntos que creen experiencias positivas. En el área de las competiciones de programación la gamificación no solo añade aspectos positivos, sino que también tiene sus retos ya que se ha podido ver que puede afectar a la colaboración entre personas \cite{article-improving-collaborative} y deben incluirse elementos adicionales que fomenten la cooperación.
 
@@ -275,19 +275,19 @@ Una de las principales razones por las que se puede intuir la falta de este tipo
 
 \section{Crítica al estado del arte}
 
-Como hemos visto, \textit{Tablón} es la única alternativa que se adecua a la propuesta del \acrshort{tfg} y es el punto de referencia para la creación de nuestra aplicación ya que se ha utilizado en el pasado por el Tutor. Aunque \textit{Tablón} pareciera ser una alternativa válida a la premisa de este trabajo, no viene sin ciertos problemas y limitaciones:
+Como hemos visto, \textit{Tablón} es la única alternativa que se adecua a la propuesta del \acrshort{tfg} y es el punto de referencia para la creación de nuestra aplicación ya que se ha sido utilizada en el pasado por el Tutor. Aunque \textit{Tablón} pareciera ser una alternativa válida a la premisa de este trabajo, no viene sin ciertos problemas y limitaciones.
 
-Comenzando, no existe ningún tipo de documentación sobre como debe ser implantado o adecuado a diferentes \gls{cola}s que no sean las de la \textit{Slurm}, el sistema que utiliza la Universidad de Valladolid, esto hace que la curva de aprendizaje de cómo funciona y la realización de adaptaciones sea una tarea compleja; además de estar programado en \textit{python2}, una versión del lenguaje de programación antigua y soporte oficial, lo que dificulta su implantación en nuevos entornos que utilizan \textit{python3} por defecto. Según lo comentado por el Tutor y su experiencia previa el proceso de implantación de \textit{Tablón} le ha llevado varias semanas, teniendo inclusive que recurrir a apoyo externo.
+Comenzando, no existe ningún tipo de documentación sobre cómo debe ser implantado o adecuado a diferentes \gls{cola}s que no sean las de la \textit{Slurm}, el sistema que utiliza la Universidad de Valladolid, esto hace que la curva de aprendizaje de cómo funciona y la realización de adaptaciones sea una tarea compleja; además de estar programado en \textit{python2}, una versión del lenguaje de programación antigua y sin soporte oficial, lo que dificulta su implantación en nuevos entornos que utilizan \textit{python3} por defecto. Según lo comentado por el Tutor y su experiencia previa el proceso de implantación de \textit{Tablón} le ha llevado varias semanas, teniendo inclusive que recurrir a apoyo externo.
 
-Otra de sus limitaciones es la asignación de lo que son \textit{badges}, \textit{throphies} o \textit{ribbons}, que son premios a los alumnos del sistema, y se hacen desde \textit{Moodle}, una plataforma de aprendizaje externa a \textit{Tablón} que termina diluyendo la experiencia del usuario al tener que realizar la tarea de enviar su trabajo en un sistema, para después tener que revisar sus premios en otro. También el método de envío de un trabajo debe hacerse con una programa que debe ser compilado y distribuido, esto puede ir en detrimento del uso de la herramienta ya que un usuario puede ser reticente a ejecutarlo en su ordenador.
+Otra de sus limitaciones es la asignación de lo que son \textit{badges}, \textit{throphies} o \textit{ribbons}, que son premios a los alumnos del sistema, y se hacen desde \textit{Moodle}, una plataforma de aprendizaje externa a \textit{Tablón} que termina diluyendo la experiencia del usuario al tener que realizar la tarea de enviar su trabajo en un sistema, para después tener que revisar sus premios en otro. También el método de envío de un trabajo debe hacerse con un programa que debe ser compilado y distribuido, esto puede ir en detrimento del uso de la herramienta, ya que un usuario puede ser reticente a ejecutarlo en su ordenador.
 
-Por último, \textit{Tablón} es un sistema de tipo monolito donde todos los procesos convergen en un único lugar; desde el servidor que ofrece respuestas a las peticiones web de los usuarios, procesos internos y el sistema de colas que verifica los resultados en \textit{Slurm}, todo esto sin utilizar herramientas o librerías estándar en el mercado lo que hace que sea un punto de fallo en su diseño. Si se interrumpe la ejecución de \textit{Tablón} (que por diseño debe reiniciarse cada hora para eliminar procesos ``colgados'') se cae el sistema de forma completa.
+Por último, \textit{Tablón} es un sistema de tipo monolito, donde todos los procesos convergen en un único lugar; desde el servidor que ofrece respuestas a las peticiones web de los usuarios, procesos internos y el sistema de colas que verifica los resultados en \textit{Slurm}. Todo esto sin utilizar herramientas o librerías estándar del mercado, lo que hace que sea un punto de fallo en su diseño. Si se interrumpe la ejecución de \textit{Tablón} (que por diseño debe reiniciarse cada hora para eliminar procesos ``colgados'') se cae el sistema de forma completa.
 
 \section{Propuesta}
 
 En este trabajo se propone la creación de una aplicación para la realización de competiciones de programación paralela inspirada en el funcionamiento de \textit{Tablón} pero que incluya dentro de la misma solución toda la experiencia de usuario, la del alumno, como también la inclusión de un panel de administración para el profesor. Además, la aplicación estará diseñada de forma que sus elementos se puedan distribuir en diferentes servicios y sean escalables. 
 
-Todo el proceso estará documentado, no solo por este trabajo sino que también en el repositorio de código abierto disponible, respetando y haciendo uso de buenas prácticas en el desarrollo de código como uso de guías de estilo, testing automatizado y también donde se incluirán \textit{scripts} para la implantación automatizada en una solución en la nube.
+Todo el proceso estará documentado, no solo por este trabajo sino que también en el repositorio de código abierto disponible, respetando y haciendo uso de buenas prácticas en el desarrollo de código, como uso de guías de estilo, testing automatizado y, también, donde se incluirán \textit{scripts} para la implantación automatizada en una solución en la nube.
 
 El resultado final espera ser una solución al problema actual de tener una herramienta que requiere demasiado trabajo para ser efectiva. La aplicación que se entregará es una respuesta innovadora a los requisitos con la utilización de tecnologías actuales de gran aceptación en el mercado.
 
@@ -1236,6 +1236,7 @@ La elección por la cual se han escogido dos modos diferentes de ejecución de l
 Por último, otro beneficio que brinda esta separación de roles consiste en que se pueden ejecutar un número indefinido de \foreign{english}{Workers}, donde cada uno de ellos puede tener diferentes colas configuradas y unos recursos disponibles exclusivos.
 
 \chapter{Desarrollo de la solución}
+\label{chap:desarrollo}
 
 En este capítulo presentamos un resumen de cómo se ha pasado del diseño de la aplicación al producto final dando un repaso de cómo se ha abordado el desarrollo de los aspectos más relevantes como el \gls{envio} de \gls{tarea}s, el motor de reglas y el autómata creado para el proceso de tareas en diferentes tipos de \gls{cola}s. Esto no podría ser posible sin describir el listado completo de librerías necesarias y el sistema de plantillas que se utiliza para generar el contenido web. Por último, se presenta un resumen de los entregables que se fueron generando para dar vida al producto final.
 
@@ -1589,7 +1590,7 @@ Dado que la creación de la aplicación ha sido elaborada dentro de un marco de 
 En el pasado, la implantación hubiera requerido la intervención del equipo de Administración de Sistemas para instalar el \textit{SO} de cada máquina, crear usuarios, asignar permisos, abrir puertos y otro sinfín de tareas. Hoy en día es diferente.
 Para evitar tener que realizar todos estos pasos y acelerar la puesta en producción el proyecto incluye la posibilidad de que todos los elementos de la arquitectura se desplieguen en \Gls{contenedor}es. Estos \Gls{contenedor}es están creados con la tecnología \textit{Docker} y son paquetes que incluyen todo lo necesario, ya sean librerías u otras herramientas del sistema necesarias para que el software se ejecute.
 
-\textit{Docker} ofrece una funcionalidad similar a la de una \acrfull{vm}, siendo algo bastante diferente. En primer lugar no es necesario asignar recursos físicos a cada \gls{contenedor} ya que es el mismo \textit{Docker Engine} (servicio) el que se encarga de asignarlos de forma dinámica (Figura~\ref{figura:container-vs-vm}) y esto hace que se aproveche mejor el \foreign{english}{hardware}; además tienen una huella en espacio en disco mucho menor que el tradicional \acrshort{so} con todos las librerías y servicios que vienen preinstalados ya que solo contienen lo esencial para su funcionamiento. Como ejemplo, el \gls{contenedor} de \textit{Redis} que utilizamos ocupa 29.8 \acrshort{mb} cuando una \acrshort{vm} con el mismo servicio pueden llegar a ser varios Gigabytes.
+\textit{Docker} ofrece una funcionalidad similar a la de una \acrfull{vm}, siendo algo bastante diferente. En primer lugar no es necesario asignar recursos físicos a cada \gls{contenedor} ya que es el mismo \textit{Docker Engine} (servicio) el que se encarga de asignarlos de forma dinámica (Figura~\ref{figura:container-vs-vm}) y esto hace que se aproveche mejor el \foreign{english}{hardware}; además tienen una huella en espacio en disco mucho menor que el tradicional \acrshort{so} con todas las librerías y servicios que vienen preinstalados ya que solo contienen lo esencial para su funcionamiento. Como ejemplo, el \gls{contenedor} de \textit{Redis} que utilizamos ocupa 29.8 \acrshort{mb} cuando una \acrshort{vm} con el mismo servicio pueden llegar a ocupar varios Gigabytes.
 
 \begin{figure}[ht]
 	\centering
@@ -1638,7 +1639,7 @@ Para un entorno de desarrollo local y/o de pruebas \textit{Docker} puede ser una
 
 \section{Despliegue en la Nube con Kubernetes}
 
-Existe ciertas limitaciones en \foreign{english}{cluster} \kahan que han impedido la instalación del servicio de \textit{Kubernetes} (K8s). Este era uno de los riesgos contemplados en el trabajo. Para resolver este problema se ha optado por un despliegue de \textit{Pizarra} en la nube. 
+Existen ciertas limitaciones en el \foreign{english}{cluster} \kahan que han impedido la instalación del servicio de \textit{Kubernetes} (K8s). Este era uno de los riesgos contemplados en el trabajo. Para resolver este problema se ha optado por un despliegue de \textit{Pizarra} en la nube. 
 
 Existen varios proveedores de \textit{K8s} en Internet (puede consultarse el listado de todos los \foreign{english}{partners} en el sitio oficial de \textit{Kubernetes}\footnote{Kubernetes - Partners: \url{https://kubernetes.io/es/partners}.}) siendo los más importantes: Google Cloud Engine (\textit{GCE}), Amazon Web Services (\textit{AWS}) y Microsoft Azure. Se ha optado por desplegar la aplicación en \textit{GCE}, ya que dispone de buena documentación y, además, \textdollar 300 de crédito promocional, que es más que suficiente para tener el aplicativo funcionando durante meses.
 
@@ -1774,7 +1775,7 @@ El número de nodos es 2 para tener servicio en caso de que haya una caída de u
 
 Utilizando la calculadora da un costo aproximado de \texteuro 49.00 mensuales. Como dato adicional, se puede variar de Centro de Datos y otros parámetros como el uso estipulado para reducir los costos aún más. Podemos guardar la estimación o enviárnosla por correo electrónico (Figura~\ref{figura:gce-estimated-cost-email}).
 
-\begin{figure}
+\begin{figure}[!t]
 	\centering
 	\includegraphics[width=0.70\textwidth]{img/google-cloud-engine-estimated-cost}
 	\caption[Estimación de costos en GCE]{Ejemplo de correo de GCE con una estimación de los costos asociados por mes.}
@@ -1783,17 +1784,17 @@ Utilizando la calculadora da un costo aproximado de \texteuro 49.00 mensuales. C
 
 \chapter{Pruebas}
 
-La pruebas son una etapa más del desarrollo de \textit{software} siendo una actividad relacionada con el proceso de control de calidad utilizando mecanismos, manuales o automatizados para verificar si el comportamiento del sistema es el deseado o no. En el desarollo de \textit{Pizarra} se han realizado dos tipos de pruebas, funcionales y automatizadas mediante test unitarios (\foreign{english}{Unit Testing}). En este capítulo presentaremos ambas y como ha sido su utilización en el proyecto.
+La pruebas constituyen una etapa más del desarrollo de \textit{software} siendo una actividad relacionada con el proceso de control de calidad utilizando mecanismos, manuales o automatizados para verificar si el comportamiento del sistema es el deseado o no. En el desarollo de \textit{Pizarra} se han realizado dos tipos de pruebas, funcionales y automatizadas, mediante tests unitarios (\foreign{english}{Unit Testing}). En este capítulo presentaremos ambas y cómo ha sido su utilización en el proyecto.
 
 \section{Pruebas funcionales}
 
-Este tipo de pruebas está basado en los requisitos funcionales previamente recogidos en etapas previas. Las pruebas han sido manuales y se han realizado en cada entrega de una nueva versión de \textit{Pizarra} verificando el correcto funcionamiento desde el punto de vista de la funcionalidad y rendimiento. También dependiendo de las funcionalidades entregadas ha habido un proceso de pruebas de exploración para poder dar feedback sobre el estado de la aplicación y mejoras a realizar.
+Este tipo de pruebas está basado en los requisitos funcionales previamente recogidos en etapas previas. Las pruebas han sido manuales y se han realizado en cada entrega de una nueva versión de \textit{Pizarra} verificando el correcto funcionamiento desde el punto de vista de la funcionalidad y rendimiento. También, dependiendo de las funcionalidades entregadas, ha habido un proceso de pruebas de exploración para poder dar feedback sobre el estado de la aplicación y mejoras a realizar.
 
 \section{Pruebas unitarias}
 
 Este tipo de pruebas consiste en verificar de forma individual las funciones o métodos creados en la aplicación siendo su cometido probar una ``unidad de código'' sin tener dependencia de otros módulos o funciones. Estas pruebas verifican que los parámetros de entrada y salida sean correctos, como también el resultado esperado.
 
-En este proyecto se ha utilizado \textit{unittest}, funcionalidad incluida en \textit{python3} para la creación de test unitarios \cite{book-python-testing}. Los tests se encuentran en el fichero \textbf{tests.py} y a continuación podemos ver un extracto de su definición: \newline
+En este proyecto se ha utilizado \textit{unittest}, funcionalidad incluida en \textit{python3} para la creación de tests unitarios \cite{book-python-testing}. Los tests se encuentran en el fichero \textbf{tests.py} y, a continuación, podemos ver un extracto de su definición: \newline
 
 \begin{code}{tests.py}
 class TestCases(unittest.TestCase):
@@ -1819,12 +1820,12 @@ class TestCases(unittest.TestCase):
 ...
 \end{code}
 
-Los tests previamente presentados están relacionados con métodos que verifican que la encriptación / desencriptación de las contraseñas es correcto y que las fechas en formato texto se convierten a una clase \textit{datetime} de \textit{python} sin producirse errores; Siendo los apartados del extracto de código son los siguientes:
+Los tests previamente presentados están relacionados con métodos que verifican que la encriptación/desencriptación de las contraseñas es correcta y que las fechas en formato texto se conviertan a una clase \textit{datetime} de \textit{python} sin producirse errores, siendo los apartados del extracto de código los siguientes:
 
 \begin{itemize}
-	\item una clase que extiende de la clase \textit{unittest.TestCase} para poder utilizar los métodos de tipo ``assert'' heredados, es decir, funciones que aseveran que en un determinado momento del código una determinada condición debe ser cierta.
-	\item la implementación del método \textit{setUp} que será la función a ejecutar al iniciar la clase, normalmente para darle el contexto a la aplicación (añadiendo variables de entorno, conexión a la \acrshort{bd}, etc..)
-	\item la definición de cada test a ejecutar siempre y cuando comiencen con el nombre \textit{test\_}.
+	\item Una clase que extiende de la clase \textit{unittest.TestCase} para poder utilizar los métodos de tipo ``assert'' heredados, es decir, funciones que aseveran que en un determinado momento del código una determinada condición debe ser cierta.
+    \item La implementación del método \textit{setUp} que será la función a ejecutar al iniciar la clase, normalmente para darle el contexto a la aplicación (añadiendo variables de entorno, conexión a la \acrshort{bd}, etc.).
+	\item La definición de cada test a ejecutar siempre y cuando comiencen con el nombre \textit{test\_}.
 \end{itemize}
 
 La ejecución de los tests unitarios se puede realizar desde una herramienta externa de forma automatizada o ejecutando el siguiente comando desde la consola:
@@ -1841,28 +1842,27 @@ El resultado esperado es OK si los tests se han ejecutado con éxito. Si llegara
 
 \chapter{Mantenimiento}
 
-El desarrollo de \textit{software} es un proceso evolutivo y requiere de un mantenimiento continuo para asegurar el correcto funcionamiento, como así también la posibilidad de añadir mejoras y nuevas funcionalidades. Para poder asegurar este proceso tienen que cumplirse ciertas pautas como el acceso al código fuente, en este caso disponible en un repositorio de código abierto en Internet, una guía de como configurar un entorno de desarrollo local, el proceso a seguir para mantener un estándar de calidad en el código fuente y el manejo de versiones. Los siguientes apartados abordan todos estos puntos para cumplir con el proceso de mantenimiento de \textit{software}.
+El desarrollo de \textit{software} es un proceso evolutivo y requiere de un mantenimiento continuo para asegurar el correcto funcionamiento, como así también la posibilidad de añadir mejoras y nuevas funcionalidades. Para poder asegurar este proceso tienen que cumplirse ciertas pautas como el acceso al código fuente, en este caso disponible en un repositorio de código abierto en Internet, una guía de cómo configurar un entorno de desarrollo local, el proceso a seguir para mantener un estándar de calidad en el código fuente y el manejo de versiones. Los siguientes apartados abordan todos estos puntos para cumplir con el proceso de mantenimiento de \textit{software}.
 
 \section{Entorno local de desarrollo}
 
-Para configurar un entorno de desarrollo local se debe cumplir los siguientes requisitos.
-
+Para configurar un entorno de desarrollo local se deben cumplir los siguientes requisitos:
 \begin{itemize}
-    \item  Tener instalado \textit{python3}\footnote{Descarga oficial de Python: \url{https://www.python.org/downloads/}.} y \textit{Docker}\footnote{Descarga oficial de Docker: \url{https://docs.docker.com/get-docker/}.} en nuestra máquina
+    \item  Tener instalado \textit{python3}\footnote{Descarga oficial de Python: \url{https://www.python.org/downloads/}.} y \textit{Docker}\footnote{Descarga oficial de Docker: \url{https://docs.docker.com/get-docker/}.} en nuestra máquina.
 	\item Clonado el repositorio de \textit{Pizarra} realizando los siguientes pasos:
 	\begin{enumerate}
-		\item Creación de directorio para el proyecto
+		\item Creación de un directorio para el proyecto:
 		\begin{lstlisting}[style=ascii-tree]
 		$ mkdir pizarra
 		$ cd pizarra/
 		\end{lstlisting}
-		\item Inicialización de un nuevo repositorio y añadida la dirección remota
+		\item Inicialización de un nuevo repositorio y añadir la dirección remota:
 		\begin{lstlisting}[style=ascii-tree]
 		$ git init .
 		Initialized empty Git repository in /Users/nmartini/pizarra/.git/
 		$ git remote add upstream git@github.com:nimar3/pizarra.git
 		\end{lstlisting}
-		\item Descarga del código fuente
+		\item Descarga del código fuente:
 		\begin{lstlisting}[style=ascii-tree]
 		$ git fetch upstream
 		remote: Enumerating objects: 589, done.
@@ -1872,7 +1872,7 @@ Para configurar un entorno de desarrollo local se debe cumplir los siguientes re
 		Receiving objects: 100% (6891/6891), 19.14 MiB | 675.00 KiB/s, done.
 		Resolving deltas: 100% (1748/1748), done.
 		\end{lstlisting}
-		\item \foreign{english}{checkout} a la rama donde se va a trabajar, en este caso \textit{master}
+		\item \foreign{english}{checkout} a la rama donde se va a trabajar, en este caso \textit{master}:
 		\begin{lstlisting}[style=ascii-tree]
 		$ git checkout master
 		Checking out files: 100% (4858/4858), done.
@@ -1894,7 +1894,7 @@ Si hemos realizado cambios en el código fuente se debe ejecutar el siguiente co
 $ docker build -t pizarra .
 \end{lstlisting}
 
-Por último, para iniciar \textit{Pizarra} con todos los componentes introducimos el siguiente comando en la raíz del repositorio. Todos los componentes deben mostrar que se han creado correctamente con el mensaje \textit{done}. \newline
+Por último, para iniciar \textit{Pizarra} con todos los componentes, introducimos el siguiente comando en la raíz del repositorio. Todos los componentes deben mostrar que se han creado correctamente con el mensaje \textit{done}. \newline
 
 \begin{lstlisting}[style=ascii-tree]
 (env) $ docker-compose up
@@ -1912,9 +1912,9 @@ Creating nginx    ... done
 	\label{figura:docker-compose-pizarra}
 \end{wrapfigure}
 
-Se puede acceder a la aplicación web navegando a la URL https://127.0.0.1/ y se redirigirá automáticamente al inicio de sesión (Figura\ref{figura:docker-compose-pizarra})
+Se puede acceder a la aplicación web navegando a la URL https://127.0.0.1/ y se redirigirá automáticamente al inicio de sesión (Figura~\ref{figura:docker-compose-pizarra}).
 
-En algunos casos sólo es necesario la ejecución del aplicativo web con una \acrshort{bd} local en SQLite para hacer pruebas sobre cambios que no afectan otros componentes. Con este tipo de ejecución solo se podrá acceder a la aplicación web sin ningún \textit{Worker} o el servicio de \textit{Redis}, en resumen, se está ejecutando solamente el \textit{script} de la aplicación en \textit{Flask} y será útil para visualizar modificaciones a nivel visual.
+En algunos casos sólo es necesaria la ejecución del aplicativo web con una \acrshort{bd} local en SQLite para hacer pruebas sobre cambios que no a afectan otros componentes. Con este tipo de ejecución solo se podrá acceder a la aplicación web sin ningún \textit{Worker} o el servicio de \textit{Redis}, en resumen, se está ejecutando solamente el \textit{script} de la aplicación en \textit{Flask} y será útil para visualizar modificaciones a nivel visual.
 
 Esto se puede hacer utilizando el siguiente comando y \textit{Pizarra} estará disponible en la URL http://127.0.0.1:5000/ (el puerto por defecto de \textit{Flask} es el 5000). \newline
 
@@ -1926,15 +1926,15 @@ Esto se puede hacer utilizando el siguiente comando y \textit{Pizarra} estará d
 
 \section{Depuración de errores}
 
-Como todo software, \textit{Pizarra} no estará exento de errores o \foreign{english}{bugs} que no se han identificado en la etapa de desarrollo. Para aplacar estos problemas \textit{python} ofrece la ejecución de \textit{scripts} en modo \textit{Debug}, lo que nos permite poner puntos de ruptura y hacer una ejecución ``paso a paso'' del código para identificar las causas de errores.
+Como todo software, \textit{Pizarra} no estará exento de errores o \foreign{english}{bugs} que no se han identificado en la etapa de desarrollo. Para aplacar estos problemas \textit{python} ofrece la ejecución de \textit{scripts} en modo \textit{Debug}, lo que nos permite poner puntos de ruptura y realizar una ejecución ``paso a paso'' del código para identificar las causas de errores.
 
-En el entorno de desarrollo local el modo \textit{Debug} siempre está habilitado pero sii queremos habilitarlo cuando ejecutamos el aplicativo en modo \textit{Production} debemos especificarlo explícitamente en las variables de entorno del \acrshort{so}, en este caso y para más información revisar el Apéndice A: Configuración del Sistema.
+En el entorno de desarrollo local el modo \textit{Debug} siempre está habilitado pero, si queremos habilitarlo cuando ejecutamos el aplicativo en modo \textit{Production}, debemos especificarlo explícitamente en las variables de entorno del \acrshort{so}, en este caso y para más información revisar el Apéndice A: Configuración del Sistema.
 
-\section{Calidad de código}
+\section{Calidad del código}
 
-Crear código de calidad es una tarea compleja y si en un futuro se espera colaboración externa en \textit{Pizarra} se debe seguir una serie de pautas para que todos puedan trabajar sin tener que descifrar lo que se ha hecho. En estos casos lo que se hace es seguir unas guías de estilo que estipulan ciertas reglas de cómo debe escribirse el código fuente y hay herramientas que ayudan a identificar problemas como \Gls{paquete} \textit{flake8}\footnote{Sitio Web de Flake8: \url{https://flake8.pycqa.org/en/latest/}}.
+Crear código de calidad es una tarea compleja y, si en un futuro se espera colaboración externa en \textit{Pizarra}, se deben seguir una serie de pautas para que todos puedan trabajar sin tener que descifrar lo que se ha hecho. En estos casos, lo que se hace es seguir unas guías de estilo que estipulan ciertas reglas de cómo debe escribirse el código fuente, y existen herramientas que ayudan a identificar problemas, como \Gls{paquete} \textit{flake8}\footnote{Sitio Web de Flake8: \url{https://flake8.pycqa.org/en/latest/}}.
 
-En el directorio raíz del repositorio de código se ejecuta el siguiente comando y podemos ver un listado de reglas que no se cumplen y debemos solucionar:.
+En el directorio raíz del repositorio de código se ejecuta el siguiente comando y podemos ver un listado de reglas que no se cumplen y debemos solucionar:\newline
 
 \begin{lstlisting}[style=ascii-tree]
 $ flake8 app/
@@ -1946,7 +1946,7 @@ app/home/routes.py:216:101: E501 line too long (108 > 100 characters)
 app/admin/forms.py:32:28: N805 first argument of a method should be named 'self'
 \end{lstlisting}
 
-Adicionalmente, la configuración de \textit{flake8} se encuentra en el fichero \textbf{setup.tfg} en la raíz del repositorio en caso que se desee modificar la forma en la cual se ejecuta.
+Adicionalmente, la configuración de \textit{flake8} se encuentra en el fichero \textbf{setup.tfg}, en la raíz del repositorio en caso que se desee modificar la forma en la cual se ejecuta: \newline
 
 \begin{code}{setup.tfg}}
 [flake8]
@@ -1957,21 +1957,21 @@ exclude=./migrations
 
 \section{Gestión de versiones}
 
-Como se ha visto anteriormente desde el inicio del desarrollo de la aplicación se ha utilizado como herramienta de gestión de versiones \textit{Git}\footnote{Sitio web Git: \url{https://git-scm.com/}.} para el seguimiento de los cambios y entregables. La rama principal es ``master'' y solo para requisitos de gran impacto se han creado nuevas que finalmente han sido fusionadas a ``master'' una vez validadas. Cada vez que se producía el fin de un \foreign{english}{sprint} con su bloque de tareas se creaba una nueva ``etiqueta'' o \foreign{english}{tag} marcando la versión; comenzando desde la \textit{0.1} llegando al final de la entrega del \acrshort{tfg} a la \textit{1.0}.
+Como se ha visto anteriormente desde el inicio del desarrollo de la aplicación se ha utilizado como herramienta de gestión de versiones \textit{Git}\footnote{Sitio web Git: \url{https://git-scm.com/}.} para el seguimiento de los cambios y entregables. La rama principal es ``master'' y solo para requisitos de gran impacto se han creado nuevas ramas que, finalmente, han sido fusionadas a ``master'' una vez validadas. Cada vez que se producía el fin de un \foreign{english}{sprint} con su bloque de tareas se creaba una nueva ``etiqueta'' o \foreign{english}{tag} marcando la versión; comenzando desde la \textit{0.1} llegando al final de la entrega del \acrshort{tfg} a la \textit{1.0}.
 
-Este ha sido un trabajo de una sola persona y se ha seguido el método de \foreign{english}{Feature Branch Workflow} \cite{link-git-flow} donde se tiene una rama principal y nuevas funcionalidades o \foreign{english}{features} divergen de esta para luego volver a fusionarse. Ya que se espera recibir colaboraciones a futuro se deberá acomodar a un proceso que involucre a un equipo de trabajo y ramas en diferentes estados como \foreign{english}{dev, release} y \foreign{english}{master} como en el método \foreign{english}{Gitflow Workflow}.
+Este ha sido un trabajo de una sola persona y se ha seguido el método de \foreign{english}{Feature Branch Workflow}~\cite{link-git-flow}, donde se tiene una rama principal y nuevas funcionalidades o \foreign{english}{features} que divergen de esta para luego volver a fusionarse. Ya que se espera recibir colaboraciones a futuro se deberá acomodar a un proceso que involucre a un equipo de trabajo y ramas en diferentes estados como \foreign{english}{dev, release} y \foreign{english}{master}, como en el método \foreign{english}{Gitflow Workflow}.
 
 \chapter{Extensibilidad}
 
-Uno de los puntos más importantes es permitir la colaboración y que \textit{Pizarra} se pueda utilizar otros sistemas de tareas que no sean una \Gls{cola} local o la de \kahan(TORQUE\footnote{Sitio web de TORQUE: \url{https://adaptivecomputing.com/cherry-services/torque-resource-manager/}.}); ya sabiendo que en el próximo curso académico \kahan será reemplazado por \textit{kahan2} y deberá ser adecuado. Además, la colaboración y uso no debe estar limitado por el lenguaje y debe estar abierto a ser localizado en diferentes idiomas. En este capítulo trataremos estos dos apartados al ser los más importantes.
+Uno de los puntos más importantes consiste en permitir la colaboración y que \textit{Pizarra} se pueda utilizar en otros sistemas de tareas diferentes al una \Gls{cola} local o la instalada en \kahan (TORQUE\footnote{Sitio web de TORQUE: \url{https://adaptivecomputing.com/cherry-services/torque-resource-manager/}.}), ya sabiendo que en el próximo curso académico \kahan será reemplazado por \textit{kahan2} y deberá ser adecuado. Además, la colaboración y uso no debe estar limitado por el lenguaje y debe estar abierto a ser localizado en diferentes idiomas. En este capítulo trataremos estos dos apartados al ser los más importantes.
 
 \section{Otros sistemas de Gestión de Tareas}
 
-En el capítulo 5: Ejecución en una Cola interna ya se ha explicado el proceso de desarrollo y creación de un autómata para los pasos que seguiría en \gls{envio} de una \gls{tarea}. En modo de ejemplo se había presentado una versión simplificada del autómata para un \foreign{english}{job} local (clase \textit{LocalJob}) y para este tipo de ``trabajos'' la definición es muy simple ya que este tipo de \foreign{english}{jobs} no deben esperar su turno para ser procesados como en \kahan.
+En el Capítulo~\ref{chap:desarrollo}, en ejecución en una Cola interna, ya se ha explicado el proceso de desarrollo y creación de un autómata para los pasos que seguiría el \gls{envio} de una \gls{tarea}. En modo de ejemplo se había presentado una versión simplificada del autómata para un \foreign{english}{job} local (clase \textit{LocalJob}) y para este tipo de ``trabajos'' la definición es muy simple, ya que los \foreign{english}{jobs} de este tipo no deben esperar su turno para ser procesados como en \kahan.
 
-Para mostrar la facilidad con la cual se puede extender \textit{Pizarra} a otros sistemas de \gls{cola}s se hará un repaso de como se ha definido el nuevo autómata para la clase \textit{KahanJob} que extiende de \textit{LocalJob}.
+Para mostrar la facilidad con la cual se puede extender \textit{Pizarra} a otros sistemas de \gls{cola}s se hará un repaso de cómo se ha definido el nuevo autómata para la clase \textit{KahanJob} que extiende de \textit{LocalJob}.
 
-Para el sistema de \Gls{cola}s de \kahan podemos ver el siguiente extracto donde se han creado nuevos métodos para obtener el ID con el que se ha desplegado la tarea y también la verificación de como si la tarea está todavía en la \gls{cola} o ejecutandose debemos esperar (\textit{StepResult.WAIT}) y volver a verificar en un futuro. \newline
+Para el sistema de \Gls{cola}s de \kahan podemos ver el siguiente extracto donde se han creado nuevos métodos para obtener el ID con el que se ha desplegado la tarea y también la verificación de cómo, si la tarea está todavía en la \gls{cola} o ejecutandose, debemos esperar (\textit{StepResult.WAIT}) y volver a verificar en un futuro. \newline
 
 \begin{code}{models\_jobs.py}
 ...
@@ -1999,7 +1999,7 @@ def check_queue(self):
 ...
 \end{code}
 
-Al comenzar la ejecución de los métodos \textit{deploy} y \textit{check\_queue} se obtiene una instancia de conexión con \kahan; esto se hace utilizando un patrón de diseño llamado \foreign{english}{Singleton} \cite{book-software-design-patterns} para evitar abrir de múltiples conexiones \textit{SSH} con el servidor frontal del \foreign{english}{cluster}. El método deploy ejecuta el comando ``qsub script.sh'' para encolar el trabajo y obtiene el ID de la \gls{cola}. En cambio, \textit{check\_queue} ejecuta el comando ``qstat'' para ver el estado del trabajo en la \gls{cola} y compara el estado, si sigue estando encolado (\textit{QUEUED}) o ejecutandose (\textit{RUNNING}) habrá que volver a revisar en un futuro.
+Al comenzar la ejecución de los métodos \textit{deploy} y \textit{check\_queue} se obtiene una instancia de conexión con \kahan; esto se hace utilizando un patrón de diseño llamado \foreign{english}{Singleton} \cite{book-software-design-patterns} para evitar abrir múltiples conexiones \textit{SSH} con el servidor frontal del \foreign{english}{cluster}. El método deploy ejecuta el comando ``qsub script.sh'' para encolar el trabajo y obtiene el ID de la \gls{cola}. En cambio, \textit{check\_queue} ejecuta el comando ``qstat'' para ver el estado del trabajo en la \gls{cola} y compara el estado. Si sigue estando encolado (\textit{QUEUED}) o ejecutándose (\textit{RUNNING}) habrá que volver a revisar en un futuro.
 
 Estos nuevos estados del autómata que difieren de la clase \textit{LocalJob} se pueden ver en la definición de la clase \textit{KahanJob}: \newline
 
@@ -2040,7 +2040,7 @@ class KahanJob(LocalJob):
 
 \section{Localización}
 
-\textit{Pizarra} utiliza el \Gls{paquete} \textit{Babel}\footnote{Paquete \textit{Babel}: \url{http://babel.pocoo.org/en/latest/}.} para ofrecer los diferentes idiomas disponibles a los usuarios. La configuración de \textit{Babel} se encuentra en el fichero \textbf{babel.cfg}\footnote{Configuración de \textit{Babel}: \url{https://github.com/nimar3/pizarra/blob/master/babel.cfg}.} en la que se define los ficheros a escanear y extraer texto para traducir.
+\textit{Pizarra} utiliza el \Gls{paquete} \textit{Babel}\footnote{Paquete \textit{Babel}: \url{http://babel.pocoo.org/en/latest/}.} para ofrecer los diferentes idiomas disponibles a los usuarios. La configuración de \textit{Babel} se encuentra en el fichero \textbf{babel.cfg}\footnote{Configuración de \textit{Babel}: \url{https://github.com/nimar3/pizarra/blob/master/babel.cfg}.} en el que se definen los ficheros a escanear y extraer el texto para traducir. \newline
 
 \begin{lstlisting}[style=ascii-tree]
 [python: app/**.py]
@@ -2049,9 +2049,8 @@ extensions=jinja2.ext.autoescape,jinja2.ext.with_
 \end{lstlisting}
 
 A continuación se muestra el ``paso a paso'' para añadir un nuevo lenguaje a la aplicación.
-
 \begin{enumerate}
-	\item Con el siguiente comando se extrae el texto y mientras procesan los ficheros se van mostrando mensajes en la consola . Al finalizar el resultado lo tendremos disponible en el fichero \mbox{\textbf{messages.pot}}.
+    \item Con el siguiente comando se extrae el texto y, mientras se procesan los ficheros, se van mostrando mensajes en la consola. Al finalizar, el resultado lo tendremos disponible en el fichero \mbox{\textbf{messages.pot}}.
 	
 	\begin{lstlisting}[style=ascii-tree]
 	(venv) $ pybabel extract -F babel.cfg -k _l -o messages.pot .
@@ -2068,7 +2067,7 @@ A continuación se muestra el ``paso a paso'' para añadir un nuevo lenguaje a l
 	creating catalog app/translations/es/LC_MESSAGES/messages.po based on messages.pot
 	\end{lstlisting}
 	
-	\item El siguiente paso es comenzar a añadir las traducciones en las líneas identificadas con \textit{msgstr}.
+ 	\item El siguiente paso consiste en comenzar a añadir las traducciones en las líneas identificadas con \textit{msgstr}.
 	
 	\begin{lstlisting}[style=ascii-tree]
 	$  cat app/translations/es/LC_MESSAGES/messages.po
@@ -2104,7 +2103,7 @@ A continuación se muestra el ``paso a paso'' para añadir un nuevo lenguaje a l
 	
 \end{enumerate}
 
-Al reiniciar la aplicación tendremos en el menú se visualizará el nuevo idioma disponible y al seleccionarlo el lenguaje de la aplicación web se mantendrá durante la sesión que tengamos activa.
+Al reiniciar la aplicación en el menú se visualizará el nuevo idioma disponible y, al seleccionarlo, el lenguaje de la aplicación web se mantendrá durante la sesión que tengamos activa.
 
 \begin{figure}[!ht]
 	\centering
@@ -2119,9 +2118,9 @@ Transitar el \acrlong{gii} aunando los conocimientos adquiridos en la rama de In
 
 El resultado final es una herramienta innovadora que une el concepto de computación paralela, gamificación y una solución orientada a servicios que hace uso de tecnologías originales de gran aceptación en el mercado tecnológico actual. Es así que logramos obtener una solución robusta al ser extensible, mantenible y de fácil implantación.
 
-Como todo proyecto de desarrollo de \textit{software} han ido produciéndose contratiempos como la necesidad de un motor de reglas y el despliegue de la aplicación en la nube que pudieron ser paliados gracias a la investigación y análisis de alternativas que han dado como resultado un plan de acción para llegar a una solución efectiva.
+Como todo proyecto de desarrollo de \textit{software} han ido produciéndose contratiempos, como la necesidad de tener un motor de reglas o de tener que desplegar la aplicación en la nube, que pudieron ser paliados gracias a la investigación y análisis de alternativas que han dado como resultado un plan de acción para llegar a una solución efectiva.
 
-Finalmente, los objetivos se han alcanzado al haberse entregado todos los requisitos funcionales acordados al comienzo de la etapa de desarrollo, cumpliendo en tiempo y forma con lo acordado con el Tutor esperando con ansias el uso de la herramienta en el próximo curso académico y así poder analizar los resultados en un ambiente de trabajo real.
+Finalmente, los objetivos se han alcanzado al haberse entregado todos los requisitos funcionales acordados al comienzo de la etapa de desarrollo, cumpliendo en tiempo y forma con lo acordado con el Tutor. Se espera con ansias el uso de la herramienta en el próximo curso académico y así poder analizar los resultados en un ambiente de trabajo real.
 
 Sobre trabajos futuros ya se ha mencionado que \textit{kahan2} reemplazará al \textit{cluster} actual del \acrshort{dsic} y tendrán que hacerse en \textit{Pizarra} unas modificaciones menores para adaptarlo al nuevo \textit{cluster}. Además, como posibles mejoras, se podrían añadir aspectos de personalización en la experiencia de usuario y seguir creando pruebas unitarias para aumentar la cobertura de código y así mejorar la calidad del código fuente.
 
