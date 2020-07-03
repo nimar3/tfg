@@ -163,10 +163,6 @@
 
 \begin{dedication}	
 	
-	\chapter*{Dedicatoria}
-	
-	...
-
 	\chapter*{Agradecimientos}
 		A mi tutor Pedro Alonso Jordá por su apoyo y la oportunidad de hacer este proyecto con la esperanza que produzca un impacto positivo en la enseñanza en los cursos venideros. \par
 		A la Escola Tècnica Superior d'Enginyeria Informàtica y todos sus profesores, gracias a ellos he podido crecer personal y profesionalmente. \par
@@ -191,7 +187,6 @@ El presente trabajo aborda la implementación de un sitio web para concursos de 
 Esta es una tarea compleja, por un lado llevar el proceso de envío de código a un entorno web y la interacción que tendrá con el cluster \kahan del DSIC. Y por el otro, transformar las actividades de laboratorio de las asignaturas CPA y LPP con nuevas mecánicas que produzcan al estudiante buscar mejorar sus resultados inclusive después de llegar a una resolución correcta a los ejercicios planteados. \par
 
 Este proyecto ha sido realizado con el apoyo del DSIC de la UPV con la finalidad de complementar otras herramientas utilizadas hoy en día en la enseñanza. \par
-
 
 \end{abstract}
 
@@ -269,6 +264,14 @@ En esta memoria se han seguido una serie de convenciones listadas a continuació
 \end{itemize}
 
 \chapter{Estado del arte}
+
+La gamificación \cite{article-defining-gamification}, el uso de elementos propios de los juegos en otros contextos ha visto un aumento en su utilización en los últimos años, no solo aplicado al área de la educación sino que también como añadidos a otros productos donde se busca obtener la fidelización de los  usuarios a través de sistemas de recompensas en modo de premios, trofeos o puntos que creen experiencias positivas. En el área de las competiciones de programación, la gamificación no solo añade aspectos positivos ya que se ha podido ver que puede afectar a la colaboración entre personas \cite{article-improving-collaborative} y deben incluirse elementos que la fomenten.
+
+La cantidad de plataformas que utilizan la gamificación solo ha ido en aumento; especialmente las dedicadas al aprendizaje de la programación y sus competiciones \cite{article-programing-competition-platforms}. Cada una de ellas con diferentes objetivos, por ejemplo, Checkio tiene como misión la enseñanza de la programación mediante los juegos (<<expanding the world’s code literacy through game play.>>) ofreciendo un servicio preparado para el uso, tanto para un profesor como sus alumnos, en un curso de introducción de \textit{python} o \textit{typescript}. Mientras, HackerRank busca hacer de nexo entre empresas que buscan contratar perfiles con un alto nivel de pericia en la programación, algoritmos y resolución de problemas, y personas interesadas en participar en competiciones de programación para mejorar sus conocimientos, el entretenimiento o buscar una nueva oportunidad laboral. Como las 
+
+Cuando hacemos foco en aplicaciones para la creación de competiciones de programación paralela el resultado es desolador, solo existe una herramienta llamada \textit{Tablón} creada por Grupo Trasgo, un equipo de investigación de la Universidad de Valladolid\footnote{Sitio web Tablón: \url{https://trasgo.infor.uva.es/tablon/}} que lleva utilizándola desde hace varios años hasta la actualidad con resultados positivos \cite{article-applying-gamification}.
+
+Una de las principales razones por las que se puede intuir la falta de este tipo de herramientas orientadas a la programación paralela es que tienen un uso muy particular, debido que la optimización y paralelización de código es algo muy importante en la Computación de alto rendimiento (HPC) pero que quizá no tienen mucha relevancia o se dejan de lado en un curso introductorio a la programación. También, para la ejecución de código es necesario un entorno adecuado como un \textit{cluster} de computadoras al requerirse unos recursos fuera de lo habitual, con los costos asociados que esto conlleva.
 
 \section{Crítica al estado del arte}
 
@@ -2171,6 +2174,23 @@ Tras la realización del \acrshort{tfg} se han reforzado las siguientes competen
 % MODEL DE LLIBRE                                                             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\bibitem{article-defining-gamification}
+	 Sebastian Deterding, Dan Dixon, Rilla Khaled, and Lennart Nacke. 
+	 \newblock 2011. From game design elements to gamefulness: defining ``gamification.'' In Proceedings of the 15th International Academic MindTrek Conference: Envisioning Future Media Environments (MindTrek ’11). Association for Computing Machinery, New York, NY, USA, 9–15. DOI:https://doi.org/10.1145/2181037.2181040
+	 
+\bibitem{article-improving-collaborative}
+	A. Gonzalez-Escribano, V. Lara-Mongil, E. Rodriguez-Gutiez and Y. Torres
+	\newblock ``Toward improving collaborative behaviour during competitive programming assignments,'' 2019 IEEE/ACM Workshop on Education for High-Performance Computing (EduHPC), Denver, CO, USA, 2019, pp. 68-74, DOP: 10.1109/EduHPC49559.2019.00014.
+
+\bibitem{article-applying-gamification}
+	Fresno, Javier, et al. 
+	\newblock ``Applying Gamification in a Parallel Programming Course.'' Gamification-Based E-Learning Strategies for Computer Programming Education, edited by Ricardo Alexandre Peixoto de Queirós and Mário Teixeira Pinto, IGI Global, 2017, pp. 106–130.
+
+\bibitem{article-programing-competition-platforms}
+	Combéfis, Sébastien. Beresnevičius, Gytautas. Dagiene, Valentina. (2016). 
+	\newblock Learning Programming through Games and Contests: Overview, Characterisation and Discussion. 10. 39-60. 10.15388/ioi.2016.03. 
+	
+	
 \bibitem{libingreq}
 	del Águila Cano, Isabel María.
 	\newblock ``Documentación de los requisitos''. \textit{Ingeniería de requisitos: Material didáctico. Cuaderno de teoría}.
