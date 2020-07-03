@@ -272,6 +272,21 @@ En esta memoria se han seguido una serie de convenciones listadas a continuació
 
 \section{Crítica al estado del arte}
 
+Como hemos visto, \textit{Tablón} es la única alternativa que se adecua a la propuesta del \acrshort{tfg} y es el punto de referencia para la creación de nuestra aplicación ya que se ha utilizado en el pasado por el Tutor. Aunque \textit{Tablón} pareciera ser una alternativa válida a la premisa de este trabajo, no viene sin ciertos problemas y limitaciones:
+
+Comenzando, no existe ningún tipo de documentación sobre como debe ser implantado o adecuado a diferentes \gls{cola}s que no sean las de la \textit{Slurm}, el sistema que utiliza la Universidad de Valladolid, esto hace que la curva de aprendizaje de cómo funciona y la realización de adaptaciones sea una tarea compleja; además de estar programado en \textit{python2}, una versión del lenguaje de programación antigua y soporte oficial, lo que dificulta su implantación en nuevos entornos que utilizan \textit{python3} por defecto. Según lo comentado por el Tutor y su experiencia previa el proceso de implantación de \textit{Tablón} le ha llevado varias semanas, teniendo inclusive que recurrir a apoyo externo.
+
+Otra de sus limitaciones es la asignación de lo que son \textit{badges}, \textit{throphies} o \textit{ribbons}, que son premios a los alumnos del sistema, y se hacen desde \textit{Moodle}, una plataforma de aprendizaje externa a \textit{Tablón} que termina diluyendo la experiencia del usuario al tener que realizar la tarea de enviar su trabajo en un sistema, para después tener que revisar sus premios en otro. También el método de envío de un trabajo debe hacerse con una programa que debe ser compilado y distribuido, esto puede ir en detrimento del uso de la herramienta ya que un usuario puede ser reticente a ejecutarlo en su ordenador.
+
+Por último, \textit{Tablón} es un sistema de tipo monolito donde todos los procesos convergen en un único lugar; desde el servidor que ofrece respuestas a las peticiones web de los usuarios, procesos internos y el sistema de colas que verifica los resultados en \textit{Slurm}, todo esto sin utilizar herramientas o librerías estándar en el mercado lo que hace que sea un punto de fallo en su diseño. Si se interrumpe la ejecución de \textit{Tablón} (que por diseño debe reiniciarse cada hora para eliminar procesos ``colgados'') se cae el sistema de forma completa.
+
+\section{Propuesta}
+
+En este trabajo se propone la creación de una aplicación para la realización de competiciones de programación paralela inspirada en el funcionamiento de \textit{Tablón} pero que incluya dentro de la misma solución toda la experiencia de usuario, la del alumno, como también la inclusión de un panel de administración para el profesor. Además, la aplicación estará diseñada de forma que sus elementos se puedan distribuir en diferentes servicios y sean escalables. 
+
+Todo el proceso estará documentado, no solo por este trabajo sino que también en el repositorio de código abierto disponible, respetando y haciendo uso de buenas prácticas en el desarrollo de código como uso de guías de estilo, testing automatizado y también donde se incluirán \textit{scripts} para la implantación automatizada en una solución en la nube.
+
+El resultado final espera ser una solución al problema actual de tener una herramienta que requiere demasiado trabajo para ser efectiva. La aplicación que se entregará es una respuesta innovadora a los requisitos con la utilización de tecnologías actuales de gran aceptación en el mercado.
 
 \chapter{Análisis del problema}
 
